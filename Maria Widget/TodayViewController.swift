@@ -22,7 +22,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var appCloseAlertLabel: NSTextField!
     @IBOutlet weak var speedView: NSStackView!
     
-    let aria2 = Aria2.shared
+    let aria2 = Aria2()
     var timer: NSTimer!
     
     
@@ -47,13 +47,19 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         aria2.connect()
         
-
-        
+//        aria2.downloadCompleted()
         
     }
     
     func getStatus() {
-        aria2.tellActive()
+        let isConnected = aria2.isConnected
+        
+        speedView.hidden = !isConnected
+        appCloseAlertLabel.hidden = isConnected
+        
+        if isConnected {
+            aria2.tellActive()
+        }
     }
     
     private func getStringBy(value value: Double) -> String {

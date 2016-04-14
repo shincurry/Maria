@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885B9ECC1CBF2903001BA477 /* Aria2JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ECB1CBF2903001BA477 /* Aria2JSON.swift */; };
+		885B9ECE1CBF2F64001BA477 /* Aria2Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */; };
 		889485AA1CBE5205000839CD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485A91CBE5205000839CD /* Pods.framework */; };
 		8897835B1CBE105400C12387 /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8897835A1CBE105400C12387 /* Aria2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889783691CBE105C00C12387 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889783681CBE105C00C12387 /* Aria2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		885B9ECB1CBF2903001BA477 /* Aria2JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2JSON.swift; sourceTree = "<group>"; };
+		885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Notification.swift; sourceTree = "<group>"; };
 		889485A91CBE5205000839CD /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Maria-hbwcxzhhjmegsfgfpmrnhlhlcmcd/Build/Products/Debug/Pods.framework"; sourceTree = "<group>"; };
 		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 				8897835A1CBE105400C12387 /* Aria2.h */,
 				889783681CBE105C00C12387 /* Aria2.swift */,
 				8897835C1CBE105400C12387 /* Info.plist */,
+				885B9ECB1CBF2903001BA477 /* Aria2JSON.swift */,
+				885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */,
 			);
 			path = Aria2;
 			sourceTree = "<group>";
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				889783691CBE105C00C12387 /* Aria2.swift in Sources */,
+				885B9ECE1CBF2F64001BA477 /* Aria2Notification.swift in Sources */,
+				885B9ECC1CBF2903001BA477 /* Aria2JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@ import SwiftyJSON
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let aria2 = Aria2.shared
+    let aria2 = Aria2()
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     
@@ -21,14 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarItem")
         }
-        
-//        let menu = NSMenu()
-//        menu.addItem(NSMenuItem(title: "Settings", action: #selector(settings), keyEquivalent: ""))
-//        menu.addItem(NSMenuItem(title: "About", action: #selector(about), keyEquivalent: ""))
-//        menu.addItem(NSMenuItem.separatorItem())
-//        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: ""))
         statusItem.menu = appMenu
-        
+        aria2.connect()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -40,14 +34,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension AppDelegate {
-    func settings() {
-    }
-    func about() {
-        
+    
+    @IBAction func quit(sender: NSMenuItem)  {
+        NSApp.terminate(self)
     }
     
-    @IBAction func quit(sender: NSMenuItem) {
-        NSApp.terminate(self)
+    @IBAction func speedLimitMode(sender: NSMenuItem) {
+        sender.state = (sender.state == 0 ? 1 : 0)
+    }
+
+    @IBAction func openWebUIApp(sender: NSMenuItem) {
+        
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "file:///Users/shincurry/webui-aria2-master/index.html")!)
     }
 }
 
