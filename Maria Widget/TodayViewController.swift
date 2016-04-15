@@ -23,7 +23,9 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var taskView: NSStackView!
     @IBOutlet weak var speedView: NSView!
     
-    let aria2 = Aria2()
+    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    
+    var aria2: Aria2!
     var timer: NSTimer!
     
     
@@ -34,6 +36,13 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let baseHost = "http" + (defaults.boolForKey("SSLEnabled") ? "s" : "") + "://"
+        let host = defaults.objectForKey("RPCServerHost") as! String
+        let port = defaults.objectForKey("RPCServerPort") as! String
+        let path = defaults.objectForKey("RPCServerPath") as! String
+        
+        aria2 = Aria2(url: baseHost + host + ":" + port + path)
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
         aria2.getGlobalStatus = { results in
             let result = results["result"]

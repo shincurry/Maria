@@ -18,8 +18,8 @@ public class Aria2 {
     
     var socket: WebSocket!
     
-    public init() {
-        socket = WebSocket(url: NSURL(string: "ws://localhost:6800/jsonrpc")!)
+    public init(url: String) {
+        socket = WebSocket(url: NSURL(string: url)!)
         socket.delegate = self
     }
     

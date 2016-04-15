@@ -13,10 +13,13 @@ class SettingsBandwidthViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
+        globalDownloadRate.stringValue = "\(defaults.integerForKey("GlobalDownloadRate"))"
+        globalUploadRate.stringValue = "\(defaults.integerForKey("GlobalUploadRate"))"
+        limitModeDownloadRate.stringValue = "\(defaults.integerForKey("LimitModeDownloadRate"))"
+        limitModeUploadRate.stringValue = "\(defaults.integerForKey("LimitModeUploadRate"))"
     }
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
     @IBOutlet weak var globalDownloadRate: NSTextField!
     @IBOutlet weak var globalUploadRate: NSTextField!
@@ -45,6 +48,7 @@ extension SettingsBandwidthViewController {
         
         if let intValue = Int(sender.stringValue) {
             defaults.setInteger(intValue, forKey: key)
+            defaults.synchronize()
         } else {
             sender.stringValue = "\(defaults.integerForKey(key))"
         }
