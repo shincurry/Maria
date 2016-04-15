@@ -20,7 +20,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var downloadSpeedLabel: NSTextField!
     @IBOutlet weak var uploadSpeedLabel: NSTextField!
     @IBOutlet weak var appCloseAlertLabel: NSTextField!
-    @IBOutlet weak var speedView: NSStackView!
+    @IBOutlet weak var taskView: NSStackView!
+    @IBOutlet weak var speedView: NSView!
     
     let aria2 = Aria2()
     var timer: NSTimer!
@@ -34,31 +35,26 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
-        aria2.didReceiveMessage = { (socket, text) in
-            let results = JSON(data: text.dataUsingEncoding(NSUTF8StringEncoding)!)
-            let speed = results["result"].array!.reduce((0.0, 0.0)) { (sum, result) in
-                let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
-                let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
-                return (downloadSpeed, uploadSpeed)
-            }
-            self.downloadSpeedLabel.stringValue = self.getStringBy(value: speed.0)
-            self.uploadSpeedLabel.stringValue = self.getStringBy(value: speed.1)
+        aria2.getGlobalStatus = { results in
+            let result = results["result"]
+            let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
+            let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
+            self.downloadSpeedLabel.stringValue = self.getStringBy(value: downloadSpeed)
+            self.uploadSpeedLabel.stringValue = self.getStringBy(value: uploadSpeed)
         }
         
         aria2.connect()
-        
-//        aria2.downloadCompleted()
-        
     }
     
     func getStatus() {
         let isConnected = aria2.isConnected
         
+        taskView.hidden = !isConnected
         speedView.hidden = !isConnected
         appCloseAlertLabel.hidden = isConnected
         
         if isConnected {
-            aria2.tellActive()
+            aria2.request(method: .getGlobalStat, params: "")
         }
     }
     

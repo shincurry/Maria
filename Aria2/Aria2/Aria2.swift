@@ -10,12 +10,13 @@ import Cocoa
 import Starscream
 import SwiftyJSON
 
+
+
 public class Aria2 {
     
 //    public static let shared = Aria2()
     
     var socket: WebSocket!
-    var timer: NSTimer!
     
     public init() {
         socket = WebSocket(url: NSURL(string: "ws://localhost:6800/jsonrpc")!)
@@ -25,15 +26,12 @@ public class Aria2 {
     public func connect() {
         socket.connect()
     }
+    public var connected: (() -> Void)?
+    
     public func disconnect() {
         socket.disconnect()
     }
-    
-//    var baseJSON: JSON = {
-//        let base = ["jsonrpc": "2.0",
-//                    "id"]
-//    }()
-    
+    public var disconnected: (() -> Void)?
     
     
     public var isConnected: Bool {
@@ -44,78 +42,127 @@ public class Aria2 {
     
     public var didReceiveMessage: ((socket: WebSocket, text: String) -> Void)?
     
-    public func tellActive() {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"aria2tellactive\", \"method\":\"aria2.tellActive\",\"params\":[]}"
-        request(socketString)
-    }
+   
+    public var getActives: ((results: JSON) -> Void)?
+    public var getGlobalStatus: ((result: JSON) -> Void)?
+
     
     public func shutdown() {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"aria2shutdown\", \"method\":\"aria2.shutdown\",\"params\":[]}"
-        request(socketString)
+        request(method: .shutdown, params: "")
     }
     
-    public func downloadCompleted() {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"aria2onDownloadComplete\", \"method\":\"aria2.onDownloadComplete\",\"params\":[]}"
-        request(socketString)
+    
+    private var getDownloadStatus: ((results: JSON) -> Void)?
+    public var downloadCompleted: ((name: String, folderPath: String) -> Void)?
+    public var downloadPaused: ((name: String) -> Void)?
+    public var downloadStarted: ((name: String) -> Void)?
+    public var downloadStopped: ((name: String) -> Void)?
+    public var downloadError: ((name: String) -> Void)?
+    
+    
+    
+    
+    public func globalSpeedLimit(downloadSpeed: Int, uploadSpeed: Int) {
+        request(method: .changeGlobalOption, params: "{\"max-overall-download-limit\": \"\(downloadSpeed)K\", \"max-overall-upload-limit\": \"\(uploadSpeed)K\"}")
     }
     
-    /**
-     JSON parameters key
-     ----
-     bt-max-peers
-     bt-request-peer-speed-limit
-     bt-remove-unselected-file
-     force-save
-     max-download-limit
-     max-upload-limit
-     ----
-     
-     - parameter jsonString: <#jsonString description#>
-     */
-    public func changeOption(jsonString: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"aria2changeOption\", \"method\":\"aria2.changeOption\",\"params\":[\(jsonString)]}"
-        request(socketString)
-    }
     
-    public func changeGlobalOption(jsonString: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"aria2changeGlobalOption\", \"method\":\"aria2.changeGlobalOption\",\"params\":[\(jsonString)]}"
-        print(socketString)
-        request(socketString)
-    }
     
-    public func openSpeedLimitMode(downloadSpeed: String, uploadSpeed: String) {
-        changeGlobalOption("{\"max-overall-download-limit\": \"\(downloadSpeed)K\", \"max-overall-upload-limit\": \"\(uploadSpeed)K\"}")
-    }
-
-}
-
-
-extension Aria2 {
-    private func request(jsonString: String) {
-        let data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
+    
+    public func request(method method: Aria2Method, params: String) {
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\(params)]}"
+        
+        let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
         self.socket.writeData(data)
-        print("request")
     }
-    
+    public func request(method method: Aria2Method, id: String, params: String) {
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\(params)]}"
+        let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
+        self.socket.writeData(data)
+    }
 }
+
 
 
 extension Aria2: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocket) {
-        
+        print("WebSocket connected")
+        connected?()
     }
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("\(error)")
-        timer = nil
-//        socket.connect()
+        print("WebSocket disconnected: \(error)")
+        disconnected?()
     }
     public func websocketDidReceiveData(socket: WebSocket, data: NSData) {
-        print("websocketDidReceiveData")
         print(data)
     }
+    
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        print("websocketDidReceiveMessage")
-        print(text)
-        didReceiveMessage?(socket: socket, text: text)
+        let results = JSON(data: text.dataUsingEncoding(NSUTF8StringEncoding)!)
+        if let idString = results["id"].string {
+            
+            if let method = Aria2Method(rawValue: idString) {
+                switch method {
+                case .getGlobalStat:
+                    getGlobalStatus?(result: results)
+                case .tellActive:
+                    getActives?(results: results["result"])
+                case .shutdown:
+                    break
+                case .tellStatus:
+                    break
+                default:
+                    break
+                }
+            }
+            
+            
+            switch idString {
+            case "aria2.tellStatus.downloadStatus":
+                getDownloadStatus!(results: results)
+            default:
+                break
+            }
+
+        }
+        
+        if let methodString = results["method"].string {
+            let rawValue = methodString.componentsSeparatedByString(".")[1]
+            let method = Aria2Method(rawValue: rawValue)!
+
+            getDownloadStatus = { result in
+                var downloadName = ""
+                if let btName = result["result"]["bittorrent"]["info"]["name"].string {
+                    downloadName = btName
+                } else {
+                    downloadName = result["result"]["files"][0]["path"].stringValue.componentsSeparatedByString("/").last!
+                }
+                
+                switch method {
+                case .onDownloadStart:
+                    self.downloadStarted?(name: downloadName)
+                case .onDownloadPause:
+                    self.downloadPaused?(name: downloadName)
+                case .onDownloadStop:
+                    self.downloadStopped?(name: downloadName)
+                case .onBtDownloadComplete:
+                    fallthrough
+                case .onDownloadComplete:
+                    let path = result["result"]["dir"].stringValue
+                    print(path)
+                    self.downloadCompleted?(name: downloadName, folderPath: path)
+                case .onDownloadError:
+                    self.downloadError?(name: downloadName)
+                default:
+                    break
+                }
+                
+            }
+            results["params"].array!.forEach() { result in
+                self.request(method: .tellStatus, id: "aria2.tellStatus.downloadStatus", params: "\"\(result["gid"].stringValue)\"")
+            }
+
+            
+        }
     }
 }

@@ -9,16 +9,19 @@
 import Foundation
 
 public class Aria2Notification {
-    static public func downloadCompleted(name: String) {
-        let notifyTitle = "Download Completed"
-        let notifyDetails = "\(name) downloaded."
-        notification(notifyTitle, details: notifyDetails)
-    }
-    
-    static private func notification(title: String, details: String) {
+    static public func notification(title title: String, details: String) {
         let notification = NSUserNotification()
         notification.title = title
         notification.informativeText = details
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
     }
+    static public func actionNotification(identifier identifier: String, title: String, details: String, userInfo: [String: AnyObject]?) {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.informativeText = details
+        notification.identifier = identifier
+        notification.userInfo = userInfo
+        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    }
+    
 }

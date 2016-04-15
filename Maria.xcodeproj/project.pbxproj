@@ -15,9 +15,12 @@
 		8805D1821CBE5BA000DA33CA /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8805D1721CBE5BA000DA33CA /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8805D18F1CBE7BF700DA33CA /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
 		8805D1901CBE7BFD00DA33CA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */; };
-		885B9ED21CBF7806001BA477 /* SettingsMariaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsMariaViewController.swift */; };
+		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
-		885B9ED61CBF8169001BA477 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885B9ED41CBF8169001BA477 /* AboutViewController.xib */; };
+		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
+		887AE45C1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */; };
+		887AE45E1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */; };
+		887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
 		889485771CBE4D4A000839CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889485781CBE4D4A000839CD /* Main.storyboard */; };
@@ -84,9 +87,12 @@
 		8805D17E1CBE5BA000DA33CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
 		88163C971CBE581600A00976 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = Pods/../build/Debug/Pods.framework; sourceTree = "<group>"; };
-		885B9ED11CBF7806001BA477 /* SettingsMariaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMariaViewController.swift; sourceTree = "<group>"; };
+		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		885B9ED41CBF8169001BA477 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
+		887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTaskWidgetView.swift; sourceTree = "<group>"; };
+		887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadTaskWidgetView.xib; sourceTree = "<group>"; };
+		887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		889485721CBE4D4A000839CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		889485761CBE4D4A000839CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */,
 				8805D1771CBE5BA000DA33CA /* TodayViewController.swift */,
 				8805D1791CBE5BA000DA33CA /* TodayViewController.xib */,
+				887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */,
+				887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */,
 				8805D17C1CBE5BA000DA33CA /* Info.plist */,
 				8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */,
 				8805D1751CBE5BA000DA33CA /* Supporting Files */,
@@ -189,11 +197,12 @@
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
-				889485761CBE4D4A000839CD /* Assets.xcassets */,
-				8894857B1CBE4D4A000839CD /* Info.plist */,
-				885B9ED11CBF7806001BA477 /* SettingsMariaViewController.swift */,
+				887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */,
+				885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */,
 				885B9ED31CBF8169001BA477 /* AboutViewController.swift */,
-				885B9ED41CBF8169001BA477 /* AboutViewController.xib */,
+				887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */,
+				8894857B1CBE4D4A000839CD /* Info.plist */,
+				889485761CBE4D4A000839CD /* Assets.xcassets */,
 			);
 			path = Maria;
 			sourceTree = "<group>";
@@ -322,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */,
+				887AE45E1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib in Resources */,
 				8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				889485771CBE4D4A000839CD /* Assets.xcassets in Resources */,
-				885B9ED61CBF8169001BA477 /* AboutViewController.xib in Resources */,
 				8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D1781CBE5BA000DA33CA /* TodayViewController.swift in Sources */,
+				887AE45C1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,8 +409,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */,
 				885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */,
-				885B9ED21CBF7806001BA477 /* SettingsMariaViewController.swift in Sources */,
+				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
+				887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */,
 				889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,6 +581,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -585,6 +598,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

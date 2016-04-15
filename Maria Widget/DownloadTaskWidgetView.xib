@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DownloadTaskWidgetView" customModule="Maria_Widget" customModuleProvider="target">
+            <connections>
+                <outlet property="name" destination="2Ef-4Z-FZB" id="gBE-zT-jGo"/>
+                <outlet property="progressIndicator" destination="VAw-76-VCA" id="ANx-oo-0en"/>
+                <outlet property="view" destination="c22-O7-iKe" id="oq8-ff-U7u"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="416" height="59"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VAw-76-VCA">
+                    <rect key="frame" x="8" y="7" width="400" height="20"/>
+                </progressIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-4Z-FZB">
+                    <rect key="frame" x="6" y="34" width="404" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Download.Task.have.a.very.very.long.Name" id="fu4-Zz-Y3g">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="8" id="6Rv-03-inE"/>
+                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="B7b-c3-pVY"/>
+                <constraint firstItem="VAw-76-VCA" firstAttribute="top" secondItem="2Ef-4Z-FZB" secondAttribute="bottom" constant="8" id="Ryo-au-Gpa"/>
+                <constraint firstAttribute="trailing" secondItem="VAw-76-VCA" secondAttribute="trailing" constant="8" id="abB-Ow-5eO"/>
+                <constraint firstAttribute="trailing" secondItem="2Ef-4Z-FZB" secondAttribute="trailing" constant="8" id="c0S-n6-2tl"/>
+                <constraint firstAttribute="bottom" secondItem="VAw-76-VCA" secondAttribute="bottom" constant="8" id="clY-mB-vR5"/>
+                <constraint firstItem="VAw-76-VCA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="8" id="ySt-FF-q5O"/>
+            </constraints>
+            <point key="canvasLocation" x="289" y="372"/>
+        </customView>
+    </objects>
+</document>
