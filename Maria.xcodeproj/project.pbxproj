@@ -18,8 +18,8 @@
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
 		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
-		887AE45C1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */; };
-		887AE45E1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */; };
+		887AE45C1CC0FF3100AAD3E3 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */; };
+		887AE45E1CC0FF5500AAD3E3 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */; };
 		887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */; };
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
@@ -92,8 +92,8 @@
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
-		887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTaskWidgetView.swift; sourceTree = "<group>"; };
-		887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadTaskWidgetView.xib; sourceTree = "<group>"; };
+		887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
+		887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
 		887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 				8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */,
 				8805D1771CBE5BA000DA33CA /* TodayViewController.swift */,
 				8805D1791CBE5BA000DA33CA /* TodayViewController.xib */,
-				887AE45D1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib */,
-				887AE45B1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift */,
+				887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */,
+				887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */,
 				8805D17C1CBE5BA000DA33CA /* Info.plist */,
 				8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */,
 				8805D1751CBE5BA000DA33CA /* Supporting Files */,
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */,
-				887AE45E1CC0FF5500AAD3E3 /* DownloadTaskWidgetView.xib in Resources */,
+				887AE45E1CC0FF5500AAD3E3 /* TaskCellView.xib in Resources */,
 				8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D1781CBE5BA000DA33CA /* TodayViewController.swift in Sources */,
-				887AE45C1CC0FF3100AAD3E3 /* DownloadTaskWidgetView.swift in Sources */,
+				887AE45C1CC0FF3100AAD3E3 /* TaskCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

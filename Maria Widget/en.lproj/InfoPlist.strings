@@ -1,4 +1,4 @@
 /* Display name and description for this extension. */
 "CFBundleDisplayName" = "Maria Widget";
-"com.apple.notificationcenter.widget.description" = "Sample description";
+"com.apple.notificationcenter.widget.description" = "Mria App Widget";
 

@@ -20,12 +20,12 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var downloadSpeedLabel: NSTextField!
     @IBOutlet weak var uploadSpeedLabel: NSTextField!
     @IBOutlet weak var appCloseAlertLabel: NSTextField!
-    @IBOutlet weak var taskView: NSStackView!
     @IBOutlet weak var speedView: NSView!
+    @IBOutlet weak var taskView: NSStackView!
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
-    var aria2: Aria2!
+    var aria2 = Aria2.shared
     var timer: NSTimer!
     
     
@@ -33,6 +33,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         completionHandler(.NewData)
         
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +59,11 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     func getStatus() {
         let isConnected = aria2.isConnected
         
-        taskView.hidden = !isConnected
         speedView.hidden = !isConnected
         appCloseAlertLabel.hidden = isConnected
         
         if isConnected {
-            aria2.request(method: .getGlobalStat, params: "")
+            aria2.request(method: .getGlobalStat, params: "[]")
         }
     }
     

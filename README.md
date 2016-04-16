@@ -9,9 +9,10 @@ an OS X app/widget for aria2 download tool.
 ## Features
 
 * [x] Download status notification
-* [x] Today Widget - DL/UL speed
-* [  ] Today Widget - each task progress
-* [  ] Low speed mode
+* [x] Today widget - show DL/UL speed
+* [x] Status bar - show DL/UL speed
+* [x] Low speed mode
+* [ ] Today widget - each task progress
 
 ## Test Environment
 

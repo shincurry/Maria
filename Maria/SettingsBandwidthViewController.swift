@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Aria2
 
 class SettingsBandwidthViewController: NSViewController {
 
@@ -20,6 +21,8 @@ class SettingsBandwidthViewController: NSViewController {
     }
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let aria2 = Aria2.shared
+    
     
     @IBOutlet weak var globalDownloadRate: NSTextField!
     @IBOutlet weak var globalUploadRate: NSTextField!
@@ -51,6 +54,16 @@ extension SettingsBandwidthViewController {
             defaults.synchronize()
         } else {
             sender.stringValue = "\(defaults.integerForKey(key))"
+        }
+        
+        
+        
+        if defaults.boolForKey("EnableLowSpeedMode") {
+            if sender == limitModeDownloadRate || sender == limitModeUploadRate {
+                let downloadSpeed = defaults.integerForKey("LimitModeDownloadRate")
+                let uploadSpeed = defaults.integerForKey("LimitModeUploadRate")
+                aria2.lowSpeedLimit(downloadSpeed: downloadSpeed, uploadSpeed: uploadSpeed)
+            }
         }
         
 

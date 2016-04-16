@@ -14,24 +14,35 @@ import SwiftyJSON
 
 public class Aria2 {
     
-//    public static let shared = Aria2()
+    public static let shared: Aria2 = {
+        let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+        let baseHost = "http" + (defaults.boolForKey("SSLEnabled") ? "s" : "") + "://"
+        let host = defaults.objectForKey("RPCServerHost") as! String
+        let port = defaults.objectForKey("RPCServerPort") as! String
+        let path = defaults.objectForKey("RPCServerPath") as! String
+        return Aria2(url: baseHost + host + ":" + port + path)
+    }()
+    
+    var secret: String!
+    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
     var socket: WebSocket!
     
     public init(url: String) {
         socket = WebSocket(url: NSURL(string: url)!)
         socket.delegate = self
+        secret = defaults.objectForKey("RPCServerSecret") as! String
     }
     
     public func connect() {
         socket.connect()
     }
-    public var connected: (() -> Void)?
+    public var onConnect: (() -> Void)?
     
     public func disconnect() {
         socket.disconnect()
     }
-    public var disconnected: (() -> Void)?
+    public var onDisconnect: (() -> Void)?
     
     
     public var isConnected: Bool {
@@ -62,21 +73,43 @@ public class Aria2 {
     
     
     
-    public func globalSpeedLimit(downloadSpeed: Int, uploadSpeed: Int) {
-        request(method: .changeGlobalOption, params: "{\"max-overall-download-limit\": \"\(downloadSpeed)K\", \"max-overall-upload-limit\": \"\(uploadSpeed)K\"}")
+    public func globalSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
+        
+        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
+        
+    }
+    public func lowSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
+        func speedToString(value: Int) -> String {
+            var valueString = "\(value)"
+            if value != 0 {
+                valueString += "K"
+            }
+            return valueString
+        }
+        
+        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.lowSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
+    }
+    private func speedToString(value: Int) -> String {
+        var valueString = "\(value)"
+        if value != 0 {
+            valueString += "K"
+        }
+        return valueString
     }
     
+    public var globalSpeedLimitOK: ((result: JSON) -> Void)?
+    public var lowSpeedLimitOK: ((result: JSON) -> Void)?
     
     
     
     public func request(method method: Aria2Method, params: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\(params)]}"
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
         
         let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
         self.socket.writeData(data)
     }
     public func request(method method: Aria2Method, id: String, params: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\(params)]}"
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
         let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
         self.socket.writeData(data)
     }
@@ -87,11 +120,11 @@ public class Aria2 {
 extension Aria2: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocket) {
         print("WebSocket connected")
-        connected?()
+        onConnect?()
     }
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
-        disconnected?()
+        onDisconnect?()
     }
     public func websocketDidReceiveData(socket: WebSocket, data: NSData) {
         print(data)
@@ -116,10 +149,13 @@ extension Aria2: WebSocketDelegate {
                 }
             }
             
-            
             switch idString {
             case "aria2.tellStatus.downloadStatus":
                 getDownloadStatus!(results: results)
+            case "aria2.changeGlobalOption.globalSpeedLimit":
+                globalSpeedLimitOK?(result: results)
+            case "aria2.changeGlobalOption.lowSpeedLimit":
+                lowSpeedLimitOK?(result: results)
             default:
                 break
             }
@@ -149,7 +185,6 @@ extension Aria2: WebSocketDelegate {
                     fallthrough
                 case .onDownloadComplete:
                     let path = result["result"]["dir"].stringValue
-                    print(path)
                     self.downloadCompleted?(name: downloadName, folderPath: path)
                 case .onDownloadError:
                     self.downloadError?(name: downloadName)

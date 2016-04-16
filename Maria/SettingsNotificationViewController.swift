@@ -18,6 +18,10 @@ class SettingsNotificationViewController: NSViewController {
         notificationWhenStopped.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenPaused"))
         notificationWhenCompleted.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenCompleted"))
         notificationWhenError.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenError"))
+        
+        
+        notificationWhenConnected.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenConnected"))
+        notificationWhenDisconnected.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenDisconnected"))
     }
     
     @IBOutlet weak var notificationWhenStarted: NSButton!
@@ -26,10 +30,13 @@ class SettingsNotificationViewController: NSViewController {
     @IBOutlet weak var notificationWhenCompleted: NSButton!
     @IBOutlet weak var notificationWhenError: NSButton!
     
+    @IBOutlet weak var notificationWhenConnected: NSButton!
+    @IBOutlet weak var notificationWhenDisconnected: NSButton!
+    
+    
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
     @IBAction func switchNotification(sender: NSButton) {
-        print(sender.state)
         let boolValue = sender.state == 0 ? false : true
         
         var key = ""
@@ -44,6 +51,11 @@ class SettingsNotificationViewController: NSViewController {
             key = "EnableNotificationWhenCompleted"
         case notificationWhenError:
             key = "EnableNotificationWhenError"
+        case notificationWhenConnected:
+            key = "EnableNotificationWhenConnected"
+        case notificationWhenDisconnected:
+            key = "EnableNotificationWhenDisconnected"
+            
         default:
             break
         }
