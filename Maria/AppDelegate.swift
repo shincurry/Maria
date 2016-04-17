@@ -13,20 +13,22 @@ import SwiftyJSON
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let aria2 = Aria2.shared
+    let aria2: Aria2
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
     var speedStatusTimer: NSTimer?
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        if defaults.boolForKey("IsNotFirstLaunch") {
-            userDefaultsInit()
+    override init() {
+        if !defaults.boolForKey("IsNotFirstLaunch") {
+            AppDelegate.userDefaultsInit()
         }
-        
-        
-        
-        
+        aria2 = Aria2.shared
+        super.init()
+    }
+    
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
+
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
         
         if defaults.boolForKey("EnableAutoConnectAria2") {
@@ -229,9 +231,11 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
 }
 
 extension AppDelegate {
-    func userDefaultsInit() {
+    static func userDefaultsInit() {
+        let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+        
         // First Launch
-        defaults.setBool(false, forKey: "IsNotFirstLaunch")
+        defaults.setBool(true, forKey: "IsNotFirstLaunch")
         
         
         // Notification Settings

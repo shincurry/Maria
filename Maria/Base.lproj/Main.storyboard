@@ -1663,8 +1663,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9D-mz-9wv">
-                                        <rect key="frame" x="83" y="38" width="129" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v0.4 (Build 1604163)" id="Pfu-ag-eZf">
+                                        <rect key="frame" x="83" y="38" width="137" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v0.4.1 (Build 1604172)" id="Pfu-ag-eZf">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1705,6 +1705,9 @@
                             <constraint firstItem="snN-gQ-fWs" firstAttribute="top" secondItem="g1I-Yq-KxE" secondAttribute="bottom" constant="8" id="wZe-Tu-gPr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="versionBuildNumber" destination="N9D-mz-9wv" id="yzi-Ep-a98"/>
+                    </connections>
                 </viewController>
                 <customObject id="Qsp-53-FD6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
