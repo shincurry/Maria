@@ -738,7 +738,7 @@
                 <tabViewController title="Aria2" selectedTabViewItemIndex="0" id="Gxb-U3-o1e" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem id="yEj-3z-Pg4"/>
-                        <tabViewItem identifier="" id="UVY-M7-xbC"/>
+                        <tabViewItem label="(:3_ヽ)_" identifier="" id="UVY-M7-xbC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="hx5-Fq-zMb">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -1663,8 +1663,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9D-mz-9wv">
-                                        <rect key="frame" x="83" y="38" width="137" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v0.4.1 (Build 1604172)" id="Pfu-ag-eZf">
+                                        <rect key="frame" x="83" y="38" width="139" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v0.4.2 (Build 1604173)" id="Pfu-ag-eZf">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

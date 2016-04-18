@@ -36,12 +36,10 @@ class SettingsGeneralViewController: NSViewController {
         }
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         
-        dispatch_async(dispatch_get_main_queue()) {
-            if boolValue {
-                appDelegate.enableSpeedStatusBar()
-            } else {
-                appDelegate.disableSpeedStatusBar()
-            }
+        if boolValue {
+            appDelegate.enableSpeedStatusBar()
+        } else {
+            appDelegate.disableSpeedStatusBar()
         }
     }
     

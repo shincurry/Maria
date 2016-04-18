@@ -12,7 +12,7 @@ an OS X app/widget for aria2 download tool.
 * [x] Today widget - show DL/UL speed
 * [x] Status bar - show DL/UL speed
 * [x] Low speed mode
-* [ ] Today widget - each task progress
+* [x] Today widget - task progress
 
 ## Test Environment
 

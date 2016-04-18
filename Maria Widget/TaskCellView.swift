@@ -25,13 +25,28 @@ class TaskCellView: NSView {
         super.init(coder: coder)
         initSubView()
     }
+
     
+    @IBOutlet var view: NSView!
     @IBOutlet weak var name: NSTextField!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
-    
     func initSubView() {
-        NSBundle.mainBundle().loadNibNamed("TaskCellView", owner: self, topLevelObjects: nil)
+        var objects: NSArray?;
+        NSBundle.mainBundle().loadNibNamed("TaskCellView", owner: self, topLevelObjects: &objects)
+        
+        for obj in objects! {
+            if (obj.isMemberOfClass(NSView)) {
+                view = obj as! NSView
+            }
+        }
+        addSubview(view)
     }
+    
+    func updateView(name name: String, progress: Double) {
+        self.name.stringValue = name
+        self.progressIndicator.doubleValue = progress
+    }
+    
 }
 

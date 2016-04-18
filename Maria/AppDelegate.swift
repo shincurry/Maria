@@ -53,6 +53,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = nil
         }
     }
+    
+    // Bug 取消状态栏速度显示 Unauthorized 态栏显示有问题
     func disableSpeedStatusBar() {
         speedStatusTimer?.invalidate()
         if let button = statusItem.button {
@@ -148,34 +150,34 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 let port = self.defaults.objectForKey("RPCServerPort") as! String
                 let path = self.defaults.objectForKey("RPCServerPath") as! String
                 let url = baseHost + host + ":" + port + path
-                Aria2Notification.notification(title: "Aria2 Connected", details: "Connected aria2 server at \(url)")
+                Aria2Notification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
             }
         }
         aria2.onDisconnect = {
             self.RPCServerStatus.state = 0
             if self.defaults.boolForKey("EnableNotificationWhenDisconnected") {
-                Aria2Notification.notification(title: "Aria2 Disconnected", details: "Connected aria2 server")
+                Aria2Notification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
         }
         
         aria2.downloadStarted = { name in
             if self.defaults.boolForKey("EnableNotificationWhenStarted") {
-                Aria2Notification.notification(title: "Download Started", details: "Download task \(name) started.")
+                Aria2Notification.notification(title: "Download Started", details: "\(name) started.")
             }
         }
         aria2.downloadPaused = { name in
             if self.defaults.boolForKey("EnableNotificationWhenPaused") {
-                Aria2Notification.notification(title: "Download Paused", details: "Download task \(name) has been paused.")
+                Aria2Notification.notification(title: "Download Paused", details: "\(name) paused.")
             }
         }
         aria2.downloadStopped = { name in
             if self.defaults.boolForKey("EnableNotificationWhenStopped") {
-                Aria2Notification.notification(title: "Download Stopoped", details: "Download task \(name) has been stopped.")
+                Aria2Notification.notification(title: "Download Stopoped", details: "\(name) stopped.")
             }
         }
         aria2.downloadCompleted = { (name, path) in
             if self.defaults.boolForKey("EnableNotificationWhenCompleted") {
-                Aria2Notification.actionNotification(identifier: "complete", title: "Download Completed", details: "Download task \(name) has completed.", userInfo: ["path": path])
+                Aria2Notification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path])
             }
         }
         aria2.downloadError = { name in
@@ -198,7 +200,15 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         
         
         aria2.getGlobalStatus = { results in
+            if results["error"] != nil {
+                if let button = self.statusItem.button {
+                    button.title = "Unauthorized"
+                }
+                return
+            }
+            
             let result = results["result"]
+            
             let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
             let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
             if let button = self.statusItem.button {
