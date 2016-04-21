@@ -15,12 +15,13 @@
 		8805D1821CBE5BA000DA33CA /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8805D1721CBE5BA000DA33CA /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8805D18F1CBE7BF700DA33CA /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
 		8805D1901CBE7BFD00DA33CA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */; };
+		883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883327A21CC751630002B561 /* NewTaskViewController.swift */; };
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
 		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
 		887AE45C1CC0FF3100AAD3E3 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */; };
 		887AE45E1CC0FF5500AAD3E3 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */; };
-		887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */; };
+		887AE4601CC112D100AAD3E3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* WindowController.swift */; };
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
@@ -89,12 +90,13 @@
 		8805D17E1CBE5BA000DA33CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
 		88163C971CBE581600A00976 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = Pods/../build/Debug/Pods.framework; sourceTree = "<group>"; };
+		883327A21CC751630002B561 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
 		887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
 		887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
-		887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		887AE45F1CC112D100AAD3E3 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,7 +203,8 @@
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
-				887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */,
+				887AE45F1CC112D100AAD3E3 /* WindowController.swift */,
+				883327A21CC751630002B561 /* NewTaskViewController.swift */,
 				885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */,
 				887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */,
 				887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */,
@@ -420,9 +423,10 @@
 			files = (
 				887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */,
 				887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */,
+				883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */,
 				885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */,
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
-				887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */,
+				887AE4601CC112D100AAD3E3 /* WindowController.swift in Sources */,
 				887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */,
 				889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */,
 			);

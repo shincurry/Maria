@@ -24,6 +24,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var taskView: NSStackView!
     
 
+    @IBOutlet weak var separateLine: NSBox!
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
@@ -71,7 +72,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                     view.hidden = true
                 } else {
                     view.hidden = false
-                    
                     let result = sortedResult[index]
                     var downloadName = ""
                     if let btName = result["bittorrent"]["info"]["name"].string {
@@ -83,7 +83,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                     view.updateView(name: downloadName, progress: downloadProgress)
                 }
             }
-            
         }
         aria2.connect()
     }
@@ -92,6 +91,9 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         let isConnected = aria2.isConnected
         let boolValue = (isConnected && authorized)
         speedView.hidden = !boolValue
+        separateLine.hidden = !boolValue
+        taskView.hidden = !boolValue
+        
         alertLabel.hidden = boolValue
         
         if isConnected {
@@ -103,7 +105,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             } else {
                 alertLabel.stringValue = "Unauthorized"
             }
-            
         }
     }
     

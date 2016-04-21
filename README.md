@@ -13,6 +13,9 @@ an OS X app/widget for aria2 download tool.
 * [x] Status bar - show DL/UL speed
 * [x] Low speed mode
 * [x] Today widget - task progress
+* [x] Add new task & download from pasteboard link
+* [ ] Pause/Start all tasks
+* [ ] Auto start/pause download task timer
 
 ## Test Environment
 

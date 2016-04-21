@@ -8,10 +8,9 @@
 
 import Cocoa
 
-class SettingsWindowController: NSWindowController {
-
+class WindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
-        window!.level = Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
+        NSApp.activateIgnoringOtherApps(true)
     }
 }

@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             aria2open()
         }
         
-        statusItem.menu = appMenu
+        statusItem.menu = statusMenu
         if defaults.boolForKey("EnableSpeedStatusBar") {
             enableSpeedStatusBar()
         } else {
@@ -47,6 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         aria2close()
     }
     
+    // MARK: SpeedBar
     func enableSpeedStatusBar() {
         speedStatusTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(AppDelegate.updateSpeedStatus), userInfo: nil, repeats: true)
         if let button = statusItem.button {
@@ -70,9 +71,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    @IBOutlet weak var appMenu: NSMenu!
+    @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var RPCServerStatus: NSMenuItem!
     @IBOutlet weak var lowSpeedMode: NSMenuItem!
+    
+    var quickDownloadLink = ""
+    let pasteboard = NSPasteboard.generalPasteboard()
+    @IBOutlet weak var quickDownloadMenuItem: NSMenuItem!
 }
 
 extension AppDelegate {
@@ -123,6 +128,7 @@ extension AppDelegate {
     }
 }
 
+// MARK: - Aria2 configuration
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
         
@@ -240,6 +246,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     }
 }
 
+// MARK: - UserDefaults Init
 extension AppDelegate {
     static func userDefaultsInit() {
         let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
@@ -285,5 +292,46 @@ extension AppDelegate {
         defaults.setBool(false, forKey: "EnabledSSL")
         defaults.synchronize()
 
+    }
+}
+
+// MARK: - Download from pasteboard
+extension AppDelegate: NSMenuDelegate {
+    func menuWillOpen(menu: NSMenu) {
+        if let paste = pasteboard.stringForType(NSPasteboardTypeString) {
+            let pattern = "^(https?://)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
+            let matcher: RegexHelper
+            do {
+                matcher = try RegexHelper(pattern)
+                if matcher.match(paste) {
+                    quickDownloadMenuItem.hidden = false
+                    quickDownloadLink = paste
+                } else {
+                    quickDownloadMenuItem.hidden = true
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    @IBAction func downloadFromPasteboard(sender: NSMenuItem) {
+        self.aria2.request(method: .addUri, params: "[\"\(quickDownloadLink)\"]")
+    }
+    
+}
+
+
+/**
+ *	Copy by http://swifter.tips/regex/
+ *  Author: @Onevcat
+ */
+struct RegexHelper {
+    let regex: NSRegularExpression
+    init(_ pattern: String) throws {
+        try regex = NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
+    }
+    func match(input: String) -> Bool {
+        let matches = regex.matchesInString(input, options: [], range: NSMakeRange(0, input.characters.count))
+        return matches.count > 0
     }
 }

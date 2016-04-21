@@ -34,6 +34,7 @@ public class Aria2 {
         secret = defaults.objectForKey("RPCServerSecret") as! String
     }
     
+    // MARK: - Connection
     public func connect() {
         socket.connect()
     }
@@ -44,25 +45,22 @@ public class Aria2 {
     }
     public var onDisconnect: (() -> Void)?
     
-    
     public var isConnected: Bool {
         get {
             return socket.isConnected
         }
     }
     
-    public var didReceiveMessage: ((socket: WebSocket, text: String) -> Void)?
-    
-   
+    public func shutdown() {
+        request(method: .shutdown, params: "")
+    }
+
+    // MARK: - Global status
     public var getActives: ((results: JSON) -> Void)?
     public var getGlobalStatus: ((result: JSON) -> Void)?
 
     
-    public func shutdown() {
-        request(method: .shutdown, params: "")
-    }
-    
-    
+    // MARK: - Download status
     private var getDownloadStatus: ((results: JSON) -> Void)?
     public var downloadCompleted: ((name: String, folderPath: String) -> Void)?
     public var downloadPaused: ((name: String) -> Void)?
@@ -72,7 +70,7 @@ public class Aria2 {
     
     
     
-    
+    // MARK: - Speed limit
     public func globalSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
         
         request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
@@ -101,6 +99,10 @@ public class Aria2 {
     public var lowSpeedLimitOK: ((result: JSON) -> Void)?
     
     
+    // MARK: - Add download task
+    public var downloadTaskAdded: ((result: JSON) -> Void)?
+    public var btDownloadTaskAdded: ((result: JSON) -> Void)?
+
     
     public func request(method method: Aria2Method, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
@@ -116,7 +118,7 @@ public class Aria2 {
 }
 
 
-
+// MARK: - Web socket delegate
 extension Aria2: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocket) {
         print("WebSocket connected")
@@ -144,6 +146,10 @@ extension Aria2: WebSocketDelegate {
                     break
                 case .tellStatus:
                     break
+                case .addUri:
+                    downloadTaskAdded?(result: results["result"])
+                case .addTorrent:
+                    btDownloadTaskAdded?(result: results["result"])
                 default:
                     break
                 }
@@ -196,8 +202,6 @@ extension Aria2: WebSocketDelegate {
             results["params"].array!.forEach() { result in
                 self.request(method: .tellStatus, id: "aria2.tellStatus.downloadStatus", params: "\"\(result["gid"].stringValue)\"")
             }
-
-            
         }
     }
 }
