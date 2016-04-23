@@ -14,10 +14,7 @@ class SettingsBandwidthViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        globalDownloadRate.stringValue = "\(defaults.integerForKey("GlobalDownloadRate"))"
-        globalUploadRate.stringValue = "\(defaults.integerForKey("GlobalUploadRate"))"
-        limitModeDownloadRate.stringValue = "\(defaults.integerForKey("LimitModeDownloadRate"))"
-        limitModeUploadRate.stringValue = "\(defaults.integerForKey("LimitModeUploadRate"))"
+        userDefaultsInit()
     }
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
@@ -67,5 +64,14 @@ extension SettingsBandwidthViewController {
         }
         
 
+    }
+}
+
+extension SettingsBandwidthViewController {
+    func userDefaultsInit() {
+        globalDownloadRate.stringValue = "\(defaults.integerForKey("GlobalDownloadRate"))"
+        globalUploadRate.stringValue = "\(defaults.integerForKey("GlobalUploadRate"))"
+        limitModeDownloadRate.stringValue = "\(defaults.integerForKey("LimitModeDownloadRate"))"
+        limitModeUploadRate.stringValue = "\(defaults.integerForKey("LimitModeUploadRate"))"
     }
 }

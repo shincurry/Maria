@@ -23,8 +23,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !defaults.boolForKey("IsNotFirstLaunch") {
             AppDelegate.userDefaultsInit()
         }
+
+        if defaults.boolForKey("EnableAria2AutoLaunch") {
+            let task = NSTask()
+            let pipe = NSPipe()
+            //            task.launchPath = "/bin/sh"
+            let confPath = defaults.objectForKey("Aria2ConfPath") as! String
+            let shFilePath = NSBundle.mainBundle().pathForResource("runAria2c", ofType: "sh")
+            task.launchPath = shFilePath
+            task.arguments = [confPath]
+            task.standardOutput = pipe
+            task.launch()
+            task.waitUntilExit()
+            print("EnableAria2AutoLaunch")
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            print(String(data: data, encoding: NSUTF8StringEncoding))
+        }
         aria2 = Aria2.shared
         super.init()
+        
+        
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -45,6 +63,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(aNotification: NSNotification) {
         aria2close()
+        
+        if defaults.boolForKey("EnableAria2AutoLaunch") {
+            let task = NSTask()
+            let pipe = NSPipe()
+            let shFilePath = NSBundle.mainBundle().pathForResource("shutdownAria2c", ofType: "sh")
+            task.launchPath = shFilePath
+            task.standardOutput = pipe
+            task.launch()
+            task.waitUntilExit()
+            print("EnableAria2AutoLaunch")
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            print(String(data: data, encoding: NSUTF8StringEncoding))
+
+        }
     }
     
     // MARK: SpeedBar
@@ -290,6 +322,10 @@ extension AppDelegate {
         defaults.setObject("", forKey: "RPCServerUsername")
         defaults.setObject("", forKey: "RPCServerPassword")
         defaults.setBool(false, forKey: "EnabledSSL")
+        
+        defaults.setBool(false, forKey: "EnableAria2AutoLaunch")
+        defaults.setObject("", forKey: "Aria2ConfPath")
+        
         defaults.synchronize()
 
     }

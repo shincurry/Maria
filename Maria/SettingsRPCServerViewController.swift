@@ -13,17 +13,7 @@ class SettingsRPCServerViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        host.stringValue = defaults.objectForKey("RPCServerHost") as! String
-        port.stringValue = defaults.objectForKey("RPCServerPort") as! String
-        path.stringValue = defaults.objectForKey("RPCServerPath") as! String
-        secret.stringValue = defaults.objectForKey("RPCServerSecret") as! String
-        username.stringValue = defaults.objectForKey("RPCServerUsername") as! String
-        password.stringValue = defaults.objectForKey("RPCServerPassword") as! String
-        isSSLEnabled.state = defaults.boolForKey("EnabledSSL") ? 1 : 0
-        
-        basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
-        
-        isAutoConnectAria2Enabled.state = defaults.boolForKey("EnableAutoConnectAria2") ? 1 : 0
+        userDefaultsInit()
     }
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
@@ -94,5 +84,34 @@ extension SettingsRPCServerViewController {
 extension SettingsRPCServerViewController: NSTextFieldDelegate {
     override func controlTextDidChange(obj: NSNotification) {
         basePath.stringValue = "http(s)://\(host.stringValue):\(port.stringValue)"
+    }
+}
+
+extension SettingsRPCServerViewController {
+    func userDefaultsInit() {
+        if let value = defaults.objectForKey("RPCServerHost") as? String {
+            host.stringValue = value
+        }
+        if let value = defaults.objectForKey("RPCServerPort") as? String {
+            port.stringValue = value
+        }
+        if let value = defaults.objectForKey("RPCServerPath") as? String {
+            path.stringValue = value
+        }
+        if let value = defaults.objectForKey("RPCServerSecret") as? String {
+            secret.stringValue = value
+        }
+        if let value = defaults.objectForKey("RPCServerUsername") as? String {
+            username.stringValue = value
+        }
+        if let value = defaults.objectForKey("RPCServerPassword") as? String {
+            password.stringValue = value
+        }
+        
+        isSSLEnabled.state = defaults.boolForKey("EnabledSSL") ? 1 : 0
+        
+        basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
+        
+        isAutoConnectAria2Enabled.state = defaults.boolForKey("EnableAutoConnectAria2") ? 1 : 0
     }
 }

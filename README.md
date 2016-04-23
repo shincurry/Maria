@@ -14,6 +14,7 @@ an OS X app/widget for aria2 download tool.
 * [x] Low speed mode
 * [x] Today widget - task progress
 * [x] Add new task & download from pasteboard link
+* [x] Aria2c launch and quit with Maria
 * [ ] Pause/Start all tasks
 * [ ] Auto start/pause download task timer
 

@@ -13,8 +13,7 @@ class SettingsGeneralViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        webAppPath.stringValue = defaults.objectForKey("WebAppPath") as! String
-        enableSpeedStatusBar.state = defaults.boolForKey("EnableSpeedStatusBar") ? 1 : 0
+        userDefaultsInit()
     }
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
@@ -46,6 +45,15 @@ class SettingsGeneralViewController: NSViewController {
     @IBAction func finishEditing(sender: NSTextField) {
         defaults.setObject(sender.stringValue, forKey: "WebAppPath")
         defaults.synchronize()
+    }
+}
+
+extension SettingsGeneralViewController {
+    func userDefaultsInit() {
+        if let value = defaults.objectForKey("WebAppPath") as? String {
+            webAppPath.stringValue = value
+        }
+        enableSpeedStatusBar.state = defaults.boolForKey("EnableSpeedStatusBar") ? 1 : 0
     }
 }
 

@@ -659,6 +659,13 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Mtm-YT-dtR"/>
+                        <menuItem title="Open Web-UI App" id="VB9-a7-JLt">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="openWebUIApp:" target="Voe-Tx-rLC" id="tTP-Pd-iRD"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="c4t-QA-gc4"/>
                         <menuItem title="Add New Task" id="iRo-W5-b4D">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -669,12 +676,6 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="downloadFromPasteboard:" target="Voe-Tx-rLC" id="fbo-HH-sQ1"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Open Web-UI App" id="VB9-a7-JLt">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="openWebUIApp:" target="Voe-Tx-rLC" id="tTP-Pd-iRD"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Low Speed Mode" id="PKO-Vg-5WC">
@@ -897,8 +898,8 @@ Gw
             <objects>
                 <tabViewController title="Aria2" selectedTabViewItemIndex="0" id="Gxb-U3-o1e" sceneMemberID="viewController">
                     <tabViewItems>
+                        <tabViewItem label="General" identifier="" id="UVY-M7-xbC"/>
                         <tabViewItem id="yEj-3z-Pg4"/>
-                        <tabViewItem label="(:3_ヽ)_" identifier="" id="UVY-M7-xbC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="hx5-Fq-zMb">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -907,26 +908,88 @@ Gw
                         <tabViewItems/>
                     </tabView>
                     <connections>
-                        <segue destination="jsm-It-tHy" kind="relationship" relationship="tabItems" id="8ut-NS-foS"/>
                         <segue destination="tQB-UM-JVL" kind="relationship" relationship="tabItems" id="c5R-Cw-Fdd"/>
+                        <segue destination="jsm-It-tHy" kind="relationship" relationship="tabItems" id="8ut-NS-foS"/>
                     </connections>
                 </tabViewController>
                 <customObject id="I5B-C9-iCt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="647" y="596"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings Aria2 View Controller-->
         <scene sceneID="3Ff-fF-XMC">
             <objects>
-                <viewController id="tQB-UM-JVL" sceneMemberID="viewController">
+                <viewController id="tQB-UM-JVL" customClass="SettingsAria2ViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8WT-S7-bNM">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="YCH-IB-CPN">
+                                <rect key="frame" x="17" y="36" width="474" height="244"/>
+                                <view key="contentView" id="5or-kC-b57">
+                                    <rect key="frame" x="1" y="1" width="472" height="228"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Uz-zu-QGR">
+                                            <rect key="frame" x="18" y="157" width="96" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title=".Conf File Path:" id="vvJ-A0-8eH">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-fV-u2p">
+                                            <rect key="frame" x="120" y="155" width="332" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="is0-if-gf5">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="finishEditing:" target="tQB-UM-JVL" id="bMK-WG-pne"/>
+                                            </connections>
+                                        </textField>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="xTA-bS-085">
+                                            <rect key="frame" x="18" y="192" width="436" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5iD-4U-EG1">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="switchOptions:" target="tQB-UM-JVL" id="eR9-8U-1pf"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="xTA-bS-085" secondAttribute="trailing" constant="20" id="9Be-yG-xZ8"/>
+                                        <constraint firstItem="xTA-bS-085" firstAttribute="leading" secondItem="5or-kC-b57" secondAttribute="leading" constant="20" id="QtP-4p-Jfg"/>
+                                        <constraint firstAttribute="trailing" secondItem="lM8-fV-u2p" secondAttribute="trailing" constant="20" id="cm2-Om-ucP"/>
+                                        <constraint firstItem="1Uz-zu-QGR" firstAttribute="top" secondItem="xTA-bS-085" secondAttribute="bottom" constant="20" id="dLS-0t-e8u"/>
+                                        <constraint firstItem="lM8-fV-u2p" firstAttribute="centerY" secondItem="1Uz-zu-QGR" secondAttribute="centerY" id="kRf-tJ-zsz"/>
+                                        <constraint firstItem="lM8-fV-u2p" firstAttribute="leading" secondItem="1Uz-zu-QGR" secondAttribute="trailing" constant="8" id="qZf-H3-ncC"/>
+                                        <constraint firstItem="xTA-bS-085" firstAttribute="top" secondItem="5or-kC-b57" secondAttribute="top" constant="20" id="tnI-Dn-jsJ"/>
+                                        <constraint firstItem="1Uz-zu-QGR" firstAttribute="leading" secondItem="xTA-bS-085" secondAttribute="leading" id="w0S-vt-hAw"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="YCH-IB-CPN" secondAttribute="bottom" constant="40" id="Kmx-qr-YZf"/>
+                            <constraint firstItem="YCH-IB-CPN" firstAttribute="leading" secondItem="8WT-S7-bNM" secondAttribute="leading" constant="20" id="QUf-Hw-lxM"/>
+                            <constraint firstAttribute="trailing" secondItem="YCH-IB-CPN" secondAttribute="trailing" constant="20" id="StL-it-WKK"/>
+                            <constraint firstItem="YCH-IB-CPN" firstAttribute="top" secondItem="8WT-S7-bNM" secondAttribute="top" constant="20" id="yNm-hb-DRv"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aria2ConfPath" destination="lM8-fV-u2p" id="AO6-xG-oqg"/>
+                        <outlet property="enableAria2AutoLaunch" destination="xTA-bS-085" id="Qyc-oz-uy8"/>
+                    </connections>
                 </viewController>
                 <customObject id="lGb-OC-gmE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1253" y="811"/>
+            <point key="canvasLocation" x="1282" y="811"/>
         </scene>
         <!--RPC Server-->
         <scene sceneID="KrS-J6-mvj">
@@ -1034,8 +1097,8 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-Eu-hqe">
-                                            <rect key="frame" x="18" y="141" width="130" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SSL/TLS encryption:" id="nPF-O5-r6e">
+                                            <rect key="frame" x="17" y="141" width="131" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SSL/TLS Encryption:" id="nPF-O5-r6e">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
