@@ -6,10 +6,9 @@
 //  Copyright © 2016年 ShinCurry. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 import Starscream
 import SwiftyJSON
-
 
 
 public class Aria2 {
@@ -34,7 +33,8 @@ public class Aria2 {
         secret = defaults.objectForKey("RPCServerSecret") as! String
     }
     
-    // MARK: - Connection
+    // MARK: - Public API
+    // MARK: Connection
     public func connect() {
         socket.connect()
     }
@@ -54,13 +54,60 @@ public class Aria2 {
     public func shutdown() {
         request(method: .shutdown, params: "")
     }
-
-    // MARK: - Global status
-    public var getActives: ((results: JSON) -> Void)?
-    public var getGlobalStatus: ((result: JSON) -> Void)?
-
     
-    // MARK: - Download status
+    public func addTorrent(data: NSData) {
+        let base64Encoded = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        request(method: .addTorrent, params: "\"\(base64Encoded)\"")
+    }
+    
+    
+    // MARK: Global status
+    public func tellActive() {
+        request(method: .tellActive, params: "[]")
+    }
+    public func tellWaiting() {
+        request(method: .tellWaiting, params: "0, 100")
+    }
+    public func tellStopped() {
+        request(method: .tellStopped, params: "0, 100")
+    }
+    
+    public func getGlobalStatus() {
+        request(method: .getGlobalStat, params: "[]")
+    }
+    public var onActives: ((results: JSON) -> Void)?
+    public var onActivesTask: ((results: [Aria2Task]) -> Void)?
+    
+    public var onWaitings: ((results: JSON) -> Void)?
+    public var onWaitingsTask: ((results: [Aria2Task]) -> Void)?
+    
+    public var onStoppeds: ((results: JSON) -> Void)?
+    public var onStoppedsTask: ((results: [Aria2Task]) -> Void)?
+    
+    public var onGlobalStatus: ((result: Aria2GlobalStatus) -> Void)?
+
+    public func pause(gid: String) {
+        request(method: .pause, params: "\"\(gid)\"")
+    }
+    public var onPause: ((flag: Bool) -> Void)?
+    
+    public func pauseAll() {
+        request(method: .pauseAll, params: "[]")
+    }
+    public var onPauseAll: ((flag: Bool) -> Void)?
+    
+    public func start(gid: String) {
+        request(method: .unpause, params: "\"\(gid)\"")
+    }
+    public var onStart: ((flag: Bool) -> Void)?
+    
+    public func startAll() {
+        request(method: .unpauseAll, params: "[]")
+    }
+    public var onStartAll: ((flag: Bool) -> Void)?
+    
+    
+    // MARK: Download status
     private var getDownloadStatus: ((results: JSON) -> Void)?
     public var downloadCompleted: ((name: String, folderPath: String) -> Void)?
     public var downloadPaused: ((name: String) -> Void)?
@@ -70,9 +117,8 @@ public class Aria2 {
     
     
     
-    // MARK: - Speed limit
+    // MARK: Speed limit
     public func globalSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
-        
         request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
         
     }
@@ -99,11 +145,12 @@ public class Aria2 {
     public var lowSpeedLimitOK: ((result: JSON) -> Void)?
     
     
-    // MARK: - Add download task
+    // MARK: Add download task
     public var downloadTaskAdded: ((result: JSON) -> Void)?
     public var btDownloadTaskAdded: ((result: JSON) -> Void)?
-
+}
     
+extension Aria2 {
     public func request(method method: Aria2Method, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
         
@@ -139,9 +186,28 @@ extension Aria2: WebSocketDelegate {
             if let method = Aria2Method(rawValue: idString) {
                 switch method {
                 case .getGlobalStat:
-                    getGlobalStatus?(result: results)
+                    onGlobalStatus?(result: getGlobalStatusByJSON(results))
+                // --------------------
                 case .tellActive:
-                    getActives?(results: results["result"])
+                    onActives?(results: results["result"])
+                    onActivesTask?(results: getTasksByJSON(results))
+                case .tellWaiting:
+                    onWaitings?(results: results["result"])
+                    onWaitingsTask?(results: getTasksByJSON(results))
+                case .tellStopped:
+                    onStoppeds?(results: results["result"])
+                    onStoppedsTask?(results: getTasksByJSON(results))
+                // --------------------
+                case .pause:
+                    onPause?(flag: true)
+                    print(results)
+                case .pauseAll:
+                    onPauseAll?(flag: true)
+                case .unpause:
+                    onStart?(flag: true)
+                case .unpauseAll:
+                    onStartAll?(flag: true)
+                // --------------------
                 case .shutdown:
                     break
                 case .tellStatus:
@@ -203,5 +269,42 @@ extension Aria2: WebSocketDelegate {
                 self.request(method: .tellStatus, id: "aria2.tellStatus.downloadStatus", params: "\"\(result["gid"].stringValue)\"")
             }
         }
+    }
+    
+    func getTasksByJSON(json: JSON) -> [Aria2Task] {
+        return json["result"].array!.map() { data in
+            var task = Aria2Task()
+            task.gid = data["gid"].stringValue
+            task.status = data["status"].stringValue
+                        
+            var downloadName = ""
+            if let btName = data["bittorrent"]["info"]["name"].string {
+                downloadName = btName
+                task.isBtTask = true
+            } else {
+                downloadName = data["files"][0]["path"].stringValue.componentsSeparatedByString("/").last!
+                task.isBtTask = false
+                task.fileName = downloadName
+            }
+            task.title = downloadName
+            
+            task.completedLength = data["completedLength"].intValue
+            task.totalLength = data["totalLength"].intValue
+            
+            task.speed = Aria2Speed(download: Int(data["downloadSpeed"].stringValue)!, upload: Int(data["uploadSpeed"].stringValue)!)
+            task.fileSize = data["totalLength"].intValue
+            return task
+        }
+    }
+    func getGlobalStatusByJSON(json: JSON) -> Aria2GlobalStatus {
+        let data = json["result"]
+        var status = Aria2GlobalStatus()
+        status.speed = Aria2Speed(download: Int(data["downloadSpeed"].stringValue)!, upload: Int(data["uploadSpeed"].stringValue)!)
+        status.numberOfActiveTask = data["numActive"].intValue
+        status.numberOfWaitingTask = data["numWaiting"].intValue
+        status.numberOfStoppedTask = data["numStopped"].intValue
+        status.numberOfTotalStoppedTask = data["numStoppedTotal"].intValue
+        
+        return status
     }
 }

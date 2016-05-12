@@ -1,22 +1,23 @@
 # Maria
 
-![Maria Logo](http://windisco.qiniudn.com/MariaBanner.png)
+![Maria Logo](http://windisco.qiniudn.com/Maria-Banner.png)
 
 ## What's Maria?
 
 an OS X app/widget for aria2 download tool.
 
+#### Main Window
+![Maria App](http://windisco.qiniudn.com/Maria-App.png)
+
+#### Today Widget
+![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget.png)
+
 ## Features
 
-* [x] Download status notification
-* [x] Today widget - show DL/UL speed
-* [x] Status bar - show DL/UL speed
-* [x] Low speed mode
-* [x] Today widget - task progress
-* [x] Add new task & download from pasteboard link
-* [x] Aria2c launch and quit with Maria
-* [ ] Pause/Start all tasks
-* [ ] Auto start/pause download task timer
+* Native App
+* System Notification Support
+* Today Widget Support
+
 
 ## Test Environment
 

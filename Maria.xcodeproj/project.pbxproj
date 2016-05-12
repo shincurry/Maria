@@ -19,12 +19,17 @@
 		8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */; };
 		8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */; };
 		883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883327A21CC751630002B561 /* NewTaskViewController.swift */; };
+		883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */; };
+		883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52A1CE1D52300B10A25 /* TaskCellView.swift */; };
+		883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */; };
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
+		8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8870EA241CD4F13E00278B2C /* Settings.storyboard */; };
+		8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870EA281CD5A70200278B2C /* MainWindowController.swift */; };
 		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
-		887AE45C1CC0FF3100AAD3E3 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */; };
-		887AE45E1CC0FF5500AAD3E3 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */; };
-		887AE4601CC112D100AAD3E3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* WindowController.swift */; };
+		887AE45C1CC0FF3100AAD3E3 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */; };
+		887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */; };
+		887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */; };
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
@@ -32,6 +37,7 @@
 		8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889485781CBE4D4A000839CD /* Main.storyboard */; };
 		889485881CBE4E1A000839CD /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
 		889485891CBE4E1A000839CD /* Aria2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD31CE495D500450E0C /* MariaNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,12 +103,17 @@
 		8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shutdownAria2c.sh; sourceTree = "<group>"; };
 		8827EDF41CCB50A700DDB09D /* SettingsAria2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAria2ViewController.swift; sourceTree = "<group>"; };
 		883327A21CC751630002B561 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
+		883EA52A1CE1D52300B10A25 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
+		883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		8870EA251CD4F13E00278B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		8870EA281CD5A70200278B2C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
-		887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
-		887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
-		887AE45F1CC112D100AAD3E3 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
+		887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
+		887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +124,7 @@
 		889485821CBE4E13000839CD /* Aria2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Aria2.xcodeproj; path = Aria2/Aria2.xcodeproj; sourceTree = "<group>"; };
 		889485921CBE4E44000839CD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		889485A71CBE4FAF000839CD /* Maria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria.entitlements; sourceTree = "<group>"; };
+		88D6CDD31CE495D500450E0C /* MariaNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaNotification.swift; sourceTree = "<group>"; };
 		8C0D3330392DB691C715D126 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,8 +177,8 @@
 				8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */,
 				8805D1771CBE5BA000DA33CA /* TodayViewController.swift */,
 				8805D1791CBE5BA000DA33CA /* TodayViewController.xib */,
-				887AE45D1CC0FF5500AAD3E3 /* TaskCellView.xib */,
-				887AE45B1CC0FF3100AAD3E3 /* TaskCellView.swift */,
+				887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */,
+				887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */,
 				8805D17C1CBE5BA000DA33CA /* Info.plist */,
 				8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */,
 				8805D1751CBE5BA000DA33CA /* Supporting Files */,
@@ -185,6 +197,7 @@
 		8827EDF31CCB502E00DDB09D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */,
 				885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */,
 				887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */,
 				887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */,
@@ -192,6 +205,15 @@
 				8827EDF41CCB50A700DDB09D /* SettingsAria2ViewController.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		883EA5291CE1D4F700B10A25 /* TaskCell */ = {
+			isa = PBXGroup;
+			children = (
+				883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */,
+				883EA52A1CE1D52300B10A25 /* TaskCellView.swift */,
+			);
+			name = TaskCell;
 			sourceTree = "<group>";
 		};
 		889485661CBE4D4A000839CD = {
@@ -220,9 +242,11 @@
 			children = (
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
+				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
-				887AE45F1CC112D100AAD3E3 /* WindowController.swift */,
 				883327A21CC751630002B561 /* NewTaskViewController.swift */,
+				88D6CDD51CE4963100450E0C /* Main */,
+				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				8827EDF31CCB502E00DDB09D /* Settings */,
 				885B9ED31CBF8169001BA477 /* AboutViewController.swift */,
 				8894857B1CBE4D4A000839CD /* Info.plist */,
@@ -239,6 +263,16 @@
 				889485871CBE4E13000839CD /* Aria2.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		88D6CDD51CE4963100450E0C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8870EA281CD5A70200278B2C /* MainWindowController.swift */,
+				883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */,
+				883EA5291CE1D4F700B10A25 /* TaskCell */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,7 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */,
-				887AE45E1CC0FF5500AAD3E3 /* TaskCellView.xib in Resources */,
+				887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */,
 				8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +407,8 @@
 				889485771CBE4D4A000839CD /* Assets.xcassets in Resources */,
 				8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */,
 				8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */,
+				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
+				8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8805D1781CBE5BA000DA33CA /* TodayViewController.swift in Sources */,
-				887AE45C1CC0FF3100AAD3E3 /* TaskCellView.swift in Sources */,
+				887AE45C1CC0FF3100AAD3E3 /* TodayTaskCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,12 +476,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */,
 				887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */,
 				887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */,
 				883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */,
 				885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */,
+				883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */,
+				8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */,
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
-				887AE4601CC112D100AAD3E3 /* WindowController.swift in Sources */,
+				88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */,
+				887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */,
 				887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */,
 				8827EDF51CCB50A700DDB09D /* SettingsAria2ViewController.swift in Sources */,
 				889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */,
@@ -482,6 +522,14 @@
 				8805D17E1CBE5BA000DA33CA /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8870EA241CD4F13E00278B2C /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8870EA251CD4F13E00278B2C /* Base */,
+			);
+			name = Settings.storyboard;
 			sourceTree = "<group>";
 		};
 		889485781CBE4D4A000839CD /* Main.storyboard */ = {

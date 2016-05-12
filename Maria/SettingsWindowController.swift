@@ -8,7 +8,8 @@
 
 import Cocoa
 
-class WindowController: NSWindowController {
+class SettingsWindowController: NSWindowController {
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         NSApp.activateIgnoringOtherApps(true)

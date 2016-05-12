@@ -17,17 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.1</string>
+	<string>0.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1604231</string>
+	<string>1605121</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
-	<true/>
+	<false/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016年 ShinCurry. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>

@@ -26,7 +26,6 @@ class SettingsGeneralViewController: NSViewController {
     
     @IBAction func switchOptions(sender: NSButton) {
         let boolValue = sender.state == 1 ? true : false
-        print(boolValue)
         switch sender {
         case enableSpeedStatusBar:
             defaults.setBool(boolValue, forKey: "EnableSpeedStatusBar")

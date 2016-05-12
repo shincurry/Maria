@@ -14,6 +14,7 @@ import SwiftyJSON
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let aria2: Aria2
+
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
@@ -26,27 +27,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if defaults.boolForKey("EnableAria2AutoLaunch") {
             let task = NSTask()
-            let pipe = NSPipe()
-            //            task.launchPath = "/bin/sh"
             let confPath = defaults.objectForKey("Aria2ConfPath") as! String
             let shFilePath = NSBundle.mainBundle().pathForResource("runAria2c", ofType: "sh")
             task.launchPath = shFilePath
             task.arguments = [confPath]
-            task.standardOutput = pipe
             task.launch()
             task.waitUntilExit()
-            print("EnableAria2AutoLaunch")
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            print(String(data: data, encoding: NSUTF8StringEncoding))
         }
         aria2 = Aria2.shared
         super.init()
-        
-        
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-
+        
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
         
         if defaults.boolForKey("EnableAutoConnectAria2") {
@@ -59,6 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             disableSpeedStatusBar()
         }
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -79,9 +73,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            for window in NSApp.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+        }
+        return true
+    }
+    
     // MARK: SpeedBar
     func enableSpeedStatusBar() {
-        speedStatusTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(AppDelegate.updateSpeedStatus), userInfo: nil, repeats: true)
+        speedStatusTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateSpeedStatus), userInfo: nil, repeats: true)
         if let button = statusItem.button {
             button.image = nil
         }
@@ -98,7 +101,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func updateSpeedStatus() {
         if aria2.isConnected {
-            aria2.request(method: .getGlobalStat, params: "[]")
+            aria2.getGlobalStatus()
+        }
+        aria2.onGlobalStatus = { status in
+            if let button = self.statusItem.button {
+                button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
+            }
         }
     }
     
@@ -150,17 +158,23 @@ extension AppDelegate {
     func lowSpeedModeOff() {
         let limitDownloadSpeed = defaults.integerForKey("GlobalDownloadRate")
         let limitUploadSpeed = defaults.integerForKey("GlobalUploadRate")
+        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+            controller.lowSpeedModeOff()
+        }
         aria2.globalSpeedLimit(downloadSpeed: limitDownloadSpeed, uploadSpeed: limitUploadSpeed)
     }
 
     func lowSpeedModeOn() {
         let limitDownloadSpeed = defaults.integerForKey("LimitModeDownloadRate")
         let limitUploadSpeed = defaults.integerForKey("LimitModeUploadRate")
+        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+            controller.lowSpeedModeOn()
+        }
         aria2.lowSpeedLimit(downloadSpeed: limitDownloadSpeed, uploadSpeed: limitUploadSpeed)
     }
 }
 
-// MARK: - Aria2 configuration
+// MARK: - Aria2 Config
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
         
@@ -188,39 +202,39 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 let port = self.defaults.objectForKey("RPCServerPort") as! String
                 let path = self.defaults.objectForKey("RPCServerPath") as! String
                 let url = baseHost + host + ":" + port + path
-                Aria2Notification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
+                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
             }
         }
         aria2.onDisconnect = {
             self.RPCServerStatus.state = 0
             if self.defaults.boolForKey("EnableNotificationWhenDisconnected") {
-                Aria2Notification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
+                MariaNotification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
         }
         
         aria2.downloadStarted = { name in
             if self.defaults.boolForKey("EnableNotificationWhenStarted") {
-                Aria2Notification.notification(title: "Download Started", details: "\(name) started.")
+                MariaNotification.notification(title: "Download Started", details: "\(name) started.")
             }
         }
         aria2.downloadPaused = { name in
             if self.defaults.boolForKey("EnableNotificationWhenPaused") {
-                Aria2Notification.notification(title: "Download Paused", details: "\(name) paused.")
+                MariaNotification.notification(title: "Download Paused", details: "\(name) paused.")
             }
         }
         aria2.downloadStopped = { name in
             if self.defaults.boolForKey("EnableNotificationWhenStopped") {
-                Aria2Notification.notification(title: "Download Stopoped", details: "\(name) stopped.")
+                MariaNotification.notification(title: "Download Stopoped", details: "\(name) stopped.")
             }
         }
         aria2.downloadCompleted = { (name, path) in
             if self.defaults.boolForKey("EnableNotificationWhenCompleted") {
-                Aria2Notification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path])
+                MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path])
             }
         }
         aria2.downloadError = { name in
             if self.defaults.boolForKey("EnableNotificationWhenError") {
-                Aria2Notification.notification(title: "Download Error", details: "Download task \(name) have an error.")
+                MariaNotification.notification(title: "Download Error", details: "Download task \(name) have an error.")
             }
         }
         
@@ -237,22 +251,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         }
         
         
-        aria2.getGlobalStatus = { results in
-            if results["error"] != nil {
-                if let button = self.statusItem.button {
-                    button.title = "Unauthorized"
-                }
-                return
-            }
-            
-            let result = results["result"]
-            
-            let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
-            let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
-            if let button = self.statusItem.button {
-                button.title = "⬇︎ " + self.getStringBy(value: downloadSpeed) + " ⬆︎ " + self.getStringBy(value: uploadSpeed)
-            }
-        }
+        
         
     }
     
@@ -334,21 +333,22 @@ extension AppDelegate {
 // MARK: - Download from pasteboard
 extension AppDelegate: NSMenuDelegate {
     func menuWillOpen(menu: NSMenu) {
-        if let paste = pasteboard.stringForType(NSPasteboardTypeString) {
-            let pattern = "^(https?://)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
-            let matcher: RegexHelper
-            do {
-                matcher = try RegexHelper(pattern)
-                if matcher.match(paste) {
-                    quickDownloadMenuItem.hidden = false
-                    quickDownloadLink = paste
-                } else {
-                    quickDownloadMenuItem.hidden = true
-                }
-            } catch {
-                print(error)
-            }
-        }
+        // BUG: Stop responding caused by some links
+//        if let paste = pasteboard.stringForType(NSPasteboardTypeString) {
+//            let pattern = "^(https?://)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
+//            let matcher: RegexHelper
+//            do {
+//                matcher = try RegexHelper(pattern)
+//                if matcher.match(paste) {
+//                    quickDownloadMenuItem.hidden = false
+//                    quickDownloadLink = paste
+//                } else {
+//                    quickDownloadMenuItem.hidden = true
+//                }
+//            } catch {
+//                print(error)
+//            }
+//        }
     }
     @IBAction func downloadFromPasteboard(sender: NSMenuItem) {
         self.aria2.request(method: .addUri, params: "[\"\(quickDownloadLink)\"]")

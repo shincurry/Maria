@@ -23,7 +23,6 @@ class SettingsAria2ViewController: NSViewController {
     
     @IBAction func switchOptions(sender: NSButton) {
         let boolValue = sender.state == 1 ? true : false
-        print(boolValue)
         switch sender {
         case enableAria2AutoLaunch:
             defaults.setBool(boolValue, forKey: "EnableAria2AutoLaunch")

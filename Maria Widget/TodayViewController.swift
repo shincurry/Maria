@@ -46,27 +46,33 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
         
-        aria2.getGlobalStatus = { results in
+//        aria2.onGlobalStatus = { results in
+//            self.authorized = true
+//            if results["error"] != nil {
+//                if results["error"]["message"] != nil {
+//                    self.authorized = false
+//                }
+//                return
+//            }
+//            
+//            let result = results["result"]
+//            let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
+//            let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
+//            self.downloadSpeedLabel.stringValue = self.getStringBy(value: downloadSpeed)
+//            self.uploadSpeedLabel.stringValue = self.getStringBy(value: uploadSpeed)
+//        }
+        aria2.onGlobalStatus = { status in
             self.authorized = true
-            if results["error"] != nil {
-                if results["error"]["message"] != nil {
-                    self.authorized = false
-                }
-                return
-            }
-            
-            let result = results["result"]
-            let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
-            let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
-            self.downloadSpeedLabel.stringValue = self.getStringBy(value: downloadSpeed)
-            self.uploadSpeedLabel.stringValue = self.getStringBy(value: uploadSpeed)
+
+            self.downloadSpeedLabel.stringValue = status.speed!.downloadString
+            self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
-        aria2.getActives = { results in
+        aria2.onActives = { results in
             let sortedResult = results.array!.sort() { (last, next) in
                 return Int(last["downloadSpeed"].stringValue) > Int(next["downloadSpeed"].stringValue)
             }
             
-            let subViews = self.taskView.subviews as! [TaskCellView]
+            let subViews = self.taskView.subviews as! [TodayTaskCellView]
             subViews.enumerate().forEach() { (index, view) in
                 if index >= sortedResult.count {
                     view.hidden = true
@@ -105,14 +111,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             } else {
                 alertLabel.stringValue = "Unauthorized"
             }
-        }
-    }
-    
-    private func getStringBy(value value: Double) -> String {
-        if value > 1024 {
-            return String(format: "%.2f MB/s", value / 1024.0)
-        } else {
-            return String(format: "%.2f KB/s", value)
         }
     }
 }

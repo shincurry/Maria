@@ -14,6 +14,8 @@ public enum Aria2Method: String {
 
     case tellStatus
     case tellActive
+    case tellWaiting
+    case tellStopped
     case shutdown
     
     case addUri
@@ -21,6 +23,10 @@ public enum Aria2Method: String {
     
     case changeGlobalOption
     
+    case pause
+    case pauseAll
+    case unpause
+    case unpauseAll
 
     // Aria2 Notification Method
     case onDownloadStart

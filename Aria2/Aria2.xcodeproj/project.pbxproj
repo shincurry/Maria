@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		885B9ECE1CBF2F64001BA477 /* Aria2Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */; };
 		887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */; };
 		889485AA1CBE5205000839CD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485A91CBE5205000839CD /* Pods.framework */; };
 		8897835B1CBE105400C12387 /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8897835A1CBE105400C12387 /* Aria2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889783691CBE105C00C12387 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889783681CBE105C00C12387 /* Aria2.swift */; };
+		88D6CDCE1CE44B9200450E0C /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */; };
+		88D6CDD01CE479E900450E0C /* Aria2GlobalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */; };
+		88D6CDD21CE47A1B00450E0C /* Aria2Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Notification.swift; sourceTree = "<group>"; };
 		887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Method.swift; sourceTree = "<group>"; };
 		889485A91CBE5205000839CD /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Maria-hbwcxzhhjmegsfgfpmrnhlhlcmcd/Build/Products/Debug/Pods.framework"; sourceTree = "<group>"; };
 		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
 		8897835C1CBE105400C12387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889783681CBE105C00C12387 /* Aria2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2.swift; sourceTree = "<group>"; };
+		88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
+		88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2GlobalStatus.swift; sourceTree = "<group>"; };
+		88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Speed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +63,9 @@
 				8897835A1CBE105400C12387 /* Aria2.h */,
 				887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */,
 				889783681CBE105C00C12387 /* Aria2.swift */,
-				885B9ECD1CBF2F64001BA477 /* Aria2Notification.swift */,
+				88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */,
+				88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */,
+				88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */,
 				8897835C1CBE105400C12387 /* Info.plist */,
 			);
 			path = Aria2;
@@ -143,9 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D6CDD21CE47A1B00450E0C /* Aria2Speed.swift in Sources */,
 				887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */,
 				889783691CBE105C00C12387 /* Aria2.swift in Sources */,
-				885B9ECE1CBF2F64001BA477 /* Aria2Notification.swift in Sources */,
+				88D6CDD01CE479E900450E0C /* Aria2GlobalStatus.swift in Sources */,
+				88D6CDCE1CE44B9200450E0C /* Aria2Task.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

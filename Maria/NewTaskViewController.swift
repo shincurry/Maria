@@ -55,8 +55,7 @@ class NewTaskViewController: NSViewController {
         openPanel.runModal()
         if let url = openPanel.URL {
             if let data = NSData(contentsOfURL: url) {
-                let base64Encoded = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-                aria2.request(method: .addTorrent, params: "\"\(base64Encoded)\"")
+                aria2.addTorrent(data)
                 self.dismissController(self)
             }
         }

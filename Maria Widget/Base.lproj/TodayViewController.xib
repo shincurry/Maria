@@ -90,31 +90,31 @@
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qd-zU-7ae">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="237"/>
                     <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-Fb-ESe" customClass="TaskCellView" customModule="Maria_Widget" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-Fb-ESe" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="196" width="300" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="hmg-w8-b5b"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="jwG-Xg-tWU" customClass="TaskCellView" customModule="Maria_Widget" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="jwG-Xg-tWU" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="147" width="300" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="s6i-TC-oFf"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="cV3-Dv-cRT" customClass="TaskCellView" customModule="Maria_Widget" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="cV3-Dv-cRT" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="98" width="300" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="fXo-mQ-ytH"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="5DZ-MI-sbz" customClass="TaskCellView" customModule="Maria_Widget" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="5DZ-MI-sbz" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="49" width="300" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="3Dm-N3-f0e"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="UUg-rU-DQK" customClass="TaskCellView" customModule="Maria_Widget" customModuleProvider="target">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="UUg-rU-DQK" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="FDD-ed-YHd"/>

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TaskCellView: NSView {
+class TodayTaskCellView: NSView {
     
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
@@ -33,7 +33,7 @@ class TaskCellView: NSView {
     
     func initSubView() {
         var objects: NSArray?;
-        NSBundle.mainBundle().loadNibNamed("TaskCellView", owner: self, topLevelObjects: &objects)
+        NSBundle.mainBundle().loadNibNamed("TodayTaskCellView", owner: self, topLevelObjects: &objects)
         
         for obj in objects! {
             if (obj.isMemberOfClass(NSView)) {

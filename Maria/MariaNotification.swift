@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Aria2Notification {
+public class MariaNotification {
     static public func notification(title title: String, details: String) {
         let notification = NSUserNotification()
         notification.title = title
