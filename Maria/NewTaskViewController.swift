@@ -16,12 +16,9 @@ class NewTaskViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        aria2.downloadTaskAdded = { result in
-            print("downloadTaskAdded")
+        aria2.onAddUris = { flag in
         }
-        
-        aria2.btDownloadTaskAdded = { result in
-            print("btDownloadTaskAdded")
+        aria2.onAddTorrent = { flag in
         }
     }
     
@@ -33,9 +30,7 @@ class NewTaskViewController: NSViewController {
     
     @IBAction func start(sender: NSButton) {
         if let uris = linksTextView.string?.componentsSeparatedByString("\n") {
-            uris.filter({ return !$0.isEmpty }).forEach() { uri in
-                self.aria2.request(method: .addUri, params: "[\"\(uri)\"]")
-            }
+            aria2.addUri(uris.filter({ return !$0.isEmpty }))
             self.dismissController(self)
         }
         
@@ -45,6 +40,7 @@ class NewTaskViewController: NSViewController {
     }
     
     @IBAction func openBtFile(sender: NSButton) {
+        
         let openPanel = NSOpenPanel()
         openPanel.title = "Choose a .torrent file"
         openPanel.showsResizeIndicator = true

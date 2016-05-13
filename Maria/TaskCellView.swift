@@ -50,16 +50,33 @@ class TaskCellView: NSTableCellView {
             case "active":
                 actionButton.action = #selector(actionPause)
                 actionButton.image = NSImage(named: "PauseButton")
+                taskStatusLabel.stringValue = "Downloading"
             case "paused":
                 actionButton.action = #selector(actionRestart)
                 actionButton.image = NSImage(named: "RestartButton")
+                taskStatusLabel.stringValue = "Paused"
             case "complete":
                 actionButton.image = NSImage(named: "CompleteButton")
+                taskStatusLabel.stringValue = "Complete"
+            case "removed":
+                actionButton.action = #selector(actionRestart)
+                actionButton.image = NSImage(named: "RestartButton")
+                taskStatusLabel.stringValue = "Removed"
+            case "error":
+                actionButton.image = NSImage(named: "RestartButton")
+                taskStatusLabel.stringValue = "Error"
             default:
                 break
             }
+            
         }
     }
+    
+    @IBOutlet weak var dot1: NSTextField!
+    @IBOutlet weak var dot2: NSTextField!
+    @IBOutlet weak var dot3: NSTextField!
+    @IBOutlet weak var dot4: NSTextField!
+    
     
     @IBOutlet weak var taskTypeImageView: NSImageView!
     @IBOutlet weak var taskTitleLabel: NSTextField!
@@ -68,6 +85,8 @@ class TaskCellView: NSTableCellView {
     @IBOutlet weak var taskSpeedLabel: NSTextField!
     @IBOutlet weak var taskRemainingTimeLabel: NSTextField!
     @IBOutlet weak var taskProgressLabel: NSTextField!
+    
+    @IBOutlet weak var taskStatusLabel: NSTextField!
     
     @IBOutlet weak var actionButton: NSButton!
     
@@ -81,6 +100,11 @@ class TaskCellView: NSTableCellView {
         
     }
     
+    var data: Aria2Task? {
+        didSet {
+            updateView(data!)
+        }
+    }
     
     func updateView(task: Aria2Task) {
         gid = task.gid!
@@ -96,13 +120,7 @@ class TaskCellView: NSTableCellView {
         taskProgressIndicator.doubleValue = task.progress
         taskProgressLabel.stringValue = task.progressString
         taskFileSizeLabel.stringValue = task.fileSizeString
-        if status == "complete" {
-            taskRemainingTimeLabel.stringValue = "Complete"
-        } else if status == "paused" {
-            taskRemainingTimeLabel.stringValue = "Paused"
-        } else {
-            taskRemainingTimeLabel.stringValue = task.remainingString
-        }
+        taskRemainingTimeLabel.stringValue = task.remainingString
     }
 }
 

@@ -31,9 +31,8 @@ class TaskListViewController: NSViewController {
     
     var timer: NSTimer!
     var aria2 = Aria2.shared
-    
-    
-    var tempFiles = ["a.mp4", "b.mkv", "c.mp3", "d.md", "e.txt", "f.windisco", "g.cpp", "h.torrent"]
+
+    var aria2isConnected: Bool = true
     
     var numberOfActive: Int = 0
     var numberOfWaiting: Int = 0
@@ -44,6 +43,7 @@ class TaskListViewController: NSViewController {
     var newWaitingTaskData: [Aria2Task] = []
     var newStoppedTaskData: [Aria2Task] = []
     
+    @IBOutlet weak var alertLabel: NSTextField!
     @IBOutlet weak var taskListTableView: NSTableView!
     
     @IBOutlet weak var globalSpeedLabel: NSTextField!
@@ -60,7 +60,27 @@ class TaskListViewController: NSViewController {
 
 
 extension TaskListViewController {
-    func updateTaskStatus() {
+    func updateListStatus() {
+        if aria2.isConnected != aria2isConnected {
+            aria2isConnected = aria2.isConnected
+            if aria2.isConnected == false {
+                taskData = []
+                numberOfActive = 0
+                numberOfWaiting = 0
+                numberOfStopped = 0
+                taskListTableView.reloadData()
+            } else {
+                updateListStatus()
+            }
+            return
+        }
+        if !aria2.isConnected {
+            alertLabel.hidden = false
+            return
+        } else {
+            alertLabel.hidden = true
+        }
+        
         aria2.tellActive()
         aria2.tellWaiting()
         aria2.tellStopped()
@@ -69,7 +89,7 @@ extension TaskListViewController {
         aria2.onGlobalStatus = { status in
             let activeNumber = status.numberOfActiveTask!
             let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
-            self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) downloading..."
+            self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
             
             self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
         }
@@ -95,7 +115,8 @@ extension TaskListViewController {
 // MARK: - Timer Config
 extension TaskListViewController {
     private func runTimer() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTaskStatus), userInfo: nil, repeats: true)
+        updateListStatus()
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
     private func closeTimer() {
         timer.invalidate()
@@ -117,9 +138,12 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
         taskData = newActiveTaskData + newWaitingTaskData + newStoppedTaskData
         if flag {
             taskListTableView.reloadData()
+            if let controller = self.view.window?.windowController as? MainWindowController {
+                controller.taskCleanButton.enabled = (numberOfStopped != 0)
+            }
         } else {
             for index in 0..<taskData.count {
-                let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TaskCellView
+                let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! TaskCellView
                 cell.updateView(taskData[index])
             }
         }
@@ -127,7 +151,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     
     func updateTasksStatus(status: String) {
         for index in 0..<taskData.count {
-            let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TaskCellView
+            let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! TaskCellView
             cell.status = status
         }
     }
@@ -139,8 +163,14 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeViewWithIdentifier("TaskCell", owner: self) as! TaskCellView
-        cell.updateView(taskData[row])
+        cell.data = taskData[row]
         return cell
+    }
+    
+    func tableViewSelectionDidChange(notification: NSNotification) {
+        if let controller = self.view.window?.windowController as? MainWindowController {
+            controller.taskRemoveButton.enabled = (taskListTableView.selectedRowIndexes.count > 0)
+        }
     }
     
 }

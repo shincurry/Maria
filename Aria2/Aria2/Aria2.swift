@@ -55,11 +55,19 @@ public class Aria2 {
         request(method: .shutdown, params: "")
     }
     
+    public func addUri(uris: [String]) {
+        uris.forEach() { uri in
+            print(uri)
+            request(method: .addUri, params: "[\"\(uri)\"]")
+        }
+    }
+    public var onAddUris: ((flag: Bool) -> Void)?
+    
     public func addTorrent(data: NSData) {
         let base64Encoded = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         request(method: .addTorrent, params: "\"\(base64Encoded)\"")
     }
-    
+    public var onAddTorrent: ((flag: Bool) -> Void)?
     
     // MARK: Global status
     public func tellActive() {
@@ -86,6 +94,22 @@ public class Aria2 {
     
     public var onGlobalStatus: ((result: Aria2GlobalStatus) -> Void)?
 
+    
+    public func removeActive(gid: String) {
+        request(method: .remove, params: "\"\(gid)\"")
+    }
+    public func removeOther(gid: String) {
+        request(method: .removeDownloadResult, params: "\"\(gid)\"")
+    }
+    public var onRemoveActive: ((flag: Bool) -> Void)?
+    public var onRemoveOther: ((flag: Bool) -> Void)?
+    
+    public func cleanCompletedErrorRemoved() {
+        request(method: .purgeDownloadResult, params: "[]")
+    }
+    public var onCleanCompletedErrorRemoved: ((flag: Bool) -> Void)?
+    
+    
     public func pause(gid: String) {
         request(method: .pause, params: "\"\(gid)\"")
     }
@@ -144,10 +168,6 @@ public class Aria2 {
     public var globalSpeedLimitOK: ((result: JSON) -> Void)?
     public var lowSpeedLimitOK: ((result: JSON) -> Void)?
     
-    
-    // MARK: Add download task
-    public var downloadTaskAdded: ((result: JSON) -> Void)?
-    public var btDownloadTaskAdded: ((result: JSON) -> Void)?
 }
     
 extension Aria2 {
@@ -198,24 +218,30 @@ extension Aria2: WebSocketDelegate {
                     onStoppeds?(results: results["result"])
                     onStoppedsTask?(results: getTasksByJSON(results))
                 // --------------------
+                case .remove:
+                    onRemoveActive?(flag: (results["error"] != nil) ? false : true)
+                    removeOther(results["result"].stringValue)
+                case .removeDownloadResult:
+                    onRemoveOther?(flag: (results["error"] != nil) ? false : true)
+                case .purgeDownloadResult:
+                    onCleanCompletedErrorRemoved?(flag: (results["error"] != nil) ? false : true)
                 case .pause:
-                    onPause?(flag: true)
-                    print(results)
+                    onPause?(flag: (results["error"] != nil) ? false : true)
                 case .pauseAll:
-                    onPauseAll?(flag: true)
+                    onPauseAll?(flag: (results["error"] != nil) ? false : true)
                 case .unpause:
-                    onStart?(flag: true)
+                    onStart?(flag: (results["error"] != nil) ? false : true)
                 case .unpauseAll:
-                    onStartAll?(flag: true)
+                    onStartAll?(flag: (results["error"] != nil) ? false : true)
                 // --------------------
                 case .shutdown:
                     break
                 case .tellStatus:
                     break
                 case .addUri:
-                    downloadTaskAdded?(result: results["result"])
+                    onAddUris?(flag: (results["error"] != nil) ? false : true)
                 case .addTorrent:
-                    btDownloadTaskAdded?(result: results["result"])
+                    onAddTorrent?(flag: (results["error"] != nil) ? false : true)
                 default:
                     break
                 }

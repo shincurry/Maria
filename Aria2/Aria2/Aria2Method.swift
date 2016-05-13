@@ -23,6 +23,10 @@ public enum Aria2Method: String {
     
     case changeGlobalOption
     
+    case remove
+    case removeDownloadResult
+    case purgeDownloadResult
+    
     case pause
     case pauseAll
     case unpause

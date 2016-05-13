@@ -40,17 +40,31 @@ public struct Aria2Task {
     
     public var progress: Double {
         get {
-            return Double(completedLength!) / Double(totalLength!) * 100
+            if totalLength == 0 {
+                return -1
+            } else if completedLength == totalLength {
+                return 100.0
+            } else {
+                return Double(completedLength!) / Double(totalLength!) * 100
+            }
         }
     }
     public var progressString: String {
         get {
-            return String(format: "%.2f", progress) + " %"
+            if progress == -1 {
+                return "Unknown"
+            } else {
+                return String(format: "%.2f", progress) + " %"
+            }
         }
     }
     public var fileSize: Int?
     public var fileSizeString: String {
         get {
+            if fileSize == 0 {
+                return "Unknown"
+            }
+            
             var size = 0.0
             if let value = fileSize {
                 size = Double(value) / 1024.0
@@ -65,7 +79,7 @@ public struct Aria2Task {
             }
             
             let hou = remaining / (60 * 60)
-            let min = remaining / 60
+            let min = remaining / 60 % 60
             let sec = remaining % 60
             
             return String(format: "%02d:%02d:%02d remaining", hou, min, sec)

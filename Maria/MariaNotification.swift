@@ -23,5 +23,4 @@ public class MariaNotification {
         notification.userInfo = userInfo
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
     }
-    
 }
