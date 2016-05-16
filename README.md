@@ -7,7 +7,7 @@
 an OS X app/widget for aria2 download tool.
 
 #### Main Window
-![Maria App](http://windisco.qiniudn.com/Maria-App.png)
+![Maria App](http://windisco.qiniudn.com/Maria-App-2.png)
 
 #### Today Widget
 ![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget.png)

@@ -42,7 +42,7 @@ class MainWindowController: NSWindowController {
         aria2.onRemoveActive = onRemove
         aria2.onRemoveOther = onRemove
         
-        aria2.onCleanCompletedErrorRemoved = { flag in
+        aria2.onClearCompletedErrorRemoved = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.taskListTableView.reloadData()
@@ -96,7 +96,7 @@ class MainWindowController: NSWindowController {
             }
             
             let alert = NSAlert()
-            alert.messageText = "Remove Task"
+            alert.messageText = "Remove Task" + (tasks.count > 0 ? "s" : "")
             if tasks.count == 1 {
                 alert.informativeText = "Are you sure to remove \"\(tasks[0].1.title!)\" from the download list?"
             } else {
@@ -120,15 +120,15 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    @IBAction func cleanCompletedErrorRemovedTasks(sender: NSToolbarItem) {
+    @IBAction func clearCompletedErrorRemovedTasks(sender: NSToolbarItem) {
         let alert = NSAlert()
-        alert.messageText = "Clean Task"
-        alert.informativeText = "Are you sure to clean those completed/error/removed task(s) from the download list?"
+        alert.messageText = "Clear Tasks"
+        alert.informativeText = "Are you sure to clear those completed/error/removed task(s) from the download list?"
         alert.addButtonWithTitle("Clean")
         alert.addButtonWithTitle("Cancel")
         alert.beginSheetModalForWindow(self.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
-                self.aria2.cleanCompletedErrorRemoved()
+                self.aria2.clearCompletedErrorRemoved()
             }
         })
         

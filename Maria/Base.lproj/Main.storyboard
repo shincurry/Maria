@@ -100,6 +100,27 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
+                                        <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="YJe-68-I9s"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="x3v-GG-iWU">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="G1f-GL-Joy"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="gVA-U4-sdL">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="UvS-8e-Qdg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste and Match Style" keyEquivalent="V" id="WeT-3V-zwk">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsPlainText:" target="Ady-hI-5gd" id="cEh-KX-wJQ"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Delete" id="pa3-QI-u2k">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -232,9 +253,6 @@
                         </menuItem>
                         <menuItem title="Download from pasteboard" hidden="YES" id="Pdh-vr-JEW">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="downloadFromPasteboard:" target="Voe-Tx-rLC" id="fbo-HH-sQ1"/>
-                            </connections>
                         </menuItem>
                         <menuItem title="Low Speed Mode" id="PKO-Vg-5WC">
                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -272,7 +290,7 @@
                     <window key="window" title="Maria" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="o4S-zO-VLD">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="contentRect" x="163" y="199" width="509" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <toolbar key="toolbar" implicitIdentifier="F02A8C2B-6FEF-45CB-A24A-2BDC365A2BD1" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="tbY-fm-beI">
                             <allowedToolbarItems>
@@ -322,17 +340,17 @@
                                         </buttonCell>
                                     </button>
                                     <connections>
-                                        <action selector="cleanCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="Aes-6Z-eyf"/>
+                                        <action selector="clearCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="lwt-MQ-y39"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="4BD0B680-349A-4E3D-87F5-A03ABEDB782B" id="fWl-Gq-lVn">
+                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="50E50D50-7D15-4FDA-9CCD-9DA9A1AF86E5" id="fWl-Gq-lVn">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="atI-Si-Tc8">
                                         <rect key="frame" x="0.0" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="4BD0B680-349A-4E3D-87F5-A03ABEDB782B" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
+                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="50E50D50-7D15-4FDA-9CCD-9DA9A1AF86E5" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -411,7 +429,7 @@
                 </windowController>
                 <customObject id="qfh-si-bXl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80" y="351"/>
+            <point key="canvasLocation" x="94.5" y="351"/>
         </scene>
         <!--Task List View Controller-->
         <scene sceneID="LnY-45-zVe">
@@ -424,7 +442,7 @@
                             <visualEffectView blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="mjo-9s-C0c">
                                 <rect key="frame" x="0.0" y="24" width="580" height="276"/>
                                 <subviews>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-fb-fPN">
+                                    <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-fb-fPN">
                                         <rect key="frame" x="0.0" y="0.0" width="580" height="276"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="sso-Qk-bhj">
                                             <rect key="frame" x="1" y="1" width="578" height="274"/>
@@ -491,15 +509,15 @@
                                 </constraints>
                             </visualEffectView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JhC-kn-LtG">
-                                <rect key="frame" x="0.0" y="2" width="132" height="20"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1 of 4 Downloading..." id="ddn-EL-BXl">
+                                <rect key="frame" x="6" y="2" width="119" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 of 0 Download(s)" id="ddn-EL-BXl">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOJ-nC-MDI">
-                                <rect key="frame" x="453" y="2" width="127" height="20"/>
+                                <rect key="frame" x="447" y="2" width="127" height="20"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="⬇︎ 0 KB/s ⬆︎ 0 KB/s" id="xkr-Gd-rB0">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -513,10 +531,10 @@
                             <constraint firstItem="mjo-9s-C0c" firstAttribute="leading" secondItem="8yU-7f-2Dg" secondAttribute="leading" id="KKa-TT-oBT"/>
                             <constraint firstAttribute="bottom" secondItem="JhC-kn-LtG" secondAttribute="bottom" constant="2" id="Scr-iH-U8N"/>
                             <constraint firstItem="mjo-9s-C0c" firstAttribute="top" secondItem="8yU-7f-2Dg" secondAttribute="top" id="aN4-5C-lAm"/>
-                            <constraint firstItem="JhC-kn-LtG" firstAttribute="leading" secondItem="8yU-7f-2Dg" secondAttribute="leading" constant="2" id="hnu-Qe-ZT7"/>
+                            <constraint firstItem="JhC-kn-LtG" firstAttribute="leading" secondItem="8yU-7f-2Dg" secondAttribute="leading" constant="8" id="hnu-Qe-ZT7"/>
                             <constraint firstItem="JhC-kn-LtG" firstAttribute="top" secondItem="mjo-9s-C0c" secondAttribute="bottom" constant="2" id="iKm-2h-EDw"/>
                             <constraint firstAttribute="trailing" secondItem="mjo-9s-C0c" secondAttribute="trailing" id="nAn-zR-Q7P"/>
-                            <constraint firstAttribute="trailing" secondItem="QOJ-nC-MDI" secondAttribute="trailing" constant="2" id="nhV-t5-fVU"/>
+                            <constraint firstAttribute="trailing" secondItem="QOJ-nC-MDI" secondAttribute="trailing" constant="8" id="nhV-t5-fVU"/>
                             <constraint firstItem="QOJ-nC-MDI" firstAttribute="top" secondItem="mjo-9s-C0c" secondAttribute="bottom" constant="2" id="zrf-p3-QdN"/>
                         </constraints>
                     </view>
@@ -688,7 +706,7 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="4BD0B680-349A-4E3D-87F5-A03ABEDB782B" width="1" height="1">
+        <image name="50E50D50-7D15-4FDA-9CCD-9DA9A1AF86E5" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

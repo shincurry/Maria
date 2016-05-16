@@ -157,7 +157,7 @@
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="xTA-bS-085">
                                             <rect key="frame" x="18" y="192" width="436" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5iD-4U-EG1">
+                                            <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5iD-4U-EG1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -513,7 +513,7 @@
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kix-YB-kfm">
                                             <rect key="frame" x="18" y="45" width="202" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Start Maria on system startup" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1ex-du-E9X">
+                                            <buttonCell key="cell" type="check" title="Start Maria on system startup" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="1ex-du-E9X">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>

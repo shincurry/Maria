@@ -72,12 +72,6 @@ class TaskCellView: NSTableCellView {
         }
     }
     
-    @IBOutlet weak var dot1: NSTextField!
-    @IBOutlet weak var dot2: NSTextField!
-    @IBOutlet weak var dot3: NSTextField!
-    @IBOutlet weak var dot4: NSTextField!
-    
-    
     @IBOutlet weak var taskTypeImageView: NSImageView!
     @IBOutlet weak var taskTitleLabel: NSTextField!
     @IBOutlet weak var taskProgressIndicator: NSProgressIndicator!
@@ -88,6 +82,7 @@ class TaskCellView: NSTableCellView {
     
     @IBOutlet weak var taskStatusLabel: NSTextField!
     
+    @IBOutlet weak var findPathButton: NSLayoutConstraint!
     @IBOutlet weak var actionButton: NSButton!
     
     func actionRestart() {
@@ -121,6 +116,12 @@ class TaskCellView: NSTableCellView {
         taskProgressLabel.stringValue = task.progressString
         taskFileSizeLabel.stringValue = task.fileSizeString
         taskRemainingTimeLabel.stringValue = task.remainingString
+    }
+    
+    
+    @IBAction func findPath(sender: NSButton) {
+        let path = isBtDownload ? data!.torrentDirectoryPath! : data!.filePath!
+        NSWorkspace.sharedWorkspace().selectFile(path, inFileViewerRootedAtPath: "")
     }
 }
 

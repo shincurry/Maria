@@ -9,14 +9,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="TaskCellView" customModule="Maria" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="573" height="96"/>
+            <rect key="frame" x="0.0" y="0.0" width="573" height="92"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="sLX-3q-Bm0">
-                    <rect key="frame" x="96" y="18" width="435" height="60"/>
+                    <rect key="frame" x="92" y="16" width="439" height="60"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-oa-X1N">
-                            <rect key="frame" x="0.0" y="38" width="435" height="18"/>
+                            <rect key="frame" x="0.0" y="38" width="411" height="18"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="How.To.Make.A.Maria.App.Blueray.2016.720p.BluRay.x264.mkv" id="gkd-Qt-Ce0">
                                 <font key="font" metaFont="system" size="14"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -24,7 +24,7 @@
                             </textFieldCell>
                         </textField>
                         <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="32" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="RxW-gb-MfN">
-                            <rect key="frame" x="2" y="23" width="431" height="14"/>
+                            <rect key="frame" x="2" y="23" width="435" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="JQo-kJ-NaG"/>
                             </constraints>
@@ -101,6 +101,20 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="NsN-Ac-xWr">
+                            <rect key="frame" x="417" y="39" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="NsN-Ac-xWr" secondAttribute="height" multiplier="1:1" id="VHR-6o-yAY"/>
+                                <constraint firstAttribute="height" constant="16" id="dpG-V8-Buh"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Find" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="WF6-IS-ZHQ">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="findPath:" target="c22-O7-iKe" id="l0l-zT-tDc"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="RxW-gb-MfN" firstAttribute="leading" secondItem="sLX-3q-Bm0" secondAttribute="leading" constant="2" id="6Ch-C4-fR2"/>
@@ -113,10 +127,10 @@
                         <constraint firstItem="81Y-XU-Ehf" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="NYQ-6z-fc1"/>
                         <constraint firstItem="2nQ-5G-7OZ" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="O5c-kU-LUM"/>
                         <constraint firstItem="3f7-1s-xTJ" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="OAh-Sn-gZ0"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NsN-Ac-xWr" secondAttribute="trailing" constant="4" id="Pyq-ez-mhk"/>
                         <constraint firstItem="3f7-1s-xTJ" firstAttribute="leading" secondItem="81Y-XU-Ehf" secondAttribute="trailing" id="QHf-zB-Wmo"/>
                         <constraint firstItem="wAS-vk-6QP" firstAttribute="leading" secondItem="hY4-kC-AZL" secondAttribute="trailing" id="Qpw-Kb-Zmd"/>
                         <constraint firstItem="2nQ-5G-7OZ" firstAttribute="leading" secondItem="oJA-se-ad8" secondAttribute="trailing" id="SSa-fF-4lH"/>
-                        <constraint firstAttribute="trailing" secondItem="4Sa-oa-X1N" secondAttribute="trailing" constant="2" id="UKX-U0-lbb"/>
                         <constraint firstItem="oJA-se-ad8" firstAttribute="top" secondItem="RxW-gb-MfN" secondAttribute="bottom" constant="2" id="W4h-BP-iZ1"/>
                         <constraint firstItem="wSg-7c-rnr" firstAttribute="leading" secondItem="0b0-NC-Md9" secondAttribute="trailing" id="WxY-kR-909"/>
                         <constraint firstItem="0b0-NC-Md9" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="ZmE-MR-ATL"/>
@@ -126,13 +140,15 @@
                         <constraint firstItem="hY4-kC-AZL" firstAttribute="leading" secondItem="3f7-1s-xTJ" secondAttribute="trailing" id="kvr-73-WXf"/>
                         <constraint firstAttribute="trailing" secondItem="RxW-gb-MfN" secondAttribute="trailing" constant="2" id="nZr-tq-NnT"/>
                         <constraint firstItem="81Y-XU-Ehf" firstAttribute="leading" secondItem="wSg-7c-rnr" secondAttribute="trailing" id="ogQ-au-UsA"/>
+                        <constraint firstItem="NsN-Ac-xWr" firstAttribute="centerY" secondItem="4Sa-oa-X1N" secondAttribute="centerY" id="rJy-yy-o8X"/>
+                        <constraint firstItem="NsN-Ac-xWr" firstAttribute="leading" secondItem="4Sa-oa-X1N" secondAttribute="trailing" constant="8" id="sBo-9S-0Kx"/>
                         <constraint firstItem="oJA-se-ad8" firstAttribute="leading" secondItem="sLX-3q-Bm0" secondAttribute="leading" constant="2" id="tjb-jp-NPy"/>
                         <constraint firstItem="RxW-gb-MfN" firstAttribute="centerY" secondItem="sLX-3q-Bm0" secondAttribute="centerY" id="xwd-nL-Qld"/>
                         <constraint firstItem="DAo-qI-lDE" firstAttribute="leading" secondItem="wAS-vk-6QP" secondAttribute="trailing" id="yhC-Lf-ZIu"/>
                     </constraints>
                 </customView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="ALE-Yu-R0Q">
-                    <rect key="frame" x="543" y="39" width="18" height="18"/>
+                    <rect key="frame" x="543" y="37" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ALE-Yu-R0Q" secondAttribute="height" multiplier="1:1" id="4hm-MS-2ML"/>
                         <constraint firstAttribute="height" constant="18" id="gN4-cO-1sO"/>
@@ -143,7 +159,7 @@
                     </buttonCell>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-nc-cxC">
-                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                    <rect key="frame" x="8" y="8" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="b7M-nc-cxC" secondAttribute="height" multiplier="1:1" id="Wbm-4Y-bl2"/>
                     </constraints>
@@ -163,10 +179,7 @@
             </constraints>
             <connections>
                 <outlet property="actionButton" destination="ALE-Yu-R0Q" id="fZI-xM-npZ"/>
-                <outlet property="dot1" destination="2nQ-5G-7OZ" id="4X2-f7-Frs"/>
-                <outlet property="dot2" destination="wSg-7c-rnr" id="gMS-xi-aXH"/>
-                <outlet property="dot3" destination="3f7-1s-xTJ" id="93E-i1-EpJ"/>
-                <outlet property="dot4" destination="wAS-vk-6QP" id="6Sw-JF-Z7N"/>
+                <outlet property="findPathButton" destination="rJy-yy-o8X" id="Oif-S6-pmT"/>
                 <outlet property="taskFileSizeLabel" destination="oJA-se-ad8" id="5LG-FA-7fx"/>
                 <outlet property="taskProgressIndicator" destination="RxW-gb-MfN" id="QRZ-vv-xsS"/>
                 <outlet property="taskProgressLabel" destination="hY4-kC-AZL" id="uCx-O8-PC8"/>
@@ -176,10 +189,11 @@
                 <outlet property="taskTitleLabel" destination="4Sa-oa-X1N" id="bJQ-bw-8mc"/>
                 <outlet property="taskTypeImageView" destination="b7M-nc-cxC" id="Iqa-Ua-rOl"/>
             </connections>
-            <point key="canvasLocation" x="216.5" y="335"/>
+            <point key="canvasLocation" x="216.5" y="334"/>
         </customView>
     </objects>
     <resources>
+        <image name="Find" width="30" height="30"/>
         <image name="PauseButton" width="30" height="30"/>
     </resources>
 </document>

@@ -35,11 +35,18 @@ public class Aria2 {
     
     // MARK: - Public API
     // MARK: Connection
+    
+    /**
+     connect aria2
+     */
     public func connect() {
         socket.connect()
     }
     public var onConnect: (() -> Void)?
     
+    /**
+     disconnect aria2
+     */
     public func disconnect() {
         socket.disconnect()
     }
@@ -51,18 +58,30 @@ public class Aria2 {
         }
     }
     
+    /**
+     shutdown aria2
+     */
     public func shutdown() {
         request(method: .shutdown, params: "")
     }
     
+    /**
+     Add uris to download task
+     
+     - parameter uris:	download task links
+     */
     public func addUri(uris: [String]) {
         uris.forEach() { uri in
-            print(uri)
             request(method: .addUri, params: "[\"\(uri)\"]")
         }
     }
     public var onAddUris: ((flag: Bool) -> Void)?
     
+    /**
+     Add torrent to download task
+     
+     - parameter data:	torrent data
+     */
     public func addTorrent(data: NSData) {
         let base64Encoded = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         request(method: .addTorrent, params: "\"\(base64Encoded)\"")
@@ -70,61 +89,99 @@ public class Aria2 {
     public var onAddTorrent: ((flag: Bool) -> Void)?
     
     // MARK: Global status
+    /**
+     Get all of active download tasks
+     */
     public func tellActive() {
         request(method: .tellActive, params: "[]")
     }
+//    public var onActives: ((results: JSON) -> Void)?
+    public var onActives: ((results: [Aria2Task]) -> Void)?
+    
+    /**
+     Get all of waiting download tasks
+     */
     public func tellWaiting() {
         request(method: .tellWaiting, params: "0, 100")
     }
+//    public var onWaitings: ((results: JSON) -> Void)?
+    public var onWaitings: ((results: [Aria2Task]) -> Void)?
+    
+    /**
+     Get all of stopped download tasks
+     */
     public func tellStopped() {
         request(method: .tellStopped, params: "0, 100")
     }
+//    public var onStoppeds: ((results: JSON) -> Void)?
+    public var onStoppeds: ((results: [Aria2Task]) -> Void)?
     
+    /**
+     Get global status
+     */
     public func getGlobalStatus() {
         request(method: .getGlobalStat, params: "[]")
     }
-    public var onActives: ((results: JSON) -> Void)?
-    public var onActivesTask: ((results: [Aria2Task]) -> Void)?
-    
-    public var onWaitings: ((results: JSON) -> Void)?
-    public var onWaitingsTask: ((results: [Aria2Task]) -> Void)?
-    
-    public var onStoppeds: ((results: JSON) -> Void)?
-    public var onStoppedsTask: ((results: [Aria2Task]) -> Void)?
-    
     public var onGlobalStatus: ((result: Aria2GlobalStatus) -> Void)?
-
     
+
+    /**
+     Change status of an active task to stoppped (Remove an active task)
+     
+     - parameter gid:	task id
+     */
     public func removeActive(gid: String) {
         request(method: .remove, params: "\"\(gid)\"")
     }
+    public var onRemoveActive: ((flag: Bool) -> Void)?
+    /**
+     Remove an error/stopped task
+     
+     - parameter gid:	task id
+     */
     public func removeOther(gid: String) {
         request(method: .removeDownloadResult, params: "\"\(gid)\"")
     }
-    public var onRemoveActive: ((flag: Bool) -> Void)?
     public var onRemoveOther: ((flag: Bool) -> Void)?
     
-    public func cleanCompletedErrorRemoved() {
+    /**
+     Clear All error/stopped tasks
+     */
+    public func clearCompletedErrorRemoved() {
         request(method: .purgeDownloadResult, params: "[]")
     }
-    public var onCleanCompletedErrorRemoved: ((flag: Bool) -> Void)?
+    public var onClearCompletedErrorRemoved: ((flag: Bool) -> Void)?
     
-    
+    /**
+     Pause an active task
+     
+     - parameter gid:	task id
+     */
     public func pause(gid: String) {
         request(method: .pause, params: "\"\(gid)\"")
     }
     public var onPause: ((flag: Bool) -> Void)?
-    
+    /**
+     Pause All of active tasks
+     */
     public func pauseAll() {
         request(method: .pauseAll, params: "[]")
     }
     public var onPauseAll: ((flag: Bool) -> Void)?
     
+    /**
+     Restart a paused task
+     
+     - parameter gid:	task id
+     */
     public func start(gid: String) {
         request(method: .unpause, params: "\"\(gid)\"")
     }
     public var onStart: ((flag: Bool) -> Void)?
     
+    /**
+     Restart All of paused tasks
+     */
     public func startAll() {
         request(method: .unpauseAll, params: "[]")
     }
@@ -171,13 +228,13 @@ public class Aria2 {
 }
     
 extension Aria2 {
-    public func request(method method: Aria2Method, params: String) {
+    private func request(method method: Aria2Method, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
         
         let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
         self.socket.writeData(data)
     }
-    public func request(method method: Aria2Method, id: String, params: String) {
+    private func request(method method: Aria2Method, id: String, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
         let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
         self.socket.writeData(data)
@@ -202,21 +259,17 @@ extension Aria2: WebSocketDelegate {
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         let results = JSON(data: text.dataUsingEncoding(NSUTF8StringEncoding)!)
         if let idString = results["id"].string {
-            
             if let method = Aria2Method(rawValue: idString) {
                 switch method {
                 case .getGlobalStat:
                     onGlobalStatus?(result: getGlobalStatusByJSON(results))
                 // --------------------
                 case .tellActive:
-                    onActives?(results: results["result"])
-                    onActivesTask?(results: getTasksByJSON(results))
+                    onActives?(results: getTasksByJSON(results))
                 case .tellWaiting:
-                    onWaitings?(results: results["result"])
-                    onWaitingsTask?(results: getTasksByJSON(results))
+                    onWaitings?(results: getTasksByJSON(results))
                 case .tellStopped:
-                    onStoppeds?(results: results["result"])
-                    onStoppedsTask?(results: getTasksByJSON(results))
+                    onStoppeds?(results: getTasksByJSON(results))
                 // --------------------
                 case .remove:
                     onRemoveActive?(flag: (results["error"] != nil) ? false : true)
@@ -224,7 +277,7 @@ extension Aria2: WebSocketDelegate {
                 case .removeDownloadResult:
                     onRemoveOther?(flag: (results["error"] != nil) ? false : true)
                 case .purgeDownloadResult:
-                    onCleanCompletedErrorRemoved?(flag: (results["error"] != nil) ? false : true)
+                    onClearCompletedErrorRemoved?(flag: (results["error"] != nil) ? false : true)
                 case .pause:
                     onPause?(flag: (results["error"] != nil) ? false : true)
                 case .pauseAll:
@@ -297,6 +350,8 @@ extension Aria2: WebSocketDelegate {
         }
     }
     
+    // MARK: Convert JSON to Swift Struct
+    
     func getTasksByJSON(json: JSON) -> [Aria2Task] {
         return json["result"].array!.map() { data in
             var task = Aria2Task()
@@ -319,6 +374,13 @@ extension Aria2: WebSocketDelegate {
             
             task.speed = Aria2Speed(download: Int(data["downloadSpeed"].stringValue)!, upload: Int(data["uploadSpeed"].stringValue)!)
             task.fileSize = data["totalLength"].intValue
+            
+            if task.isBtTask! {
+                let pathArray = data["files"][0]["path"].stringValue.componentsSeparatedByString("/")
+                task.torrentDirectoryPath = data["dir"].stringValue + "/" + pathArray[pathArray.count-2]
+            } else {
+                task.filePath = data["files"][0]["path"].stringValue
+            }
             return task
         }
     }

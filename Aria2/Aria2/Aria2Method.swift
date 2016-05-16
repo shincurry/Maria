@@ -21,6 +21,8 @@ public enum Aria2Method: String {
     case addUri
     case addTorrent
     
+    case getUris
+    
     case changeGlobalOption
     
     case remove

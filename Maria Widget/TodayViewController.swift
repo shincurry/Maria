@@ -46,47 +46,25 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
         
-//        aria2.onGlobalStatus = { results in
-//            self.authorized = true
-//            if results["error"] != nil {
-//                if results["error"]["message"] != nil {
-//                    self.authorized = false
-//                }
-//                return
-//            }
-//            
-//            let result = results["result"]
-//            let downloadSpeed = Double(result["downloadSpeed"].stringValue)! / 1024.0
-//            let uploadSpeed = Double(result["uploadSpeed"].stringValue)! / 1024.0
-//            self.downloadSpeedLabel.stringValue = self.getStringBy(value: downloadSpeed)
-//            self.uploadSpeedLabel.stringValue = self.getStringBy(value: uploadSpeed)
-//        }
         aria2.onGlobalStatus = { status in
             self.authorized = true
 
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
-        aria2.onActives = { results in
-            let sortedResult = results.array!.sort() { (last, next) in
-                return Int(last["downloadSpeed"].stringValue) > Int(next["downloadSpeed"].stringValue)
+        
+        aria2.onActives = { tasks in
+            let sortedTasks = tasks.sort() { (last, next) in
+                return last.speed!.download > next.speed!.download
             }
-            
             let subViews = self.taskView.subviews as! [TodayTaskCellView]
             subViews.enumerate().forEach() { (index, view) in
-                if index >= sortedResult.count {
+                if index >= sortedTasks.count {
                     view.hidden = true
                 } else {
                     view.hidden = false
-                    let result = sortedResult[index]
-                    var downloadName = ""
-                    if let btName = result["bittorrent"]["info"]["name"].string {
-                        downloadName = btName
-                    } else {
-                        downloadName = result["files"][0]["path"].stringValue.componentsSeparatedByString("/").last!
-                    }
-                    let downloadProgress = Double(result["completedLength"].stringValue)! / Double(result["totalLength"].stringValue)! * 100
-                    view.updateView(name: downloadName, progress: downloadProgress)
+                    let task = sortedTasks[index]
+                    view.updateView(name: task.title!, progress: task.progress)
                 }
             }
         }
@@ -103,8 +81,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         alertLabel.hidden = boolValue
         
         if isConnected {
-            aria2.request(method: .getGlobalStat, params: "[]")
-            aria2.request(method: .tellActive, params: "[]")
+            aria2.getGlobalStatus()
+            aria2.tellActive()
         } else {
             if authorized {
                 alertLabel.stringValue = "Please run aria2 first"

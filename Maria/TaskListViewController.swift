@@ -96,14 +96,14 @@ extension TaskListViewController {
     }
     
     func aria2Config() {
-        aria2.onActivesTask = { tasks in
+        aria2.onActives = { tasks in
             self.newActiveTaskData = tasks
         }
         
-        aria2.onWaitingsTask = { tasks in
+        aria2.onWaitings = { tasks in
             self.newWaitingTaskData = tasks
         }
-        aria2.onStoppedsTask = { tasks in
+        aria2.onStoppeds = { tasks in
             self.newStoppedTaskData = tasks
             self.updateListView()
         }

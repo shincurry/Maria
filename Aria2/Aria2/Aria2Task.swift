@@ -18,6 +18,8 @@ public struct Aria2Task {
     public var completedLength: Int?
     public var totalLength: Int?
     
+    public var filePath: String?
+    public var torrentDirectoryPath: String?
     public var fileName: String?
     
     public var remaining: Int {
