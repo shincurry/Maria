@@ -21,10 +21,18 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var uploadSpeedLabel: NSTextField!
     @IBOutlet weak var alertLabel: NSTextField!
     @IBOutlet weak var speedView: NSView!
-    @IBOutlet weak var taskView: NSStackView!
-    
 
     @IBOutlet weak var separateLine: NSBox!
+    
+    @IBOutlet weak var taskListScrollViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskListScrollView: NSScrollView!
+    @IBOutlet weak var taskListTableView: NSTableView!
+    
+    let cellHeight: CGFloat = 36.0
+    
+    var numberOfActive: Int = 0
+
+    var taskData: [Aria2Task] = []
     
     let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
     
@@ -34,18 +42,17 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
         completionHandler(.NewData)
-        
     }
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        taskView.subviews.forEach() { view in
-            view.hidden = true
-        }
+
+        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: NSBundle.mainBundle())
+        taskListTableView.registerNib(nib!, forIdentifier: "TodayTaskCell")
+        taskListTableView.rowHeight = cellHeight
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
-        
+
         aria2.onGlobalStatus = { status in
             self.authorized = true
 
@@ -54,19 +61,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         }
         
         aria2.onActives = { tasks in
-            let sortedTasks = tasks.sort() { (last, next) in
-                return last.speed!.download > next.speed!.download
-            }
-            let subViews = self.taskView.subviews as! [TodayTaskCellView]
-            subViews.enumerate().forEach() { (index, view) in
-                if index >= sortedTasks.count {
-                    view.hidden = true
-                } else {
-                    view.hidden = false
-                    let task = sortedTasks[index]
-                    view.updateView(name: task.title!, progress: task.progress)
-                }
-            }
+            self.taskData = tasks
+            self.updateListView()
         }
         aria2.connect()
     }
@@ -76,7 +72,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         let boolValue = (isConnected && authorized)
         speedView.hidden = !boolValue
         separateLine.hidden = !boolValue
-        taskView.hidden = !boolValue
+        taskListTableView.hidden = !boolValue
         
         alertLabel.hidden = boolValue
         
@@ -90,5 +86,37 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 alertLabel.stringValue = "Unauthorized"
             }
         }
+    }
+}
+
+// MARK: - TableView Delegate and DataSource
+extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
+    func updateListView() {
+        let flag = (numberOfActive != taskData.count)
+        numberOfActive = taskData.count
+        
+        if flag {
+            taskListTableView.reloadData()
+            taskListScrollViewHeightConstraint.constant = (cellHeight + 1) * CGFloat(numberOfActive)
+        } else {
+            for index in 0..<taskData.count {
+                let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TodayTaskCellView
+                cell.data = taskData[index]
+            }
+        }
+    }
+    
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return taskData.isEmpty ? 3 : taskData.count
+    }
+    
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if taskData.isEmpty {
+            let cell = NSTableCellView()
+            return cell
+        }
+        let cell = tableView.makeViewWithIdentifier("TodayTaskCell", owner: self) as! TodayTaskCellView
+        cell.data = taskData[row]
+        return cell
     }
 }

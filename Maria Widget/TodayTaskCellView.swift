@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import Aria2
 
-class TodayTaskCellView: NSView {
+class TodayTaskCellView: NSTableCellView {
     
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
@@ -16,37 +17,20 @@ class TodayTaskCellView: NSView {
         // Drawing code here.
     }
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        initSubView()
-    }
+    @IBOutlet weak var taskTitle: NSTextField!
+    @IBOutlet weak var taskProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var taskProgressLabel: NSTextField!
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        initSubView()
-    }
-
-    
-    @IBOutlet var view: NSView!
-    @IBOutlet weak var name: NSTextField!
-    @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    
-    func initSubView() {
-        var objects: NSArray?;
-        NSBundle.mainBundle().loadNibNamed("TodayTaskCellView", owner: self, topLevelObjects: &objects)
-        
-        for obj in objects! {
-            if (obj.isMemberOfClass(NSView)) {
-                view = obj as! NSView
-            }
+    var data: Aria2Task? {
+        didSet {
+            updateView(data!)
         }
-        addSubview(view)
     }
     
-    func updateView(name name: String, progress: Double) {
-        self.name.stringValue = name
-        self.progressIndicator.doubleValue = progress
+    func updateView(task: Aria2Task) {
+        self.taskTitle.stringValue = task.title!
+        self.taskProgressIndicator.doubleValue = task.progress
+        self.taskProgressLabel.stringValue = task.progressString
     }
-    
 }
 
