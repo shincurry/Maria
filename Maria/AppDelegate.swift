@@ -326,6 +326,10 @@ extension AppDelegate {
         defaults.setObject("", forKey: "Aria2ConfPath")
         
         defaults.synchronize()
+        
+        // Today Settings
+        defaults.setInteger(5, forKey: "TodayTasksNumber")
+        defaults.setBool(false, forKey: "TodayEnableTasksSortedByProgress")
 
     }
 }

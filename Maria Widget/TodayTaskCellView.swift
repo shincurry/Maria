@@ -20,7 +20,15 @@ class TodayTaskCellView: NSTableCellView {
     @IBOutlet weak var taskTitle: NSTextField!
     @IBOutlet weak var taskProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var taskProgressLabel: NSTextField!
-    
+    @IBOutlet weak var taskImageView: NSImageView!
+    @IBOutlet weak var separatorLine: NSBox!
+    var isBtTask = false {
+        didSet {
+            if isBtTask {
+                taskImageView.image = NSImage(named: "TodayTorrentIcon")
+            }
+        }
+    }
     var data: Aria2Task? {
         didSet {
             updateView(data!)
@@ -31,6 +39,7 @@ class TodayTaskCellView: NSTableCellView {
         self.taskTitle.stringValue = task.title!
         self.taskProgressIndicator.doubleValue = task.progress
         self.taskProgressLabel.stringValue = task.progressString
+        self.isBtTask = task.isBtTask!
     }
 }
 

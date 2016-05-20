@@ -33,10 +33,12 @@
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
-		889485771CBE4D4A000839CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889485781CBE4D4A000839CD /* Main.storyboard */; };
 		889485881CBE4E1A000839CD /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
 		889485891CBE4E1A000839CD /* Aria2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C478091CEF432000F8026A /* SettingsTodayViewController.swift */; };
+		88C4780B1CEF519200F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
+		88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD31CE495D500450E0C /* MariaNotification.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +126,7 @@
 		889485821CBE4E13000839CD /* Aria2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Aria2.xcodeproj; path = Aria2/Aria2.xcodeproj; sourceTree = "<group>"; };
 		889485921CBE4E44000839CD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		889485A71CBE4FAF000839CD /* Maria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria.entitlements; sourceTree = "<group>"; };
+		88C478091CEF432000F8026A /* SettingsTodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTodayViewController.swift; sourceTree = "<group>"; };
 		88D6CDD31CE495D500450E0C /* MariaNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaNotification.swift; sourceTree = "<group>"; };
 		8C0D3330392DB691C715D126 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +206,7 @@
 				887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */,
 				887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */,
 				8827EDF41CCB50A700DDB09D /* SettingsAria2ViewController.swift */,
+				88C478091CEF432000F8026A /* SettingsTodayViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -395,6 +399,7 @@
 			files = (
 				8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */,
 				887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */,
+				88C4780B1CEF519200F8026A /* Assets.xcassets in Resources */,
 				8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,10 +409,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */,
-				889485771CBE4D4A000839CD /* Assets.xcassets in Resources */,
 				8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */,
 				8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */,
 				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
+				88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */,
 				8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +490,7 @@
 				8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */,
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
 				88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */,
+				88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */,
 				887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */,
 				887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */,
 				8827EDF51CCB50A700DDB09D /* SettingsAria2ViewController.swift in Sources */,

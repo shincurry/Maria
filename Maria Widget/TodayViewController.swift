@@ -28,7 +28,9 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     @IBOutlet weak var taskListScrollView: NSScrollView!
     @IBOutlet weak var taskListTableView: NSTableView!
     
-    let cellHeight: CGFloat = 36.0
+    @IBOutlet weak var noTaskAlertLabel: NSTextField!
+    
+    let cellHeight: CGFloat = 42.0
     
     var numberOfActive: Int = 0
 
@@ -46,7 +48,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: NSBundle.mainBundle())
         taskListTableView.registerNib(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
@@ -61,10 +64,31 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         }
         
         aria2.onActives = { tasks in
-            self.taskData = tasks
+            var taskArray = tasks
+            if taskArray.isEmpty {
+                self.taskListTableView.gridStyleMask = .SolidHorizontalGridLineMask
+                return
+            } else {
+                self.taskListTableView.gridStyleMask = .GridNone
+            }
+            
+            if self.defaults.boolForKey("TodayEnableTasksSortedByProgress") {
+                taskArray = taskArray.sort() { return $0.progress > $1.progress }
+            }
+            let number = self.defaults.integerForKey("TodayTasksNumber")
+            if number < taskArray.count {
+                self.taskData = taskArray.enumerate().filter({ (index, task) in return index > number-1 }).map({ return $1 })
+            } else {
+                self.taskData = taskArray
+            }
             self.updateListView()
         }
+    }
+    override func viewWillAppear() {
         aria2.connect()
+    }
+    override func viewWillDisappear() {
+        aria2.disconnect()
     }
     
     func getStatus() {
@@ -85,6 +109,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             } else {
                 alertLabel.stringValue = "Unauthorized"
             }
+            noTaskAlertLabel.hidden = true
+            taskListScrollViewHeightConstraint.constant = 0
         }
     }
 }
@@ -96,12 +122,22 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
         numberOfActive = taskData.count
         
         if flag {
+            
             taskListTableView.reloadData()
-            taskListScrollViewHeightConstraint.constant = (cellHeight + 1) * CGFloat(numberOfActive)
+            if numberOfActive == 0 {
+                taskListScrollViewHeightConstraint.constant = cellHeight * 3.0
+            } else {
+                taskListScrollViewHeightConstraint.constant = cellHeight * CGFloat(numberOfActive)
+            }
         } else {
             for index in 0..<taskData.count {
                 let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TodayTaskCellView
                 cell.data = taskData[index]
+                if index == taskData.count-1 {
+                    cell.separatorLine.hidden = true
+                } else {
+                    cell.separatorLine.hidden = false
+                }
             }
         }
     }
@@ -112,11 +148,18 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if taskData.isEmpty {
+            noTaskAlertLabel.hidden = false
             let cell = NSTableCellView()
             return cell
         }
+        noTaskAlertLabel.hidden = true
         let cell = tableView.makeViewWithIdentifier("TodayTaskCell", owner: self) as! TodayTaskCellView
         cell.data = taskData[row]
+        
+        if row == taskData.count-1 {
+            cell.separatorLine.hidden = true
+        }
         return cell
     }
+    
 }

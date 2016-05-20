@@ -3,20 +3,22 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="TodayTaskCellView" customModule="Maria_Widget" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="36"/>
+            <rect key="frame" x="0.0" y="0.0" width="392" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="44" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VAw-76-VCA">
-                    <rect key="frame" x="0.0" y="1" width="320" height="20"/>
+                    <rect key="frame" x="28" y="2" width="342" height="21"/>
                 </progressIndicator>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-4Z-FZB">
-                    <rect key="frame" x="-2" y="20" width="346" height="14"/>
+                    <rect key="frame" x="26" y="22" width="368" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="How.To.Make.A.Maria.App.Blueray.2016.720p.BluRay.x264.mkv" id="fu4-Zz-Y3g">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -24,31 +26,55 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlv-2c-agx">
-                    <rect key="frame" x="322" y="5" width="22" height="13"/>
+                    <rect key="frame" x="372" y="6" width="22" height="13"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 %" id="qyd-Oo-7Yq">
                         <font key="font" metaFont="system" size="10"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b98-2x-Wl5">
+                    <rect key="frame" x="2" y="10" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="4g7-pd-R0D"/>
+                        <constraint firstAttribute="width" secondItem="b98-2x-Wl5" secondAttribute="height" multiplier="1:1" id="Y6D-db-IbZ"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TodayDownloadIcon" id="22j-FW-aD8"/>
+                </imageView>
+                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="fJC-MS-tXw">
+                    <rect key="frame" x="28" y="-1" width="364" height="5"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
             </subviews>
             <constraints>
-                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="6Rv-03-inE"/>
+                <constraint firstItem="VAw-76-VCA" firstAttribute="leading" secondItem="b98-2x-Wl5" secondAttribute="trailing" constant="2" id="4m4-ww-gJx"/>
                 <constraint firstItem="VAw-76-VCA" firstAttribute="top" secondItem="2Ef-4Z-FZB" secondAttribute="bottom" id="7fX-kN-pkf"/>
-                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="B7b-c3-pVY"/>
+                <constraint firstItem="fJC-MS-tXw" firstAttribute="width" secondItem="2Ef-4Z-FZB" secondAttribute="width" id="9XG-au-TEL"/>
+                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="B7b-c3-pVY"/>
                 <constraint firstAttribute="trailing" secondItem="dlv-2c-agx" secondAttribute="trailing" id="Fbi-v3-IHB"/>
+                <constraint firstAttribute="bottom" secondItem="fJC-MS-tXw" secondAttribute="bottom" constant="1" id="H7b-JN-iHX"/>
                 <constraint firstItem="dlv-2c-agx" firstAttribute="centerY" secondItem="VAw-76-VCA" secondAttribute="centerY" id="Hja-Bq-ilV"/>
+                <constraint firstItem="b98-2x-Wl5" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" multiplier="0.9" id="JN3-Eg-RO5"/>
+                <constraint firstAttribute="trailing" secondItem="fJC-MS-tXw" secondAttribute="trailing" id="KSj-Mt-PUw"/>
                 <constraint firstItem="dlv-2c-agx" firstAttribute="leading" secondItem="VAw-76-VCA" secondAttribute="trailing" constant="4" id="UYA-ng-s3c"/>
                 <constraint firstAttribute="trailing" secondItem="2Ef-4Z-FZB" secondAttribute="trailing" id="c0S-n6-2tl"/>
-                <constraint firstAttribute="bottom" secondItem="VAw-76-VCA" secondAttribute="bottom" constant="2" id="clY-mB-vR5"/>
-                <constraint firstItem="VAw-76-VCA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ySt-FF-q5O"/>
+                <constraint firstItem="b98-2x-Wl5" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="liz-D0-pNa"/>
+                <constraint firstItem="fJC-MS-tXw" firstAttribute="top" secondItem="VAw-76-VCA" secondAttribute="bottom" constant="1" id="sXI-JL-obj"/>
+                <constraint firstItem="2Ef-4Z-FZB" firstAttribute="leading" secondItem="b98-2x-Wl5" secondAttribute="trailing" constant="2" id="sXu-gA-sUD"/>
             </constraints>
             <connections>
+                <outlet property="separatorLine" destination="fJC-MS-tXw" id="Ae6-4R-ffE"/>
+                <outlet property="taskImageView" destination="b98-2x-Wl5" id="LXm-wg-pnh"/>
                 <outlet property="taskProgressIndicator" destination="VAw-76-VCA" id="hqX-MP-aZu"/>
                 <outlet property="taskProgressLabel" destination="dlv-2c-agx" id="oMz-MG-iQH"/>
                 <outlet property="taskTitle" destination="2Ef-4Z-FZB" id="ZQ6-yI-MFq"/>
             </connections>
-            <point key="canvasLocation" x="143" y="312"/>
+            <point key="canvasLocation" x="118" y="339.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="TodayDownloadIcon" width="30" height="30"/>
+    </resources>
 </document>

@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-1217.5" y="868"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings Today View Controller-->
         <scene sceneID="uxM-3o-hxW">
             <objects>
-                <viewController id="7Tk-cO-jxy" sceneMemberID="viewController">
+                <viewController id="7Tk-cO-jxy" customClass="SettingsTodayViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KJM-tT-CXP">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -35,6 +35,14 @@
                                 <rect key="frame" x="18" y="263" width="108" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Number of tasks:" id="a2Q-7Y-F7P">
                                     <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0et-Ap-Vvc">
+                                <rect key="frame" x="183" y="264" width="47" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(1 ~ 10)" id="HsZ-j8-gfd">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -55,18 +63,41 @@
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="is0-ZT-Xxl">
                                 <rect key="frame" x="161" y="258" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="mPP-uO-61j"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="10" doubleValue="1" id="mPP-uO-61j"/>
+                                <connections>
+                                    <action selector="didChangeStepperValue:" target="7Tk-cO-jxy" id="thp-PY-uYz"/>
+                                </connections>
                             </stepper>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Jam-0K-q73">
+                                <rect key="frame" x="18" y="239" width="196" height="18"/>
+                                <buttonCell key="cell" type="check" title="Tasks list sorted by progress" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cE2-be-A5U">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="switchOption:" target="7Tk-cO-jxy" id="yY7-Z8-7ll"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="is0-ZT-Xxl" firstAttribute="centerY" secondItem="X2Q-Rv-4v2" secondAttribute="centerY" multiplier="0.95" id="5EM-04-vLS"/>
                             <constraint firstItem="is0-ZT-Xxl" firstAttribute="leading" secondItem="X2Q-Rv-4v2" secondAttribute="trailing" constant="2" id="Age-XC-OJo"/>
                             <constraint firstItem="X2Q-Rv-4v2" firstAttribute="leading" secondItem="m9q-Bl-EFl" secondAttribute="trailing" constant="8" id="Jyl-dQ-LN8"/>
+                            <constraint firstItem="Jam-0K-q73" firstAttribute="top" secondItem="m9q-Bl-EFl" secondAttribute="bottom" constant="8" id="W5e-zd-waF"/>
                             <constraint firstItem="m9q-Bl-EFl" firstAttribute="leading" secondItem="KJM-tT-CXP" secondAttribute="leading" constant="20" id="Y90-ZQ-HpU"/>
                             <constraint firstItem="X2Q-Rv-4v2" firstAttribute="centerY" secondItem="m9q-Bl-EFl" secondAttribute="centerY" id="kws-jb-dpG"/>
+                            <constraint firstItem="Jam-0K-q73" firstAttribute="leading" secondItem="KJM-tT-CXP" secondAttribute="leading" constant="20" id="nc0-5X-2JF"/>
                             <constraint firstItem="m9q-Bl-EFl" firstAttribute="top" secondItem="KJM-tT-CXP" secondAttribute="top" constant="20" id="oV4-Ja-vjb"/>
+                            <constraint firstItem="0et-Ap-Vvc" firstAttribute="leading" secondItem="is0-ZT-Xxl" secondAttribute="trailing" constant="8" id="pMJ-aQ-4Kb"/>
+                            <constraint firstItem="0et-Ap-Vvc" firstAttribute="centerY" secondItem="is0-ZT-Xxl" secondAttribute="centerY" id="w78-eX-G9f"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="enableTasksSortedByProgress" destination="Jam-0K-q73" id="r8E-7K-LMm"/>
+                        <outlet property="numberOfTasksTextField" destination="X2Q-Rv-4v2" id="bxh-pK-fME"/>
+                        <outlet property="rangeLabel" destination="0et-Ap-Vvc" id="pgq-nx-pSZ"/>
+                        <outlet property="stepper" destination="is0-ZT-Xxl" id="OQk-89-AdR"/>
+                    </connections>
                 </viewController>
                 <customObject id="PYh-C4-MUR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
