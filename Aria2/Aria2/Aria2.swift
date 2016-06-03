@@ -10,6 +10,11 @@ import Foundation
 import Starscream
 import SwiftyJSON
 
+public enum ConnectionStatus {
+    case Connecting
+    case Connected
+    case Disconnected
+}
 
 public class Aria2 {
     
@@ -40,6 +45,7 @@ public class Aria2 {
      connect aria2
      */
     public func connect() {
+        status = .Connecting
         socket.connect()
     }
     public var onConnect: (() -> Void)?
@@ -52,11 +58,12 @@ public class Aria2 {
     }
     public var onDisconnect: (() -> Void)?
     
-    public var isConnected: Bool {
-        get {
-            return socket.isConnected
+    public var status: ConnectionStatus = .Disconnected {
+        didSet {
+            onStatusChanged?()
         }
     }
+    public var onStatusChanged: (Void -> Void)?
     
     /**
      shutdown aria2
@@ -77,6 +84,10 @@ public class Aria2 {
     }
     public var onAddUris: ((flag: Bool) -> Void)?
     
+    public func getUris(gid: String) {
+        request(method: .getUris, params: "\"\(gid)\"")
+    }
+    public var onGetUris: ((results: [String]) -> Void)?
     /**
      Add torrent to download task
      
@@ -170,22 +181,43 @@ public class Aria2 {
     public var onPauseAll: ((flag: Bool) -> Void)?
     
     /**
-     Restart a paused task
+     Unpause a paused task
      
      - parameter gid:	task id
      */
-    public func start(gid: String) {
+    public func unpause(gid: String) {
         request(method: .unpause, params: "\"\(gid)\"")
     }
-    public var onStart: ((flag: Bool) -> Void)?
+    public var onUnpause: ((flag: Bool) -> Void)?
     
     /**
-     Restart All of paused tasks
+     Unpause All of paused tasks
      */
-    public func startAll() {
+    public func unpauseAll() {
         request(method: .unpauseAll, params: "[]")
     }
-    public var onStartAll: ((flag: Bool) -> Void)?
+    public var onUnpauseAll: ((flag: Bool) -> Void)?
+    
+//    public func restart(task: Aria2Task) {
+//        request(method: .removeDownloadResult, id: "aria2.remove.restart", params: "\"\(task.gid!)\"")
+//        onRemoveOtherToRestart = { flag in
+//            if flag {
+//                for uri in task.uris! {
+//                    let setData = Set(uri)
+//                    let newData = Array(setData)
+//                    var uriString = ""
+//                    for (index, uri) in newData.enumerate() {
+//                        if index != 0 { uriString += "," }
+//                        uriString += "\"" + uri + "\""
+//                    }
+//                    self.request(method: .addUri, id: "aria2.restart", params: "[\(uriString)], {\"dir\": \"\(task.dirPath!)\"}")
+//                }
+//            }
+//        }
+//    
+//    }
+//    public var onRemoveOtherToRestart: ((flag: Bool) -> Void)?
+//    public var onRestart: ((flag: Bool) -> Void)?
     
     
     // MARK: Download status
@@ -246,10 +278,12 @@ extension Aria2 {
 extension Aria2: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocket) {
         print("WebSocket connected")
+        status = .Connected
         onConnect?()
     }
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
+        status = .Disconnected
         onDisconnect?()
     }
     public func websocketDidReceiveData(socket: WebSocket, data: NSData) {
@@ -283,9 +317,9 @@ extension Aria2: WebSocketDelegate {
                 case .pauseAll:
                     onPauseAll?(flag: (results["error"] != nil) ? false : true)
                 case .unpause:
-                    onStart?(flag: (results["error"] != nil) ? false : true)
+                    onUnpause?(flag: (results["error"] != nil) ? false : true)
                 case .unpauseAll:
-                    onStartAll?(flag: (results["error"] != nil) ? false : true)
+                    onUnpauseAll?(flag: (results["error"] != nil) ? false : true)
                 // --------------------
                 case .shutdown:
                     break
@@ -295,6 +329,8 @@ extension Aria2: WebSocketDelegate {
                     onAddUris?(flag: (results["error"] != nil) ? false : true)
                 case .addTorrent:
                     onAddTorrent?(flag: (results["error"] != nil) ? false : true)
+                case .getUris:
+                    onGetUris?(results: results["result"].array!.map({ result in return result["uri"].stringValue }))
                 default:
                     break
                 }
@@ -307,6 +343,12 @@ extension Aria2: WebSocketDelegate {
                 globalSpeedLimitOK?(result: results)
             case "aria2.changeGlobalOption.lowSpeedLimit":
                 lowSpeedLimitOK?(result: results)
+//            case "aria2.remove.restart":
+//                print(results)
+//                onRemoveOtherToRestart?(flag: (results["error"] != nil) ? false : true)
+//            case "aria2.restart":
+////                onRestart?()
+//                print(results)
             default:
                 break
             }
@@ -374,6 +416,12 @@ extension Aria2: WebSocketDelegate {
             
             task.speed = Aria2Speed(download: Int(data["downloadSpeed"].stringValue)!, upload: Int(data["uploadSpeed"].stringValue)!)
             task.fileSize = data["totalLength"].intValue
+            
+            task.uris = data["files"].array!.map({ file in
+                return file["uris"].array!.map({ uri in
+                    return uri["uri"].stringValue
+                })
+            })
             
             if task.isBtTask! {
                 let pathArray = data["files"][0]["path"].stringValue.componentsSeparatedByString("/")

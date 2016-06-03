@@ -36,9 +36,6 @@ class NewTaskViewController: NSViewController {
         
     }
     
-    @IBAction func cancel(sender: NSButton) {
-    }
-    
     @IBAction func openBtFile(sender: NSButton) {
         
         let openPanel = NSOpenPanel()

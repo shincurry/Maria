@@ -32,16 +32,14 @@ class TaskListViewController: NSViewController {
     var timer: NSTimer!
     var aria2 = Aria2.shared
 
-    var aria2isConnected: Bool = true
+    var currentStatus: ConnectionStatus = .Disconnected
+
+    typealias NumberOfTask = (active: Int,waiting: Int,stopped: Int)
+    var numberOfTask: NumberOfTask = (0, 0, 0)
     
-    var numberOfActive: Int = 0
-    var numberOfWaiting: Int = 0
-    var numberOfStopped: Int = 0
-    
+    typealias TaskData = (active: [Aria2Task], waiting: [Aria2Task], stopped: [Aria2Task])
     var taskData: [Aria2Task] = []
-    var newActiveTaskData: [Aria2Task] = []
-    var newWaitingTaskData: [Aria2Task] = []
-    var newStoppedTaskData: [Aria2Task] = []
+    var newTaskData: TaskData = ([], [], [])
     
     @IBOutlet weak var alertLabel: NSTextField!
     @IBOutlet weak var taskListTableView: NSTableView!
@@ -61,54 +59,48 @@ class TaskListViewController: NSViewController {
 
 extension TaskListViewController {
     func updateListStatus() {
-        if aria2.isConnected != aria2isConnected {
-            aria2isConnected = aria2.isConnected
-            if aria2.isConnected == false {
-                taskData = []
-                numberOfActive = 0
-                numberOfWaiting = 0
-                numberOfStopped = 0
-                taskListTableView.reloadData()
-            } else {
-                updateListStatus()
-            }
-            return
-        }
-        if !aria2.isConnected {
-            alertLabel.hidden = false
-            return
-        } else {
-            alertLabel.hidden = true
-        }
-        
-        aria2.tellActive()
-        aria2.tellWaiting()
-        aria2.tellStopped()
-        
-        aria2.getGlobalStatus()
-        aria2.onGlobalStatus = { status in
-            let activeNumber = status.numberOfActiveTask!
-            let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
-            self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
+        if aria2.status == .Connected {
+            aria2.tellActive()
+            aria2.tellWaiting()
+            aria2.tellStopped()
             
-            self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
+            aria2.getGlobalStatus()
+            aria2.onGlobalStatus = { status in
+                let activeNumber = status.numberOfActiveTask!
+                let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
+                self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
+                self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
+            }
         }
     }
     
     func aria2Config() {
-        aria2.onActives = { tasks in
-            self.newActiveTaskData = tasks
-        }
-        
-        aria2.onWaitings = { tasks in
-            self.newWaitingTaskData = tasks
-        }
-        aria2.onStoppeds = { tasks in
-            self.newStoppedTaskData = tasks
+        aria2.onActives = { self.newTaskData.active = $0 }
+        aria2.onWaitings = { self.newTaskData.waiting = $0 }
+        aria2.onStoppeds = {
+            self.newTaskData.stopped = $0.filter({ return !($0.title!.rangeOfString("[METADATA]") != nil && $0.status! == "complete") })
             self.updateListView()
         }
         
-        
+        aria2.onStatusChanged = {
+            if self.aria2.status == .Connecting || self.aria2.status == .Disconnected {
+                self.taskData = []
+                self.numberOfTask.active = 0
+                self.numberOfTask.waiting = 0
+                self.numberOfTask.stopped = 0
+                self.taskListTableView.reloadData()
+            }
+            switch self.aria2.status {
+            case .Connecting:
+                self.alertLabel.hidden = false
+                self.alertLabel.stringValue = "Connecting to aria2..."
+            case .Connected:
+                self.alertLabel.hidden = true
+            case .Disconnected:
+                self.alertLabel.hidden = false
+                self.alertLabel.stringValue = "Disconnected to aria2."
+            }
+        }
     }
 }
 
@@ -127,24 +119,24 @@ extension TaskListViewController {
 // MARK: - TableView Config
 extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     func updateListView() {
-        let flag = (numberOfActive != newActiveTaskData.count) ||
-                    (numberOfWaiting != newWaitingTaskData.count) ||
-                    (numberOfStopped != newStoppedTaskData.count)
+        let flag = (numberOfTask.active != newTaskData.active.count) ||
+                    (numberOfTask.waiting != newTaskData.waiting.count) ||
+                    (numberOfTask.stopped != newTaskData.stopped.count)
         
-        numberOfActive = newActiveTaskData.count
-        numberOfWaiting = newWaitingTaskData.count
-        numberOfStopped = newStoppedTaskData.count
+        numberOfTask.active = newTaskData.active.count
+        numberOfTask.waiting = newTaskData.waiting.count
+        numberOfTask.stopped = newTaskData.stopped.count
         
-        taskData = newActiveTaskData + newWaitingTaskData + newStoppedTaskData
+        taskData = newTaskData.active + newTaskData.waiting + newTaskData.stopped
         if flag {
             taskListTableView.reloadData()
             if let controller = self.view.window?.windowController as? MainWindowController {
-                controller.taskCleanButton.enabled = (numberOfStopped != 0)
+                controller.taskCleanButton.enabled = (numberOfTask.stopped != 0)
             }
         } else {
             for index in 0..<taskData.count {
                 let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! TaskCellView
-                cell.updateView(taskData[index])
+                cell.update(taskData[index])
             }
         }
     }
@@ -160,10 +152,9 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
         return taskData.count
     }
 
-
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeViewWithIdentifier("TaskCell", owner: self) as! TaskCellView
-        cell.data = taskData[row]
+        cell.update(taskData[row])
         return cell
     }
     

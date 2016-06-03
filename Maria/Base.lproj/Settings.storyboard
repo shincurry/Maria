@@ -32,15 +32,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9q-Bl-EFl">
-                                <rect key="frame" x="18" y="263" width="108" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Number of tasks:" id="a2Q-7Y-F7P">
+                                <rect key="frame" x="18" y="263" width="135" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max number of tasks:" id="a2Q-7Y-F7P">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0et-Ap-Vvc">
-                                <rect key="frame" x="183" y="264" width="47" height="17"/>
+                                <rect key="frame" x="210" y="264" width="47" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(1 ~ 10)" id="HsZ-j8-gfd">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +48,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X2Q-Rv-4v2">
-                                <rect key="frame" x="132" y="260" width="30" height="22"/>
+                                <rect key="frame" x="159" y="260" width="30" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="ASC-U5-XlI"/>
                                 </constraints>
@@ -62,7 +62,7 @@
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="is0-ZT-Xxl">
-                                <rect key="frame" x="161" y="258" width="19" height="27"/>
+                                <rect key="frame" x="188" y="258" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="10" doubleValue="1" id="mPP-uO-61j"/>
                                 <connections>
                                     <action selector="didChangeStepperValue:" target="7Tk-cO-jxy" id="thp-PY-uYz"/>

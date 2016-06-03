@@ -17,7 +17,7 @@ class TaskCellView: NSTableCellView {
         // Drawing code here.
         actionButton.target = self
         
-        aria2.onStart = { flag in
+        aria2.onUnpause = { flag in
             if flag {
                 self.status = "active"
             }
@@ -31,7 +31,7 @@ class TaskCellView: NSTableCellView {
     
     var fileName: String? {
         didSet {
-            if let ext = fileName!.componentsSeparatedByString(".").last {
+            if let ext = fileName!.componentsSeparatedByString(".").last?.lowercaseString {
                 let taskIconImage = NSWorkspace.sharedWorkspace().iconForFileType(ext)
                 taskIconImage.size = taskTypeImageView.frame.size
                 taskTypeImageView.image = taskIconImage
@@ -39,6 +39,8 @@ class TaskCellView: NSTableCellView {
         }
     }
     let aria2 = Aria2.shared
+    
+    var data: Aria2Task?
     
     var gid: String = ""
     var isBtDownload: Bool = false
@@ -52,17 +54,22 @@ class TaskCellView: NSTableCellView {
                 actionButton.image = NSImage(named: "PauseButton")
                 taskStatusLabel.stringValue = "Downloading"
             case "paused":
-                actionButton.action = #selector(actionRestart)
+                actionButton.action = #selector(actionUnpause)
                 actionButton.image = NSImage(named: "RestartButton")
                 taskStatusLabel.stringValue = "Paused"
             case "complete":
                 actionButton.image = NSImage(named: "CompleteButton")
                 taskStatusLabel.stringValue = "Complete"
+            case "stopped":
+                actionButton.action = #selector(actionRestart)
+                actionButton.image = NSImage(named: "RestartButton")
+                taskStatusLabel.stringValue = "Stopped"
             case "removed":
                 actionButton.action = #selector(actionRestart)
                 actionButton.image = NSImage(named: "RestartButton")
                 taskStatusLabel.stringValue = "Removed"
             case "error":
+                actionButton.action = #selector(actionRestart)
                 actionButton.image = NSImage(named: "RestartButton")
                 taskStatusLabel.stringValue = "Error"
             default:
@@ -85,8 +92,8 @@ class TaskCellView: NSTableCellView {
     @IBOutlet weak var findPathButton: NSLayoutConstraint!
     @IBOutlet weak var actionButton: NSButton!
     
-    func actionRestart() {
-        aria2.start(gid)
+    func actionUnpause() {
+        aria2.unpause(gid)
     }
     func actionPause() {
         aria2.pause(gid)
@@ -94,14 +101,12 @@ class TaskCellView: NSTableCellView {
     func actionStop() {
         
     }
-    
-    var data: Aria2Task? {
-        didSet {
-            updateView(data!)
-        }
+    func actionRestart() {
+//        aria2.restart(taskData!)
     }
     
-    func updateView(task: Aria2Task) {
+    func update(task: Aria2Task) {
+        data = task
         gid = task.gid!
         status = task.status!
         isBtDownload = task.isBtTask!
@@ -117,7 +122,6 @@ class TaskCellView: NSTableCellView {
         taskFileSizeLabel.stringValue = task.fileSizeString
         taskRemainingTimeLabel.stringValue = task.remainingString
     }
-    
     
     @IBAction func findPath(sender: NSButton) {
         let path = isBtDownload ? data!.torrentDirectoryPath! : data!.filePath!

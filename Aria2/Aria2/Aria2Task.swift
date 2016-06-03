@@ -19,8 +19,22 @@ public struct Aria2Task {
     public var totalLength: Int?
     
     public var filePath: String?
+    public var dirPath: String? {
+        get {
+            if let file = filePath {
+                if !file.isEmpty {
+                    var path = file.componentsSeparatedByString("/").filter({ return !$0.isEmpty })
+                    path.removeLast()
+                    return path.reduce("", combine: { sum, next in return sum + "/" + next }) + "/"
+                }
+            }
+            return nil
+        }
+    }
     public var torrentDirectoryPath: String?
     public var fileName: String?
+    
+    public var uris: [[String]]?
     
     public var remaining: Int {
         get {

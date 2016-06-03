@@ -100,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     func updateSpeedStatus() {
-        if aria2.isConnected {
+        if aria2.status == .Connected {
             aria2.getGlobalStatus()
         }
         aria2.onGlobalStatus = { status in

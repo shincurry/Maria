@@ -32,7 +32,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     let cellHeight: CGFloat = 42.0
     
-    var numberOfActive: Int = 0
+    var numberOfActive: Int = -1
 
     var taskData: [Aria2Task] = []
     
@@ -49,16 +49,32 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: NSBundle.mainBundle())
         taskListTableView.registerNib(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
+        aria2Config()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(getStatus), userInfo: nil, repeats: true)
+    }
 
+    override func viewWillAppear() {
+        aria2.connect()
+        runTimer()
+    }
+    override func viewWillDisappear() {
+        aria2.disconnect()
+        closeTimer()
+    }
+    
+    func updateListStatus() {
+        if aria2.status == .Connected {
+            aria2.getGlobalStatus()
+            aria2.tellActive()
+        }
+    }
+    
+    func aria2Config() {
         aria2.onGlobalStatus = { status in
             self.authorized = true
-
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
@@ -67,6 +83,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .SolidHorizontalGridLineMask
+                self.updateListView()
                 return
             } else {
                 self.taskListTableView.gridStyleMask = .GridNone
@@ -83,35 +100,37 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             }
             self.updateListView()
         }
-    }
-    override func viewWillAppear() {
-        aria2.connect()
-    }
-    override func viewWillDisappear() {
-        aria2.disconnect()
-    }
-    
-    func getStatus() {
-        let isConnected = aria2.isConnected
-        let boolValue = (isConnected && authorized)
-        speedView.hidden = !boolValue
-        separateLine.hidden = !boolValue
-        taskListTableView.hidden = !boolValue
-        
-        alertLabel.hidden = boolValue
-        
-        if isConnected {
-            aria2.getGlobalStatus()
-            aria2.tellActive()
-        } else {
-            if authorized {
-                alertLabel.stringValue = "Please run aria2 first"
-            } else {
-                alertLabel.stringValue = "Unauthorized"
+        aria2.onStatusChanged = {
+            let flag = (self.aria2.status == .Connected)
+            self.speedView.hidden = !flag
+            self.separateLine.hidden = !flag
+            self.taskListTableView.hidden = !flag
+            self.alertLabel.hidden = flag
+
+            switch self.aria2.status {
+            case .Connecting:
+                self.alertLabel.stringValue = "Connecting to aria2..."
+                self.taskListScrollViewHeightConstraint.constant = 0
+            case .Connected:
+                self.updateListStatus()
+            case .Disconnected:
+                self.noTaskAlertLabel.hidden = true
+                self.alertLabel.stringValue = "Disconnected to aria2."
+                self.taskListScrollViewHeightConstraint.constant = 0
             }
-            noTaskAlertLabel.hidden = true
-            taskListScrollViewHeightConstraint.constant = 0
         }
+    }
+}
+
+// MARK: - Timer Config
+extension TodayViewController {
+    private func runTimer() {
+        updateListStatus()
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
+    }
+    private func closeTimer() {
+        timer.invalidate()
+        timer = nil
     }
 }
 
@@ -122,7 +141,6 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
         numberOfActive = taskData.count
         
         if flag {
-            
             taskListTableView.reloadData()
             if numberOfActive == 0 {
                 taskListScrollViewHeightConstraint.constant = cellHeight * 3.0
@@ -132,12 +150,7 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
         } else {
             for index in 0..<taskData.count {
                 let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TodayTaskCellView
-                cell.data = taskData[index]
-                if index == taskData.count-1 {
-                    cell.separatorLine.hidden = true
-                } else {
-                    cell.separatorLine.hidden = false
-                }
+                cell.update(taskData[index], isLast: index == taskData.count-1)
             }
         }
     }
@@ -148,18 +161,10 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if taskData.isEmpty {
-            noTaskAlertLabel.hidden = false
-            let cell = NSTableCellView()
-            return cell
+            return NSTableCellView()
         }
-        noTaskAlertLabel.hidden = true
         let cell = tableView.makeViewWithIdentifier("TodayTaskCell", owner: self) as! TodayTaskCellView
-        cell.data = taskData[row]
-        
-        if row == taskData.count-1 {
-            cell.separatorLine.hidden = true
-        }
+        cell.update(taskData[row], isLast: row == taskData.count-1)
         return cell
     }
-    
 }

@@ -247,10 +247,10 @@
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
+				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
 				883327A21CC751630002B561 /* NewTaskViewController.swift */,
 				88D6CDD51CE4963100450E0C /* Main */,
-				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				8827EDF31CCB502E00DDB09D /* Settings */,
 				885B9ED31CBF8169001BA477 /* AboutViewController.swift */,
 				8894857B1CBE4D4A000839CD /* Info.plist */,
@@ -335,6 +335,7 @@
 				TargetAttributes = {
 					8805D1711CBE5BA000DA33CA = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = F86ABKXNGB;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -346,6 +347,7 @@
 					};
 					8894856E1CBE4D4A000839CD = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = F86ABKXNGB;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -553,12 +555,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.windisco.Maria.Maria-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -567,12 +571,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.windisco.Maria.Maria-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -665,7 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maria/Maria.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Maria/Info.plist;
@@ -682,7 +688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maria/Maria.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Maria/Info.plist;

@@ -63,12 +63,20 @@
 				8897835A1CBE105400C12387 /* Aria2.h */,
 				887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */,
 				889783681CBE105C00C12387 /* Aria2.swift */,
-				88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */,
-				88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */,
-				88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */,
+				88CAFFE31CFB43A900D83FF3 /* Model */,
 				8897835C1CBE105400C12387 /* Info.plist */,
 			);
 			path = Aria2;
+			sourceTree = "<group>";
+		};
+		88CAFFE31CFB43A900D83FF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */,
+				88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */,
+				88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +122,7 @@
 				TargetAttributes = {
 					889783561CBE105400C12387 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = F86ABKXNGB;
 					};
 				};
 			};

@@ -47,7 +47,6 @@ class SettingsNotificationViewController: NSViewController {
             key = "EnableNotificationWhenConnected"
         case notificationWhenDisconnected:
             key = "EnableNotificationWhenDisconnected"
-            
         default:
             break
         }

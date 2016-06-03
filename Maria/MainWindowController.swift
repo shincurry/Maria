@@ -24,7 +24,7 @@ class MainWindowController: NSWindowController {
                 }
             }
         }
-        aria2.onStartAll = { flag in
+        aria2.onUnpauseAll = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.updateTasksStatus("active")
@@ -83,10 +83,9 @@ class MainWindowController: NSWindowController {
         aria2.pauseAll()
     }
     @IBAction func startAllTasks(sender: NSToolbarItem) {
-        aria2.startAll()
+        aria2.unpauseAll()
     }
     @IBAction func removeSelectedTasks(sender: NSToolbarItem) {
-        
         if let controller = contentViewController as? TaskListViewController {
             let tableView = controller.taskListTableView
             let indexes = controller.taskListTableView.selectedRowIndexes.enumerate()
@@ -115,7 +114,6 @@ class MainWindowController: NSWindowController {
                         }
                     }
                 }
-            
             })
         }
     }
@@ -131,10 +129,5 @@ class MainWindowController: NSWindowController {
                 self.aria2.clearCompletedErrorRemoved()
             }
         })
-        
     }
-    
-    
-
-    
 }

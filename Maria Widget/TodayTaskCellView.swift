@@ -29,17 +29,13 @@ class TodayTaskCellView: NSTableCellView {
             }
         }
     }
-    var data: Aria2Task? {
-        didSet {
-            updateView(data!)
-        }
-    }
     
-    func updateView(task: Aria2Task) {
-        self.taskTitle.stringValue = task.title!
-        self.taskProgressIndicator.doubleValue = task.progress
-        self.taskProgressLabel.stringValue = task.progressString
-        self.isBtTask = task.isBtTask!
+    func update(data: Aria2Task, isLast: Bool) {
+        self.taskTitle.stringValue = data.title!
+        self.taskProgressIndicator.doubleValue = data.progress
+        self.taskProgressLabel.stringValue = data.progressString
+        self.isBtTask = data.isBtTask!
+        self.separatorLine.hidden = isLast
     }
 }
 
