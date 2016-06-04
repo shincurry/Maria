@@ -84,21 +84,18 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .SolidHorizontalGridLineMask
                 self.updateListView()
-                return
             } else {
                 self.taskListTableView.gridStyleMask = .GridNone
+                if self.defaults.boolForKey("TodayEnableTasksSortedByProgress") {
+                    taskArray = taskArray.sort() { return $0.progress > $1.progress }
+                }
+                let number = self.defaults.integerForKey("TodayTasksNumber")
+                if number < taskArray.count {
+                    taskArray = taskArray.enumerate().filter({ (index, task) in return index > number-1 }).map({ return $1 })
+                }
+                self.updateListView()
             }
-            
-            if self.defaults.boolForKey("TodayEnableTasksSortedByProgress") {
-                taskArray = taskArray.sort() { return $0.progress > $1.progress }
-            }
-            let number = self.defaults.integerForKey("TodayTasksNumber")
-            if number < taskArray.count {
-                self.taskData = taskArray.enumerate().filter({ (index, task) in return index > number-1 }).map({ return $1 })
-            } else {
-                self.taskData = taskArray
-            }
-            self.updateListView()
+            self.taskData = taskArray
         }
         aria2.onStatusChanged = {
             let flag = (self.aria2.status == .Connected)
@@ -113,6 +110,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.taskListScrollViewHeightConstraint.constant = 0
             case .Connected:
                 self.updateListStatus()
+                self.noTaskAlertLabel.hidden = !(self.taskData.count == 0)
             case .Disconnected:
                 self.noTaskAlertLabel.hidden = true
                 self.alertLabel.stringValue = "Disconnected to aria2."
@@ -137,16 +135,14 @@ extension TodayViewController {
 // MARK: - TableView Delegate and DataSource
 extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
     func updateListView() {
-        let flag = (numberOfActive != taskData.count)
+        let tasksNone = (taskData.count == 0)
+        let tasksChanged = (numberOfActive != taskData.count)
         numberOfActive = taskData.count
         
-        if flag {
+        if tasksChanged {
             taskListTableView.reloadData()
-            if numberOfActive == 0 {
-                taskListScrollViewHeightConstraint.constant = cellHeight * 3.0
-            } else {
-                taskListScrollViewHeightConstraint.constant = cellHeight * CGFloat(numberOfActive)
-            }
+            taskListScrollViewHeightConstraint.constant = tasksNone ? cellHeight * 3.0 : cellHeight * CGFloat(numberOfActive)
+            noTaskAlertLabel.hidden = !tasksNone
         } else {
             for index in 0..<taskData.count {
                 let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TodayTaskCellView

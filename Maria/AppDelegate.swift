@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             disableSpeedStatusBar()
         }
-        
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
