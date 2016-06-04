@@ -83,7 +83,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .SolidHorizontalGridLineMask
-                self.updateListView()
             } else {
                 self.taskListTableView.gridStyleMask = .GridNone
                 if self.defaults.boolForKey("TodayEnableTasksSortedByProgress") {
@@ -93,9 +92,9 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 if number < taskArray.count {
                     taskArray = taskArray.enumerate().filter({ (index, task) in return index > number-1 }).map({ return $1 })
                 }
-                self.updateListView()
             }
             self.taskData = taskArray
+            self.updateListView()
         }
         aria2.onStatusChanged = {
             let flag = (self.aria2.status == .Connected)
@@ -135,13 +134,13 @@ extension TodayViewController {
 // MARK: - TableView Delegate and DataSource
 extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
     func updateListView() {
-        let tasksNone = (taskData.count == 0)
+        let tasksNone = taskData.isEmpty
         let tasksChanged = (numberOfActive != taskData.count)
         numberOfActive = taskData.count
         
         if tasksChanged {
             taskListTableView.reloadData()
-            taskListScrollViewHeightConstraint.constant = tasksNone ? cellHeight * 3.0 : cellHeight * CGFloat(numberOfActive)
+            taskListScrollViewHeightConstraint.constant = tasksNone ? (cellHeight * 3.0) : (cellHeight * CGFloat(numberOfActive))
             noTaskAlertLabel.hidden = !tasksNone
         } else {
             for index in 0..<taskData.count {
