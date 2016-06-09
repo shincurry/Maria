@@ -29,9 +29,10 @@
 		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
 		887AE45C1CC0FF3100AAD3E3 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */; };
 		887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */; };
-		887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */; };
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
+		888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */; };
+		888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF71D08393F0077EADB /* SettingsWindowController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
 		8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889485781CBE4D4A000839CD /* Main.storyboard */; };
 		889485881CBE4E1A000839CD /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
@@ -115,9 +116,10 @@
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
 		887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
 		887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
-		887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
+		888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskWindowController.swift; sourceTree = "<group>"; };
+		888EAAF71D08393F0077EADB /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		889485721CBE4D4A000839CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		889485761CBE4D4A000839CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,7 +202,7 @@
 		8827EDF31CCB502E00DDB09D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				887AE45F1CC112D100AAD3E3 /* SettingsWindowController.swift */,
+				888EAAF71D08393F0077EADB /* SettingsWindowController.swift */,
 				885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */,
 				887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */,
 				887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */,
@@ -249,6 +251,7 @@
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
 				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
+				888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */,
 				883327A21CC751630002B561 /* NewTaskViewController.swift */,
 				88D6CDD51CE4963100450E0C /* Main */,
 				8827EDF31CCB502E00DDB09D /* Settings */,
@@ -492,10 +495,11 @@
 				8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */,
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
 				88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */,
+				888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */,
 				88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */,
-				887AE4601CC112D100AAD3E3 /* SettingsWindowController.swift in Sources */,
 				887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */,
 				8827EDF51CCB50A700DDB09D /* SettingsAria2ViewController.swift in Sources */,
+				888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */,
 				889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

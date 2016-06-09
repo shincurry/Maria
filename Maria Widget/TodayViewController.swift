@@ -107,6 +107,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             case .Connecting:
                 self.alertLabel.stringValue = "Connecting to aria2..."
                 self.taskListScrollViewHeightConstraint.constant = 0
+                self.noTaskAlertLabel.hidden = true
             case .Connected:
                 self.updateListStatus()
                 self.noTaskAlertLabel.hidden = !(self.taskData.count == 0)

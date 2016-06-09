@@ -91,7 +91,7 @@ public struct Aria2Task {
     public var remainingString: String {
         get {
             if remaining == -1 {
-                return "Unknown"
+                return " ∞ remaining"
             }
             
             let hou = remaining / (60 * 60)

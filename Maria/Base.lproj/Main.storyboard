@@ -343,14 +343,14 @@
                                         <action selector="clearCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="lwt-MQ-y39"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="0E37A42F-10AD-49AB-8EF4-7F629832B97E" id="fWl-Gq-lVn">
+                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="DFE46942-77F3-4D4E-A9FF-B89F586D7A70" id="fWl-Gq-lVn">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="atI-Si-Tc8">
                                         <rect key="frame" x="0.0" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="0E37A42F-10AD-49AB-8EF4-7F629832B97E" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
+                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="DFE46942-77F3-4D4E-A9FF-B89F586D7A70" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -462,7 +462,7 @@
                             <visualEffectView blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="mjo-9s-C0c">
                                 <rect key="frame" x="0.0" y="24" width="580" height="276"/>
                                 <subviews>
-                                    <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-fb-fPN">
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-fb-fPN">
                                         <rect key="frame" x="0.0" y="0.0" width="580" height="276"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="sso-Qk-bhj">
                                             <rect key="frame" x="1" y="1" width="578" height="274"/>
@@ -502,11 +502,11 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="580" id="FFz-cT-ECs"/>
                                         </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="tC6-la-AdT">
-                                            <rect key="frame" x="-100" y="-100" width="0.0" height="16"/>
+                                            <rect key="frame" x="-100" y="-100" width="578" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="5Vd-BJ-5xR">
-                                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
+                                            <rect key="frame" x="563" y="1" width="16" height="274"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -529,8 +529,8 @@
                                 </constraints>
                             </visualEffectView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JhC-kn-LtG">
-                                <rect key="frame" x="6" y="2" width="119" height="20"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 of 0 Download(s)" id="ddn-EL-BXl">
+                                <rect key="frame" x="6" y="2" width="118" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 of 0 download(s)" id="ddn-EL-BXl">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -572,7 +572,7 @@
         <!--Window Controller-->
         <scene sceneID="cqI-p5-qlw">
             <objects>
-                <windowController id="KON-1O-740" sceneMemberID="viewController">
+                <windowController id="KON-1O-740" customClass="NewTaskWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="sqZ-ev-k2f">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="402" height="225"/>
@@ -726,7 +726,8 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="0E37A42F-10AD-49AB-8EF4-7F629832B97E" width="1" height="1">
+        <image name="Broom" width="20" height="20"/>
+        <image name="DFE46942-77F3-4D4E-A9FF-B89F586D7A70" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -777,7 +778,6 @@ ALAAswC1ALcAuQC7AMAA1wDZANsJiwmQCZsJpAm3CbsJxgnPCdQJ3AnfCeQJ8wn3Cf4KBgoTChgKGgoc
 CiEKKQosCjEKOQo8Ck4KUQpWAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAClg
 </mutableData>
         </image>
-        <image name="Broom" width="20" height="20"/>
         <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="RedBall" width="16" height="12"/>
@@ -786,7 +786,7 @@ CiEKKQosCjEKOQo8Ck4KUQpWAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAClg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MnT-tc-ZNs"/>
-        <segue reference="uT7-5m-1AB"/>
+        <segue reference="Adv-h9-BMu"/>
         <segue reference="zaZ-iz-Pj8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -33,9 +33,8 @@ class NewTaskViewController: NSViewController {
             aria2.addUri(uris.filter({ return !$0.isEmpty }))
             self.dismissController(self)
         }
-        
     }
-    
+
     @IBAction func openBtFile(sender: NSButton) {
         
         let openPanel = NSOpenPanel()

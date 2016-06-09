@@ -135,16 +135,18 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
             }
         } else {
             for index in 0..<taskData.count {
-                let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! TaskCellView
-                cell.update(taskData[index])
+                if let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as?TaskCellView {
+                    cell.update(taskData[index])
+                }
             }
         }
     }
     
     func updateTasksStatus(status: String) {
         for index in 0..<taskData.count {
-            let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! TaskCellView
-            cell.status = status
+            if let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as? TaskCellView {
+                cell.status = status
+            }
         }
     }
     

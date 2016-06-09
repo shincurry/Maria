@@ -102,7 +102,9 @@ class TaskCellView: NSTableCellView {
         
     }
     func actionRestart() {
-//        aria2.restart(taskData!)
+        if !isBtDownload {
+            aria2.restart(data!)
+        }
     }
     
     func update(task: Aria2Task) {

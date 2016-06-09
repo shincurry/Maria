@@ -198,26 +198,26 @@ public class Aria2 {
     }
     public var onUnpauseAll: ((flag: Bool) -> Void)?
     
-//    public func restart(task: Aria2Task) {
-//        request(method: .removeDownloadResult, id: "aria2.remove.restart", params: "\"\(task.gid!)\"")
-//        onRemoveOtherToRestart = { flag in
-//            if flag {
-//                for uri in task.uris! {
-//                    let setData = Set(uri)
-//                    let newData = Array(setData)
-//                    var uriString = ""
-//                    for (index, uri) in newData.enumerate() {
-//                        if index != 0 { uriString += "," }
-//                        uriString += "\"" + uri + "\""
-//                    }
-//                    self.request(method: .addUri, id: "aria2.restart", params: "[\(uriString)], {\"dir\": \"\(task.dirPath!)\"}")
-//                }
-//            }
-//        }
-//    
-//    }
-//    public var onRemoveOtherToRestart: ((flag: Bool) -> Void)?
-//    public var onRestart: ((flag: Bool) -> Void)?
+    public func restart(task: Aria2Task) {
+        request(method: .removeDownloadResult, id: "aria2.remove.restart", params: "\"\(task.gid!)\"")
+        onRemoveOtherToRestart = { flag in
+            if flag {
+                for uri in task.uris! {
+                    var uriString = ""
+                    for (index, uri) in Array(Set(uri)).enumerate() {
+                        uriString += (index != 0 ? ",\"" : "\"") + uri + "\""
+                    }
+                    if let path = task.dirPath {
+                        self.request(method: .addUri, id: "aria2.restart", params: "[\(uriString)], {\"dir\": \"\(path)\"}")
+                    } else {
+                        self.request(method: .addUri, id: "aria2.restart", params: "[\(uriString)]")
+                    }
+                }
+            }
+        }
+    }
+    public var onRemoveOtherToRestart: ((flag: Bool) -> Void)?
+    public var onRestart: ((flag: Bool) -> Void)?
     
     
     // MARK: Download status
@@ -343,12 +343,10 @@ extension Aria2: WebSocketDelegate {
                 globalSpeedLimitOK?(result: results)
             case "aria2.changeGlobalOption.lowSpeedLimit":
                 lowSpeedLimitOK?(result: results)
-//            case "aria2.remove.restart":
-//                print(results)
-//                onRemoveOtherToRestart?(flag: (results["error"] != nil) ? false : true)
-//            case "aria2.restart":
-////                onRestart?()
-//                print(results)
+            case "aria2.remove.restart":
+                onRemoveOtherToRestart?(flag: (results["error"] != nil) ? false : true)
+            case "aria2.restart":
+                onRestart?(flag: (results["error"] != nil) ? false : true)
             default:
                 break
             }
