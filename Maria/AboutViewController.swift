@@ -14,7 +14,7 @@ class AboutViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        let infoDictionary = NSBundle.mainBundle().infoDictionary!
+        let infoDictionary = Bundle.main().infoDictionary!
         
         let version = infoDictionary["CFBundleShortVersionString"] as! String
         let build = infoDictionary["CFBundleVersion"] as! String
@@ -24,10 +24,10 @@ class AboutViewController: NSViewController {
     }
     @IBOutlet weak var versionBuildNumber: NSTextField!
     
-    @IBAction func openAnIssuesOnGithub(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/ShinCurry/Maria/issues/new")!)
+    @IBAction func openAnIssuesOnGithub(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "https://github.com/ShinCurry/Maria/issues/new")!)
     }
-    @IBAction func contactMeOnTwitter(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://twitter.com/ShinCurryy")!)
+    @IBAction func contactMeOnTwitter(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "https://twitter.com/ShinCurryy")!)
     }
 }

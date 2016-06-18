@@ -11,31 +11,32 @@ import Starscream
 import SwiftyJSON
 
 public enum ConnectionStatus {
-    case Connecting
-    case Connected
-    case Disconnected
+    case connecting
+    case connected
+    case unauthorized
+    case disconnected
 }
 
 public class Aria2 {
     
     public static let shared: Aria2 = {
-        let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
-        let baseHost = "http" + (defaults.boolForKey("SSLEnabled") ? "s" : "") + "://"
-        let host = defaults.objectForKey("RPCServerHost") as! String
-        let port = defaults.objectForKey("RPCServerPort") as! String
-        let path = defaults.objectForKey("RPCServerPath") as! String
+        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+        let baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
+        let host = defaults.object(forKey: "RPCServerHost") as! String
+        let port = defaults.object(forKey: "RPCServerPort") as! String
+        let path = defaults.object(forKey: "RPCServerPath") as! String
         return Aria2(url: baseHost + host + ":" + port + path)
     }()
     
-    var secret: String!
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    var secret = ""
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     var socket: WebSocket!
     
     public init(url: String) {
-        socket = WebSocket(url: NSURL(string: url)!)
+        socket = WebSocket(url: URL(string: url)!)
         socket.delegate = self
-        secret = defaults.objectForKey("RPCServerSecret") as! String
+        secret = defaults.object(forKey: "RPCServerSecret") as! String
     }
     
     // MARK: - Public API
@@ -45,8 +46,9 @@ public class Aria2 {
      connect aria2
      */
     public func connect() {
-        status = .Connecting
+        status = .connecting
         socket.connect()
+        
     }
     public var onConnect: (() -> Void)?
     
@@ -58,12 +60,12 @@ public class Aria2 {
     }
     public var onDisconnect: (() -> Void)?
     
-    public var status: ConnectionStatus = .Disconnected {
+    public var status: ConnectionStatus = .disconnected {
         didSet {
             onStatusChanged?()
         }
     }
-    public var onStatusChanged: (Void -> Void)?
+    public var onStatusChanged: ((Void) -> Void)?
     
     /**
      shutdown aria2
@@ -77,14 +79,14 @@ public class Aria2 {
      
      - parameter uris:	download task links
      */
-    public func addUri(uris: [String]) {
+    public func add(uris: [String]) {
         uris.forEach() { uri in
             request(method: .addUri, params: "[\"\(uri)\"]")
         }
     }
     public var onAddUris: ((flag: Bool) -> Void)?
     
-    public func getUris(gid: String) {
+    public func getUris(_ gid: String) {
         request(method: .getUris, params: "\"\(gid)\"")
     }
     public var onGetUris: ((results: [String]) -> Void)?
@@ -93,8 +95,8 @@ public class Aria2 {
      
      - parameter data:	torrent data
      */
-    public func addTorrent(data: NSData) {
-        let base64Encoded = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+    public func add(torrent: Data) {
+        let base64Encoded = torrent.base64EncodedString(.encoding64CharacterLineLength)
         request(method: .addTorrent, params: "\"\(base64Encoded)\"")
     }
     public var onAddTorrent: ((flag: Bool) -> Void)?
@@ -141,7 +143,7 @@ public class Aria2 {
      
      - parameter gid:	task id
      */
-    public func removeActive(gid: String) {
+    public func removeActive(_ gid: String) {
         request(method: .remove, params: "\"\(gid)\"")
     }
     public var onRemoveActive: ((flag: Bool) -> Void)?
@@ -150,7 +152,7 @@ public class Aria2 {
      
      - parameter gid:	task id
      */
-    public func removeOther(gid: String) {
+    public func removeOther(_ gid: String) {
         request(method: .removeDownloadResult, params: "\"\(gid)\"")
     }
     public var onRemoveOther: ((flag: Bool) -> Void)?
@@ -168,7 +170,7 @@ public class Aria2 {
      
      - parameter gid:	task id
      */
-    public func pause(gid: String) {
+    public func pause(_ gid: String) {
         request(method: .pause, params: "\"\(gid)\"")
     }
     public var onPause: ((flag: Bool) -> Void)?
@@ -185,7 +187,7 @@ public class Aria2 {
      
      - parameter gid:	task id
      */
-    public func unpause(gid: String) {
+    public func unpause(_ gid: String) {
         request(method: .unpause, params: "\"\(gid)\"")
     }
     public var onUnpause: ((flag: Bool) -> Void)?
@@ -198,13 +200,13 @@ public class Aria2 {
     }
     public var onUnpauseAll: ((flag: Bool) -> Void)?
     
-    public func restart(task: Aria2Task) {
+    public func restart(_ task: Aria2Task) {
         request(method: .removeDownloadResult, id: "aria2.remove.restart", params: "\"\(task.gid!)\"")
         onRemoveOtherToRestart = { flag in
             if flag {
                 for uri in task.uris! {
                     var uriString = ""
-                    for (index, uri) in Array(Set(uri)).enumerate() {
+                    for (index, uri) in Array(Set(uri)).enumerated() {
                         uriString += (index != 0 ? ",\"" : "\"") + uri + "\""
                     }
                     if let path = task.dirPath {
@@ -231,12 +233,12 @@ public class Aria2 {
     
     
     // MARK: Speed limit
-    public func globalSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
-        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
+    public func globalSpeedLimit(download: Int, upload: Int) {
+        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(download))\", \"max-overall-upload-limit\": \"\(speedToString(upload))\"}")
         
     }
-    public func lowSpeedLimit(downloadSpeed downloadSpeed: Int, uploadSpeed: Int) {
-        func speedToString(value: Int) -> String {
+    public func lowSpeedLimit(download: Int, upload: Int) {
+        func speedToString(_ value: Int) -> String {
             var valueString = "\(value)"
             if value != 0 {
                 valueString += "K"
@@ -244,9 +246,9 @@ public class Aria2 {
             return valueString
         }
         
-        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.lowSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(downloadSpeed))\", \"max-overall-upload-limit\": \"\(speedToString(uploadSpeed))\"}")
+        request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.lowSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(download))\", \"max-overall-upload-limit\": \"\(speedToString(upload))\"}")
     }
-    private func speedToString(value: Int) -> String {
+    private func speedToString(_ value: Int) -> String {
         var valueString = "\(value)"
         if value != 0 {
             valueString += "K"
@@ -260,15 +262,15 @@ public class Aria2 {
 }
     
 extension Aria2 {
-    private func request(method method: Aria2Method, params: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
+    private func request(method: Aria2Method, params: String) {
         
-        let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
+        let data = socketString.data(using: String.Encoding.utf8)!
         self.socket.writeData(data)
     }
-    private func request(method method: Aria2Method, id: String, params: String) {
+    private func request(method: Aria2Method, id: String, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
-        let data: NSData = socketString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let data = socketString.data(using: String.Encoding.utf8)!
         self.socket.writeData(data)
     }
 }
@@ -276,22 +278,30 @@ extension Aria2 {
 
 // MARK: - Web socket delegate
 extension Aria2: WebSocketDelegate {
-    public func websocketDidConnect(socket: WebSocket) {
+    public func websocketDidConnect(_ socket: WebSocket) {
         print("WebSocket connected")
-        status = .Connected
+        status = .connected
         onConnect?()
+        self.socket.writeData("{ \"jsonrpc\": \"2.0\", \"id\": \"123\"}".data(using: String.Encoding.utf8)!)
     }
-    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    public func websocketDidDisconnect(_ socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
-        status = .Disconnected
+        status = .disconnected
         onDisconnect?()
     }
-    public func websocketDidReceiveData(socket: WebSocket, data: NSData) {
+    public func websocketDidReceiveData(_ socket: WebSocket, data: Data) {
         print(data)
     }
     
-    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        let results = JSON(data: text.dataUsingEncoding(NSUTF8StringEncoding)!)
+    public func websocketDidReceiveMessage(_ socket: WebSocket, text: String) {
+        let results = JSON(data: text.data(using: String.Encoding.utf8)!)
+        if results["error"]["message"] == "Unauthorized" {
+            self.status = .unauthorized
+            return
+        } else {
+            self.status = .connected
+        }
+
         if let idString = results["id"].string {
             if let method = Aria2Method(rawValue: idString) {
                 switch method {
@@ -354,7 +364,7 @@ extension Aria2: WebSocketDelegate {
         }
         
         if let methodString = results["method"].string {
-            let rawValue = methodString.componentsSeparatedByString(".")[1]
+            let rawValue = methodString.components(separatedBy: ".")[1]
             let method = Aria2Method(rawValue: rawValue)!
 
             getDownloadStatus = { result in
@@ -362,7 +372,7 @@ extension Aria2: WebSocketDelegate {
                 if let btName = result["result"]["bittorrent"]["info"]["name"].string {
                     downloadName = btName
                 } else {
-                    downloadName = result["result"]["files"][0]["path"].stringValue.componentsSeparatedByString("/").last!
+                    downloadName = result["result"]["files"][0]["path"].stringValue.components(separatedBy: "/").last!
                 }
                 
                 switch method {
@@ -392,7 +402,7 @@ extension Aria2: WebSocketDelegate {
     
     // MARK: Convert JSON to Swift Struct
     
-    func getTasksByJSON(json: JSON) -> [Aria2Task] {
+    func getTasksByJSON(_ json: JSON) -> [Aria2Task] {
         return json["result"].array!.map() { data in
             var task = Aria2Task()
             task.gid = data["gid"].stringValue
@@ -403,7 +413,7 @@ extension Aria2: WebSocketDelegate {
                 downloadName = btName
                 task.isBtTask = true
             } else {
-                downloadName = data["files"][0]["path"].stringValue.componentsSeparatedByString("/").last!
+                downloadName = data["files"][0]["path"].stringValue.components(separatedBy: "/").last!
                 task.isBtTask = false
                 task.fileName = downloadName
             }
@@ -422,7 +432,7 @@ extension Aria2: WebSocketDelegate {
             })
             
             if task.isBtTask! {
-                let pathArray = data["files"][0]["path"].stringValue.componentsSeparatedByString("/")
+                let pathArray = data["files"][0]["path"].stringValue.components(separatedBy: "/")
                 task.torrentDirectoryPath = data["dir"].stringValue + "/" + pathArray[pathArray.count-2]
             } else {
                 task.filePath = data["files"][0]["path"].stringValue
@@ -430,7 +440,7 @@ extension Aria2: WebSocketDelegate {
             return task
         }
     }
-    func getGlobalStatusByJSON(json: JSON) -> Aria2GlobalStatus {
+    func getGlobalStatusByJSON(_ json: JSON) -> Aria2GlobalStatus {
         let data = json["result"]
         var status = Aria2GlobalStatus()
         status.speed = Aria2Speed(download: Int(data["downloadSpeed"].stringValue)!, upload: Int(data["uploadSpeed"].stringValue)!)

@@ -14,8 +14,8 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         NSApp.activateIgnoringOtherApps(true)
-        window?.titleVisibility = .Hidden
-        lowSpeedModeButton.state = defaults.boolForKey("EnableLowSpeedMode") ? 1 : 0
+        window?.titleVisibility = .hidden
+        lowSpeedModeButton.state = defaults.bool(forKey: "EnableLowSpeedMode") ? 1 : 0
         
         aria2.onPauseAll = { flag in
             if flag {
@@ -31,11 +31,11 @@ class MainWindowController: NSWindowController {
                 }
             }
         }
-        let onRemove: Bool -> Void = { flag in
+        let onRemove: (Bool) -> Void = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.taskListTableView.reloadData()
-                    self.taskRemoveButton.enabled = false
+                    self.taskRemoveButton.isEnabled = false
                 }
             }
         }
@@ -51,7 +51,7 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     let aria2 = Aria2.shared
     
     @IBOutlet weak var toolbar: NSToolbar!
@@ -59,8 +59,8 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var taskRemoveButton: NSToolbarItem!
     @IBOutlet weak var taskCleanButton: NSToolbarItem!
     @IBOutlet weak var lowSpeedModeButton: NSButton!
-    @IBAction func toggleLowSpeedMode(sender: NSButton) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    @IBAction func toggleLowSpeedMode(_ sender: NSButton) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         if lowSpeedModeButton.state == 1 {
             lowSpeedModeOn()
             appDelegate.lowSpeedModeOn()
@@ -71,26 +71,26 @@ class MainWindowController: NSWindowController {
     }
     func lowSpeedModeOn() {
         lowSpeedModeButton.state = 1
-        defaults.setBool(true, forKey: "EnableLowSpeedMode")
+        defaults.set(true, forKey: "EnableLowSpeedMode")
         lowSpeedModeButton.image = NSImage(named: "TortoiseColorful")
     }
     func lowSpeedModeOff() {
         lowSpeedModeButton.state = 0
-        defaults.setBool(false, forKey: "EnableLowSpeedMode")
+        defaults.set(false, forKey: "EnableLowSpeedMode")
         lowSpeedModeButton.image = NSImage(named: "TortoiseGray")
     }
-    @IBAction func pauseAllTasks(sender: NSToolbarItem) {
+    @IBAction func pauseAllTasks(_ sender: NSToolbarItem) {
         aria2.pauseAll()
     }
-    @IBAction func startAllTasks(sender: NSToolbarItem) {
+    @IBAction func startAllTasks(_ sender: NSToolbarItem) {
         aria2.unpauseAll()
     }
-    @IBAction func removeSelectedTasks(sender: NSToolbarItem) {
+    @IBAction func removeSelectedTasks(_ sender: NSToolbarItem) {
         if let controller = contentViewController as? TaskListViewController {
             let tableView = controller.taskListTableView
-            let indexes = controller.taskListTableView.selectedRowIndexes.enumerate()
+            let indexes = controller.taskListTableView.selectedRowIndexes.enumerated()
             let tasks: [(Int, Aria2Task)] = indexes.map() { (_, index) in
-                let cell = tableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TaskCellView
+                let cell = tableView?.view(atColumn: 0, row: index, makeIfNecessary: true) as! TaskCellView
                 return (index, cell.data!)
             }
             
@@ -102,9 +102,9 @@ class MainWindowController: NSWindowController {
                 alert.informativeText = "Are you sure to remove \(tasks.count) tasks from the download list?"
             }
             
-            alert.addButtonWithTitle("Remove")
-            alert.addButtonWithTitle("Cancel")
-            alert.beginSheetModalForWindow(self.window!, completionHandler: { response in
+            alert.addButton(withTitle: "Remove")
+            alert.addButton(withTitle: "Cancel")
+            alert.beginSheetModal(for: self.window!, completionHandler: { response in
                 if response == NSAlertFirstButtonReturn {
                     tasks.forEach() { (index, task) in
                         if task.status == "active" || task.status == "paused" {
@@ -118,13 +118,13 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    @IBAction func clearCompletedErrorRemovedTasks(sender: NSToolbarItem) {
+    @IBAction func clearCompletedErrorRemovedTasks(_ sender: NSToolbarItem) {
         let alert = NSAlert()
         alert.messageText = "Clear Tasks"
         alert.informativeText = "Are you sure to clear those completed/error/removed task(s) from the download list?"
-        alert.addButtonWithTitle("Clean")
-        alert.addButtonWithTitle("Cancel")
-        alert.beginSheetModalForWindow(self.window!, completionHandler: { response in
+        alert.addButton(withTitle: "Clean")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: self.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 self.aria2.clearCompletedErrorRemoved()
             }

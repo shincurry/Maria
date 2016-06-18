@@ -11,8 +11,8 @@ import Aria2
 
 class TodayTaskCellView: NSTableCellView {
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         // Drawing code here.
     }
@@ -30,12 +30,12 @@ class TodayTaskCellView: NSTableCellView {
         }
     }
     
-    func update(data: Aria2Task, isLast: Bool) {
+    func update(_ data: Aria2Task, isLast: Bool) {
         self.taskTitle.stringValue = data.title!
         self.taskProgressIndicator.doubleValue = data.progress
         self.taskProgressLabel.stringValue = data.progressString
         self.isBtTask = data.isBtTask!
-        self.separatorLine.hidden = isLast
+        self.separatorLine.isHidden = isLast
     }
 }
 

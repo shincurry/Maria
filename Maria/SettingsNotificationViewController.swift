@@ -26,9 +26,9 @@ class SettingsNotificationViewController: NSViewController {
     @IBOutlet weak var notificationWhenDisconnected: NSButton!
     
     
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
-    @IBAction func switchNotification(sender: NSButton) {
+    @IBAction func switchNotification(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
         
         var key = ""
@@ -50,7 +50,7 @@ class SettingsNotificationViewController: NSViewController {
         default:
             break
         }
-        defaults.setBool(boolValue, forKey: key)
+        defaults.set(boolValue, forKey: key)
         defaults.synchronize()
     }
     
@@ -61,13 +61,13 @@ class SettingsNotificationViewController: NSViewController {
 
 extension SettingsNotificationViewController {
     func userDefaultsInit() {
-        notificationWhenStarted.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenStarted"))
-        notificationWhenPaused.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenStopped"))
-        notificationWhenStopped.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenPaused"))
-        notificationWhenCompleted.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenCompleted"))
-        notificationWhenError.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenError"))
+        notificationWhenStarted.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenStarted"))
+        notificationWhenPaused.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenStopped"))
+        notificationWhenStopped.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenPaused"))
+        notificationWhenCompleted.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenCompleted"))
+        notificationWhenError.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenError"))
         
-        notificationWhenConnected.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenConnected"))
-        notificationWhenDisconnected.state = checkButtonState(by: defaults.boolForKey("EnableNotificationWhenDisconnected"))
+        notificationWhenConnected.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenConnected"))
+        notificationWhenDisconnected.state = checkButtonState(by: defaults.bool(forKey: "EnableNotificationWhenDisconnected"))
     }
 }

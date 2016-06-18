@@ -339,6 +339,7 @@
 					8805D1711CBE5BA000DA33CA = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = F86ABKXNGB;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -351,6 +352,7 @@
 					8894856E1CBE4D4A000839CD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = F86ABKXNGB;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -557,7 +559,9 @@
 /* Begin XCBuildConfiguration section */
 		8805D1841CBE5BA000DA33CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 868AFE991919D9A63AB4E8AC /* Pods.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -568,12 +572,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		8805D1851CBE5BA000DA33CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C0D3330392DB691C715D126 /* Pods.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -584,6 +591,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -673,6 +681,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 868AFE991919D9A63AB4E8AC /* Pods.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maria/Maria.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -683,6 +692,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -690,6 +700,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C0D3330392DB691C715D126 /* Pods.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Maria/Maria.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -700,6 +711,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

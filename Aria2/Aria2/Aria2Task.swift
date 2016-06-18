@@ -23,7 +23,7 @@ public struct Aria2Task {
         get {
             if let file = filePath {
                 if !file.isEmpty {
-                    var path = file.componentsSeparatedByString("/").filter({ return !$0.isEmpty })
+                    var path = file.components(separatedBy: "/").filter({ return !$0.isEmpty })
                     path.removeLast()
                     return path.reduce("", combine: { sum, next in return sum + "/" + next }) + "/"
                 }
@@ -103,7 +103,7 @@ public struct Aria2Task {
         }
     }
         
-    private func getStringByFileSize(value: Double) -> String {
+    private func getStringByFileSize(_ value: Double) -> String {
         if value > 1024 * 1024 {
             return String(format: "%.2f GB", value / 1024.0 / 1024.0)
         } else if value > 1024 {

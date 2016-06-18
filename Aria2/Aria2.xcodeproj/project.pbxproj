@@ -117,12 +117,13 @@
 		8897834E1CBE105400C12387 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ShinCurry;
 				TargetAttributes = {
 					889783561CBE105400C12387 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = F86ABKXNGB;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -274,6 +275,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -294,6 +296,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

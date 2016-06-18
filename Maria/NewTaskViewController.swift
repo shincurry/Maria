@@ -28,14 +28,14 @@ class NewTaskViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
     
     
-    @IBAction func start(sender: NSButton) {
-        if let uris = linksTextView.string?.componentsSeparatedByString("\n") {
-            aria2.addUri(uris.filter({ return !$0.isEmpty }))
-            self.dismissController(self)
+    @IBAction func start(_ sender: NSButton) {
+        if let uris = linksTextView.string?.components(separatedBy: "\n") {
+            aria2.add(uris: uris.filter({ return !$0.isEmpty }))
+            self.dismiss(self)
         }
     }
 
-    @IBAction func openBtFile(sender: NSButton) {
+    @IBAction func openBtFile(_ sender: NSButton) {
         
         let openPanel = NSOpenPanel()
         openPanel.title = "Choose a .torrent file"
@@ -45,19 +45,19 @@ class NewTaskViewController: NSViewController {
         openPanel.allowsMultipleSelection = false
         openPanel.allowedFileTypes = ["torrent"]
         openPanel.runModal()
-        if let url = openPanel.URL {
-            if let data = NSData(contentsOfURL: url) {
-                aria2.addTorrent(data)
-                self.dismissController(self)
+        if let url = openPanel.url {
+            if let data = try? Data(contentsOf: url) {
+                aria2.add(torrent: data)
+                self.dismiss(self)
             }
         }
     }
 }
 
 extension NewTaskViewController: NSTextViewDelegate {
-    func textDidChange(notification: NSNotification) {
+    func textDidChange(_ notification: Notification) {
         if let text = linksTextView.string {
-            startButton.enabled = !text.isEmpty
+            startButton.isEnabled = !text.isEmpty
         }
     }
 }

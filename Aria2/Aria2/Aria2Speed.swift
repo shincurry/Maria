@@ -29,7 +29,7 @@ public struct Aria2Speed {
             return self.getStringBySpeed(ul)
         }
     }
-    private func getStringBySpeed(value: Double) -> String {
+    private func getStringBySpeed(_ value: Double) -> String {
         if value > 1024 {
             return String(format: "%.2f MB/s", value / 1024.0)
         } else {

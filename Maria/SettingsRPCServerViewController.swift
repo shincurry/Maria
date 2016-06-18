@@ -16,7 +16,7 @@ class SettingsRPCServerViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     @IBOutlet weak var isAutoConnectAria2Enabled: NSButton!
     
@@ -26,7 +26,8 @@ class SettingsRPCServerViewController: NSViewController {
     @IBOutlet weak var basePath: NSTextField!
     @IBOutlet weak var path: NSTextField!
     
-    @IBOutlet weak var isSSLEnabled: NSButton!
+    
+//    @IBOutlet weak var isSSLEnabled: NSButton!
     
     @IBOutlet weak var secret: NSSecureTextField!
     
@@ -38,17 +39,17 @@ class SettingsRPCServerViewController: NSViewController {
 
 extension SettingsRPCServerViewController {
     
-    @IBAction func finishEditing(sender: NSTextField) {
+    @IBAction func finishEditing(_ sender: NSTextField) {
         var key = ""
         switch sender {
         case host:
             key = "RPCServerHost"
         case port:
             if let intValue = Int(sender.stringValue) {
-                defaults.setInteger(intValue, forKey: key)
+                defaults.set(intValue, forKey: key)
                 defaults.synchronize()
             } else {
-                sender.stringValue = "\(defaults.integerForKey(key))"
+                sender.stringValue = "\(defaults.integer(forKey: key))"
             }
             key = "RPCServerPort"
             return
@@ -63,18 +64,18 @@ extension SettingsRPCServerViewController {
         default:
             break
         }
-        defaults.setObject(sender.stringValue, forKey: key)
+        defaults.set(sender.stringValue, forKey: key)
         defaults.synchronize()
     }
     
-    @IBAction func enableSSL(sender: NSButton) {
+    @IBAction func enableSSL(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.setBool(boolValue, forKey: "EnabledSSL")
+        defaults.set(boolValue, forKey: "EnabledSSL")
         defaults.synchronize()
     }
-    @IBAction func enableAutoConnectArai2(sender: NSButton) {
+    @IBAction func enableAutoConnectArai2(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.setBool(boolValue, forKey: "EnableAutoConnectAria2")
+        defaults.set(boolValue, forKey: "EnableAutoConnectAria2")
         defaults.synchronize()
     }
     
@@ -82,36 +83,36 @@ extension SettingsRPCServerViewController {
 }
 
 extension SettingsRPCServerViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(obj: NSNotification) {
+    override func controlTextDidChange(_ obj: Notification) {
         basePath.stringValue = "http(s)://\(host.stringValue):\(port.stringValue)"
     }
 }
 
 extension SettingsRPCServerViewController {
     func userDefaultsInit() {
-        if let value = defaults.objectForKey("RPCServerHost") as? String {
+        if let value = defaults.object(forKey: "RPCServerHost") as? String {
             host.stringValue = value
         }
-        if let value = defaults.objectForKey("RPCServerPort") as? String {
+        if let value = defaults.object(forKey: "RPCServerPort") as? String {
             port.stringValue = value
         }
-        if let value = defaults.objectForKey("RPCServerPath") as? String {
+        if let value = defaults.object(forKey: "RPCServerPath") as? String {
             path.stringValue = value
         }
-        if let value = defaults.objectForKey("RPCServerSecret") as? String {
+        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
             secret.stringValue = value
         }
-        if let value = defaults.objectForKey("RPCServerUsername") as? String {
+        if let value = defaults.object(forKey: "RPCServerUsername") as? String {
             username.stringValue = value
         }
-        if let value = defaults.objectForKey("RPCServerPassword") as? String {
+        if let value = defaults.object(forKey: "RPCServerPassword") as? String {
             password.stringValue = value
         }
         
-        isSSLEnabled.state = defaults.boolForKey("EnabledSSL") ? 1 : 0
+//        isSSLEnabled.state = defaults.bool(forKey: "EnabledSSL") ? 1 : 0
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
-        isAutoConnectAria2Enabled.state = defaults.boolForKey("EnableAutoConnectAria2") ? 1 : 0
+//        isAutoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
     }
 }

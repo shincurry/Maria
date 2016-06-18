@@ -16,23 +16,23 @@ class SettingsAria2ViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     @IBOutlet weak var enableAria2AutoLaunch: NSButton!
     @IBOutlet weak var aria2ConfPath: NSTextField!
     
-    @IBAction func switchOptions(sender: NSButton) {
+    @IBAction func switchOptions(_ sender: NSButton) {
         let boolValue = sender.state == 1 ? true : false
         switch sender {
         case enableAria2AutoLaunch:
-            defaults.setBool(boolValue, forKey: "EnableAria2AutoLaunch")
+            defaults.set(boolValue, forKey: "EnableAria2AutoLaunch")
         default:
             break
         }
     }
     
-    @IBAction func finishEditing(sender: NSTextField) {
-        defaults.setObject(sender.stringValue, forKey: "Aria2ConfPath")
+    @IBAction func finishEditing(_ sender: NSTextField) {
+        defaults.set(sender.stringValue, forKey: "Aria2ConfPath")
         defaults.synchronize()
     }
     
@@ -41,8 +41,8 @@ class SettingsAria2ViewController: NSViewController {
 
 extension SettingsAria2ViewController {
     func userDefaultsInit() {
-        enableAria2AutoLaunch.state = defaults.boolForKey("EnableAria2AutoLaunch") ? 1 : 0
-        if let value = defaults.objectForKey("Aria2ConfPath") as? String {
+        enableAria2AutoLaunch.state = defaults.bool(forKey: "EnableAria2AutoLaunch") ? 1 : 0
+        if let value = defaults.object(forKey: "Aria2ConfPath") as? String {
             aria2ConfPath.stringValue = value
         }
     }

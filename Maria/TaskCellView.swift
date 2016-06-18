@@ -12,8 +12,8 @@ import Aria2
 
 class TaskCellView: NSTableCellView {
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         // Drawing code here.
         actionButton.target = self
         
@@ -31,8 +31,8 @@ class TaskCellView: NSTableCellView {
     
     var fileName: String? {
         didSet {
-            if let ext = fileName!.componentsSeparatedByString(".").last?.lowercaseString {
-                let taskIconImage = NSWorkspace.sharedWorkspace().iconForFileType(ext)
+            if let ext = fileName!.components(separatedBy: ".").last?.lowercased() {
+                let taskIconImage = NSWorkspace.shared().icon(forFileType: ext)
                 taskIconImage.size = taskTypeImageView.frame.size
                 taskTypeImageView.image = taskIconImage
             }
@@ -107,7 +107,7 @@ class TaskCellView: NSTableCellView {
         }
     }
     
-    func update(task: Aria2Task) {
+    func update(_ task: Aria2Task) {
         data = task
         gid = task.gid!
         status = task.status!
@@ -125,9 +125,9 @@ class TaskCellView: NSTableCellView {
         taskRemainingTimeLabel.stringValue = task.remainingString
     }
     
-    @IBAction func findPath(sender: NSButton) {
+    @IBAction func findPath(_ sender: NSButton) {
         let path = isBtDownload ? data!.torrentDirectoryPath! : data!.filePath!
-        NSWorkspace.sharedWorkspace().selectFile(path, inFileViewerRootedAtPath: "")
+        NSWorkspace.shared().selectFile(path, inFileViewerRootedAtPath: "")
     }
 }
 

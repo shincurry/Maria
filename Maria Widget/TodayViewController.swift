@@ -36,21 +36,21 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
     var taskData: [Aria2Task] = []
     
-    let defaults = NSUserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     var aria2 = Aria2.shared
-    var timer: NSTimer!
+    var timer: Timer!
     var authorized: Bool = true
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        completionHandler(.NewData)
+    func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
+        completionHandler(.newData)
     }
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: NSBundle.mainBundle())
-        taskListTableView.registerNib(nib!, forIdentifier: "TodayTaskCell")
+        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main())
+        taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
         aria2Config()
         
@@ -66,7 +66,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
     
     func updateListStatus() {
-        if aria2.status == .Connected {
+        if aria2.status == .connected {
             aria2.getGlobalStatus()
             aria2.tellActive()
         }
@@ -82,37 +82,42 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         aria2.onActives = { tasks in
             var taskArray = tasks
             if taskArray.isEmpty {
-                self.taskListTableView.gridStyleMask = .SolidHorizontalGridLineMask
+                self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
             } else {
-                self.taskListTableView.gridStyleMask = .GridNone
-                if self.defaults.boolForKey("TodayEnableTasksSortedByProgress") {
-                    taskArray = taskArray.sort() { return $0.progress > $1.progress }
+                self.taskListTableView.gridStyleMask = NSTableViewGridLineStyle()
+                if self.defaults.bool(forKey: "TodayEnableTasksSortedByProgress") {
+                    taskArray = taskArray.sorted() { return $0.progress > $1.progress }
                 }
-                let number = self.defaults.integerForKey("TodayTasksNumber")
+                let number = self.defaults.integer(forKey: "TodayTasksNumber")
                 if number < taskArray.count {
-                    taskArray = taskArray.enumerate().filter({ (index, task) in return index > number-1 }).map({ return $1 })
+                    taskArray = taskArray.enumerated().filter({ (index, task) in return index > number-1 }).map({ return $1 })
                 }
             }
             self.taskData = taskArray
             self.updateListView()
         }
         aria2.onStatusChanged = {
-            let flag = (self.aria2.status == .Connected)
-            self.speedView.hidden = !flag
-            self.separateLine.hidden = !flag
-            self.taskListTableView.hidden = !flag
-            self.alertLabel.hidden = flag
+            let flag = (self.aria2.status == .connected)
+            self.speedView.isHidden = !flag
+            self.separateLine.isHidden = !flag
+            self.taskListTableView.isHidden = !flag
+            self.alertLabel.isHidden = flag
 
             switch self.aria2.status {
-            case .Connecting:
+            case .connecting:
                 self.alertLabel.stringValue = "Connecting to aria2..."
                 self.taskListScrollViewHeightConstraint.constant = 0
-                self.noTaskAlertLabel.hidden = true
-            case .Connected:
+                self.noTaskAlertLabel.isHidden = true
+            case .connected:
                 self.updateListStatus()
-                self.noTaskAlertLabel.hidden = !(self.taskData.count == 0)
-            case .Disconnected:
-                self.noTaskAlertLabel.hidden = true
+                self.noTaskAlertLabel.isHidden = !(self.taskData.count == 0)
+            case .unauthorized:
+                
+                self.noTaskAlertLabel.isHidden = true
+                self.alertLabel.stringValue = "Connection unauthorized."
+                self.taskListScrollViewHeightConstraint.constant = 0
+            case .disconnected:
+                self.noTaskAlertLabel.isHidden = true
                 self.alertLabel.stringValue = "Disconnected to aria2."
                 self.taskListScrollViewHeightConstraint.constant = 0
             }
@@ -124,7 +129,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 extension TodayViewController {
     private func runTimer() {
         updateListStatus()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
     private func closeTimer() {
         timer.invalidate()
@@ -142,24 +147,24 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
         if tasksChanged {
             taskListTableView.reloadData()
             taskListScrollViewHeightConstraint.constant = tasksNone ? (cellHeight * 3.0) : (cellHeight * CGFloat(numberOfActive))
-            noTaskAlertLabel.hidden = !tasksNone
+            noTaskAlertLabel.isHidden = !tasksNone
         } else {
             for index in 0..<taskData.count {
-                let cell = taskListTableView.viewAtColumn(0, row: index, makeIfNecessary: true) as! TodayTaskCellView
+                let cell = taskListTableView.view(atColumn: 0, row: index, makeIfNecessary: true) as! TodayTaskCellView
                 cell.update(taskData[index], isLast: index == taskData.count-1)
             }
         }
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return taskData.isEmpty ? 3 : taskData.count
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if taskData.isEmpty {
             return NSTableCellView()
         }
-        let cell = tableView.makeViewWithIdentifier("TodayTaskCell", owner: self) as! TodayTaskCellView
+        let cell = tableView.make(withIdentifier: "TodayTaskCell", owner: self) as! TodayTaskCellView
         cell.update(taskData[row], isLast: row == taskData.count-1)
         return cell
     }
