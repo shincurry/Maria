@@ -15,7 +15,7 @@ class TaskListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        let nib = NSNib(nibNamed: "TaskCellView", bundle: Bundle.main())
+        let nib = NSNib(nibNamed: "TaskCellView", bundle: Bundle.main)
         taskListTableView.register(nib!, forIdentifier: "TaskCell")
         taskListTableView.rowHeight = 64
         

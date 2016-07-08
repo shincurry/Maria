@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -158,17 +158,17 @@
             <objects>
                 <viewController id="tQB-UM-JVL" customClass="SettingsAria2ViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8WT-S7-bNM">
-                        <rect key="frame" x="0.0" y="0.0" width="508" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="166"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="YCH-IB-CPN">
-                                <rect key="frame" x="17" y="36" width="474" height="244"/>
+                                <rect key="frame" x="17" y="39" width="474" height="107"/>
                                 <view key="contentView" id="5or-kC-b57">
-                                    <rect key="frame" x="1" y="1" width="472" height="228"/>
+                                    <rect key="frame" x="1" y="1" width="472" height="91"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Uz-zu-QGR">
-                                            <rect key="frame" x="18" y="157" width="96" height="17"/>
+                                            <rect key="frame" x="18" y="20" width="96" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title=".Conf File Path:" id="vvJ-A0-8eH">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -176,7 +176,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-fV-u2p">
-                                            <rect key="frame" x="120" y="155" width="332" height="22"/>
+                                            <rect key="frame" x="120" y="18" width="332" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="is0-if-gf5">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -187,7 +187,7 @@
                                             </connections>
                                         </textField>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="xTA-bS-085">
-                                            <rect key="frame" x="18" y="192" width="436" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="436" height="18"/>
                                             <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5iD-4U-EG1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -204,16 +204,18 @@
                                         <constraint firstItem="1Uz-zu-QGR" firstAttribute="top" secondItem="xTA-bS-085" secondAttribute="bottom" constant="20" id="dLS-0t-e8u"/>
                                         <constraint firstItem="lM8-fV-u2p" firstAttribute="centerY" secondItem="1Uz-zu-QGR" secondAttribute="centerY" id="kRf-tJ-zsz"/>
                                         <constraint firstItem="lM8-fV-u2p" firstAttribute="leading" secondItem="1Uz-zu-QGR" secondAttribute="trailing" constant="8" id="qZf-H3-ncC"/>
+                                        <constraint firstAttribute="bottom" secondItem="1Uz-zu-QGR" secondAttribute="bottom" constant="20" id="tac-wI-BqD"/>
                                         <constraint firstItem="xTA-bS-085" firstAttribute="top" secondItem="5or-kC-b57" secondAttribute="top" constant="20" id="tnI-Dn-jsJ"/>
                                         <constraint firstItem="1Uz-zu-QGR" firstAttribute="leading" secondItem="xTA-bS-085" secondAttribute="leading" id="w0S-vt-hAw"/>
                                     </constraints>
                                 </view>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="103" id="zax-EV-DYY"/>
+                                </constraints>
                             </box>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="YCH-IB-CPN" secondAttribute="bottom" constant="40" id="Kmx-qr-YZf"/>
+                            <constraint firstAttribute="bottom" secondItem="YCH-IB-CPN" secondAttribute="bottom" constant="43" id="Kmx-qr-YZf"/>
                             <constraint firstItem="YCH-IB-CPN" firstAttribute="leading" secondItem="8WT-S7-bNM" secondAttribute="leading" constant="20" id="QUf-Hw-lxM"/>
                             <constraint firstAttribute="trailing" secondItem="YCH-IB-CPN" secondAttribute="trailing" constant="20" id="StL-it-WKK"/>
                             <constraint firstItem="YCH-IB-CPN" firstAttribute="top" secondItem="8WT-S7-bNM" secondAttribute="top" constant="20" id="yNm-hb-DRv"/>
@@ -226,47 +228,42 @@
                 </viewController>
                 <customObject id="lGb-OC-gmE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="1955"/>
+            <point key="canvasLocation" x="1142" y="1900.5"/>
         </scene>
         <!--RPC Server-->
         <scene sceneID="KrS-J6-mvj">
             <objects>
                 <viewController title="RPC Server" id="jsm-It-tHy" customClass="SettingsRPCServerViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WTw-he-Tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="508" height="380"/>
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="381"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="General" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-rS-big">
-                                <rect key="frame" x="17" y="290" width="474" height="70"/>
+                            <box title="General" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-rS-big">
+                                <rect key="frame" x="17" y="290" width="474" height="71"/>
                                 <view key="contentView" id="fFg-U6-hg9">
-                                    <rect key="frame" x="1" y="1" width="472" height="54"/>
+                                    <rect key="frame" x="2" y="2" width="470" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="TOM-vZ-6NM">
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="r4z-MS-3sp">
                                             <rect key="frame" x="18" y="18" width="277" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Connect aria2 automatically when app run" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XCH-vr-zzR">
+                                            <buttonCell key="cell" type="check" title="Connect aria2 automatically when app run" bezelStyle="regularSquare" imagePosition="left" inset="2" id="eob-aj-KjL">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="enableAutoConnectArai2:" target="jsm-It-tHy" id="YLz-Tc-8N8"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="TOM-vZ-6NM" firstAttribute="leading" secondItem="fFg-U6-hg9" secondAttribute="leading" constant="20" id="T9q-Xs-zS1"/>
-                                        <constraint firstItem="TOM-vZ-6NM" firstAttribute="top" secondItem="fFg-U6-hg9" secondAttribute="top" constant="20" id="UaV-WD-aiS"/>
-                                        <constraint firstAttribute="bottom" secondItem="TOM-vZ-6NM" secondAttribute="bottom" constant="20" id="wPv-K3-3ZA"/>
+                                        <constraint firstAttribute="bottom" secondItem="r4z-MS-3sp" secondAttribute="bottom" constant="20" id="3wk-VN-YP6"/>
+                                        <constraint firstItem="r4z-MS-3sp" firstAttribute="top" secondItem="fFg-U6-hg9" secondAttribute="top" constant="20" id="CGJ-Ui-OKk"/>
+                                        <constraint firstItem="r4z-MS-3sp" firstAttribute="leading" secondItem="fFg-U6-hg9" secondAttribute="leading" constant="20" id="Ngi-XQ-U6q"/>
                                     </constraints>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="3P1-0n-m9u"/>
                                     <constraint firstAttribute="width" constant="468" id="Aqv-KI-dhe"/>
-                                    <constraint firstAttribute="height" constant="66" id="hdq-og-laO"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
-                            <box title="Server" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="MFQ-68-ZNW">
+                            <box borderType="line" title="Server" translatesAutoresizingMaskIntoConstraints="NO" id="MFQ-68-ZNW">
                                 <rect key="frame" x="17" y="36" width="474" height="250"/>
                                 <view key="contentView" id="zBa-PC-WIW">
                                     <rect key="frame" x="1" y="1" width="472" height="234"/>
@@ -380,11 +377,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Wnr-Us-bMh">
+                                        <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Wnr-Us-bMh">
                                             <rect key="frame" x="9" y="99" width="455" height="5"/>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-nZ-H0t">
                                             <rect key="frame" x="15" y="72" width="133" height="17"/>
@@ -495,8 +489,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="246" id="nr5-47-2cZ"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -510,13 +502,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoConnectAria2Enabled" destination="eob-aj-KjL" id="lu9-eZ-Xgp"/>
                         <outlet property="basePath" destination="mtV-XZ-wbA" id="PQ0-OZ-dkE"/>
                         <outlet property="host" destination="2sV-os-73Z" id="ilW-9G-cjf"/>
-                        <outlet property="isAutoConnectAria2Enabled" destination="TOM-vZ-6NM" id="pmF-uG-pci"/>
                         <outlet property="password" destination="2fg-Bg-Yzh" id="e8M-hX-4km"/>
                         <outlet property="path" destination="EjE-uH-FMt" id="ZdH-pR-Biy"/>
                         <outlet property="port" destination="NM7-Vk-2eD" id="bVK-HN-eoR"/>
                         <outlet property="secret" destination="LS6-VL-n5A" id="MIE-Lg-ST4"/>
+                        <outlet property="sslEnabled" destination="cgX-YH-pno" id="I4V-Bp-rCl"/>
                         <outlet property="username" destination="GTU-eL-jg2" id="ArU-GM-bTC"/>
                     </connections>
                 </viewController>
@@ -532,7 +525,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="498" height="243"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="General" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
+                            <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
                                 <rect key="frame" x="17" y="126" width="464" height="97"/>
                                 <view key="contentView" id="sn5-9m-lOh">
                                     <rect key="frame" x="1" y="1" width="462" height="81"/>
@@ -568,10 +561,8 @@
                                     <constraint firstAttribute="height" constant="93" id="GFz-bx-7OT"/>
                                     <constraint firstAttribute="width" constant="458" id="r8h-7z-NWb"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
-                            <box title="Web App" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-Ba-1Nf">
+                            <box borderType="line" title="Web App" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-Ba-1Nf">
                                 <rect key="frame" x="17" y="36" width="464" height="74"/>
                                 <view key="contentView" id="YMb-5g-18A">
                                     <rect key="frame" x="1" y="1" width="462" height="58"/>
@@ -612,8 +603,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="mUC-OK-qq5"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -668,7 +657,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="275"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Task" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="LgP-1z-DoL">
+                            <box borderType="line" title="Task" translatesAutoresizingMaskIntoConstraints="NO" id="LgP-1z-DoL">
                                 <rect key="frame" x="17" y="134" width="466" height="121"/>
                                 <view key="contentView" id="LqY-D8-qvg">
                                     <rect key="frame" x="1" y="1" width="464" height="105"/>
@@ -753,10 +742,8 @@
                                     <constraint firstAttribute="height" constant="117" id="5OL-yh-0sb"/>
                                     <constraint firstAttribute="width" constant="460" id="dgC-44-8VZ"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
-                            <box title="Connection" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="0Ne-R2-GCh">
+                            <box borderType="line" title="Connection" translatesAutoresizingMaskIntoConstraints="NO" id="0Ne-R2-GCh">
                                 <rect key="frame" x="17" y="36" width="466" height="94"/>
                                 <view key="contentView" id="xui-AW-gT6">
                                     <rect key="frame" x="1" y="1" width="464" height="78"/>
@@ -794,8 +781,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="yT2-5b-dkS"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -830,7 +815,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box title="Low Speed Mode" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="10v-QU-Wzb">
+                            <box borderType="line" title="Low Speed Mode" translatesAutoresizingMaskIntoConstraints="NO" id="10v-QU-Wzb">
                                 <rect key="frame" x="17" y="36" width="426" height="100"/>
                                 <view key="contentView" id="dmN-FM-2gW">
                                     <rect key="frame" x="1" y="1" width="424" height="84"/>
@@ -922,10 +907,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="wWb-jG-CvI"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
-                            <box title="Global Bandwidth" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-bI-XtY">
+                            <box borderType="line" title="Global Bandwidth" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-bI-XtY">
                                 <rect key="frame" x="17" y="140" width="426" height="100"/>
                                 <view key="contentView" id="wAV-O1-10g">
                                     <rect key="frame" x="1" y="1" width="424" height="84"/>
@@ -1022,8 +1005,6 @@
                                     <constraint firstAttribute="width" constant="420" id="C4S-Ya-EjJ"/>
                                     <constraint firstAttribute="height" constant="96" id="a7K-N2-jj8"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
                         </subviews>
                         <constraints>

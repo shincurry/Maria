@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        NSUserNotificationCenter.default().delegate = self
+        NSUserNotificationCenter.default.delegate = self
         
         if defaults.bool(forKey: "EnableAutoConnectAria2") {
             aria2open()

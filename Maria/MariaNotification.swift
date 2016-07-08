@@ -13,7 +13,7 @@ public class MariaNotification {
         let notification = NSUserNotification()
         notification.title = title
         notification.informativeText = details
-        NSUserNotificationCenter.default().deliver(notification)
+        NSUserNotificationCenter.default.deliver(notification)
     }
     static public func actionNotification(identifier: String, title: String, details: String, userInfo: [String: AnyObject]?) {
         let notification = NSUserNotification()
@@ -21,6 +21,6 @@ public class MariaNotification {
         notification.informativeText = details
         notification.identifier = identifier
         notification.userInfo = userInfo
-        NSUserNotificationCenter.default().deliver(notification)
+        NSUserNotificationCenter.default.deliver(notification)
     }
 }

@@ -96,7 +96,7 @@ public class Aria2 {
      - parameter data:	torrent data
      */
     public func add(torrent: Data) {
-        let base64Encoded = torrent.base64EncodedString(.encoding64CharacterLineLength)
+        let base64Encoded = torrent.base64EncodedString(options: .lineLength64Characters)
         request(method: .addTorrent, params: "\"\(base64Encoded)\"")
     }
     public var onAddTorrent: ((flag: Bool) -> Void)?
@@ -263,14 +263,13 @@ public class Aria2 {
     
 extension Aria2 {
     private func request(method: Aria2Method, params: String) {
-        
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
-        let data = socketString.data(using: String.Encoding.utf8)!
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
+        let data = socketString.data(using: .utf8)!
         self.socket.writeData(data)
     }
     private func request(method: Aria2Method, id: String, params: String) {
-        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\":\"aria2.\(method.rawValue)\",\"params\":[\"token:\(secret)\", \(params)]}"
-        let data = socketString.data(using: String.Encoding.utf8)!
+        let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
+        let data = socketString.data(using: .utf8)!
         self.socket.writeData(data)
     }
 }
@@ -282,7 +281,6 @@ extension Aria2: WebSocketDelegate {
         print("WebSocket connected")
         status = .connected
         onConnect?()
-        self.socket.writeData("{ \"jsonrpc\": \"2.0\", \"id\": \"123\"}".data(using: String.Encoding.utf8)!)
     }
     public func websocketDidDisconnect(_ socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
@@ -294,7 +292,7 @@ extension Aria2: WebSocketDelegate {
     }
     
     public func websocketDidReceiveMessage(_ socket: WebSocket, text: String) {
-        let results = JSON(data: text.data(using: String.Encoding.utf8)!)
+        let results = JSON(data: text.data(using: .utf8)!)
         if results["error"]["message"] == "Unauthorized" {
             self.status = .unauthorized
             return

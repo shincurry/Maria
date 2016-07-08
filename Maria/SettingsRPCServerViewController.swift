@@ -18,7 +18,7 @@ class SettingsRPCServerViewController: NSViewController {
     
     let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
-    @IBOutlet weak var isAutoConnectAria2Enabled: NSButton!
+    @IBOutlet weak var autoConnectAria2Enabled: NSButtonCell!
     
     @IBOutlet weak var host: NSTextField!
     @IBOutlet weak var port: NSTextField!
@@ -27,7 +27,7 @@ class SettingsRPCServerViewController: NSViewController {
     @IBOutlet weak var path: NSTextField!
     
     
-//    @IBOutlet weak var isSSLEnabled: NSButton!
+    @IBOutlet weak var sslEnabled: NSButton!
     
     @IBOutlet weak var secret: NSSecureTextField!
     
@@ -68,12 +68,14 @@ extension SettingsRPCServerViewController {
         defaults.synchronize()
     }
     
+    
+    
     @IBAction func enableSSL(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
         defaults.set(boolValue, forKey: "EnabledSSL")
         defaults.synchronize()
     }
-    @IBAction func enableAutoConnectArai2(_ sender: NSButton) {
+    @IBAction func enableAutoConnectAria2(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
         defaults.set(boolValue, forKey: "EnableAutoConnectAria2")
         defaults.synchronize()
@@ -108,11 +110,10 @@ extension SettingsRPCServerViewController {
         if let value = defaults.object(forKey: "RPCServerPassword") as? String {
             password.stringValue = value
         }
-        
-//        isSSLEnabled.state = defaults.bool(forKey: "EnabledSSL") ? 1 : 0
+        sslEnabled.state = defaults.bool(forKey: "EnabledSSL") ? 1 : 0
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
-//        isAutoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
+        autoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
     }
 }

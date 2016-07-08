@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880980171D2F850900237D8E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880980161D2F850900237D8E /* Pods.framework */; };
 		887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */; };
-		889485AA1CBE5205000839CD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485A91CBE5205000839CD /* Pods.framework */; };
 		8897835B1CBE105400C12387 /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8897835A1CBE105400C12387 /* Aria2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889783691CBE105C00C12387 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889783681CBE105C00C12387 /* Aria2.swift */; };
 		88D6CDCE1CE44B9200450E0C /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */; };
@@ -17,8 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		880980161D2F850900237D8E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods.framework; sourceTree = "<absolute>"; };
 		887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Method.swift; sourceTree = "<group>"; };
-		889485A91CBE5205000839CD /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Maria-hbwcxzhhjmegsfgfpmrnhlhlcmcd/Build/Products/Debug/Pods.framework"; sourceTree = "<group>"; };
 		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
 		8897835C1CBE105400C12387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,19 +33,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				889485AA1CBE5205000839CD /* Pods.framework in Frameworks */,
+				880980171D2F850900237D8E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		880980151D2F850900237D8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				880980161D2F850900237D8E /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8897834D1CBE105400C12387 = {
 			isa = PBXGroup;
 			children = (
-				889485A91CBE5205000839CD /* Pods.framework */,
 				889783591CBE105400C12387 /* Aria2 */,
 				889783581CBE105400C12387 /* Products */,
+				880980151D2F850900237D8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

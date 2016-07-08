@@ -14,7 +14,7 @@ class AboutViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        let infoDictionary = Bundle.main().infoDictionary!
+        let infoDictionary = Bundle.main.infoDictionary!
         
         let version = infoDictionary["CFBundleShortVersionString"] as! String
         let build = infoDictionary["CFBundleVersion"] as! String

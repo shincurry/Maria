@@ -49,7 +49,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main())
+        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main)
         taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
         aria2Config()
@@ -109,10 +109,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.taskListScrollViewHeightConstraint.constant = 0
                 self.noTaskAlertLabel.isHidden = true
             case .connected:
-                self.updateListStatus()
                 self.noTaskAlertLabel.isHidden = !(self.taskData.count == 0)
             case .unauthorized:
-                
                 self.noTaskAlertLabel.isHidden = true
                 self.alertLabel.stringValue = "Connection unauthorized."
                 self.taskListScrollViewHeightConstraint.constant = 0
