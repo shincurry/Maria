@@ -95,7 +95,6 @@
 /* Begin PBXFileReference section */
 		868AFE991919D9A63AB4E8AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8805D1721CBE5BA000DA33CA /* Maria Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Maria Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8805D1761CBE5BA000DA33CA /* Maria_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria_Widget.entitlements; sourceTree = "<group>"; };
 		8805D1771CBE5BA000DA33CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		8805D17A1CBE5BA000DA33CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
 		8805D17C1CBE5BA000DA33CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,17 +185,8 @@
 				887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */,
 				8805D17C1CBE5BA000DA33CA /* Info.plist */,
 				8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */,
-				8805D1751CBE5BA000DA33CA /* Supporting Files */,
 			);
 			path = "Maria Widget";
-			sourceTree = "<group>";
-		};
-		8805D1751CBE5BA000DA33CA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8805D1761CBE5BA000DA33CA /* Maria_Widget.entitlements */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		8827EDF31CCB502E00DDB09D /* Settings */ = {
@@ -332,13 +322,14 @@
 		889485671CBE4D4A000839CD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ShinCurry;
 				TargetAttributes = {
 					8805D1711CBE5BA000DA33CA = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = F86ABKXNGB;
+						DevelopmentTeamName = "Debra Dean";
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -353,6 +344,7 @@
 					8894856E1CBE4D4A000839CD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = F86ABKXNGB;
+						DevelopmentTeamName = "Debra Dean";
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {

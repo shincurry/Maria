@@ -143,6 +143,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
                 }
             }
         }
+//        NSApplication.shared().dockTile.badgeLabel = (numberOfTask.active == 0 ? nil : "\(numberOfTask.active)")
     }
     
     func updateTasksStatus(_ status: String) {

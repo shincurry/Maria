@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="16A238m" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TodayViewController" customModule="Maria_Widget" customModuleProvider="target">
@@ -33,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="wiV-Eo-DgL">
-                    <rect key="frame" x="66" y="143" width="188" height="23"/>
+                    <rect key="frame" x="68" y="143" width="184" height="23"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K1O-EY-ZjK">
                             <rect key="frame" x="6" y="2" width="19" height="19"/>
@@ -44,7 +43,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8ED-dY-Gqu">
-                            <rect key="frame" x="29" y="3" width="57" height="17"/>
+                            <rect key="frame" x="29" y="3" width="55" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.0 KB/s" id="oxY-Pf-Bwm">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -52,7 +51,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OKP-3W-pIM">
-                            <rect key="frame" x="125" y="3" width="57" height="17"/>
+                            <rect key="frame" x="123" y="3" width="55" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.0 KB/s" id="bPM-Tn-fxE">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -60,7 +59,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z3f-dn-qc1">
-                            <rect key="frame" x="102" y="2" width="19" height="19"/>
+                            <rect key="frame" x="100" y="2" width="19" height="19"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⬆︎" id="FFg-xi-dix">
                                 <font key="font" size="15" name="HiraMinProN-W3"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -83,11 +82,8 @@
                         <constraint firstItem="K1O-EY-ZjK" firstAttribute="leading" secondItem="wiV-Eo-DgL" secondAttribute="leading" constant="8" id="yVX-7T-FcF"/>
                     </constraints>
                 </customView>
-                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="p23-RE-zaR">
+                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="p23-RE-zaR">
                     <rect key="frame" x="2" y="138" width="298" height="5"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qUr-um-uw5">
                     <rect key="frame" x="121" y="62" width="57" height="17"/>
@@ -104,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="mLd-cw-bDm">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -130,7 +126,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="123" id="8se-ya-p4C"/>
@@ -161,7 +156,7 @@
                 <constraint firstItem="p23-RE-zaR" firstAttribute="top" secondItem="wiV-Eo-DgL" secondAttribute="bottom" constant="2" id="lhe-zf-5h4"/>
                 <constraint firstItem="g7b-Mw-sQ5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="tar-4s-vAN"/>
             </constraints>
-            <point key="canvasLocation" x="274" y="310"/>
+            <point key="canvasLocation" x="120" y="290"/>
         </customView>
     </objects>
 </document>

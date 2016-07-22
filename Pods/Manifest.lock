@@ -3,21 +3,21 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Starscream (from `https://github.com/ShinCurry/Starscream.git`, branch `swift3`)
+  - Starscream (from `https://github.com/daltoniam/Starscream.git`, branch `swift3`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
   Starscream:
     :branch: swift3
-    :git: https://github.com/ShinCurry/Starscream.git
+    :git: https://github.com/daltoniam/Starscream.git
   SwiftyJSON:
     :branch: swift3
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Starscream:
-    :commit: 4cc88822405d3e03724af799e07e6f9f89aafbdc
-    :git: https://github.com/ShinCurry/Starscream.git
+    :commit: c2782b545281e6a6ecfc770379f8cd8c5252f2b9
+    :git: https://github.com/daltoniam/Starscream.git
   SwiftyJSON:
     :commit: 6882c23c19d8c36811e9424daf458877032f4b81
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git

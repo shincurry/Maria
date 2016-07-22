@@ -265,12 +265,12 @@ extension Aria2 {
     private func request(method: Aria2Method, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
         let data = socketString.data(using: .utf8)!
-        self.socket.writeData(data)
+        self.socket.write(data: data)
     }
     private func request(method: Aria2Method, id: String, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
         let data = socketString.data(using: .utf8)!
-        self.socket.writeData(data)
+        self.socket.write(data: data)
     }
 }
 

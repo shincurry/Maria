@@ -313,6 +313,9 @@
 					3508DBDF35C703F497CAEC5420B91B1B = {
 						LastSwiftMigration = 0800;
 					};
+					8AD418BA62186C4292207E9B090CB66E = {
+						LastSwiftMigration = 0800;
+					};
 					B78F766B0152B7D473329AC5342DC04C = {
 						LastSwiftMigration = 0800;
 					};
@@ -572,6 +575,7 @@
 				PRODUCT_NAME = Pods;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -603,6 +607,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
