@@ -12,9 +12,7 @@ an OS X app/widget for aria2 download tool.
 
 #### Today Widget
 
-![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget-2-1.png)
-
-![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget-2-2.png)
+![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget-Sierra.png)
 
 ## Features
 
@@ -25,9 +23,9 @@ an OS X app/widget for aria2 download tool.
 
 ## Test Environment
 
-* Xcode 7.3
-* Swift 2.2
-* OS X 10.11.4
+* Xcode 8 beta 3 (8S174q)
+* Swift 3
+* macOS 10.12 public beta 2
 
 ## Thanks
 

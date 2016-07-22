@@ -8,16 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		1CA3D4B4A3005DC62F2843C2 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */; };
-		8805D1731CBE5BA000DA33CA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485921CBE4E44000839CD /* NotificationCenter.framework */; };
-		8805D1781CBE5BA000DA33CA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8805D1771CBE5BA000DA33CA /* TodayViewController.swift */; };
-		8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8805D1791CBE5BA000DA33CA /* TodayViewController.xib */; };
-		8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */; };
-		8805D1821CBE5BA000DA33CA /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8805D1721CBE5BA000DA33CA /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8805D18F1CBE7BF700DA33CA /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
-		8805D1901CBE7BFD00DA33CA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */; };
 		8827EDF51CCB50A700DDB09D /* SettingsAria2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EDF41CCB50A700DDB09D /* SettingsAria2ViewController.swift */; };
 		8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */; };
 		8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */; };
+		88298CF61D41E56500BBAFE8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485921CBE4E44000839CD /* NotificationCenter.framework */; };
+		88298CFB1D41E56500BBAFE8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88298CFA1D41E56500BBAFE8 /* TodayViewController.swift */; };
+		88298CFE1D41E56600BBAFE8 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88298CFC1D41E56500BBAFE8 /* TodayViewController.xib */; };
+		88298D021D41E56600BBAFE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88298D001D41E56600BBAFE8 /* InfoPlist.strings */; };
+		88298D051D41E56600BBAFE8 /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88298CF51D41E56500BBAFE8 /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		88298D091D41E57700BBAFE8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0738ABFBE25BC4A8ABBD4B8 /* Pods.framework */; };
+		88298D0A1D41E57E00BBAFE8 /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
+		88298D0D1D41E63E00BBAFE8 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */; };
+		88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */; };
 		883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883327A21CC751630002B561 /* NewTaskViewController.swift */; };
 		883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */; };
 		883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52A1CE1D52300B10A25 /* TaskCellView.swift */; };
@@ -27,10 +29,9 @@
 		8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8870EA241CD4F13E00278B2C /* Settings.storyboard */; };
 		8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870EA281CD5A70200278B2C /* MainWindowController.swift */; };
 		887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */; };
-		887AE45C1CC0FF3100AAD3E3 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */; };
-		887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */; };
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
+		888176371D4234F50040D767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */; };
 		888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF71D08393F0077EADB /* SettingsWindowController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
@@ -38,17 +39,16 @@
 		889485881CBE4E1A000839CD /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; };
 		889485891CBE4E1A000839CD /* Aria2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 889485871CBE4E13000839CD /* Aria2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C478091CEF432000F8026A /* SettingsTodayViewController.swift */; };
-		88C4780B1CEF519200F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD31CE495D500450E0C /* MariaNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8805D1801CBE5BA000DA33CA /* PBXContainerItemProxy */ = {
+		88298D031D41E56600BBAFE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 889485671CBE4D4A000839CD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8805D1711CBE5BA000DA33CA;
+			remoteGlobalIDString = 88298CF41D41E56500BBAFE8;
 			remoteInfo = "Maria Widget";
 		};
 		889485861CBE4E13000839CD /* PBXContainerItemProxy */ = {
@@ -85,7 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8805D1821CBE5BA000DA33CA /* Maria Widget.appex in Embed App Extensions */,
+				88298D051D41E56600BBAFE8 /* Maria Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,16 +94,19 @@
 
 /* Begin PBXFileReference section */
 		868AFE991919D9A63AB4E8AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8805D1721CBE5BA000DA33CA /* Maria Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Maria Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8805D1771CBE5BA000DA33CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		8805D17A1CBE5BA000DA33CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
-		8805D17C1CBE5BA000DA33CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8805D17E1CBE5BA000DA33CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
 		88163C971CBE581600A00976 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = Pods/../build/Debug/Pods.framework; sourceTree = "<group>"; };
 		8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runAria2c.sh; sourceTree = "<group>"; };
 		8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shutdownAria2c.sh; sourceTree = "<group>"; };
 		8827EDF41CCB50A700DDB09D /* SettingsAria2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAria2ViewController.swift; sourceTree = "<group>"; };
+		88298CF51D41E56500BBAFE8 /* Maria Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Maria Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88298CF91D41E56500BBAFE8 /* Maria_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Maria_Widget.entitlements; sourceTree = "<group>"; };
+		88298CFA1D41E56500BBAFE8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		88298CFD1D41E56500BBAFE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		88298CFF1D41E56600BBAFE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88298D011D41E56600BBAFE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88298D0B1D41E5F700BBAFE8 /* Maria Widget.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
+		88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
+		88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
 		883327A21CC751630002B561 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
 		883EA52A1CE1D52300B10A25 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
@@ -113,15 +116,13 @@
 		8870EA251CD4F13E00278B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		8870EA281CD5A70200278B2C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
-		887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
-		887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskWindowController.swift; sourceTree = "<group>"; };
 		888EAAF71D08393F0077EADB /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		889485721CBE4D4A000839CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		889485761CBE4D4A000839CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		889485761CBE4D4A000839CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Maria/Assets.xcassets; sourceTree = "<group>"; };
 		889485791CBE4D4A000839CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8894857B1CBE4D4A000839CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889485821CBE4E13000839CD /* Aria2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Aria2.xcodeproj; path = Aria2/Aria2.xcodeproj; sourceTree = "<group>"; };
@@ -134,13 +135,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8805D16F1CBE5BA000DA33CA /* Frameworks */ = {
+		88298CF21D41E56500BBAFE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8805D1901CBE7BFD00DA33CA /* Pods.framework in Frameworks */,
-				8805D18F1CBE7BF700DA33CA /* Aria2.framework in Frameworks */,
-				8805D1731CBE5BA000DA33CA /* NotificationCenter.framework in Frameworks */,
+				88298D0A1D41E57E00BBAFE8 /* Aria2.framework in Frameworks */,
+				88298D091D41E57700BBAFE8 /* Pods.framework in Frameworks */,
+				88298CF61D41E56500BBAFE8 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,20 +176,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8805D1741CBE5BA000DA33CA /* Maria Widget */ = {
-			isa = PBXGroup;
-			children = (
-				8805D1881CBE5BFB00DA33CA /* Maria Widget.entitlements */,
-				8805D1771CBE5BA000DA33CA /* TodayViewController.swift */,
-				8805D1791CBE5BA000DA33CA /* TodayViewController.xib */,
-				887AE45D1CC0FF5500AAD3E3 /* TodayTaskCellView.xib */,
-				887AE45B1CC0FF3100AAD3E3 /* TodayTaskCellView.swift */,
-				8805D17C1CBE5BA000DA33CA /* Info.plist */,
-				8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */,
-			);
-			path = "Maria Widget";
-			sourceTree = "<group>";
-		};
 		8827EDF31CCB502E00DDB09D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +188,29 @@
 				88C478091CEF432000F8026A /* SettingsTodayViewController.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		88298CF71D41E56500BBAFE8 /* Maria Widget */ = {
+			isa = PBXGroup;
+			children = (
+				88298D0B1D41E5F700BBAFE8 /* Maria Widget.entitlements */,
+				88298CFA1D41E56500BBAFE8 /* TodayViewController.swift */,
+				88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */,
+				88298CFC1D41E56500BBAFE8 /* TodayViewController.xib */,
+				88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */,
+				88298CFF1D41E56600BBAFE8 /* Info.plist */,
+				88298D001D41E56600BBAFE8 /* InfoPlist.strings */,
+				88298CF81D41E56500BBAFE8 /* Supporting Files */,
+			);
+			path = "Maria Widget";
+			sourceTree = "<group>";
+		};
+		88298CF81D41E56500BBAFE8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88298CF91D41E56500BBAFE8 /* Maria_Widget.entitlements */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		883EA5291CE1D4F700B10A25 /* TaskCell */ = {
@@ -217,7 +227,8 @@
 			children = (
 				889485821CBE4E13000839CD /* Aria2.xcodeproj */,
 				889485711CBE4D4A000839CD /* Maria */,
-				8805D1741CBE5BA000DA33CA /* Maria Widget */,
+				88298CF71D41E56500BBAFE8 /* Maria Widget */,
+				889485761CBE4D4A000839CD /* Assets.xcassets */,
 				889485701CBE4D4A000839CD /* Products */,
 				016B1B3AC5C946CC2BAA4324 /* Pods */,
 				28088A4E27634CD587DFE218 /* Frameworks */,
@@ -228,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				8894856F1CBE4D4A000839CD /* Maria.app */,
-				8805D1721CBE5BA000DA33CA /* Maria Widget.appex */,
+				88298CF51D41E56500BBAFE8 /* Maria Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,7 +258,6 @@
 				8827EDF31CCB502E00DDB09D /* Settings */,
 				885B9ED31CBF8169001BA477 /* AboutViewController.swift */,
 				8894857B1CBE4D4A000839CD /* Info.plist */,
-				889485761CBE4D4A000839CD /* Assets.xcassets */,
 				8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */,
 				8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */,
 			);
@@ -275,13 +285,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8805D1711CBE5BA000DA33CA /* Maria Widget */ = {
+		88298CF41D41E56500BBAFE8 /* Maria Widget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8805D1831CBE5BA000DA33CA /* Build configuration list for PBXNativeTarget "Maria Widget" */;
+			buildConfigurationList = 88298D061D41E56600BBAFE8 /* Build configuration list for PBXNativeTarget "Maria Widget" */;
 			buildPhases = (
-				8805D16E1CBE5BA000DA33CA /* Sources */,
-				8805D16F1CBE5BA000DA33CA /* Frameworks */,
-				8805D1701CBE5BA000DA33CA /* Resources */,
+				88298CF11D41E56500BBAFE8 /* Sources */,
+				88298CF21D41E56500BBAFE8 /* Frameworks */,
+				88298CF31D41E56500BBAFE8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -289,7 +299,7 @@
 			);
 			name = "Maria Widget";
 			productName = "Maria Widget";
-			productReference = 8805D1721CBE5BA000DA33CA /* Maria Widget.appex */;
+			productReference = 88298CF51D41E56500BBAFE8 /* Maria Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		8894856E1CBE4D4A000839CD /* Maria */ = {
@@ -309,7 +319,7 @@
 			);
 			dependencies = (
 				8894858B1CBE4E1A000839CD /* PBXTargetDependency */,
-				8805D1811CBE5BA000DA33CA /* PBXTargetDependency */,
+				88298D041D41E56600BBAFE8 /* PBXTargetDependency */,
 			);
 			name = Maria;
 			productName = Maria;
@@ -326,11 +336,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ShinCurry;
 				TargetAttributes = {
-					8805D1711CBE5BA000DA33CA = {
-						CreatedOnToolsVersion = 7.3;
+					88298CF41D41E56500BBAFE8 = {
+						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = F86ABKXNGB;
 						DevelopmentTeamName = "Debra Dean";
-						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -377,7 +386,7 @@
 			projectRoot = "";
 			targets = (
 				8894856E1CBE4D4A000839CD /* Maria */,
-				8805D1711CBE5BA000DA33CA /* Maria Widget */,
+				88298CF41D41E56500BBAFE8 /* Maria Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -393,14 +402,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8805D1701CBE5BA000DA33CA /* Resources */ = {
+		88298CF31D41E56500BBAFE8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8805D17B1CBE5BA000DA33CA /* TodayViewController.xib in Resources */,
-				887AE45E1CC0FF5500AAD3E3 /* TodayTaskCellView.xib in Resources */,
-				88C4780B1CEF519200F8026A /* Assets.xcassets in Resources */,
-				8805D17F1CBE5BA000DA33CA /* InfoPlist.strings in Resources */,
+				88298CFE1D41E56600BBAFE8 /* TodayViewController.xib in Resources */,
+				88298D021D41E56600BBAFE8 /* InfoPlist.strings in Resources */,
+				888176371D4234F50040D767 /* Assets.xcassets in Resources */,
+				88298D0D1D41E63E00BBAFE8 /* TodayTaskCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,12 +477,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8805D16E1CBE5BA000DA33CA /* Sources */ = {
+		88298CF11D41E56500BBAFE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8805D1781CBE5BA000DA33CA /* TodayViewController.swift in Sources */,
-				887AE45C1CC0FF3100AAD3E3 /* TodayTaskCellView.swift in Sources */,
+				88298CFB1D41E56500BBAFE8 /* TodayViewController.swift in Sources */,
+				88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,10 +511,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8805D1811CBE5BA000DA33CA /* PBXTargetDependency */ = {
+		88298D041D41E56600BBAFE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8805D1711CBE5BA000DA33CA /* Maria Widget */;
-			targetProxy = 8805D1801CBE5BA000DA33CA /* PBXContainerItemProxy */;
+			target = 88298CF41D41E56500BBAFE8 /* Maria Widget */;
+			targetProxy = 88298D031D41E56600BBAFE8 /* PBXContainerItemProxy */;
 		};
 		8894858B1CBE4E1A000839CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -515,18 +524,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8805D1791CBE5BA000DA33CA /* TodayViewController.xib */ = {
+		88298CFC1D41E56500BBAFE8 /* TodayViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8805D17A1CBE5BA000DA33CA /* Base */,
+				88298CFD1D41E56500BBAFE8 /* Base */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
 		};
-		8805D17D1CBE5BA000DA33CA /* InfoPlist.strings */ = {
+		88298D001D41E56600BBAFE8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8805D17E1CBE5BA000DA33CA /* en */,
+				88298D011D41E56600BBAFE8 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -550,42 +559,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8805D1841CBE5BA000DA33CA /* Debug */ = {
+		88298D071D41E56600BBAFE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 868AFE991919D9A63AB4E8AC /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		8805D1851CBE5BA000DA33CA /* Release */ = {
+		88298D081D41E56600BBAFE8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C0D3330392DB691C715D126 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Maria.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -716,11 +719,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8805D1831CBE5BA000DA33CA /* Build configuration list for PBXNativeTarget "Maria Widget" */ = {
+		88298D061D41E56600BBAFE8 /* Build configuration list for PBXNativeTarget "Maria Widget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8805D1841CBE5BA000DA33CA /* Debug */,
-				8805D1851CBE5BA000DA33CA /* Release */,
+				88298D071D41E56600BBAFE8 /* Debug */,
+				88298D081D41E56600BBAFE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
