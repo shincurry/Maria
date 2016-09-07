@@ -13,7 +13,7 @@ class MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
         window?.titleVisibility = .hidden
         lowSpeedModeButton.state = defaults.bool(forKey: "EnableLowSpeedMode") ? 1 : 0
         

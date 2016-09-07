@@ -228,7 +228,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         }
         aria2.downloadCompleted = { (name, path) in
             if self.defaults.bool(forKey: "EnableNotificationWhenCompleted") {
-                MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path])
+                MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path as AnyObject])
             }
         }
         aria2.downloadError = { name in
@@ -254,7 +254,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         
     }
     
-    private func getStringBy(value: Double) -> String {
+    fileprivate func getStringBy(_ value: Double) -> String {
         if value > 1024 {
             return String(format: "%.2f MB/s", value / 1024.0)
         } else {

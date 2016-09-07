@@ -17,6 +17,9 @@
     "watchos": "2.0",
     "tvos": "9.0"
   },
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  },
   "source": {
     "git": "https://github.com/SwiftyJSON/SwiftyJSON.git",
     "tag": "2.3.2"

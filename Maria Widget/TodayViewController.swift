@@ -42,7 +42,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     var timer: Timer!
     var authorized: Bool = true
     
-    func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
+    func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
         completionHandler(.newData)
     }
    
@@ -125,11 +125,11 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
 // MARK: - Timer Config
 extension TodayViewController {
-    private func runTimer() {
+    fileprivate func runTimer() {
         updateListStatus()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
-    private func closeTimer() {
+    fileprivate func closeTimer() {
         timer.invalidate()
         timer = nil
     }

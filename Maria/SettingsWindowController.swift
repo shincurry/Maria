@@ -12,6 +12,6 @@ class SettingsWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		880980171D2F850900237D8E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880980161D2F850900237D8E /* Pods.framework */; };
+		156783852650DAE5D696EC40 /* Pods_Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */; };
 		887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */; };
 		8897835B1CBE105400C12387 /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8897835A1CBE105400C12387 /* Aria2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889783691CBE105C00C12387 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889783681CBE105C00C12387 /* Aria2.swift */; };
@@ -18,7 +18,9 @@
 
 /* Begin PBXFileReference section */
 		880980161D2F850900237D8E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods.framework; sourceTree = "<absolute>"; };
+		887049EE1D7FD3EA0014BBEE /* Pods_Maria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Maria.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods_Maria.framework; sourceTree = "<absolute>"; };
 		887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Method.swift; sourceTree = "<group>"; };
+		8882C07B1D7FD4DA00511C60 /* Pods_Maria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Maria.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods_Maria.framework; sourceTree = "<absolute>"; };
 		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
 		8897835C1CBE105400C12387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -26,6 +28,9 @@
 		88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
 		88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2GlobalStatus.swift; sourceTree = "<group>"; };
 		88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Speed.swift; sourceTree = "<group>"; };
+		C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2/Pods-Aria2.debug.xcconfig"; sourceTree = "<group>"; };
+		D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2/Pods-Aria2.release.xcconfig"; sourceTree = "<group>"; };
+		DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +38,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880980171D2F850900237D8E /* Pods.framework in Frameworks */,
+				156783852650DAE5D696EC40 /* Pods_Aria2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62F5BD2B4D1B6A0BB85CF3D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */,
+				D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		880980151D2F850900237D8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8882C07B1D7FD4DA00511C60 /* Pods_Maria.framework */,
+				887049EE1D7FD3EA0014BBEE /* Pods_Maria.framework */,
 				880980161D2F850900237D8E /* Pods.framework */,
+				DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -54,6 +71,7 @@
 				889783591CBE105400C12387 /* Aria2 */,
 				889783581CBE105400C12387 /* Products */,
 				880980151D2F850900237D8E /* Frameworks */,
+				62F5BD2B4D1B6A0BB85CF3D0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,10 +123,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8897835F1CBE105400C12387 /* Build configuration list for PBXNativeTarget "Aria2" */;
 			buildPhases = (
+				6C379AC9196C68F4954D2389 /* [CP] Check Pods Manifest.lock */,
 				889783521CBE105400C12387 /* Sources */,
 				889783531CBE105400C12387 /* Frameworks */,
 				889783541CBE105400C12387 /* Headers */,
 				889783551CBE105400C12387 /* Resources */,
+				96E86706EE267F5BDDDE7958 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +181,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C379AC9196C68F4954D2389 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		96E86706EE267F5BDDDE7958 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aria2/Pods-Aria2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		889783521CBE105400C12387 /* Sources */ = {
@@ -268,6 +321,7 @@
 		};
 		889783601CBE105400C12387 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -289,6 +343,7 @@
 		};
 		889783611CBE105400C12387 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;

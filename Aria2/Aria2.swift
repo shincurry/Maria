@@ -17,9 +17,9 @@ public enum ConnectionStatus {
     case disconnected
 }
 
-public class Aria2 {
+open class Aria2 {
     
-    public static let shared: Aria2 = {
+    open static let shared: Aria2 = {
         let defaults = UserDefaults(suiteName: "group.windisco.maria")!
         let baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
         let host = defaults.object(forKey: "RPCServerHost") as! String
@@ -45,32 +45,32 @@ public class Aria2 {
     /**
      connect aria2
      */
-    public func connect() {
+    open func connect() {
         status = .connecting
         socket.connect()
         
     }
-    public var onConnect: (() -> Void)?
+    open var onConnect: (() -> Void)?
     
     /**
      disconnect aria2
      */
-    public func disconnect() {
+    open func disconnect() {
         socket.disconnect()
     }
-    public var onDisconnect: (() -> Void)?
+    open var onDisconnect: (() -> Void)?
     
-    public var status: ConnectionStatus = .disconnected {
+    open var status: ConnectionStatus = .disconnected {
         didSet {
             onStatusChanged?()
         }
     }
-    public var onStatusChanged: ((Void) -> Void)?
+    open var onStatusChanged: ((Void) -> Void)?
     
     /**
      shutdown aria2
      */
-    public func shutdown() {
+    open func shutdown() {
         request(method: .shutdown, params: "")
     }
     
@@ -79,63 +79,63 @@ public class Aria2 {
      
      - parameter uris:	download task links
      */
-    public func add(uris: [String]) {
+    open func add(uris: [String]) {
         uris.forEach() { uri in
             request(method: .addUri, params: "[\"\(uri)\"]")
         }
     }
-    public var onAddUris: ((flag: Bool) -> Void)?
-    
-    public func getUris(_ gid: String) {
+    open var onAddUris: ((_ flag: Bool) -> Void)?
+
+    open func getUris(_ gid: String) {
         request(method: .getUris, params: "\"\(gid)\"")
     }
-    public var onGetUris: ((results: [String]) -> Void)?
+    open var onGetUris: ((_ results: [String]) -> Void)?
     /**
      Add torrent to download task
      
      - parameter data:	torrent data
      */
-    public func add(torrent: Data) {
+    open func add(torrent: Data) {
         let base64Encoded = torrent.base64EncodedString(options: .lineLength64Characters)
         request(method: .addTorrent, params: "\"\(base64Encoded)\"")
     }
-    public var onAddTorrent: ((flag: Bool) -> Void)?
+    open var onAddTorrent: ((_ flag: Bool) -> Void)?
     
     // MARK: Global status
     /**
      Get all of active download tasks
      */
-    public func tellActive() {
+    open func tellActive() {
         request(method: .tellActive, params: "[]")
     }
-//    public var onActives: ((results: JSON) -> Void)?
-    public var onActives: ((results: [Aria2Task]) -> Void)?
+//    public var onActives: ((results results: JSON) -> Void)?
+    open var onActives: ((_ results: [Aria2Task]) -> Void)?
     
     /**
      Get all of waiting download tasks
      */
-    public func tellWaiting() {
+    open func tellWaiting() {
         request(method: .tellWaiting, params: "0, 100")
     }
-//    public var onWaitings: ((results: JSON) -> Void)?
-    public var onWaitings: ((results: [Aria2Task]) -> Void)?
+//    public var onWaitings: ((results results: JSON) -> Void)?
+    open var onWaitings: ((_ results: [Aria2Task]) -> Void)?
     
     /**
      Get all of stopped download tasks
      */
-    public func tellStopped() {
+    open func tellStopped() {
         request(method: .tellStopped, params: "0, 100")
     }
-//    public var onStoppeds: ((results: JSON) -> Void)?
-    public var onStoppeds: ((results: [Aria2Task]) -> Void)?
+//    public var onStoppeds: ((results results: JSON) -> Void)?
+    open var onStoppeds: ((_ results: [Aria2Task]) -> Void)?
     
     /**
      Get global status
      */
-    public func getGlobalStatus() {
+    open func getGlobalStatus() {
         request(method: .getGlobalStat, params: "[]")
     }
-    public var onGlobalStatus: ((result: Aria2GlobalStatus) -> Void)?
+    open var onGlobalStatus: ((_ result: Aria2GlobalStatus) -> Void)?
     
 
     /**
@@ -143,64 +143,64 @@ public class Aria2 {
      
      - parameter gid:	task id
      */
-    public func removeActive(_ gid: String) {
+    open func removeActive(_ gid: String) {
         request(method: .remove, params: "\"\(gid)\"")
     }
-    public var onRemoveActive: ((flag: Bool) -> Void)?
+    open var onRemoveActive: ((_ flag: Bool) -> Void)?
     /**
      Remove an error/stopped task
      
      - parameter gid:	task id
      */
-    public func removeOther(_ gid: String) {
+    open func removeOther(_ gid: String) {
         request(method: .removeDownloadResult, params: "\"\(gid)\"")
     }
-    public var onRemoveOther: ((flag: Bool) -> Void)?
+    open var onRemoveOther: ((_ flag: Bool) -> Void)?
     
     /**
      Clear All error/stopped tasks
      */
-    public func clearCompletedErrorRemoved() {
+    open func clearCompletedErrorRemoved() {
         request(method: .purgeDownloadResult, params: "[]")
     }
-    public var onClearCompletedErrorRemoved: ((flag: Bool) -> Void)?
+    open var onClearCompletedErrorRemoved: ((_ flag: Bool) -> Void)?
     
     /**
      Pause an active task
      
      - parameter gid:	task id
      */
-    public func pause(_ gid: String) {
+    open func pause(_ gid: String) {
         request(method: .pause, params: "\"\(gid)\"")
     }
-    public var onPause: ((flag: Bool) -> Void)?
+    open var onPause: ((_ flag: Bool) -> Void)?
     /**
      Pause All of active tasks
      */
-    public func pauseAll() {
+    open func pauseAll() {
         request(method: .pauseAll, params: "[]")
     }
-    public var onPauseAll: ((flag: Bool) -> Void)?
+    open var onPauseAll: ((_ flag: Bool) -> Void)?
     
     /**
      Unpause a paused task
      
      - parameter gid:	task id
      */
-    public func unpause(_ gid: String) {
+    open func unpause(_ gid: String) {
         request(method: .unpause, params: "\"\(gid)\"")
     }
-    public var onUnpause: ((flag: Bool) -> Void)?
+    open var onUnpause: ((_ flag: Bool) -> Void)?
     
     /**
      Unpause All of paused tasks
      */
-    public func unpauseAll() {
+    open func unpauseAll() {
         request(method: .unpauseAll, params: "[]")
     }
-    public var onUnpauseAll: ((flag: Bool) -> Void)?
+    open var onUnpauseAll: ((_ flag: Bool) -> Void)?
     
-    public func restart(_ task: Aria2Task) {
+    open func restart(_ task: Aria2Task) {
         request(method: .removeDownloadResult, id: "aria2.remove.restart", params: "\"\(task.gid!)\"")
         onRemoveOtherToRestart = { flag in
             if flag {
@@ -218,27 +218,27 @@ public class Aria2 {
             }
         }
     }
-    public var onRemoveOtherToRestart: ((flag: Bool) -> Void)?
-    public var onRestart: ((flag: Bool) -> Void)?
+    open var onRemoveOtherToRestart: ((_ flag: Bool) -> Void)?
+    open var onRestart: ((_ flag: Bool) -> Void)?
     
     
     // MARK: Download status
-    private var getDownloadStatus: ((results: JSON) -> Void)?
-    public var downloadCompleted: ((name: String, folderPath: String) -> Void)?
-    public var downloadPaused: ((name: String) -> Void)?
-    public var downloadStarted: ((name: String) -> Void)?
-    public var downloadStopped: ((name: String) -> Void)?
-    public var downloadError: ((name: String) -> Void)?
+    fileprivate var getDownloadStatus: ((_ results: JSON) -> Void)?
+    open var downloadCompleted: ((_ name: String, _ folderPath: String) -> Void)?
+    open var downloadPaused: ((_ name: String) -> Void)?
+    open var downloadStarted: ((_ name: String) -> Void)?
+    open var downloadStopped: ((_ name: String) -> Void)?
+    open var downloadError: ((_ name: String) -> Void)?
     
     
     
     // MARK: Speed limit
-    public func globalSpeedLimit(download: Int, upload: Int) {
+    open func globalSpeedLimit(download: Int, upload: Int) {
         request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.globalSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(download))\", \"max-overall-upload-limit\": \"\(speedToString(upload))\"}")
         
     }
-    public func lowSpeedLimit(download: Int, upload: Int) {
-        func speedToString(_ value: Int) -> String {
+    open func lowSpeedLimit(download: Int, upload: Int) {
+        func speedStringFrom(value: Int) -> String {
             var valueString = "\(value)"
             if value != 0 {
                 valueString += "K"
@@ -248,7 +248,7 @@ public class Aria2 {
         
         request(method: .changeGlobalOption, id: "aria2.changeGlobalOption.lowSpeedLimit", params: "{\"max-overall-download-limit\": \"\(speedToString(download))\", \"max-overall-upload-limit\": \"\(speedToString(upload))\"}")
     }
-    private func speedToString(_ value: Int) -> String {
+    fileprivate func speedToString(_ value: Int) -> String {
         var valueString = "\(value)"
         if value != 0 {
             valueString += "K"
@@ -256,18 +256,18 @@ public class Aria2 {
         return valueString
     }
     
-    public var globalSpeedLimitOK: ((result: JSON) -> Void)?
-    public var lowSpeedLimitOK: ((result: JSON) -> Void)?
+    open var globalSpeedLimitOK: ((_ result: JSON) -> Void)?
+    open var lowSpeedLimitOK: ((_ result: JSON) -> Void)?
     
 }
     
 extension Aria2 {
-    private func request(method: Aria2Method, params: String) {
+    fileprivate func request(method: Aria2Method, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(method.rawValue)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
         let data = socketString.data(using: .utf8)!
         self.socket.write(data: data)
     }
-    private func request(method: Aria2Method, id: String, params: String) {
+    fileprivate func request(method: Aria2Method, id: String, params: String) {
         let socketString = "{\"jsonrpc\": \"2.0\", \"id\": \"\(id)\", \"method\": \"aria2.\(method.rawValue)\",\"params\": [\"token:\(secret)\", \(params)]}"
         let data = socketString.data(using: .utf8)!
         self.socket.write(data: data)
@@ -304,41 +304,41 @@ extension Aria2: WebSocketDelegate {
             if let method = Aria2Method(rawValue: idString) {
                 switch method {
                 case .getGlobalStat:
-                    onGlobalStatus?(result: getGlobalStatusByJSON(results))
+                    onGlobalStatus?(getGlobalStatusByJSON(results))
                 // --------------------
                 case .tellActive:
-                    onActives?(results: getTasksByJSON(results))
+                    onActives?(getTasksByJSON(results))
                 case .tellWaiting:
-                    onWaitings?(results: getTasksByJSON(results))
+                    onWaitings?(getTasksByJSON(results))
                 case .tellStopped:
-                    onStoppeds?(results: getTasksByJSON(results))
+                    onStoppeds?(getTasksByJSON(results))
                 // --------------------
                 case .remove:
-                    onRemoveActive?(flag: (results["error"] != nil) ? false : true)
+                    onRemoveActive?((results["error"] != nil) ? false : true)
                     removeOther(results["result"].stringValue)
                 case .removeDownloadResult:
-                    onRemoveOther?(flag: (results["error"] != nil) ? false : true)
+                    onRemoveOther?((results["error"] != nil) ? false : true)
                 case .purgeDownloadResult:
-                    onClearCompletedErrorRemoved?(flag: (results["error"] != nil) ? false : true)
+                    onClearCompletedErrorRemoved?((results["error"] != nil) ? false : true)
                 case .pause:
-                    onPause?(flag: (results["error"] != nil) ? false : true)
+                    onPause?((results["error"] != nil) ? false : true)
                 case .pauseAll:
-                    onPauseAll?(flag: (results["error"] != nil) ? false : true)
+                    onPauseAll?((results["error"] != nil) ? false : true)
                 case .unpause:
-                    onUnpause?(flag: (results["error"] != nil) ? false : true)
+                    onUnpause?((results["error"] != nil) ? false : true)
                 case .unpauseAll:
-                    onUnpauseAll?(flag: (results["error"] != nil) ? false : true)
+                    onUnpauseAll?((results["error"] != nil) ? false : true)
                 // --------------------
                 case .shutdown:
                     break
                 case .tellStatus:
                     break
                 case .addUri:
-                    onAddUris?(flag: (results["error"] != nil) ? false : true)
+                    onAddUris?((results["error"] != nil) ? false : true)
                 case .addTorrent:
-                    onAddTorrent?(flag: (results["error"] != nil) ? false : true)
+                    onAddTorrent?((results["error"] != nil) ? false : true)
                 case .getUris:
-                    onGetUris?(results: results["result"].array!.map({ result in return result["uri"].stringValue }))
+                    onGetUris?(results["result"].array!.map({ result in return result["uri"].stringValue }))
                 default:
                     break
                 }
@@ -346,15 +346,15 @@ extension Aria2: WebSocketDelegate {
             
             switch idString {
             case "aria2.tellStatus.downloadStatus":
-                getDownloadStatus!(results: results)
+                getDownloadStatus!(results)
             case "aria2.changeGlobalOption.globalSpeedLimit":
-                globalSpeedLimitOK?(result: results)
+                globalSpeedLimitOK?(results)
             case "aria2.changeGlobalOption.lowSpeedLimit":
-                lowSpeedLimitOK?(result: results)
+                lowSpeedLimitOK?(results)
             case "aria2.remove.restart":
-                onRemoveOtherToRestart?(flag: (results["error"] != nil) ? false : true)
+                onRemoveOtherToRestart?((results["error"] != nil) ? false : true)
             case "aria2.restart":
-                onRestart?(flag: (results["error"] != nil) ? false : true)
+                onRestart?((results["error"] != nil) ? false : true)
             default:
                 break
             }
@@ -375,18 +375,18 @@ extension Aria2: WebSocketDelegate {
                 
                 switch method {
                 case .onDownloadStart:
-                    self.downloadStarted?(name: downloadName)
+                    self.downloadStarted?(downloadName)
                 case .onDownloadPause:
-                    self.downloadPaused?(name: downloadName)
+                    self.downloadPaused?(downloadName)
                 case .onDownloadStop:
-                    self.downloadStopped?(name: downloadName)
+                    self.downloadStopped?(downloadName)
                 case .onBtDownloadComplete:
                     fallthrough
                 case .onDownloadComplete:
                     let path = result["result"]["dir"].stringValue
-                    self.downloadCompleted?(name: downloadName, folderPath: path)
+                    self.downloadCompleted?(downloadName, path)
                 case .onDownloadError:
-                    self.downloadError?(name: downloadName)
+                    self.downloadError?(downloadName)
                 default:
                     break
                 }

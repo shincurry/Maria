@@ -48,7 +48,7 @@ class TaskListViewController: NSViewController {
     
     @IBOutlet weak var globalTaskNumberLabel: NSTextField!
     
-    override func keyDown(_ theEvent: NSEvent) {
+    override func keyDown(with theEvent: NSEvent) {
         // esc key pressed
         if theEvent.keyCode == 53 {
             taskListTableView.deselectRow(taskListTableView.selectedRow)
@@ -109,11 +109,11 @@ extension TaskListViewController {
 
 // MARK: - Timer Config
 extension TaskListViewController {
-    private func runTimer() {
+    fileprivate func runTimer() {
         updateListStatus()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
-    private func closeTimer() {
+    fileprivate func closeTimer() {
         timer.invalidate()
         timer = nil
     }

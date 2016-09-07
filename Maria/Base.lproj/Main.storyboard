@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="16A313a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11198.2"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -174,19 +174,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="HyV-fh-RgO">
-                                    <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -343,14 +330,14 @@
                                         <action selector="clearCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="lwt-MQ-y39"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="0E0E0543-0A88-456A-909E-AA457FB2BF49" id="fWl-Gq-lVn">
+                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="742B60EA-4CD9-40EF-8A23-A85E1B63EFB9" id="fWl-Gq-lVn">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="atI-Si-Tc8">
                                         <rect key="frame" x="0.0" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="0E0E0543-0A88-456A-909E-AA457FB2BF49" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
+                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="742B60EA-4CD9-40EF-8A23-A85E1B63EFB9" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -469,7 +456,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="wWB-pR-LyW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="578" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="578" height="274"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -537,7 +524,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOJ-nC-MDI">
-                                <rect key="frame" x="447" y="2" width="127" height="20"/>
+                                <rect key="frame" x="451" y="2" width="123" height="20"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="⬇︎ 0 KB/s ⬆︎ 0 KB/s" id="xkr-Gd-rB0">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -600,15 +587,13 @@
                                     <rect key="frame" x="1" y="1" width="398" height="118"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="NVg-hI-Dtz">
+                                        <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="NVg-hI-Dtz">
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="118"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="398" height="118"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="398" height="118"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
                                             <connections>
                                                 <outlet property="delegate" destination="3Py-Pw-Qec" id="o6o-HK-D3d"/>
                                             </connections>
@@ -726,7 +711,7 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="0E0E0543-0A88-456A-909E-AA457FB2BF49" width="1" height="1">
+        <image name="742B60EA-4CD9-40EF-8A23-A85E1B63EFB9" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

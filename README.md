@@ -23,9 +23,10 @@ an OS X app/widget for aria2 download tool.
 
 ## Test Environment
 
-* Xcode 8 beta 3 (8S174q)
+* Xcode 8 beta 6 (8S201h)
 * Swift 3
-* macOS 10.12 public beta 2
+* macOS 10.12 public beta 7 (16A313a)
+* CocoaPods 1.1.0.beta.2
 
 ## Thanks
 

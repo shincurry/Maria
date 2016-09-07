@@ -4,7 +4,7 @@ PODS:
 
 DEPENDENCIES:
   - Starscream (from `https://github.com/daltoniam/Starscream.git`, branch `swift3`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
+  - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
   Starscream:
@@ -12,18 +12,20 @@ EXTERNAL SOURCES:
     :git: https://github.com/daltoniam/Starscream.git
   SwiftyJSON:
     :branch: swift3
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Starscream:
-    :commit: c2782b545281e6a6ecfc770379f8cd8c5252f2b9
+    :commit: b1472f2a99a747ffda35c43ac4eb58b73c59722a
     :git: https://github.com/daltoniam/Starscream.git
   SwiftyJSON:
-    :commit: 6882c23c19d8c36811e9424daf458877032f4b81
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :commit: de5dc3b1b421805769590d331178551bbb0e5733
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Starscream: d662732354b40dd19ed1ece3e3c44c80b536b83c
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SwiftyJSON: 6118fb49d7519c4d31a0c1f3d5af936e9047b556
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 42c4f5e3732683f004da12f5b0cc0ec36612bf4b
+
+COCOAPODS: 1.1.0.beta.2

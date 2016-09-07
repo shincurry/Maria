@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class MariaNotification {
-    static public func notification(title: String, details: String) {
+open class MariaNotification {
+    static open func notification(title: String, details: String) {
         let notification = NSUserNotification()
         notification.title = title
         notification.informativeText = details
