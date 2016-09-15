@@ -25,15 +25,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             AppDelegate.userDefaultsInit()
         }
 
-//        if defaults.boolForKey("EnableAria2AutoLaunch") {
-//            let task = NSTask()
-//            let confPath = defaults.objectForKey("Aria2ConfPath") as! String
-//            let shFilePath = NSBundle.mainBundle().pathForResource("runAria2c", ofType: "sh")
-//            task.launchPath = shFilePath
-//            task.arguments = [confPath]
-//            task.launch()
-//            task.waitUntilExit()
-//        }
+        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+            let task = Process()
+            let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
+            let shFilePath = Bundle.main
+                .path(forResource: "runAria2c", ofType: "sh")
+            task.launchPath = shFilePath
+            task.arguments = [confPath]
+            task.launch()
+            task.waitUntilExit()
+        }
         aria2 = Aria2.shared
         super.init()
     }
@@ -57,19 +58,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         aria2close()
         
-//        if defaults.boolForKey("EnableAria2AutoLaunch") {
-//            let task = NSTask()
-//            let pipe = NSPipe()
-//            let shFilePath = NSBundle.mainBundle().pathForResource("shutdownAria2c", ofType: "sh")
-//            task.launchPath = shFilePath
-//            task.standardOutput = pipe
-//            task.launch()
-//            task.waitUntilExit()
-//            print("EnableAria2AutoLaunch")
-//            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-//            print(String(data: data, encoding: NSUTF8StringEncoding))
-//
-//        }
+        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+            let task = Process()
+            let pipe = Pipe()
+            let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
+            task.launchPath = shFilePath
+            task.standardOutput = pipe
+            task.launch()
+            task.waitUntilExit()
+            print("EnableAria2AutoLaunch")
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            print(String(data: data, encoding: .utf8))
+
+        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -332,46 +333,3 @@ extension AppDelegate {
 
     }
 }
-
-// MARK: - Download from pasteboard
-//extension AppDelegate: NSMenuDelegate {
-//    func menuWillOpen(menu: NSMenu) {
-//        // BUG: Stop responding caused by some links
-//        if let paste = pasteboard.stringForType(NSPasteboardTypeString) {
-//            let pattern = "^(https?://)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
-//            let matcher: RegexHelper
-//            do {
-//                matcher = try RegexHelper(pattern)
-//                if matcher.match(paste) {
-//                    quickDownloadMenuItem.hidden = false
-//                    quickDownloadLink = paste
-//                } else {
-//                    quickDownloadMenuItem.hidden = true
-//                }
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
-//    @IBAction func downloadFromPasteboard(sender: NSMenuItem) {
-//        self.aria2.request(method: .addUri, params: "[\"\(quickDownloadLink)\"]")
-//        aria2.addUri([quickDownloadLink])
-//    }
-//    
-//}
-
-
-/**
- *	Copy by http://swifter.tips/regex/
- *  Author: @Onevcat
- */
-//struct RegexHelper {
-//    let regex: NSRegularExpression
-//    init(_ pattern: String) throws {
-//        try regex = NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
-//    }
-//    func match(input: String) -> Bool {
-//        let matches = regex.matchesInString(input, options: [], range: NSMakeRange(0, input.characters.count))
-//        return matches.count > 0
-//    }
-//}

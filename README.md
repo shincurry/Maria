@@ -1,6 +1,6 @@
 # Maria
 
-![Maria Logo](http://windisco.qiniudn.com/Maria-Banner.png)
+![Maria Logo](https://obhajdt0c.qnssl.com/Maria/Banner.png)
 
 ## What's Maria?
 
@@ -8,11 +8,11 @@ an OS X app/widget for aria2 download tool.
 
 #### Main Window
 
-![Maria App](http://windisco.qiniudn.com/Maria-App-2.png)
+![Maria App](https://obhajdt0c.qnssl.com/Maria/App-2.png)
 
 #### Today Widget
 
-![Maria Today Widget](http://windisco.qiniudn.com/Maria-Today-Widget-Sierra.png)
+![Maria Today Widget](https://obhajdt0c.qnssl.com/Maria/Today-Widget-Sierra.png)
 
 ## Features
 
@@ -23,9 +23,9 @@ an OS X app/widget for aria2 download tool.
 
 ## Test Environment
 
-* Xcode 8 beta 6 (8S201h)
+* Xcode 8  (8A218a)
 * Swift 3
-* macOS 10.12 public beta 7 (16A313a)
+* macOS Sierra (16A319)
 * CocoaPods 1.1.0.beta.2
 
 ## Thanks

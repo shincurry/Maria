@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="16A313a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11198.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -142,8 +142,8 @@
             <objects>
                 <tabViewController title="Aria2" selectedTabViewItemIndex="0" id="Gxb-U3-o1e" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="" id="UVY-M7-xbC"/>
                         <tabViewItem id="yEj-3z-Pg4"/>
+                        <tabViewItem id="OUF-wl-sG2"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="hx5-Fq-zMb">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -152,97 +152,241 @@
                         <tabViewItems/>
                     </tabView>
                     <connections>
-                        <segue destination="tQB-UM-JVL" kind="relationship" relationship="tabItems" id="c5R-Cw-Fdd"/>
                         <segue destination="jsm-It-tHy" kind="relationship" relationship="tabItems" id="8ut-NS-foS"/>
+                        <segue destination="f0K-az-QEF" kind="relationship" relationship="tabItems" id="xBY-Bb-fmh"/>
                     </connections>
                 </tabViewController>
                 <customObject id="I5B-C9-iCt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="651" y="876"/>
         </scene>
-        <!--Settings Aria2 View Controller-->
-        <scene sceneID="3Ff-fF-XMC">
+        <!--Configuration-->
+        <scene sceneID="WZh-bN-nz9">
             <objects>
-                <viewController id="tQB-UM-JVL" customClass="SettingsAria2ViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="8WT-S7-bNM">
-                        <rect key="frame" x="0.0" y="0.0" width="508" height="166"/>
+                <viewController title="Configuration" id="f0K-az-QEF" customClass="SettingsAria2ConfigViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="jEO-uM-9AI">
+                        <rect key="frame" x="0.0" y="0.0" width="546" height="394"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="YCH-IB-CPN">
-                                <rect key="frame" x="17" y="39" width="474" height="107"/>
-                                <view key="contentView" id="5or-kC-b57">
-                                    <rect key="frame" x="1" y="1" width="472" height="91"/>
+                            <box verticalHuggingPriority="249" title="general" translatesAutoresizingMaskIntoConstraints="NO" id="gzU-T6-eXa">
+                                <rect key="frame" x="17" y="288" width="512" height="96"/>
+                                <view key="contentView" id="Uoz-jL-pZA">
+                                    <rect key="frame" x="2" y="2" width="508" height="79"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Uz-zu-QGR">
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="kWC-Ai-6hR">
+                                            <rect key="frame" x="18" y="43" width="362" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="I8c-9y-RJe">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="switchOptions:" target="f0K-az-QEF" id="7gP-SW-DRw"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y0O-as-TD0">
                                             <rect key="frame" x="18" y="20" width="96" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title=".Conf File Path:" id="vvJ-A0-8eH">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title=".Conf File Path:" id="X9o-Jq-3sf">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-fV-u2p">
-                                            <rect key="frame" x="120" y="18" width="332" height="22"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="is0-if-gf5">
+                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8ED-SF-jvZ">
+                                            <rect key="frame" x="118" y="14" width="244" height="26"/>
+                                            <popUpButtonCell key="cell" type="push" title="/Users/ShinCurry/.aria2/aria2.conf" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2C6-o5-bRx" id="nwJ-O9-ZWQ">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="bPU-th-MZ7">
+                                                    <items>
+                                                        <menuItem title="/Users/ShinCurry/.aria2/aria2.conf" state="on" id="2C6-o5-bRx"/>
+                                                        <menuItem isSeparatorItem="YES" id="W4y-xD-Te0"/>
+                                                        <menuItem title="Other..." id="vAv-n1-Kpd">
+                                                            <connections>
+                                                                <action selector="selectFilePath:" target="f0K-az-QEF" id="ywa-GI-axe"/>
+                                                            </connections>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kWC-Ai-6hR" firstAttribute="leading" secondItem="Uoz-jL-pZA" secondAttribute="leading" constant="20" id="BwO-bX-Wnz"/>
+                                        <constraint firstItem="Y0O-as-TD0" firstAttribute="leading" secondItem="kWC-Ai-6hR" secondAttribute="leading" id="JmR-n7-szg"/>
+                                        <constraint firstAttribute="trailing" secondItem="kWC-Ai-6hR" secondAttribute="trailing" constant="130" id="VKD-w0-GpF"/>
+                                        <constraint firstItem="8ED-SF-jvZ" firstAttribute="leading" secondItem="Y0O-as-TD0" secondAttribute="trailing" constant="8" id="Wai-yh-jb6"/>
+                                        <constraint firstItem="kWC-Ai-6hR" firstAttribute="top" secondItem="Uoz-jL-pZA" secondAttribute="top" constant="20" id="XiD-Cu-wNo"/>
+                                        <constraint firstItem="Y0O-as-TD0" firstAttribute="top" secondItem="kWC-Ai-6hR" secondAttribute="bottom" constant="8" id="aVO-E2-nH1"/>
+                                        <constraint firstAttribute="bottom" secondItem="Y0O-as-TD0" secondAttribute="bottom" constant="20" id="rxO-pj-cXV"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8ED-SF-jvZ" secondAttribute="trailing" constant="20" id="sSR-z9-2Zq"/>
+                                        <constraint firstItem="8ED-SF-jvZ" firstAttribute="baseline" secondItem="Y0O-as-TD0" secondAttribute="baseline" id="zc2-nj-pm6"/>
+                                    </constraints>
+                                </view>
+                            </box>
+                            <box title=".conf file" translatesAutoresizingMaskIntoConstraints="NO" id="z6Z-Z0-1tl">
+                                <rect key="frame" x="17" y="16" width="512" height="268"/>
+                                <view key="contentView" id="hOo-YK-S8z">
+                                    <rect key="frame" x="2" y="2" width="508" height="251"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GeM-93-bHg">
+                                            <rect key="frame" x="82" y="49" width="406" height="22"/>
+                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kG7-kx-FQ4">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
+                                            </buttonCell>
+                                        </button>
+                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msv-AL-AkY">
+                                            <rect key="frame" x="20" y="69" width="468" height="162"/>
+                                            <clipView key="contentView" drawsBackground="NO" id="kxA-jk-e5u">
+                                                <rect key="frame" x="1" y="0.0" width="466" height="161"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" headerView="d49-Xr-KLm" id="OX0-61-jEV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="466" height="138"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <size key="intercellSpacing" width="3" height="2"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                        <tableColumns>
+                                                            <tableColumn width="194.5" minWidth="40" maxWidth="1000" id="7Cq-dw-ca0">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Key">
+                                                                    <font key="font" metaFont="smallSystem"/>
+                                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                </tableHeaderCell>
+                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Text" id="iKj-Vt-O01">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            </tableColumn>
+                                                            <tableColumn width="265.5" minWidth="40" maxWidth="1000" id="35Z-5c-bkc">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Value">
+                                                                    <font key="font" metaFont="smallSystem"/>
+                                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                </tableHeaderCell>
+                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="1mk-mW-8xu">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            </tableColumn>
+                                                        </tableColumns>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="f0K-az-QEF" id="c1e-YG-M4c"/>
+                                                            <outlet property="delegate" destination="f0K-az-QEF" id="hRc-h0-ppz"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                                <nil key="backgroundColor"/>
+                                            </clipView>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="460" id="MIA-9b-bOi"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="eoS-fk-l65"/>
+                                            </constraints>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="I6H-fY-Sbo">
+                                                <rect key="frame" x="1" y="244" width="466" height="16"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="BI7-zG-kL0">
+                                                <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <tableHeaderView key="headerView" id="d49-Xr-KLm">
+                                                <rect key="frame" x="0.0" y="0.0" width="466" height="23"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </tableHeaderView>
+                                        </scrollView>
+                                        <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kv7-nj-veX">
+                                            <rect key="frame" x="20" y="48" width="63" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="RpK-dP-NQe"/>
+                                            </constraints>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="PTt-LU-JmN">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment image="NSAddTemplate" width="30">
+                                                        <nil key="label"/>
+                                                    </segment>
+                                                    <segment image="NSRemoveTemplate" width="30" tag="1">
+                                                        <nil key="label"/>
+                                                    </segment>
+                                                </segments>
+                                            </segmentedCell>
                                             <connections>
-                                                <action selector="finishEditing:" target="tQB-UM-JVL" id="bMK-WG-pne"/>
+                                                <action selector="confControl:" target="f0K-az-QEF" id="O4f-w6-pPV"/>
                                             </connections>
-                                        </textField>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="xTA-bS-085">
-                                            <rect key="frame" x="18" y="55" width="436" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Aria2c launch and quit with Maria" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5iD-4U-EG1">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        </segmentedControl>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1zM-ak-Fq0">
+                                            <rect key="frame" x="14" y="13" width="480" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Reset aria2 configuration to default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Bh-tb-JmY">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="switchOptions:" target="tQB-UM-JVL" id="eR9-8U-1pf"/>
+                                                <action selector="resetConfig:" target="f0K-az-QEF" id="Ueu-b0-OE6"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="xTA-bS-085" secondAttribute="trailing" constant="20" id="9Be-yG-xZ8"/>
-                                        <constraint firstItem="xTA-bS-085" firstAttribute="leading" secondItem="5or-kC-b57" secondAttribute="leading" constant="20" id="QtP-4p-Jfg"/>
-                                        <constraint firstAttribute="trailing" secondItem="lM8-fV-u2p" secondAttribute="trailing" constant="20" id="cm2-Om-ucP"/>
-                                        <constraint firstItem="1Uz-zu-QGR" firstAttribute="top" secondItem="xTA-bS-085" secondAttribute="bottom" constant="20" id="dLS-0t-e8u"/>
-                                        <constraint firstItem="lM8-fV-u2p" firstAttribute="centerY" secondItem="1Uz-zu-QGR" secondAttribute="centerY" id="kRf-tJ-zsz"/>
-                                        <constraint firstItem="lM8-fV-u2p" firstAttribute="leading" secondItem="1Uz-zu-QGR" secondAttribute="trailing" constant="8" id="qZf-H3-ncC"/>
-                                        <constraint firstAttribute="bottom" secondItem="1Uz-zu-QGR" secondAttribute="bottom" constant="20" id="tac-wI-BqD"/>
-                                        <constraint firstItem="xTA-bS-085" firstAttribute="top" secondItem="5or-kC-b57" secondAttribute="top" constant="20" id="tnI-Dn-jsJ"/>
-                                        <constraint firstItem="1Uz-zu-QGR" firstAttribute="leading" secondItem="xTA-bS-085" secondAttribute="leading" id="w0S-vt-hAw"/>
+                                        <constraint firstItem="msv-AL-AkY" firstAttribute="leading" secondItem="hOo-YK-S8z" secondAttribute="leading" constant="20" id="FKF-no-nzA"/>
+                                        <constraint firstItem="kv7-nj-veX" firstAttribute="leading" secondItem="msv-AL-AkY" secondAttribute="leading" id="GNg-Be-BkV"/>
+                                        <constraint firstItem="kv7-nj-veX" firstAttribute="top" secondItem="msv-AL-AkY" secondAttribute="bottom" id="IaY-vz-aL4"/>
+                                        <constraint firstItem="GeM-93-bHg" firstAttribute="height" secondItem="kv7-nj-veX" secondAttribute="height" id="KnH-p5-pZG"/>
+                                        <constraint firstItem="1zM-ak-Fq0" firstAttribute="top" secondItem="kv7-nj-veX" secondAttribute="bottom" constant="8" id="Mql-xb-7Jm"/>
+                                        <constraint firstItem="1zM-ak-Fq0" firstAttribute="leading" secondItem="msv-AL-AkY" secondAttribute="leading" id="NtL-gh-cTp"/>
+                                        <constraint firstAttribute="bottom" secondItem="1zM-ak-Fq0" secondAttribute="bottom" constant="20" id="UtX-XR-hSe"/>
+                                        <constraint firstItem="GeM-93-bHg" firstAttribute="leading" secondItem="kv7-nj-veX" secondAttribute="trailing" constant="-1" id="XKe-pS-Sav"/>
+                                        <constraint firstItem="msv-AL-AkY" firstAttribute="top" secondItem="hOo-YK-S8z" secondAttribute="top" constant="20" id="eop-Kw-Pgi"/>
+                                        <constraint firstAttribute="trailing" secondItem="msv-AL-AkY" secondAttribute="trailing" constant="20" id="gjQ-jc-ilw"/>
+                                        <constraint firstItem="1zM-ak-Fq0" firstAttribute="trailing" secondItem="msv-AL-AkY" secondAttribute="trailing" id="jAG-W0-r2Q"/>
+                                        <constraint firstItem="GeM-93-bHg" firstAttribute="top" secondItem="msv-AL-AkY" secondAttribute="bottom" constant="-1" id="yEi-Lw-rLw"/>
+                                        <constraint firstItem="GeM-93-bHg" firstAttribute="trailing" secondItem="msv-AL-AkY" secondAttribute="trailing" id="zEz-IM-f8h"/>
                                     </constraints>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="103" id="zax-EV-DYY"/>
-                                </constraints>
                             </box>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="YCH-IB-CPN" secondAttribute="bottom" constant="43" id="Kmx-qr-YZf"/>
-                            <constraint firstItem="YCH-IB-CPN" firstAttribute="leading" secondItem="8WT-S7-bNM" secondAttribute="leading" constant="20" id="QUf-Hw-lxM"/>
-                            <constraint firstAttribute="trailing" secondItem="YCH-IB-CPN" secondAttribute="trailing" constant="20" id="StL-it-WKK"/>
-                            <constraint firstItem="YCH-IB-CPN" firstAttribute="top" secondItem="8WT-S7-bNM" secondAttribute="top" constant="20" id="yNm-hb-DRv"/>
+                            <constraint firstItem="gzU-T6-eXa" firstAttribute="leading" secondItem="jEO-uM-9AI" secondAttribute="leading" constant="20" id="LKg-mR-Pkf"/>
+                            <constraint firstAttribute="trailing" secondItem="z6Z-Z0-1tl" secondAttribute="trailing" constant="20" id="Spw-HV-F7K"/>
+                            <constraint firstAttribute="bottom" secondItem="z6Z-Z0-1tl" secondAttribute="bottom" constant="20" id="bHx-K8-ewE"/>
+                            <constraint firstItem="z6Z-Z0-1tl" firstAttribute="leading" secondItem="jEO-uM-9AI" secondAttribute="leading" constant="20" id="nUk-9Q-wPr"/>
+                            <constraint firstItem="gzU-T6-eXa" firstAttribute="top" secondItem="jEO-uM-9AI" secondAttribute="top" constant="10" id="qT5-wI-Xj1"/>
+                            <constraint firstItem="z6Z-Z0-1tl" firstAttribute="top" secondItem="gzU-T6-eXa" secondAttribute="bottom" constant="8" id="sKX-P6-TKe"/>
+                            <constraint firstAttribute="trailing" secondItem="gzU-T6-eXa" secondAttribute="trailing" constant="20" id="t4R-cl-Svk"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="aria2ConfPath" destination="lM8-fV-u2p" id="AO6-xG-oqg"/>
-                        <outlet property="enableAria2AutoLaunch" destination="xTA-bS-085" id="Qyc-oz-uy8"/>
+                        <outlet property="aria2ConfPathButton" destination="8ED-SF-jvZ" id="Ie0-1c-BOY"/>
+                        <outlet property="aria2ConfTableView" destination="OX0-61-jEV" id="ZG7-Hs-zSX"/>
+                        <outlet property="enableAria2AutoLaunch" destination="kWC-Ai-6hR" id="Ydq-RM-yaQ"/>
                     </connections>
                 </viewController>
-                <customObject id="lGb-OC-gmE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="UoK-lN-cy1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <segmentedCell borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YQO-ra-Il2">
+                    <font key="font" metaFont="system"/>
+                    <segments>
+                        <segment width="32"/>
+                        <segment width="32" selected="YES" tag="1"/>
+                        <segment width="32">
+                            <nil key="label"/>
+                        </segment>
+                    </segments>
+                </segmentedCell>
             </objects>
-            <point key="canvasLocation" x="1142" y="1900"/>
+            <point key="canvasLocation" x="1567" y="849.5"/>
         </scene>
         <!--RPC Server-->
         <scene sceneID="KrS-J6-mvj">
             <objects>
                 <viewController title="RPC Server" id="jsm-It-tHy" customClass="SettingsRPCServerViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WTw-he-Tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="508" height="381"/>
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="371"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="General" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-rS-big">
@@ -501,7 +645,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="MFQ-68-ZNW" secondAttribute="trailing" constant="20" id="16B-R3-GU9"/>
                             <constraint firstAttribute="bottom" secondItem="MFQ-68-ZNW" secondAttribute="bottom" constant="40" id="Oid-tX-ZVt"/>
-                            <constraint firstItem="qJT-rS-big" firstAttribute="top" secondItem="WTw-he-Tvj" secondAttribute="top" constant="20" id="RPe-xi-IDg"/>
+                            <constraint firstItem="qJT-rS-big" firstAttribute="top" secondItem="WTw-he-Tvj" secondAttribute="top" constant="10" id="RPe-xi-IDg"/>
                             <constraint firstItem="MFQ-68-ZNW" firstAttribute="leading" secondItem="WTw-he-Tvj" secondAttribute="leading" constant="20" id="RdP-hA-8bk"/>
                             <constraint firstAttribute="trailing" secondItem="qJT-rS-big" secondAttribute="trailing" constant="20" id="der-oc-ync"/>
                             <constraint firstItem="MFQ-68-ZNW" firstAttribute="top" secondItem="qJT-rS-big" secondAttribute="bottom" constant="8" id="et0-tp-N4n"/>
@@ -522,14 +666,14 @@
                 </viewController>
                 <customObject id="DTa-Jl-hSU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="1536"/>
+            <point key="canvasLocation" x="1137" y="1535.5"/>
         </scene>
         <!--General-->
         <scene sceneID="dYH-VV-qY1">
             <objects>
                 <viewController title="General" id="Rd7-l1-zR2" customClass="SettingsGeneralViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zdc-MW-g94">
-                        <rect key="frame" x="0.0" y="0.0" width="498" height="243"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="233"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
@@ -614,7 +758,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="420-G2-XQD" secondAttribute="trailing" constant="20" id="Mrh-Vb-mNF"/>
-                            <constraint firstItem="420-G2-XQD" firstAttribute="top" secondItem="Zdc-MW-g94" secondAttribute="top" constant="20" id="OAw-tV-ixT"/>
+                            <constraint firstItem="420-G2-XQD" firstAttribute="top" secondItem="Zdc-MW-g94" secondAttribute="top" constant="10" id="OAw-tV-ixT"/>
                             <constraint firstAttribute="trailing" secondItem="WZb-Ba-1Nf" secondAttribute="trailing" constant="20" id="Ra5-xP-XPJ"/>
                             <constraint firstItem="WZb-Ba-1Nf" firstAttribute="top" secondItem="420-G2-XQD" secondAttribute="bottom" constant="20" id="Zhg-Mk-i4q"/>
                             <constraint firstAttribute="bottom" secondItem="WZb-Ba-1Nf" secondAttribute="bottom" constant="40" id="g3Y-sj-u8H"/>
@@ -661,7 +805,7 @@
             <objects>
                 <viewController title="Notification" id="TcK-ZB-cHr" customClass="SettingsNotificationViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8lC-7D-mhO">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="275"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="265"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="Task" translatesAutoresizingMaskIntoConstraints="NO" id="LgP-1z-DoL">
@@ -792,7 +936,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="0Ne-R2-GCh" firstAttribute="top" secondItem="LgP-1z-DoL" secondAttribute="bottom" constant="8" id="68Z-bw-3Mh"/>
-                            <constraint firstItem="LgP-1z-DoL" firstAttribute="top" secondItem="8lC-7D-mhO" secondAttribute="top" constant="20" id="Czn-XM-L9a"/>
+                            <constraint firstItem="LgP-1z-DoL" firstAttribute="top" secondItem="8lC-7D-mhO" secondAttribute="top" constant="10" id="Czn-XM-L9a"/>
                             <constraint firstAttribute="trailing" secondItem="0Ne-R2-GCh" secondAttribute="trailing" constant="20" id="EtX-eC-8ct"/>
                             <constraint firstItem="0Ne-R2-GCh" firstAttribute="leading" secondItem="8lC-7D-mhO" secondAttribute="leading" constant="20" id="YBe-m5-36R"/>
                             <constraint firstItem="LgP-1z-DoL" firstAttribute="leading" secondItem="8lC-7D-mhO" secondAttribute="leading" constant="20" id="eXS-dR-xsv"/>
@@ -819,7 +963,7 @@
             <objects>
                 <viewController title="Bandwidth" id="3HH-sZ-H9J" customClass="SettingsBandwidthViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5ug-2R-bwU">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="Low Speed Mode" translatesAutoresizingMaskIntoConstraints="NO" id="10v-QU-Wzb">
@@ -1015,7 +1159,7 @@
                             </box>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="OfD-bI-XtY" firstAttribute="top" secondItem="5ug-2R-bwU" secondAttribute="top" constant="20" id="62c-1l-cS7"/>
+                            <constraint firstItem="OfD-bI-XtY" firstAttribute="top" secondItem="5ug-2R-bwU" secondAttribute="top" constant="10" id="62c-1l-cS7"/>
                             <constraint firstItem="10v-QU-Wzb" firstAttribute="leading" secondItem="5ug-2R-bwU" secondAttribute="leading" constant="20" id="94k-Oj-RUE"/>
                             <constraint firstItem="Mju-Fr-P7M" firstAttribute="trailing" secondItem="UyG-8r-Gpr" secondAttribute="trailing" id="BnK-so-IiH"/>
                             <constraint firstItem="10v-QU-Wzb" firstAttribute="top" secondItem="OfD-bI-XtY" secondAttribute="bottom" constant="8" id="Cri-GN-Sa9"/>
@@ -1162,7 +1306,9 @@
         <image name="DownloadServer" width="32" height="32"/>
         <image name="Info" width="32" height="32"/>
         <image name="Logo" width="100" height="100"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="TodayWidget" width="32" height="32"/>
     </resources>
 </document>
