@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.windisco.Maria</string>
+		<string>group.windisco.maria</string>
 	</array>
 	<key>com.apple.security.network.client</key>
 	<true/>

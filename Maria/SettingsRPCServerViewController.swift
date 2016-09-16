@@ -33,8 +33,24 @@ class SettingsRPCServerViewController: NSViewController {
     
     @IBOutlet weak var username: NSTextField!
     @IBOutlet weak var password: NSSecureTextField!
+    
+    
+    @IBAction func restartApp(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.messageText = "Restart Maria"
+        alert.informativeText = "Are you sure to restart Maria?"
+        alert.addButton(withTitle: "Sure")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            if response == NSAlertFirstButtonReturn {
+                let path = Bundle.main.executablePath!
+                let id = "\(ProcessInfo.processInfo.processIdentifier)"
+                Process.launchedProcess(launchPath: path, arguments: [path, id])
+                NSApp.terminate(self)
+            }
+        })
+    }
 }
-
 
 
 extension SettingsRPCServerViewController {

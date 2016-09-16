@@ -46,7 +46,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if defaults.bool(forKey: "EnableAutoConnectAria2") {
             aria2open()
         }
-        
         statusItem.menu = statusMenu
         if defaults.bool(forKey: "EnableSpeedStatusBar") {
             enableSpeedStatusBar()
@@ -115,9 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RPCServerStatus: NSMenuItem!
     @IBOutlet weak var lowSpeedMode: NSMenuItem!
     
-//    var quickDownloadLink = ""
-    let pasteboard = NSPasteboard.general()
-    @IBOutlet weak var quickDownloadMenuItem: NSMenuItem!
 }
 
 extension AppDelegate {
@@ -150,7 +146,7 @@ extension AppDelegate {
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
         let path = defaults.object(forKey: "WebAppPath") as! String
         if !path.isEmpty {
-            NSWorkspace.shared().open(URL(string: path)!)
+            NSWorkspace.shared().open(URL(fileURLWithPath: path))
         }
     }
     
@@ -177,7 +173,6 @@ extension AppDelegate {
 // MARK: - Aria2 Config
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
-        
         aria2configure()
         aria2.connect()
         RPCServerStatus.state = 1

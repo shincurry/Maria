@@ -93,6 +93,37 @@ class SettingsAria2ConfigViewController: NSViewController {
         })
     
     }
+    @IBAction func restartAria2(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.messageText = "Restart Aria2"
+        alert.informativeText = "Are you sure to restart aria2? This operation may cause that current download tasks lost."
+        alert.addButton(withTitle: "Sure")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            if response == NSAlertFirstButtonReturn {
+                let shutdown = Process()
+                let shutdownSH = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
+                shutdown.launchPath = shutdownSH
+                shutdown.launch()
+                shutdown.waitUntilExit()
+                
+                let when = DispatchTime.now() + 1
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    let run = Process()
+                    let confPath = self.defaults.object(forKey: "Aria2ConfPath") as! String
+                    let runSH = Bundle.main
+                        .path(forResource: "runAria2c", ofType: "sh")
+                    run.launchPath = runSH
+                    run.arguments = [confPath]
+                    run.launch()
+                    run.waitUntilExit()
+                    
+                    let appDelegate = NSApplication.shared().delegate as! AppDelegate
+                    appDelegate.aria2open()
+                }
+            }
+        })
+    }
 }
 
 

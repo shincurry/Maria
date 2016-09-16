@@ -21,7 +21,7 @@ class SettingsGeneralViewController: NSViewController {
     // little bug -- use a new thread?
     @IBOutlet weak var enableSpeedStatusBar: NSButton!
     
-    @IBOutlet weak var webAppPath: NSTextField!
+    @IBOutlet weak var webAppPathButton: NSPopUpButton!
     
     
     @IBAction func switchOptions(_ sender: NSButton) {
@@ -45,12 +45,27 @@ class SettingsGeneralViewController: NSViewController {
         defaults.set(sender.stringValue, forKey: "WebAppPath")
         defaults.synchronize()
     }
+    
+    @IBAction func selectFilePath(_ sender: NSMenuItem) {
+        webAppPathButton.selectItem(at: 0)
+        let openPanel = NSOpenPanel()
+        openPanel.title = "Choose the webui index.html file."
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.showsHiddenFiles = true
+        openPanel.beginSheetModal(for: self.view.window!, completionHandler: { key in
+            if key == 1, let url = openPanel.url?.relativePath {
+                self.defaults.set(url, forKey: "WebAppPath")
+                self.webAppPathButton.item(at: 0)!.title = url
+            }
+        })
+    }
 }
 
 extension SettingsGeneralViewController {
     func userDefaultsInit() {
         if let value = defaults.object(forKey: "WebAppPath") as? String {
-            webAppPath.stringValue = value
+            webAppPathButton.item(at: 0)!.title = value
         }
         enableSpeedStatusBar.state = defaults.bool(forKey: "EnableSpeedStatusBar") ? 1 : 0
     }

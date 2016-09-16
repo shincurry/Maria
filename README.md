@@ -4,7 +4,9 @@
 
 ## What's Maria?
 
-an OS X app/widget for aria2 download tool.
+An OS X app/widget for aria2 download tool.
+
+You can see Maria dev plan in [here](https://github.com/ShinCurry/Maria/projects/1).
 
 #### Main Window
 
