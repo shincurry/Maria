@@ -37,10 +37,10 @@ class SettingsRPCServerViewController: NSViewController {
     
     @IBAction func restartApp(_ sender: NSButton) {
         let alert = NSAlert()
-        alert.messageText = "Restart Maria"
-        alert.informativeText = "Are you sure to restart Maria?"
-        alert.addButton(withTitle: "Sure")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = NSLocalizedString("restartApp.alert.messageText", comment: "")
+        alert.informativeText = NSLocalizedString("restartApp.alert.informativeText", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 let path = Bundle.main.executablePath!

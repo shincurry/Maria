@@ -96,15 +96,15 @@ extension TaskListViewController {
             switch self.aria2.status {
             case .connecting:
                 self.alertLabel.isHidden = false
-                self.alertLabel.stringValue = "Connecting to aria2..."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
             case .connected:
                 self.alertLabel.isHidden = true
             case .unauthorized:
                 self.alertLabel.isHidden = false
-                self.alertLabel.stringValue = "Connection unauthorized."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.unauthorized", comment: "")
             case .disconnected:
                 self.alertLabel.isHidden = false
-                self.alertLabel.stringValue = "Disconnected to aria2."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
             }
         }
     }
