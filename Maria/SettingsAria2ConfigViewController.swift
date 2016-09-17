@@ -30,7 +30,7 @@ class SettingsAria2ConfigViewController: NSViewController {
     @IBAction func selectFilePath(_ sender: NSMenuItem) {
         aria2ConfPathButton.selectItem(at: 0)
         let openPanel = NSOpenPanel()
-        openPanel.title = "Choose the aria2.conf file"
+        openPanel.title = NSLocalizedString("selectConfPath.title", comment: "")
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.showsHiddenFiles = true
@@ -81,10 +81,10 @@ class SettingsAria2ConfigViewController: NSViewController {
     
     @IBAction func resetConfig(_ sender: NSButton) {
         let alert = NSAlert()
-        alert.messageText = "Rest Configuration"
-        alert.informativeText = "Are you sure to reset aria2 configuration to default?"
-        alert.addButton(withTitle: "Sure")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = NSLocalizedString("resetConfig.alert.messageText", comment: "")
+        alert.informativeText = NSLocalizedString("resetConfig.alert.informativeText", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 self.config.reset()
@@ -95,10 +95,10 @@ class SettingsAria2ConfigViewController: NSViewController {
     }
     @IBAction func restartAria2(_ sender: NSButton) {
         let alert = NSAlert()
-        alert.messageText = "Restart Aria2"
-        alert.informativeText = "Are you sure to restart aria2? This operation may cause that current download tasks lost."
-        alert.addButton(withTitle: "Sure")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = NSLocalizedString("restartAria2.alert.messageText", comment: "")
+        alert.informativeText = NSLocalizedString("restartAria2.alert.informativeText", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 let shutdown = Process()

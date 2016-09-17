@@ -95,15 +95,17 @@ class MainWindowController: NSWindowController {
             }
             
             let alert = NSAlert()
-            alert.messageText = "Remove Task" + (tasks.count > 0 ? "s" : "")
+            
             if tasks.count == 1 {
-                alert.informativeText = "Are you sure to remove \"\(tasks[0].1.title!)\" from the download list?"
+                alert.messageText = NSLocalizedString("removeTasks.alert.messageText", comment: "")
+                alert.informativeText = String.init(format: NSLocalizedString("removeTasks.alert.informativeText", comment: ""), tasks[0].1.title!)
             } else {
-                alert.informativeText = "Are you sure to remove \(tasks.count) tasks from the download list?"
+                alert.messageText = NSLocalizedString("removeTasks.alert.messageText(s)", comment: "")
+                alert.informativeText = String.init(format: NSLocalizedString("removeTasks.alert.informativeText(s)", comment: ""), tasks.count)
             }
             
-            alert.addButton(withTitle: "Remove")
-            alert.addButton(withTitle: "Cancel")
+            alert.addButton(withTitle: NSLocalizedString("button.remove", comment: ""))
+            alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
             alert.beginSheetModal(for: self.window!, completionHandler: { response in
                 if response == NSAlertFirstButtonReturn {
                     tasks.forEach() { (index, task) in
@@ -120,10 +122,10 @@ class MainWindowController: NSWindowController {
     
     @IBAction func clearCompletedErrorRemovedTasks(_ sender: NSToolbarItem) {
         let alert = NSAlert()
-        alert.messageText = "Clear Tasks"
-        alert.informativeText = "Are you sure to clear those completed/error/removed task(s) from the download list?"
-        alert.addButton(withTitle: "Clean")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = NSLocalizedString("clearTasks.alert.messageText(s)", comment: "")
+        alert.informativeText = NSLocalizedString("clearTasks.alert.informativeText(s)", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.clean", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 self.aria2.clearCompletedErrorRemoved()

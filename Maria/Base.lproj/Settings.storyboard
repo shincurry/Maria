@@ -23,16 +23,16 @@
             </objects>
             <point key="canvasLocation" x="-1217.5" y="868"/>
         </scene>
-        <!--Settings Today View Controller-->
+        <!--Widget-->
         <scene sceneID="uxM-3o-hxW">
             <objects>
-                <viewController id="7Tk-cO-jxy" customClass="SettingsTodayViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Widget" id="7Tk-cO-jxy" customClass="SettingsTodayViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KJM-tT-CXP">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="99"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="79"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9q-Bl-EFl">
-                                <rect key="frame" x="18" y="62" width="135" height="17"/>
+                                <rect key="frame" x="18" y="42" width="135" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="zdf-Hl-zjI"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0et-Ap-Vvc">
-                                <rect key="frame" x="210" y="63" width="49" height="17"/>
+                                <rect key="frame" x="210" y="43" width="49" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(1 ~ 10)" id="HsZ-j8-gfd">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -51,7 +51,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X2Q-Rv-4v2">
-                                <rect key="frame" x="159" y="59" width="30" height="22"/>
+                                <rect key="frame" x="159" y="39" width="30" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="ASC-U5-XlI"/>
                                 </constraints>
@@ -65,14 +65,14 @@
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="is0-ZT-Xxl">
-                                <rect key="frame" x="188" y="58" width="19" height="27"/>
+                                <rect key="frame" x="188" y="38" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="10" doubleValue="1" id="mPP-uO-61j"/>
                                 <connections>
                                     <action selector="didChangeStepperValue:" target="7Tk-cO-jxy" id="thp-PY-uYz"/>
                                 </connections>
                             </stepper>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Jam-0K-q73">
-                                <rect key="frame" x="18" y="38" width="196" height="18"/>
+                                <rect key="frame" x="18" y="18" width="196" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="XeA-mB-JGi"/>
                                 </constraints>
@@ -88,7 +88,7 @@
                         <constraints>
                             <constraint firstItem="is0-ZT-Xxl" firstAttribute="centerY" secondItem="X2Q-Rv-4v2" secondAttribute="centerY" multiplier="0.95" id="5EM-04-vLS"/>
                             <constraint firstItem="is0-ZT-Xxl" firstAttribute="leading" secondItem="X2Q-Rv-4v2" secondAttribute="trailing" constant="2" id="Age-XC-OJo"/>
-                            <constraint firstAttribute="bottom" secondItem="Jam-0K-q73" secondAttribute="bottom" constant="40" id="IgZ-JY-LQE"/>
+                            <constraint firstAttribute="bottom" secondItem="Jam-0K-q73" secondAttribute="bottom" constant="20" id="IgZ-JY-LQE"/>
                             <constraint firstItem="X2Q-Rv-4v2" firstAttribute="leading" secondItem="m9q-Bl-EFl" secondAttribute="trailing" constant="8" id="Jyl-dQ-LN8"/>
                             <constraint firstItem="Jam-0K-q73" firstAttribute="top" secondItem="m9q-Bl-EFl" secondAttribute="bottom" constant="8" id="W5e-zd-waF"/>
                             <constraint firstItem="m9q-Bl-EFl" firstAttribute="leading" secondItem="KJM-tT-CXP" secondAttribute="leading" constant="20" id="Y90-ZQ-HpU"/>
@@ -115,10 +115,10 @@
             <objects>
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="6X9-9Z-4nl" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" image="NSPreferencesGeneral" id="7QU-1A-CG8"/>
-                        <tabViewItem label="Aria2" image="DownloadServer" id="sor-W0-2CE"/>
-                        <tabViewItem label="Widget" image="TodayWidget" id="mO1-C8-qaw"/>
-                        <tabViewItem label="About" image="Info" id="hcL-Fd-fOC"/>
+                        <tabViewItem image="NSPreferencesGeneral" id="7QU-1A-CG8"/>
+                        <tabViewItem image="DownloadServer" id="sor-W0-2CE"/>
+                        <tabViewItem image="TodayWidget" id="mO1-C8-qaw"/>
+                        <tabViewItem image="Info" id="hcL-Fd-fOC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="CEz-gP-v2N">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -259,7 +259,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn width="265.5" minWidth="40" maxWidth="1000" id="35Z-5c-bkc">
+                                                            <tableColumn width="264.5" minWidth="40" maxWidth="1000" id="35Z-5c-bkc">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Value">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -286,7 +286,7 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="eoS-fk-l65"/>
                                             </constraints>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="I6H-fY-Sbo">
-                                                <rect key="frame" x="1" y="244" width="466" height="16"/>
+                                                <rect key="frame" x="1" y="145" width="466" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="BI7-zG-kL0">
@@ -700,11 +700,11 @@
             <objects>
                 <viewController title="General" id="Rd7-l1-zR2" customClass="SettingsGeneralViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zdc-MW-g94">
-                        <rect key="frame" x="0.0" y="0.0" width="498" height="233"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
-                                <rect key="frame" x="17" y="126" width="464" height="97"/>
+                                <rect key="frame" x="17" y="106" width="464" height="97"/>
                                 <view key="contentView" id="sn5-9m-lOh">
                                     <rect key="frame" x="1" y="1" width="462" height="81"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -741,7 +741,7 @@
                                 </constraints>
                             </box>
                             <box borderType="line" title="Web App" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-Ba-1Nf">
-                                <rect key="frame" x="17" y="36" width="464" height="74"/>
+                                <rect key="frame" x="17" y="16" width="464" height="74"/>
                                 <view key="contentView" id="YMb-5g-18A">
                                     <rect key="frame" x="1" y="1" width="462" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -792,7 +792,7 @@
                             <constraint firstItem="420-G2-XQD" firstAttribute="top" secondItem="Zdc-MW-g94" secondAttribute="top" constant="10" id="OAw-tV-ixT"/>
                             <constraint firstAttribute="trailing" secondItem="WZb-Ba-1Nf" secondAttribute="trailing" constant="20" id="Ra5-xP-XPJ"/>
                             <constraint firstItem="WZb-Ba-1Nf" firstAttribute="top" secondItem="420-G2-XQD" secondAttribute="bottom" constant="20" id="Zhg-Mk-i4q"/>
-                            <constraint firstAttribute="bottom" secondItem="WZb-Ba-1Nf" secondAttribute="bottom" constant="40" id="g3Y-sj-u8H"/>
+                            <constraint firstAttribute="bottom" secondItem="WZb-Ba-1Nf" secondAttribute="bottom" constant="20" id="g3Y-sj-u8H"/>
                             <constraint firstItem="WZb-Ba-1Nf" firstAttribute="leading" secondItem="Zdc-MW-g94" secondAttribute="leading" constant="20" id="kLb-GA-fOx"/>
                             <constraint firstItem="420-G2-XQD" firstAttribute="leading" secondItem="Zdc-MW-g94" secondAttribute="leading" constant="20" id="v09-kb-LFw"/>
                         </constraints>
@@ -811,9 +811,9 @@
             <objects>
                 <tabViewController title="General" selectedTabViewItemIndex="0" id="lgs-lN-fb2" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" id="F0Z-wh-zuv"/>
-                        <tabViewItem label="Bandwidth" id="Nk8-b3-IHS"/>
-                        <tabViewItem label="Notification" id="bh4-6N-RnC"/>
+                        <tabViewItem id="F0Z-wh-zuv"/>
+                        <tabViewItem id="Nk8-b3-IHS"/>
+                        <tabViewItem id="bh4-6N-RnC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="yFj-cJ-EL8">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -836,11 +836,11 @@
             <objects>
                 <viewController title="Notification" id="TcK-ZB-cHr" customClass="SettingsNotificationViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8lC-7D-mhO">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="265"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="245"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="Task" translatesAutoresizingMaskIntoConstraints="NO" id="LgP-1z-DoL">
-                                <rect key="frame" x="17" y="134" width="466" height="121"/>
+                                <rect key="frame" x="17" y="114" width="466" height="121"/>
                                 <view key="contentView" id="LqY-D8-qvg">
                                     <rect key="frame" x="1" y="1" width="464" height="105"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -926,7 +926,7 @@
                                 </constraints>
                             </box>
                             <box borderType="line" title="Connection" translatesAutoresizingMaskIntoConstraints="NO" id="0Ne-R2-GCh">
-                                <rect key="frame" x="17" y="36" width="466" height="94"/>
+                                <rect key="frame" x="17" y="16" width="466" height="94"/>
                                 <view key="contentView" id="xui-AW-gT6">
                                     <rect key="frame" x="1" y="1" width="464" height="78"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -972,7 +972,7 @@
                             <constraint firstItem="0Ne-R2-GCh" firstAttribute="leading" secondItem="8lC-7D-mhO" secondAttribute="leading" constant="20" id="YBe-m5-36R"/>
                             <constraint firstItem="LgP-1z-DoL" firstAttribute="leading" secondItem="8lC-7D-mhO" secondAttribute="leading" constant="20" id="eXS-dR-xsv"/>
                             <constraint firstAttribute="trailing" secondItem="LgP-1z-DoL" secondAttribute="trailing" constant="20" id="ehs-VT-YVj"/>
-                            <constraint firstAttribute="bottom" secondItem="0Ne-R2-GCh" secondAttribute="bottom" constant="40" id="xqR-Zv-6fq"/>
+                            <constraint firstAttribute="bottom" secondItem="0Ne-R2-GCh" secondAttribute="bottom" constant="20" id="xqR-Zv-6fq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -994,11 +994,11 @@
             <objects>
                 <viewController title="Bandwidth" id="3HH-sZ-H9J" customClass="SettingsBandwidthViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5ug-2R-bwU">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="230"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="Low Speed Mode" translatesAutoresizingMaskIntoConstraints="NO" id="10v-QU-Wzb">
-                                <rect key="frame" x="17" y="36" width="426" height="100"/>
+                                <rect key="frame" x="17" y="16" width="426" height="100"/>
                                 <view key="contentView" id="dmN-FM-2gW">
                                     <rect key="frame" x="1" y="1" width="424" height="84"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1080,6 +1080,7 @@
                                         <constraint firstItem="JfR-ml-ICi" firstAttribute="top" secondItem="Mju-Fr-P7M" secondAttribute="bottom" constant="10" id="VZQ-tP-Dqb"/>
                                         <constraint firstAttribute="trailing" secondItem="c6x-C3-Tp8" secondAttribute="trailing" constant="20" id="hXp-be-xxd"/>
                                         <constraint firstItem="FUB-B0-Ir2" firstAttribute="leading" secondItem="JfR-ml-ICi" secondAttribute="trailing" constant="8" id="kCP-Dh-vvW"/>
+                                        <constraint firstItem="USV-cv-dsD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dmN-FM-2gW" secondAttribute="leading" constant="20" id="ouB-gD-vnS"/>
                                         <constraint firstItem="c6x-C3-Tp8" firstAttribute="leading" secondItem="FUB-B0-Ir2" secondAttribute="trailing" constant="8" id="pdc-uo-UkQ"/>
                                         <constraint firstItem="USV-cv-dsD" firstAttribute="top" secondItem="dmN-FM-2gW" secondAttribute="top" constant="20" id="qXK-PY-IkK"/>
                                         <constraint firstItem="UTB-D7-Qgi" firstAttribute="leading" secondItem="Mju-Fr-P7M" secondAttribute="trailing" constant="8" id="sZU-ts-Wwm"/>
@@ -1091,7 +1092,7 @@
                                 </constraints>
                             </box>
                             <box borderType="line" title="Global Bandwidth" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-bI-XtY">
-                                <rect key="frame" x="17" y="140" width="426" height="100"/>
+                                <rect key="frame" x="17" y="120" width="426" height="100"/>
                                 <view key="contentView" id="wAV-O1-10g">
                                     <rect key="frame" x="1" y="1" width="424" height="84"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1194,7 +1195,7 @@
                             <constraint firstItem="10v-QU-Wzb" firstAttribute="leading" secondItem="5ug-2R-bwU" secondAttribute="leading" constant="20" id="94k-Oj-RUE"/>
                             <constraint firstItem="Mju-Fr-P7M" firstAttribute="trailing" secondItem="UyG-8r-Gpr" secondAttribute="trailing" id="BnK-so-IiH"/>
                             <constraint firstItem="10v-QU-Wzb" firstAttribute="top" secondItem="OfD-bI-XtY" secondAttribute="bottom" constant="8" id="Cri-GN-Sa9"/>
-                            <constraint firstAttribute="bottom" secondItem="10v-QU-Wzb" secondAttribute="bottom" constant="40" id="Leh-6L-rZm"/>
+                            <constraint firstAttribute="bottom" secondItem="10v-QU-Wzb" secondAttribute="bottom" constant="20" id="Leh-6L-rZm"/>
                             <constraint firstItem="OfD-bI-XtY" firstAttribute="leading" secondItem="5ug-2R-bwU" secondAttribute="leading" constant="20" id="aGF-C9-i6f"/>
                             <constraint firstAttribute="trailing" secondItem="OfD-bI-XtY" secondAttribute="trailing" constant="20" id="fw6-r7-QW9"/>
                             <constraint firstAttribute="trailing" secondItem="10v-QU-Wzb" secondAttribute="trailing" constant="20" id="kHU-mJ-4bs"/>
@@ -1212,10 +1213,10 @@
             </objects>
             <point key="canvasLocation" x="-563" y="2035"/>
         </scene>
-        <!--About Maria-->
+        <!--About-->
         <scene sceneID="tE0-yX-bIk">
             <objects>
-                <viewController title="About Maria" id="rgA-B9-vs0" customClass="AboutViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About" id="rgA-B9-vs0" customClass="AboutViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="i4z-0y-3Db">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="207"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1291,7 +1292,7 @@
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-qy-LoN">
                                         <rect key="frame" x="6" y="8" width="268" height="19"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="An OS X app for aria2 download tool." id="9Nl-Hi-S25">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A macOS app for aria2 download tool." id="9Nl-Hi-S25">
                                             <font key="font" metaFont="system" size="15"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
