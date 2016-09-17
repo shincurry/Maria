@@ -42,7 +42,7 @@ class TaskListViewController: NSViewController {
     var taskData: [Aria2Task] = []
     var newTaskData: TaskData = ([], [], [])
     
-    let selectedColor = NSColor(calibratedRed: 218.0/255.0, green: 236.0/255.0, blue: 254.0/255.0, alpha: 1.0).cgColor
+    let selectedColor = NSColor(calibratedRed: 211.0/255.0, green: 231.0/255.0, blue: 250.0/255.0, alpha: 1.0).cgColor
     
     @IBOutlet weak var alertLabel: NSTextField!
     @IBOutlet weak var taskListTableView: NSTableView!
