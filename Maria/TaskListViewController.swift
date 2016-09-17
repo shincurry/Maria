@@ -18,6 +18,7 @@ class TaskListViewController: NSViewController {
         let nib = NSNib(nibNamed: "TaskCellView", bundle: Bundle.main)
         taskListTableView.register(nib!, forIdentifier: "TaskCell")
         taskListTableView.rowHeight = 64
+        taskListTableView.selectionHighlightStyle = .none
         
         aria2Config()
     }
@@ -40,6 +41,8 @@ class TaskListViewController: NSViewController {
     typealias TaskData = (active: [Aria2Task], waiting: [Aria2Task], stopped: [Aria2Task])
     var taskData: [Aria2Task] = []
     var newTaskData: TaskData = ([], [], [])
+    
+    let selectedColor = NSColor(calibratedRed: 218.0/255.0, green: 236.0/255.0, blue: 254.0/255.0, alpha: 1.0).cgColor
     
     @IBOutlet weak var alertLabel: NSTextField!
     @IBOutlet weak var taskListTableView: NSTableView!
@@ -167,6 +170,16 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let controller = self.view.window?.windowController as? MainWindowController {
             controller.taskRemoveButton.isEnabled = (taskListTableView.selectedRowIndexes.count > 0)
+        }
+        
+        for row in 0..<taskListTableView.numberOfRows {
+            let cell = taskListTableView.view(atColumn: 0, row: row, makeIfNecessary: false) as! TaskCellView
+            cell.wantsLayer = true
+            if taskListTableView.selectedRowIndexes.contains(row) {
+                cell.layer?.backgroundColor = selectedColor
+            } else {
+                cell.layer?.backgroundColor = NSColor.white.cgColor
+            }
         }
     }
     
