@@ -178,7 +178,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
             if taskListTableView.selectedRowIndexes.contains(row) {
                 cell.layer?.backgroundColor = selectedColor
             } else {
-                cell.layer?.backgroundColor = NSColor.white.cgColor
+                cell.layer?.backgroundColor = NSColor.clear.cgColor
             }
         }
     }
