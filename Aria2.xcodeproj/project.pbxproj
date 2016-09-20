@@ -17,10 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		880980161D2F850900237D8E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods.framework; sourceTree = "<absolute>"; };
-		887049EE1D7FD3EA0014BBEE /* Pods_Maria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Maria.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods_Maria.framework; sourceTree = "<absolute>"; };
 		887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Method.swift; sourceTree = "<group>"; };
-		8882C07B1D7FD4DA00511C60 /* Pods_Maria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Maria.framework; path = /Users/shincurry/Dropbox/DevCode/Maria/Pods/../build/Debug/Pods_Maria.framework; sourceTree = "<absolute>"; };
 		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
 		8897835C1CBE105400C12387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,9 +54,6 @@
 		880980151D2F850900237D8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8882C07B1D7FD4DA00511C60 /* Pods_Maria.framework */,
-				887049EE1D7FD3EA0014BBEE /* Pods_Maria.framework */,
-				880980161D2F850900237D8E /* Pods.framework */,
 				DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */,
 			);
 			name = Frameworks;

@@ -37,6 +37,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         aria2 = Aria2.shared
         super.init()
+        
+        // Aria2Core framework test.
+        let aria2core = Aria2Core()
+        aria2core.initial()
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
