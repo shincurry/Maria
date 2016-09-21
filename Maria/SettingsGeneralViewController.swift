@@ -21,23 +21,30 @@ class SettingsGeneralViewController: NSViewController {
     // little bug -- use a new thread?
     @IBOutlet weak var enableSpeedStatusBar: NSButton!
     
+    @IBOutlet weak var enableDockIcon: NSButton!
+    
     @IBOutlet weak var webAppPathButton: NSPopUpButton!
     
-    
     @IBAction func switchOptions(_ sender: NSButton) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         let boolValue = sender.state == 1 ? true : false
         switch sender {
         case enableSpeedStatusBar:
             defaults.set(boolValue, forKey: "EnableSpeedStatusBar")
+            if boolValue {
+                appDelegate.enableSpeedStatusBar()
+            } else {
+                appDelegate.disableSpeedStatusBar()
+            }
+        case enableDockIcon:
+            defaults.set(boolValue, forKey: "EnableDockIcon")
+            if boolValue {
+                appDelegate.enableDockIcon()
+            } else {
+                appDelegate.disableDockIcon()
+            }
         default:
             break
-        }
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        
-        if boolValue {
-            appDelegate.enableSpeedStatusBar()
-        } else {
-            appDelegate.disableSpeedStatusBar()
         }
     }
     
