@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="M4z-wN-cVx">
             <objects>
-                <windowController id="gqa-IX-nBG" customClass="SettingsWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="gqa-IX-nBG" customClass="SettingsWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Maria Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="6md-Px-tKK">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="330" y="400" width="517" height="316"/>
