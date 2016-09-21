@@ -105,18 +105,18 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
             switch self.aria2.status {
             case .connecting:
-                self.alertLabel.stringValue = "Connecting to aria2..."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
                 self.noTaskAlertLabel.isHidden = true
             case .connected:
                 self.noTaskAlertLabel.isHidden = !(self.taskData.count == 0)
             case .unauthorized:
                 self.noTaskAlertLabel.isHidden = true
-                self.alertLabel.stringValue = "Connection unauthorized."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.unauthorized", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
             case .disconnected:
                 self.noTaskAlertLabel.isHidden = true
-                self.alertLabel.stringValue = "Disconnected to aria2."
+                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
             }
         }

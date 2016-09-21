@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "440-w1-n0T"; */
+"440-w1-n0T.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "⬆︎"; ObjectID = "C40-VL-2Xt"; */
+"C40-VL-2Xt.title" = "⬆︎";
+
+/* Class = "NSTextFieldCell"; title = "0.0 KB/s"; ObjectID = "Nty-Oc-Ypt"; */
+"Nty-Oc-Ypt.title" = "0.0 KB/s";
+
+/* Class = "NSTextFieldCell"; title = "Please run aria2 first"; ObjectID = "Twu-sf-eXL"; */
+"Twu-sf-eXL.title" = "请先运行 aria2";
+
+/* Class = "NSTextFieldCell"; title = "No Task"; ObjectID = "cCf-Fr-bo7"; */
+"cCf-Fr-bo7.title" = "无任务";
+
+/* Class = "NSBox"; title = "Title"; ObjectID = "dO8-Ah-DWC"; */
+"dO8-Ah-DWC.title" = "标题";
+
+/* Class = "NSTextFieldCell"; title = "⬇︎"; ObjectID = "f8U-HA-6vk"; */
+"f8U-HA-6vk.title" = "⬇︎";
+
+/* Class = "NSTextFieldCell"; title = "0.0 KB/s"; ObjectID = "rA6-B4-IzS"; */
+"rA6-B4-IzS.title" = "0.0 KB/s";

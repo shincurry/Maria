@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  Maria
+
+  Created by ShinCurry on 2016/9/17.
+  Copyright © 2016年 ShinCurry. All rights reserved.
+*/
+
+// MARK: Button
+"button.cancel" = "Cancel";
+"button.ok" = "OK";
+"button.sure" = "Sure";
+"button.remove" = "Remove";
+"button.clean" = "Clean";
+
+// MARK: NewTaskViewController
+"openBtFile.title" = "Choose a .torrent file";
+
+// MARK: MainWindowController
+"removeTasks.alert.messageText" = "Remove Task";
+"removeTasks.alert.messageText(s)" = "Remove Tasks";
+"removeTasks.alert.informativeText" = "Are you sure to remove %s from the download list?";
+"removeTasks.alert.informativeText(s)" = "Are you sure to remove %s tasks from the download list?";
+"clearTasks.alert.messageText(s)" = "Clear Tasks";
+"clearTasks.alert.informativeText(s)" = "Are you sure to clear those completed/error/removed task(s) from the download list?";
+
+"aria2.status.connecting" = "Connecting to aria2...";
+"aria2.status.unauthorized" = "Connection unauthorized.";
+"aria2.status.disconnected" = "Disconnected to aria2.";
+
+// MARK: SettingsRPCServerViewController
+"restartApp.alert.messageText" = "Restart Maria";
+"restartApp.alert.informativeText" = "Are you sure to restart Maria?";
+
+// MARK: SettingsGeneralViewController
+"selectWebUIPath.openPanel.title" = "Choose the webui index.html file.";
+
+// MARK: SettingsAria2ConfigViewController
+"selectConfPath.title" = "Choose the aria2.conf file";
+
+"resetConfig.alert.messageText" = "Reset Configuration";
+"resetConfig.alert.informativeText" = "Are you sure to reset aria2 configuration to default?";
+
+"restartAria2.alert.messageText" = "Restart Aria2";
+"restartAria2.alert.informativeText" = "Are you sure to restart aria2? This operation may cause that current download tasks lost.";

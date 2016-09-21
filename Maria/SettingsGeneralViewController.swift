@@ -49,7 +49,7 @@ class SettingsGeneralViewController: NSViewController {
     @IBAction func selectFilePath(_ sender: NSMenuItem) {
         webAppPathButton.selectItem(at: 0)
         let openPanel = NSOpenPanel()
-        openPanel.title = "Choose the webui index.html file."
+        openPanel.title = NSLocalizedString("selectWebUIPath.openPanel.title", comment: "")
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.showsHiddenFiles = true

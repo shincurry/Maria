@@ -18,10 +18,12 @@
 		88298D051D41E56600BBAFE8 /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88298CF51D41E56500BBAFE8 /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		88298D0D1D41E63E00BBAFE8 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */; };
 		88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */; };
+		882EE79A1D8D321200CD4BA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8842882C1D8D220E002014E2 /* Localizable.strings */; };
 		883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883327A21CC751630002B561 /* NewTaskViewController.swift */; };
 		883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */; };
 		883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52A1CE1D52300B10A25 /* TaskCellView.swift */; };
 		883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */; };
+		8842882A1D8D220E002014E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8842882C1D8D220E002014E2 /* Localizable.strings */; };
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
 		886AB8621D8672E50053472C /* AriaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886AB8611D8672E50053472C /* AriaConfig.swift */; };
@@ -87,6 +89,10 @@
 		0F70C9DF82097AC4946AB784 /* Pods-Maria Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maria Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maria Widget/Pods-Maria Widget.release.xcconfig"; sourceTree = "<group>"; };
 		88163C971CBE581600A00976 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = Pods/../build/Debug/Pods.framework; sourceTree = "<group>"; };
 		8816876F1D8A9C1B00E36678 /* aria2.default.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aria2.default.conf; sourceTree = "<group>"; };
+		881A84601D8CFD6500647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		881A84621D8CFD6500647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
+		881A84631D8D00C300647DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		881A84641D8D00C800647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runAria2c.sh; sourceTree = "<group>"; };
 		8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shutdownAria2c.sh; sourceTree = "<group>"; };
 		8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAria2ConfigViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +100,6 @@
 		88298CFA1D41E56500BBAFE8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		88298CFD1D41E56500BBAFE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
 		88298CFF1D41E56600BBAFE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88298D011D41E56600BBAFE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88298D0B1D41E5F700BBAFE8 /* Maria Widget.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
 		88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
 		88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
@@ -102,8 +107,12 @@
 		883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
 		883EA52A1CE1D52300B10A25 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
 		883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		884288261D8D20A7002014E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8842882B1D8D220E002014E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8842882E1D8D293E002014E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		8866AD8C1D8D0B65006FF797 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Settings.strings"; sourceTree = "<group>"; };
 		886AB8611D8672E50053472C /* AriaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriaConfig.swift; sourceTree = "<group>"; };
 		887049EC1D7FD3E40014BBEE /* Pods_Maria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Maria.framework; path = Pods/../build/Debug/Pods_Maria.framework; sourceTree = "<group>"; };
 		8870EA251CD4F13E00278B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -159,6 +168,7 @@
 		28088A4E27634CD587DFE218 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				884288261D8D20A7002014E2 /* QuartzCore.framework */,
 				8882C07D1D7FDA8600511C60 /* Aria2.framework */,
 				887049EC1D7FD3E40014BBEE /* Pods_Maria.framework */,
 				88163C971CBE581600A00976 /* Pods.framework */,
@@ -192,7 +202,6 @@
 				88298CFC1D41E56500BBAFE8 /* TodayViewController.xib */,
 				88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */,
 				88298CFF1D41E56600BBAFE8 /* Info.plist */,
-				88298D001D41E56600BBAFE8 /* InfoPlist.strings */,
 				88298CF81D41E56500BBAFE8 /* Supporting Files */,
 			);
 			path = "Maria Widget";
@@ -201,6 +210,7 @@
 		88298CF81D41E56500BBAFE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88298D001D41E56600BBAFE8 /* InfoPlist.strings */,
 				88298D0B1D41E5F700BBAFE8 /* Maria Widget.entitlements */,
 			);
 			name = "Supporting Files";
@@ -277,6 +287,7 @@
 		88F76A111D87D045002876CD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8842882C1D8D220E002014E2 /* Localizable.strings */,
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
 				8816876F1D8A9C1B00E36678 /* aria2.default.conf */,
 				8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */,
@@ -390,6 +401,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 889485661CBE4D4A000839CD;
 			productRefGroup = 889485701CBE4D4A000839CD /* Products */;
@@ -407,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882EE79A1D8D321200CD4BA9 /* Localizable.strings in Resources */,
 				88298CFE1D41E56600BBAFE8 /* TodayViewController.xib in Resources */,
 				88298D021D41E56600BBAFE8 /* InfoPlist.strings in Resources */,
 				888176371D4234F50040D767 /* Assets.xcassets in Resources */,
@@ -422,6 +435,7 @@
 				8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */,
 				8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */,
 				8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */,
+				8842882A1D8D220E002014E2 /* Localizable.strings in Resources */,
 				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
 				88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */,
 				88F76A131D87D081002876CD /* DefaultConfig.plist in Resources */,
@@ -557,6 +571,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				88298CFD1D41E56500BBAFE8 /* Base */,
+				881A84621D8CFD6500647DE4 /* zh-Hans */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
@@ -564,15 +579,26 @@
 		88298D001D41E56600BBAFE8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				88298D011D41E56600BBAFE8 /* en */,
+				881A84631D8D00C300647DE4 /* Base */,
+				881A84641D8D00C800647DE4 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8842882C1D8D220E002014E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8842882B1D8D220E002014E2 /* Base */,
+				8842882E1D8D293E002014E2 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		8870EA241CD4F13E00278B2C /* Settings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8870EA251CD4F13E00278B2C /* Base */,
+				8866AD8C1D8D0B65006FF797 /* zh-Hans */,
 			);
 			name = Settings.storyboard;
 			sourceTree = "<group>";
@@ -581,6 +607,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				889485791CBE4D4A000839CD /* Base */,
+				881A84601D8CFD6500647DE4 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -638,6 +665,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -685,6 +713,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

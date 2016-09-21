@@ -38,7 +38,7 @@ class NewTaskViewController: NSViewController {
     @IBAction func openBtFile(_ sender: NSButton) {
         
         let openPanel = NSOpenPanel()
-        openPanel.title = "Choose a .torrent file"
+        openPanel.title = NSLocalizedString("openBtFile.title", comment: "")
         openPanel.showsResizeIndicator = true
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = true
