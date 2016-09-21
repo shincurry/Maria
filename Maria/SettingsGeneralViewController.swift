@@ -75,6 +75,7 @@ extension SettingsGeneralViewController {
             webAppPathButton.item(at: 0)!.title = value
         }
         enableSpeedStatusBar.state = defaults.bool(forKey: "EnableSpeedStatusBar") ? 1 : 0
+        enableDockIcon.state  = defaults.bool(forKey: "EnableDockIcon") ? 1 : 0
     }
 }
 
