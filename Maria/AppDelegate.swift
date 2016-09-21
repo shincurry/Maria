@@ -53,6 +53,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             disableSpeedStatusBar()
         }
         
+        for window in NSApp.windows {
+            window.canHide = false
+        }
+        
         if defaults.bool(forKey: "EnableDockIcon") {
             enableDockIcon()
         } else {
