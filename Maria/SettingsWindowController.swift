@@ -19,6 +19,9 @@ class SettingsWindowController: NSWindowController, NSWindowDelegate {
         if !SettingsWindowController.isWindowShown {
             super.showWindow(sender)
             SettingsWindowController.isWindowShown = true
+        } else {
+            self.close()
+            SettingsWindowController.isWindowShown = true
         }
     }
     
