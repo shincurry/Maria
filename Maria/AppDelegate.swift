@@ -52,6 +52,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             disableSpeedStatusBar()
         }
+        
+        for window in NSApp.windows {
+            window.canHide = false
+        }
+        
+        if defaults.bool(forKey: "EnableDockIcon") {
+            enableDockIcon()
+        } else {
+            disableDockIcon()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -98,6 +108,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
     }
+    
+    // MARK: Dock Icon
+    func enableDockIcon() {
+        NSApp.setActivationPolicy(.regular)
+    }
+    
+    func disableDockIcon() {
+        NSApp.setActivationPolicy(.accessory)
+    }
+    
     func updateSpeedStatus() {
         if aria2.status == .connected {
             aria2.getGlobalStatus()
@@ -304,6 +324,7 @@ extension AppDelegate {
         defaults.set(false, forKey: "LaunchAtStartup")
         defaults.set("", forKey: "WebAppPath")
         defaults.set(false, forKey: "EnableSpeedStatusBar")
+        defaults.set(true, forKey: "EnableDockIcon")
         
         
         // Aria2 Settings
