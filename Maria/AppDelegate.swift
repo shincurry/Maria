@@ -46,13 +46,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if defaults.bool(forKey: "EnableAutoConnectAria2") {
             aria2open()
         }
-        statusItem.menu = statusMenu
+
+        statusItem.button?.action = #selector(AppDelegate.menuClicked)
+        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        
         if defaults.bool(forKey: "EnableSpeedStatusBar") {
             enableSpeedStatusBar()
         } else {
             disableSpeedStatusBar()
         }
-        
+
         for window in NSApp.windows {
             window.canHide = false
         }
@@ -78,7 +81,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("EnableAria2AutoLaunch")
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
             print(String(data: data, encoding: .utf8))
-
         }
     }
     
@@ -99,7 +101,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Bug 取消状态栏速度显示 Unauthorized 态栏显示有问题
     func disableSpeedStatusBar() {
         speedStatusTimer?.invalidate()
         if let button = statusItem.button {
@@ -108,6 +109,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
     }
+    
+    func menuClicked(sender: NSStatusBarButton) {
+        if NSApp.currentEvent!.type == NSEventType.rightMouseUp {
+            statusItem.popUpMenu(statusMenu)
+        } else {
+            if NSApp.isActive {
+               statusItem.popUpMenu(statusMenu)
+                return
+            }
+            for window in NSApp.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+    
     
     // MARK: Dock Icon
     func enableDockIcon() {
