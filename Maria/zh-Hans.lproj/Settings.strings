@@ -57,7 +57,7 @@
 "B5P-Mc-fMu.title" = "在状态栏显示速度";
 
 /* Class = "NSButtonCell"; title = "Show Dock icon"; ObjectID = "qpa-Fh-aLe"; */
-"qpa-Fh-aLe.title" = "在Dock上显示图标";
+"qpa-Fh-aLe.title" = "在 Dock 上显示图标";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "B9Z-fe-DcI"; */
 "B9Z-fe-DcI.title" = "0";
