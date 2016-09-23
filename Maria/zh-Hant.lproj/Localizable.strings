@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  Maria
+
+  Created by ShinCurry on 2016/9/23.
+  Copyright © 2016年 ShinCurry. All rights reserved.
+*/
+
+// MARK: Button
+"button.cancel" = "取消";
+"button.ok" = "好的";
+"button.sure" = "確定";
+"button.remove" = "移除";
+"button.clean" = "清除";
+
+// MARK: NewTaskViewController
+"openBtFile.title" = "選擇一個 BT 文件";
+
+// MARK: MainWindowController
+"removeTasks.alert.messageText" = "移除這個任務";
+"removeTasks.alert.messageText(s)" = "移除這些任務";
+"removeTasks.alert.informativeText" = "你確定要從下載列表中移除 %@ 這個任務嗎？";
+"removeTasks.alert.informativeText(s)" = "你確定要從下載列表中移除這 %d 個任務嗎？";
+"clearTasks.alert.messageText(s)" = "清空所有任務";
+"clearTasks.alert.informativeText(s)" = "你確定要從下載列表中清除所有已完成、出錯和已被移除的任務嗎？";
+
+"aria2.status.connecting" = "正在連接到 aria2...";
+"aria2.status.unauthorized" = "連接驗證失敗";
+"aria2.status.disconnected" = "與 aria2 連接中斷";
+
+// MARK: SettingsRPCServerViewController
+"restartApp.alert.messageText" = "重啓 Maria";
+"restartApp.alert.informativeText" = "你確定要重新啓動 Maria 嗎？";
+
+// MARK: SettingsGeneralViewController
+"selectWebUIPath.openPanel.title" = "選擇 webui 應用 index.html 文件";
+
+// MARK: SettingsAria2ConfigViewController
+"selectConfPath.title" = "選擇 aria2.conf 文件";
+
+"resetConfig.alert.messageText" = "恢復默認配置";
+"resetConfig.alert.informativeText" = "你確定要將 aria2 配置恢復到默認設置嗎？";
+
+"restartAria2.alert.messageText" = "重啓 Aria2";
+"restartAria2.alert.informativeText" = "你確定要重新啓動 aria2 嗎？這個操作可能會造成當前下載任務丟失";

@@ -1,0 +1,253 @@
+
+/* Class = "NSBox"; title = "Connection"; ObjectID = "0Ne-R2-GCh"; */
+"0Ne-R2-GCh.title" = "連接";
+
+/* Class = "NSBox"; title = "Low Speed Mode"; ObjectID = "10v-QU-Wzb"; */
+"10v-QU-Wzb.title" = "低速模式";
+
+/* Class = "NSButtonCell"; title = "Start Maria on system startup"; ObjectID = "1ex-du-E9X"; */
+"1ex-du-E9X.title" = "當系統啓動時自動啓動 Maria";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1mk-mW-8xu"; */
+"1mk-mW-8xu.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Restart Maria"; ObjectID = "1px-uf-loR"; */
+"1px-uf-loR.title" = "重新啓動 Maria";
+
+/* Class = "NSTableColumn"; headerCell.title = "Value"; ObjectID = "35Z-5c-bkc"; */
+"35Z-5c-bkc.headerCell.title" = "Value";
+
+/* Class = "NSViewController"; title = "Bandwidth"; ObjectID = "3HH-sZ-H9J"; */
+"3HH-sZ-H9J.title" = "帶寬";
+
+/* Class = "NSBox"; title = "General"; ObjectID = "420-G2-XQD"; */
+"420-G2-XQD.title" = "通用";
+
+/* Class = "NSTextFieldCell"; title = "Low speed limits:"; ObjectID = "4td-b9-M1g"; */
+"4td-b9-M1g.title" = "低速模式帶寬限制:";
+
+/* Class = "NSButtonCell"; title = "Enable SSL/TLS encryption"; ObjectID = "6fq-WO-tXE"; */
+"6fq-WO-tXE.title" = "啓用 SSL/TLS 加密";
+
+/* Class = "NSWindow"; title = "Maria Settings"; ObjectID = "6md-Px-tKK"; */
+"6md-Px-tKK.title" = "Maria 設置";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "7Cq-dw-ca0"; */
+"7Cq-dw-ca0.headerCell.title" = "Key";
+
+/* Class = "NSTextFieldCell"; title = "Download rate"; ObjectID = "7S7-CR-Cpd"; */
+"7S7-CR-Cpd.title" = "下載速度";
+
+/* Class = "NSButtonCell"; title = "Reset aria2 configuration to default"; ObjectID = "8Bh-tb-JmY"; */
+"8Bh-tb-JmY.title" = "將 aria2 恢復到默認配置";
+
+/* Class = "NSTextFieldCell"; title = "An OS X app for aria2 download tool."; ObjectID = "9Nl-Hi-S25"; */
+"9Nl-Hi-S25.title" = "A macOS app for aria2 download tool.";
+
+/* Class = "NSTextFieldCell"; title = "Created by ShinCurry"; ObjectID = "9Pt-Mb-3kp"; */
+"9Pt-Mb-3kp.title" = "Created by ShinCurry";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Disabled"; ObjectID = "9so-aj-pOE"; */
+"9so-aj-pOE.placeholderString" = "已禁用";
+
+/* Class = "NSTextFieldCell"; title = "KB/s"; ObjectID = "AZA-Jt-YV2"; */
+"AZA-Jt-YV2.title" = "KB/s";
+
+/* Class = "NSButtonCell"; title = "Show speed on status bar"; ObjectID = "B5P-Mc-fMu"; */
+"B5P-Mc-fMu.title" = "在狀態欄顯示速度";
+
+/* Class = "NSButtonCell"; title = "Show Dock icon"; ObjectID = "qpa-Fh-aLe"; */
+"qpa-Fh-aLe.title" = "在 Dock 上顯示圖標";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "B9Z-fe-DcI"; */
+"B9Z-fe-DcI.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Secret (Optional):"; ObjectID = "CNt-o0-p5W"; */
+"CNt-o0-p5W.title" = "密鑰（可選）:";
+
+/* Class = "NSTextFieldCell"; title = "localhost"; ObjectID = "DBY-wr-PRz"; */
+"DBY-wr-PRz.title" = "localhost";
+
+/* Class = "NSTextFieldCell"; title = "RPC Path:"; ObjectID = "EEs-Cv-aFl"; */
+"EEs-Cv-aFl.title" = "RPC 地址:";
+
+
+/* Class = "NSTextFieldCell"; title = "/jsonrpc"; ObjectID = "Gjw-6L-3SW"; */
+"Gjw-6L-3SW.title" = "/jsonrpc";
+
+/* Class = "NSTabViewController"; title = "Aria2"; ObjectID = "Gxb-U3-o1e"; */
+"Gxb-U3-o1e.title" = "Aria2";
+
+/* Class = "NSTextFieldCell"; title = "(1 ~ 10)"; ObjectID = "HsZ-j8-gfd"; */
+"HsZ-j8-gfd.title" = "(1 ~ 10)";
+
+/* Class = "NSButtonCell"; title = "Aria2c launch and quit with Maria"; ObjectID = "I8c-9y-RJe"; */
+"I8c-9y-RJe.title" = "Aria2c 隨 Maria 啓動與退出";
+
+/* Class = "NSTextFieldCell"; title = "KB/s"; ObjectID = "Jgd-sc-M86"; */
+"Jgd-sc-M86.title" = "KB/s";
+
+/* Class = "NSBox"; title = "Task"; ObjectID = "LgP-1z-DoL"; */
+"LgP-1z-DoL.title" = "Task";
+
+/* Class = "NSBox"; title = "Server"; ObjectID = "MFQ-68-ZNW"; */
+"MFQ-68-ZNW.title" = "服務器";
+
+/* Class = "NSButtonCell"; title = "stopped"; ObjectID = "Nss-gB-0aD"; */
+"Nss-gB-0aD.title" = "已停止";
+
+/* Class = "NSBox"; title = "Global Bandwidth"; ObjectID = "OfD-bI-XtY"; */
+"OfD-bI-XtY.title" = "全局帶寬";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "Oij-Zp-WBH"; */
+"Oij-Zp-WBH.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "v0.4.2 (Build 1604173)"; ObjectID = "Pfu-ag-eZf"; */
+"Pfu-ag-eZf.title" = "v0.4.2 (Build 1604173)";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "QaE-1E-bsm"; */
+"QaE-1E-bsm.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Maria"; ObjectID = "QeJ-qm-0ya"; */
+"QeJ-qm-0ya.title" = "Maria";
+
+/* Class = "NSTextFieldCell"; title = "http(s)://localhost:6800"; ObjectID = "RHf-ym-nJT"; */
+"RHf-ym-nJT.title" = "http(s)://localhost:6800";
+
+/* Class = "NSViewController"; title = "General"; ObjectID = "Rd7-l1-zR2"; */
+"Rd7-l1-zR2.title" = "通用";
+
+/* Class = "NSTextFieldCell"; title = "Upload rate"; ObjectID = "Reg-uX-3Iy"; */
+"Reg-uX-3Iy.title" = "上傳速度";
+
+/* Class = "NSTextFieldCell"; title = "Restart needed to take effect"; ObjectID = "S7x-G2-Vkh"; */
+"S7x-G2-Vkh.title" = "需要重啓 Maria 以生效";
+
+/* Class = "NSTextFieldCell"; title = "KB/s"; ObjectID = "Su9-cu-V1p"; */
+"Su9-cu-V1p.title" = "KB/s";
+
+/* Class = "NSTextFieldCell"; title = "Upload rate"; ObjectID = "SzN-2q-S33"; */
+"SzN-2q-S33.title" = "上傳速度";
+
+/* Class = "NSViewController"; title = "Notification"; ObjectID = "TcK-ZB-cHr"; */
+"TcK-ZB-cHr.title" = "通知";
+
+/* Class = "NSTextFieldCell"; title = "6800"; ObjectID = "UjD-0F-qbj"; */
+"UjD-0F-qbj.title" = "6800";
+
+/* Class = "NSTextFieldCell"; title = "Send a notification when download task:"; ObjectID = "WNg-5s-K1B"; */
+"WNg-5s-K1B.title" = "當下載任務出現以下情況時通知我:";
+
+/* Class = "NSBox"; title = "Web App"; ObjectID = "WZb-Ba-1Nf"; */
+"WZb-Ba-1Nf.title" = "Web 應用";
+
+/* Class = "NSBox"; title = "Title"; ObjectID = "Wnr-Us-bMh"; */
+"Wnr-Us-bMh.title" = "Title";
+
+/* Class = "NSTextFieldCell"; title = ".Conf File Path:"; ObjectID = "X9o-Jq-3sf"; */
+"X9o-Jq-3sf.title" = ".conf 文件地址:";
+
+/* Class = "NSTextFieldCell"; title = "Max number of tasks:"; ObjectID = "a2Q-7Y-F7P"; */
+"a2Q-7Y-F7P.title" = "最大顯示任務數:";
+
+/* Class = "NSButtonCell"; title = "Open an issues on Github"; ObjectID = "bGG-yT-vdv"; */
+"bGG-yT-vdv.title" = "在 Github 提交 Issue";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Disabled"; ObjectID = "bLb-2L-zR0"; */
+"bLb-2L-zR0.placeholderString" = "已禁用";
+
+/* Class = "NSTextFieldCell"; title = "http(s)://"; ObjectID = "bol-Hk-gcJ"; */
+"bol-Hk-gcJ.title" = "http(s)://";
+
+/* Class = "NSButtonCell"; title = "Tasks list sorted by progress"; ObjectID = "cE2-be-A5U"; */
+"cE2-be-A5U.title" = "下載任務列表根據進度排序";
+
+/* Class = "NSTextFieldCell"; title = "Host:"; ObjectID = "cyV-w6-4UA"; */
+"cyV-w6-4UA.title" = "Host:";
+
+/* Class = "NSButtonCell"; title = "paused"; ObjectID = "dDa-9p-hkz"; */
+"dDa-9p-hkz.title" = "已暫停";
+
+/* Class = "NSButtonCell"; title = "Restart aria2"; ObjectID = "dzS-rC-SSd"; */
+"dzS-rC-SSd.title" = "重啓 aria2";
+
+/* Class = "NSTextFieldCell"; title = "Username (Optional):"; ObjectID = "ecF-j0-4b0"; */
+"ecF-j0-4b0.title" = "用戶名（可選）:";
+
+/* Class = "NSButtonCell"; title = "Connect aria2 automatically when app run"; ObjectID = "eob-aj-KjL"; */
+"eob-aj-KjL.title" = "當程序啓動時自動連接 aria2";
+
+/* Class = "NSViewController"; title = "Configuration"; ObjectID = "f0K-az-QEF"; */
+"f0K-az-QEF.title" = "配置";
+
+/* Class = "NSBox"; title = "general"; ObjectID = "gzU-T6-eXa"; */
+"gzU-T6-eXa.title" = "通用";
+
+/* Class = "NSTextFieldCell"; title = "Web app path:"; ObjectID = "huW-0W-ZEt"; */
+"huW-0W-ZEt.title" = "Web 應用地址:";
+
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "iKj-Vt-O01"; */
+"iKj-Vt-O01.title" = "Text";
+
+/* Class = "NSViewController"; title = "RPC Server"; ObjectID = "jsm-It-tHy"; */
+"jsm-It-tHy.title" = "RPC 服務器";
+
+/* Class = "NSButtonCell"; title = "Contact me on Twitter"; ObjectID = "l2L-Et-oQD"; */
+"l2L-Et-oQD.title" = "在 Twitter 上聯繫我";
+
+/* Class = "NSTabViewController"; title = "General"; ObjectID = "lgs-lN-fb2"; */
+"lgs-lN-fb2.title" = "通用";
+
+/* Class = "NSButtonCell"; title = "completed"; ObjectID = "men-YQ-k8b"; */
+"men-YQ-k8b.title" = "已完成";
+
+/* Class = "NSTextFieldCell"; title = "SSL/TLS Encryption:"; ObjectID = "nPF-O5-r6e"; */
+"nPF-O5-r6e.title" = "SSL/TLS 加密:";
+
+/* Class = "NSButtonCell"; title = "Send a notification when aria2 disconnected"; ObjectID = "oEk-eH-6u9"; */
+"oEk-eH-6u9.title" = "當 aria2 斷開連接時通知我";
+
+/* Class = "NSButtonCell"; title = "got a error"; ObjectID = "oNL-jC-uk2"; */
+"oNL-jC-uk2.title" = "返回錯誤";
+
+/* Class = "NSTextFieldCell"; title = "Password (Optional):"; ObjectID = "osB-eY-480"; */
+"osB-eY-480.title" = "密碼（可選）:";
+
+/* Class = "NSBox"; title = "General"; ObjectID = "qJT-rS-big"; */
+"qJT-rS-big.title" = "通用";
+
+/* Class = "NSViewController"; title = "About Maria"; ObjectID = "rgA-B9-vs0"; */
+"rgA-B9-vs0.title" = "關於";
+
+/* Class = "NSTextFieldCell"; title = "5"; ObjectID = "rlq-zF-Tol"; */
+"rlq-zF-Tol.title" = "5";
+
+/* Class = "NSButtonCell"; title = "Send a notification when aria2 connected"; ObjectID = "sAR-ba-rGU"; */
+"sAR-ba-rGU.title" = "當 aria2 連接成功時通知我";
+
+/* Class = "NSButtonCell"; title = "started"; ObjectID = "tSC-L5-qvU"; */
+"tSC-L5-qvU.title" = "已開始";
+
+/* Class = "NSMenuItem"; title = "Other..."; ObjectID = "vAv-n1-Kpd"; */
+"vAv-n1-Kpd.title" = "其他...";
+
+/* Class = "NSTextFieldCell"; title = "Global bandwidth limits:"; ObjectID = "whD-PG-Kby"; */
+"whD-PG-Kby.title" = "全局帶寬限制:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "xHz-tP-tJA"; */
+"xHz-tP-tJA.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = ":"; ObjectID = "xOW-Nf-Qag"; */
+"xOW-Nf-Qag.title" = ":";
+
+/* Class = "NSMenuItem"; title = "Other..."; ObjectID = "yJA-3I-Vvy"; */
+"yJA-3I-Vvy.title" = "其他...";
+
+/* Class = "NSBox"; title = ".conf file"; ObjectID = "z6Z-Z0-1tl"; */
+"z6Z-Z0-1tl.title" = ".conf 文件";
+
+/* Class = "NSTextFieldCell"; title = "Download rate"; ObjectID = "zN6-B8-Vue"; */
+"zN6-B8-Vue.title" = "下載速度";
+
+/* Class = "NSTextFieldCell"; title = "KB/s"; ObjectID = "zVX-Ag-NZ1"; */
+"zVX-Ag-NZ1.title" = "KB/s";
