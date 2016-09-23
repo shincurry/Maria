@@ -7,6 +7,12 @@
 #  Copyright © 2016年 ShinCurry. All rights reserved.
 
 PID=`pgrep aria2c`
+
+if [ ! -f "$USER_HOME/.aria2/aria2.session" ]
+then
+touch "$USER_HOME/.aria2/aria2.session"
+fi
+
 if [ -n "$PID" ]
 then
 echo "aria2c already run"

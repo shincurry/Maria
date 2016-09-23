@@ -16,7 +16,7 @@ class SettingsRPCServerViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
     
     @IBOutlet weak var autoConnectAria2Enabled: NSButtonCell!
     

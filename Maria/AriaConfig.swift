@@ -36,6 +36,8 @@ class AriaConfig {
             let conf = try String(contentsOfFile: path)
             data = parseConfig(from: conf)
             data.append(("dir", "\(NSHomeDirectory())/Downloads"))
+            data.append(("input-file", "\(NSHomeDirectory())/.aria2/aria2.session"))
+            data.append(("save-session", "\(NSHomeDirectory())/.aria2/aria2.session"))
             save()
         } catch {
             print(error)

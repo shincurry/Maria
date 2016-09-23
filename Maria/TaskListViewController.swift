@@ -173,7 +173,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
         }
         
         for row in 0..<taskListTableView.numberOfRows {
-            let cell = taskListTableView.view(atColumn: 0, row: row, makeIfNecessary: false) as! TaskCellView
+            let cell = taskListTableView.view(atColumn: 0, row: row, makeIfNecessary: true) as! TaskCellView
             cell.wantsLayer = true
             if taskListTableView.selectedRowIndexes.contains(row) {
                 cell.layer?.backgroundColor = selectedColor
