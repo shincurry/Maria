@@ -128,6 +128,11 @@
 		8894857B1CBE4D4A000839CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889485921CBE4E44000839CD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		889485A71CBE4FAF000839CD /* Maria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria.entitlements; sourceTree = "<group>"; };
+		88ABC8C01D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		88ABC8C11D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Settings.strings"; sourceTree = "<group>"; };
+		88ABC8C21D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
+		88ABC8C31D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88ABC8C41D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		88C478091CEF432000F8026A /* SettingsTodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTodayViewController.swift; sourceTree = "<group>"; };
 		88C775471D93D5A40089039D /* MariaStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaStatusView.swift; sourceTree = "<group>"; };
 		88D6CDD31CE495D500450E0C /* MariaNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaNotification.swift; sourceTree = "<group>"; };
@@ -395,6 +400,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 889485661CBE4D4A000839CD;
 			productRefGroup = 889485701CBE4D4A000839CD /* Products */;
@@ -565,6 +571,7 @@
 			children = (
 				88298CFD1D41E56500BBAFE8 /* Base */,
 				881A84621D8CFD6500647DE4 /* zh-Hans */,
+				88ABC8C21D953F4D0002146F /* zh-Hant */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
@@ -574,6 +581,7 @@
 			children = (
 				881A84631D8D00C300647DE4 /* Base */,
 				881A84641D8D00C800647DE4 /* zh-Hans */,
+				88ABC8C41D953F4D0002146F /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -583,6 +591,7 @@
 			children = (
 				8842882B1D8D220E002014E2 /* Base */,
 				8842882E1D8D293E002014E2 /* zh-Hans */,
+				88ABC8C31D953F4D0002146F /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -592,6 +601,7 @@
 			children = (
 				8870EA251CD4F13E00278B2C /* Base */,
 				8866AD8C1D8D0B65006FF797 /* zh-Hans */,
+				88ABC8C11D953F4D0002146F /* zh-Hant */,
 			);
 			name = Settings.storyboard;
 			sourceTree = "<group>";
@@ -601,6 +611,7 @@
 			children = (
 				889485791CBE4D4A000839CD /* Base */,
 				881A84601D8CFD6500647DE4 /* zh-Hans */,
+				88ABC8C01D953F4D0002146F /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
