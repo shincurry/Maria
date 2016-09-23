@@ -8,9 +8,9 @@
 
 PID=`pgrep aria2c`
 
-if [ ! -f "$USER_HOME/.aria2/aria2.session" ]
+if [ ! -f "$HOME/.aria2/aria2.session" ]
 then
-touch "$USER_HOME/.aria2/aria2.session"
+touch "$HOME/.aria2/aria2.session"
 fi
 
 if [ -n "$PID" ]
