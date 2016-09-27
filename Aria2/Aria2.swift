@@ -17,6 +17,7 @@ public enum ConnectionStatus {
     case disconnected
 }
 
+@objc(Aria2)
 open class Aria2 {
     
     open static let shared: Aria2 = {
@@ -79,7 +80,8 @@ open class Aria2 {
      
      - parameter uris:	download task links
      */
-    open func add(uris: [String]) {
+    @objc(add:)
+    dynamic open func add(uris: [String]) {
         uris.forEach() { uri in
             request(method: .addUri, params: "[\"\(uri)\"]")
         }
