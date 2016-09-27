@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let aria2: Aria2
 
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var speedStatusTimer: Timer?
@@ -312,7 +312,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
 // MARK: - UserDefaults Init
 extension AppDelegate {
     static func userDefaultsInit() {
-        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+        let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
         
         // First Launch
         defaults.set(true, forKey: "IsNotFirstLaunch")
