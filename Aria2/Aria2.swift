@@ -20,7 +20,7 @@ public enum ConnectionStatus {
 open class Aria2 {
     
     open static let shared: Aria2 = {
-        let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
         let baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
         let host = defaults.object(forKey: "RPCServerHost") as! String
         let port = defaults.object(forKey: "RPCServerPort") as! String
@@ -29,7 +29,7 @@ open class Aria2 {
     }()
     
     var secret = ""
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     var socket: WebSocket!
     
