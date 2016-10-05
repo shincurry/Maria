@@ -438,9 +438,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2sV-os-73Z">
-                                            <rect key="frame" x="215" y="221" width="184" height="22"/>
+                                            <rect key="frame" x="215" y="221" width="187" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="184" id="r5H-YX-NXU"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="184" id="r5H-YX-NXU"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="localhost" drawsBackground="YES" id="DBY-wr-PRz">
                                                 <font key="font" metaFont="system"/>
@@ -507,7 +507,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AQL-tN-EA8">
-                                            <rect key="frame" x="399" y="224" width="11" height="17"/>
+                                            <rect key="frame" x="402" y="224" width="8" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title=":" id="xOW-Nf-Qag">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
