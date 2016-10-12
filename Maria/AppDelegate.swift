@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let aria2: Aria2
 
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var speedStatusTimer: Timer?
@@ -229,12 +229,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 self.lowSpeedModeOff()
             }
             if self.defaults.bool(forKey: "EnableNotificationWhenConnected") {
-                let baseHost = "http" + (self.defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-                let host = self.defaults.object(forKey: "RPCServerHost") as! String
-                let port = self.defaults.object(forKey: "RPCServerPort") as! String
-                let path = self.defaults.object(forKey: "RPCServerPath") as! String
-                let url = baseHost + host + ":" + port + path
-                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
+                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(self.aria2.url)")
             }
         }
         aria2.onDisconnect = {
@@ -312,7 +307,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
 // MARK: - UserDefaults Init
 extension AppDelegate {
     static func userDefaultsInit() {
-        let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
         
         // First Launch
         defaults.set(true, forKey: "IsNotFirstLaunch")
@@ -358,11 +353,12 @@ extension AppDelegate {
         defaults.set(false, forKey: "EnableAria2AutoLaunch")
         defaults.set("", forKey: "Aria2ConfPath")
         
-        defaults.synchronize()
+        
         
         // Today Settings
         defaults.set(5, forKey: "TodayTasksNumber")
         defaults.set(false, forKey: "TodayEnableTasksSortedByProgress")
 
+        defaults.synchronize()
     }
 }

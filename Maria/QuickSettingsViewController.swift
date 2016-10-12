@@ -17,7 +17,7 @@ class QuickSettingsViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     let aria2 = Aria2.shared
     
     @IBOutlet weak var limitModeDownloadRate: NSTextField!

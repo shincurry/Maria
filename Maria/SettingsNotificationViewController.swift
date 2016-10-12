@@ -26,7 +26,7 @@ class SettingsNotificationViewController: NSViewController {
     @IBOutlet weak var notificationWhenDisconnected: NSButton!
     
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     @IBAction func switchNotification(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true

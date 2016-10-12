@@ -16,7 +16,7 @@ class SettingsGeneralViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     // little bug -- use a new thread?
     @IBOutlet weak var enableSpeedStatusBar: NSButton!

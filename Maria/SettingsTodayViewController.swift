@@ -16,7 +16,7 @@ class SettingsTodayViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     @IBOutlet weak var stepper: NSStepper!
     @IBOutlet weak var numberOfTasksTextField: NSTextField!

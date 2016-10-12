@@ -21,22 +21,47 @@ open class Aria2 {
     
     open static let shared: Aria2 = {
         let defaults = UserDefaults(suiteName: "group.windisco.maria")!
-        let baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-        let host = defaults.object(forKey: "RPCServerHost") as! String
-        let port = defaults.object(forKey: "RPCServerPort") as! String
-        let path = defaults.object(forKey: "RPCServerPath") as! String
-        return Aria2(url: baseHost + host + ":" + port + path)
+        var host = "localhost"
+        if let value = defaults.object(forKey: "RPCServerHost") as? String {
+            host = value
+        }
+        var port = "6800"
+        if let value = defaults.object(forKey: "RPCServerPort") as? String {
+            port = value
+        }
+        var path = "/jsonrpc"
+        if let value = defaults.object(forKey: "RPCServerPath") as? String {
+            path = value
+        }
+        
+        return Aria2(host: host, port: port, path: path)
     }()
     
+    var baseHost = "http://"
+    var host = "localhost"
+    var port = "6800"
+    var path = "/jsonrpc"
+    open var url: String {
+        get {
+            return baseHost + host + ":" + port + path
+        }
+    }
     var secret = ""
+    
     let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     var socket: WebSocket!
     
-    public init(url: String) {
-        socket = WebSocket(url: URL(string: url)!)
+    public init(host: String, port: String, path: String) {
+        self.baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
+        self.host = host
+        self.port = port
+        self.path = path
+        socket = WebSocket(url: URL(string: self.url)!)
         socket.delegate = self
-        secret = defaults.object(forKey: "RPCServerSecret") as! String
+        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
+            self.secret = value
+        }
     }
     
     // MARK: - Public API

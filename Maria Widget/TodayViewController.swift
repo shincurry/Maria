@@ -36,7 +36,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
     var taskData: [Aria2Task] = []
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
     
     var aria2 = Aria2.shared
     var timer: Timer!
