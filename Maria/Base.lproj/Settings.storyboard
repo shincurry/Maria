@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="M4z-wN-cVx">
             <objects>
-                <windowController id="gqa-IX-nBG" customClass="SettingsWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="gqa-IX-nBG" customClass="SettingsWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Maria Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="6md-Px-tKK">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="330" y="400" width="517" height="316"/>
@@ -438,9 +438,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2sV-os-73Z">
-                                            <rect key="frame" x="215" y="221" width="170" height="22"/>
+                                            <rect key="frame" x="215" y="221" width="187" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="170" id="r5H-YX-NXU"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="184" id="r5H-YX-NXU"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="localhost" drawsBackground="YES" id="DBY-wr-PRz">
                                                 <font key="font" metaFont="system"/>
@@ -507,7 +507,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AQL-tN-EA8">
-                                            <rect key="frame" x="385" y="224" width="11" height="17"/>
+                                            <rect key="frame" x="402" y="224" width="8" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title=":" id="xOW-Nf-Qag">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -523,9 +523,9 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NM7-Vk-2eD">
-                                            <rect key="frame" x="396" y="221" width="56" height="22"/>
+                                            <rect key="frame" x="410" y="221" width="54" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="56" id="qq1-n8-YOk"/>
+                                                <constraint firstAttribute="width" constant="54" id="qq1-n8-YOk"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="6800" drawsBackground="YES" id="UjD-0F-qbj">
                                                 <font key="font" metaFont="system"/>
@@ -642,7 +642,7 @@
                                         <constraint firstItem="LS6-VL-n5A" firstAttribute="leading" secondItem="DU3-dB-rIS" secondAttribute="trailing" constant="8" id="RBl-TW-W90"/>
                                         <constraint firstItem="Wnr-Us-bMh" firstAttribute="top" secondItem="DU3-dB-rIS" secondAttribute="bottom" constant="12" id="RoZ-SU-HlU"/>
                                         <constraint firstItem="Cv6-Sr-FPp" firstAttribute="top" secondItem="N9Z-nZ-H0t" secondAttribute="bottom" constant="10" id="S8h-lL-tKx"/>
-                                        <constraint firstAttribute="trailing" secondItem="NM7-Vk-2eD" secondAttribute="trailing" constant="20" id="ThJ-4K-SMN"/>
+                                        <constraint firstAttribute="trailing" secondItem="NM7-Vk-2eD" secondAttribute="trailing" constant="8" id="ThJ-4K-SMN"/>
                                         <constraint firstItem="Cv6-Sr-FPp" firstAttribute="leading" secondItem="zBa-PC-WIW" secondAttribute="leading" constant="20" id="Twv-9X-Zlq"/>
                                         <constraint firstItem="DU3-dB-rIS" firstAttribute="top" secondItem="Jpt-Eu-hqe" secondAttribute="bottom" constant="10" id="V3C-LV-K73"/>
                                         <constraint firstAttribute="trailing" secondItem="2fg-Bg-Yzh" secondAttribute="trailing" constant="8" id="WOt-sx-nLg"/>
@@ -700,24 +700,43 @@
             <objects>
                 <viewController title="General" id="Rd7-l1-zR2" customClass="SettingsGeneralViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zdc-MW-g94">
-                        <rect key="frame" x="0.0" y="0.0" width="498" height="213"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="229"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
-                                <rect key="frame" x="17" y="106" width="464" height="97"/>
+                                <rect key="frame" x="17" y="93" width="464" height="126"/>
                                 <view key="contentView" id="sn5-9m-lOh">
-                                    <rect key="frame" x="1" y="1" width="462" height="81"/>
+                                    <rect key="frame" x="1" y="1" width="462" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kix-YB-kfm">
-                                            <rect key="frame" x="18" y="45" width="202" height="18"/>
+                                            <rect key="frame" x="18" y="70" width="202" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="98s-Af-CMi"/>
+                                            </constraints>
                                             <buttonCell key="cell" type="check" title="Start Maria on system startup" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="1ex-du-E9X">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
+                                        <button verticalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-zq-afV">
+                                            <rect key="frame" x="18" y="18" width="119" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="bGC-ks-klL"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Show Dock icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qpa-Fh-aLe">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="switchOptions:" target="Rd7-l1-zR2" id="3C2-hl-erg"/>
+                                            </connections>
+                                        </button>
                                         <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="cwr-nY-ML0">
-                                            <rect key="frame" x="18" y="18" width="180" height="23"/>
+                                            <rect key="frame" x="18" y="44" width="180" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="fgt-3p-wSN"/>
+                                            </constraints>
                                             <buttonCell key="cell" type="check" title="Show speed on status bar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B5P-Mc-fMu">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -728,26 +747,27 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="kix-YB-kfm" firstAttribute="top" secondItem="sn5-9m-lOh" secondAttribute="top" constant="20" id="ECy-y9-LQT"/>
-                                        <constraint firstItem="kix-YB-kfm" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="GW8-J3-7T7"/>
-                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="top" secondItem="kix-YB-kfm" secondAttribute="bottom" constant="8" id="INa-sb-cA4"/>
-                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="VKh-g2-pzw"/>
-                                        <constraint firstAttribute="bottom" secondItem="cwr-nY-ML0" secondAttribute="bottom" constant="20" id="uf1-HE-HDu"/>
+                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="75t-SX-yvc"/>
+                                        <constraint firstItem="x7w-zq-afV" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="PY5-jX-ldF"/>
+                                        <constraint firstItem="x7w-zq-afV" firstAttribute="top" secondItem="cwr-nY-ML0" secondAttribute="bottom" constant="8" id="RF4-2l-ptj"/>
+                                        <constraint firstAttribute="bottom" secondItem="x7w-zq-afV" secondAttribute="bottom" constant="20" id="gLZ-r4-VYR"/>
+                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="top" secondItem="kix-YB-kfm" secondAttribute="bottom" constant="8" id="hXJ-3w-IEr"/>
+                                        <constraint firstItem="kix-YB-kfm" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="n4n-l7-jag"/>
+                                        <constraint firstItem="kix-YB-kfm" firstAttribute="top" secondItem="sn5-9m-lOh" secondAttribute="top" constant="20" id="rKJ-0Q-Jsv"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="93" id="GFz-bx-7OT"/>
                                     <constraint firstAttribute="width" constant="458" id="r8h-7z-NWb"/>
                                 </constraints>
                             </box>
                             <box borderType="line" title="Web App" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-Ba-1Nf">
-                                <rect key="frame" x="17" y="16" width="464" height="74"/>
+                                <rect key="frame" x="17" y="16" width="464" height="73"/>
                                 <view key="contentView" id="YMb-5g-18A">
-                                    <rect key="frame" x="1" y="1" width="462" height="58"/>
+                                    <rect key="frame" x="1" y="1" width="462" height="57"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GgH-xL-KyQ">
-                                            <rect key="frame" x="18" y="20" width="93" height="18"/>
+                                            <rect key="frame" x="18" y="20" width="93" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Web app path:" id="huW-0W-ZEt">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -782,29 +802,27 @@
                                         <constraint firstItem="zFy-uC-i9T" firstAttribute="baseline" secondItem="GgH-xL-KyQ" secondAttribute="baseline" id="qDO-zi-29h"/>
                                     </constraints>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="mUC-OK-qq5"/>
-                                </constraints>
                             </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="420-G2-XQD" secondAttribute="trailing" constant="20" id="Mrh-Vb-mNF"/>
                             <constraint firstItem="420-G2-XQD" firstAttribute="top" secondItem="Zdc-MW-g94" secondAttribute="top" constant="10" id="OAw-tV-ixT"/>
                             <constraint firstAttribute="trailing" secondItem="WZb-Ba-1Nf" secondAttribute="trailing" constant="20" id="Ra5-xP-XPJ"/>
-                            <constraint firstItem="WZb-Ba-1Nf" firstAttribute="top" secondItem="420-G2-XQD" secondAttribute="bottom" constant="20" id="Zhg-Mk-i4q"/>
+                            <constraint firstItem="WZb-Ba-1Nf" firstAttribute="top" secondItem="420-G2-XQD" secondAttribute="bottom" constant="8" id="Zhg-Mk-i4q"/>
                             <constraint firstAttribute="bottom" secondItem="WZb-Ba-1Nf" secondAttribute="bottom" constant="20" id="g3Y-sj-u8H"/>
                             <constraint firstItem="WZb-Ba-1Nf" firstAttribute="leading" secondItem="Zdc-MW-g94" secondAttribute="leading" constant="20" id="kLb-GA-fOx"/>
                             <constraint firstItem="420-G2-XQD" firstAttribute="leading" secondItem="Zdc-MW-g94" secondAttribute="leading" constant="20" id="v09-kb-LFw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="enableDockIcon" destination="x7w-zq-afV" id="nQs-e2-rCt"/>
                         <outlet property="enableSpeedStatusBar" destination="cwr-nY-ML0" id="Een-C8-2Fi"/>
                         <outlet property="webAppPathButton" destination="zFy-uC-i9T" id="LN0-OM-sIy"/>
                     </connections>
                 </viewController>
                 <customObject id="4t3-Sm-nw9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="2053.5"/>
+            <point key="canvasLocation" x="-64" y="2047"/>
         </scene>
         <!--General-->
         <scene sceneID="h2g-FH-FHu">

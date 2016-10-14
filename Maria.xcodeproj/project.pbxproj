@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8806E0081DA5874C00EDEC4C /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8806E0071DA5874C00EDEC4C /* QuickSettingsViewController.swift */; };
 		881687701D8A9C1B00E36678 /* aria2.default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 8816876F1D8A9C1B00E36678 /* aria2.default.conf */; };
 		8827EDF51CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */; };
 		8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		0F70C9DF82097AC4946AB784 /* Pods-Maria Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maria Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maria Widget/Pods-Maria Widget.release.xcconfig"; sourceTree = "<group>"; };
+		8806E0071DA5874C00EDEC4C /* QuickSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSettingsViewController.swift; sourceTree = "<group>"; };
 		8816876F1D8A9C1B00E36678 /* aria2.default.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aria2.default.conf; sourceTree = "<group>"; };
 		881A84601D8CFD6500647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		881A84621D8CFD6500647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
@@ -130,6 +132,11 @@
 		8894857B1CBE4D4A000839CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889485921CBE4E44000839CD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		889485A71CBE4FAF000839CD /* Maria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria.entitlements; sourceTree = "<group>"; };
+		88ABC8C01D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		88ABC8C11D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Settings.strings"; sourceTree = "<group>"; };
+		88ABC8C21D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
+		88ABC8C31D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88ABC8C41D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		88C478091CEF432000F8026A /* SettingsTodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTodayViewController.swift; sourceTree = "<group>"; };
 		88D6CDD31CE495D500450E0C /* MariaNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaNotification.swift; sourceTree = "<group>"; };
 		88DAEEB21D91313400FF6E35 /* Maria-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Maria-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -265,6 +272,7 @@
 				88D6CDD51CE4963100450E0C /* Main */,
 				8827EDF31CCB502E00DDB09D /* Settings */,
 				885B9ED31CBF8169001BA477 /* AboutViewController.swift */,
+				8806E0071DA5874C00EDEC4C /* QuickSettingsViewController.swift */,
 				8894857B1CBE4D4A000839CD /* Info.plist */,
 				886AB8601D8672C00053472C /* Tool */,
 				88F76A111D87D045002876CD /* Supporting Files */,
@@ -290,7 +298,6 @@
 				8816876F1D8A9C1B00E36678 /* aria2.default.conf */,
 				8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */,
 				8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */,
-				88F76A121D87D081002876CD /* DefaultConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -381,6 +388,7 @@
 						DevelopmentTeam = 525R2U87NG;
 						DevelopmentTeamName = "Debra Dean";
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -400,6 +408,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 889485661CBE4D4A000839CD;
 			productRefGroup = 889485701CBE4D4A000839CD /* Products */;
@@ -436,7 +445,6 @@
 				8842882A1D8D220E002014E2 /* Localizable.strings in Resources */,
 				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
 				88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */,
-				88F76A131D87D081002876CD /* DefaultConfig.plist in Resources */,
 				8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +553,7 @@
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
 				88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */,
 				888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */,
+				8806E0081DA5874C00EDEC4C /* QuickSettingsViewController.swift in Sources */,
 				88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */,
 				887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */,
 				886AB8621D8672E50053472C /* AriaConfig.swift in Sources */,
@@ -570,6 +579,7 @@
 			children = (
 				88298CFD1D41E56500BBAFE8 /* Base */,
 				881A84621D8CFD6500647DE4 /* zh-Hans */,
+				88ABC8C21D953F4D0002146F /* zh-Hant */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
@@ -579,6 +589,7 @@
 			children = (
 				881A84631D8D00C300647DE4 /* Base */,
 				881A84641D8D00C800647DE4 /* zh-Hans */,
+				88ABC8C41D953F4D0002146F /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -588,6 +599,7 @@
 			children = (
 				8842882B1D8D220E002014E2 /* Base */,
 				8842882E1D8D293E002014E2 /* zh-Hans */,
+				88ABC8C31D953F4D0002146F /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -597,6 +609,7 @@
 			children = (
 				8870EA251CD4F13E00278B2C /* Base */,
 				8866AD8C1D8D0B65006FF797 /* zh-Hans */,
+				88ABC8C11D953F4D0002146F /* zh-Hant */,
 			);
 			name = Settings.storyboard;
 			sourceTree = "<group>";
@@ -606,6 +619,7 @@
 			children = (
 				889485791CBE4D4A000839CD /* Base */,
 				881A84601D8CFD6500647DE4 /* zh-Hans */,
+				88ABC8C01D953F4D0002146F /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -50,11 +50,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if defaults.bool(forKey: "EnableAutoConnectAria2") {
             aria2open()
         }
-        statusItem.menu = statusMenu
+
+        statusItem.button?.action = #selector(AppDelegate.menuClicked)
+        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        
         if defaults.bool(forKey: "EnableSpeedStatusBar") {
             enableSpeedStatusBar()
         } else {
             disableSpeedStatusBar()
+        }
+
+        for window in NSApp.windows {
+            window.canHide = false
+        }
+        
+        if defaults.bool(forKey: "EnableDockIcon") {
+            enableDockIcon()
+        } else {
+            disableDockIcon()
         }
     }
 
@@ -72,7 +85,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("EnableAria2AutoLaunch")
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
             print(String(data: data, encoding: .utf8))
-
         }
     }
     
@@ -93,7 +105,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    // Bug 取消状态栏速度显示 Unauthorized 态栏显示有问题
     func disableSpeedStatusBar() {
         speedStatusTimer?.invalidate()
         if let button = statusItem.button {
@@ -102,6 +113,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
     }
+    
+    func menuClicked(sender: NSStatusBarButton) {
+        if NSApp.currentEvent!.type == NSEventType.rightMouseUp {
+            statusItem.popUpMenu(statusMenu)
+        } else {
+            if NSApp.isActive {
+               statusItem.popUpMenu(statusMenu)
+                return
+            }
+            for window in NSApp.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+    
+    
+    // MARK: Dock Icon
+    func enableDockIcon() {
+        NSApp.setActivationPolicy(.regular)
+    }
+    
+    func disableDockIcon() {
+        NSApp.setActivationPolicy(.accessory)
+    }
+    
     func updateSpeedStatus() {
         if aria2.status == .connected {
             aria2.getGlobalStatus()
@@ -196,12 +233,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 self.lowSpeedModeOff()
             }
             if self.defaults.bool(forKey: "EnableNotificationWhenConnected") {
-                let baseHost = "http" + (self.defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-                let host = self.defaults.object(forKey: "RPCServerHost") as! String
-                let port = self.defaults.object(forKey: "RPCServerPort") as! String
-                let path = self.defaults.object(forKey: "RPCServerPath") as! String
-                let url = baseHost + host + ":" + port + path
-                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
+                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(self.aria2.url)")
             }
         }
         aria2.onDisconnect = {
@@ -308,6 +340,7 @@ extension AppDelegate {
         defaults.set(false, forKey: "LaunchAtStartup")
         defaults.set("", forKey: "WebAppPath")
         defaults.set(false, forKey: "EnableSpeedStatusBar")
+        defaults.set(true, forKey: "EnableDockIcon")
         
         
         // Aria2 Settings
@@ -324,11 +357,12 @@ extension AppDelegate {
         defaults.set(false, forKey: "EnableAria2AutoLaunch")
         defaults.set("", forKey: "Aria2ConfPath")
         
-        defaults.synchronize()
+        
         
         // Today Settings
         defaults.set(5, forKey: "TodayTasksNumber")
         defaults.set(false, forKey: "TodayEnableTasksSortedByProgress")
 
+        defaults.synchronize()
     }
 }

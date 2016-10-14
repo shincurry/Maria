@@ -144,8 +144,9 @@
 				TargetAttributes = {
 					889783561CBE105400C12387 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = F86ABKXNGB;
+						DevelopmentTeam = 525R2U87NG;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -318,8 +319,10 @@
 			baseConfigurationReference = C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 525R2U87NG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -340,8 +343,10 @@
 			baseConfigurationReference = D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 525R2U87NG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
