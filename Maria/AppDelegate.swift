@@ -25,22 +25,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             AppDelegate.userDefaultsInit()
         }
 
-        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-            let task = Process()
-            let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
-            let shFilePath = Bundle.main
-                .path(forResource: "runAria2c", ofType: "sh")
-            task.launchPath = shFilePath
-            task.arguments = [confPath]
-            task.launch()
-            task.waitUntilExit()
-        }
+//        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+//            let task = Process()
+//            let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
+//            let shFilePath = Bundle.main
+//                .path(forResource: "runAria2c", ofType: "sh")
+//            task.launchPath = shFilePath
+//            task.arguments = [confPath]
+//            task.launch()
+//            task.waitUntilExit()
+//        }
         aria2 = Aria2.shared
         super.init()
         
         // Aria2Core framework test.
-        let aria2core = Aria2Core()
-        aria2core.initial()
+        if let value = defaults.object(forKey: "Aria2ConfPath") as? String {
+            let config = AriaConfig(filePath: value)
+            config.load()
+            print(config.dict)
+            let _ = Aria2Core(options: config.dict)
+        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -74,18 +78,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         aria2close()
         
-        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-            let task = Process()
-            let pipe = Pipe()
-            let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
-            task.launchPath = shFilePath
-            task.standardOutput = pipe
-            task.launch()
-            task.waitUntilExit()
-            print("EnableAria2AutoLaunch")
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            print(String(data: data, encoding: .utf8))
-        }
+//        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+//            let task = Process()
+//            let pipe = Pipe()
+//            let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
+//            task.launchPath = shFilePath
+//            task.standardOutput = pipe
+//            task.launch()
+//            task.waitUntilExit()
+//            print("EnableAria2AutoLaunch")
+//            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+//            print(String(data: data, encoding: .utf8))
+//        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

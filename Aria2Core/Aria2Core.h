@@ -8,17 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-//! Project version number for Aria2Core.
-FOUNDATION_EXPORT double Aria2CoreVersionNumber;
 
-//! Project version string for Aria2Core.
-FOUNDATION_EXPORT const unsigned char Aria2CoreVersionString[];
+@interface Aria2Core : NSObject {
+    dispatch_queue_t aria2Queue;
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <Aria2Core/PublicHeader.h>
-
-
-@interface Aria2Core : NSObject
-
-- (void)initial;
+- (instancetype)init;
+- (instancetype)initWithOptions: (NSDictionary *) optionsDict;
 
 @end
