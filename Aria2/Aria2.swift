@@ -302,21 +302,21 @@ extension Aria2 {
 
 // MARK: - Web socket delegate
 extension Aria2: WebSocketDelegate {
-    public func websocketDidConnect(_ socket: WebSocket) {
+    public func websocketDidConnect(socket: WebSocket) {
         print("WebSocket connected")
         status = .connected
         onConnect?()
     }
-    public func websocketDidDisconnect(_ socket: WebSocket, error: NSError?) {
+    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
         status = .disconnected
         onDisconnect?()
     }
-    public func websocketDidReceiveData(_ socket: WebSocket, data: Data) {
+    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
         print(data)
     }
     
-    public func websocketDidReceiveMessage(_ socket: WebSocket, text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         let results = JSON(data: text.data(using: .utf8)!)
         if results["error"]["message"] == "Unauthorized" {
             self.status = .unauthorized

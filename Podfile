@@ -8,9 +8,9 @@ project 'Maria.xcodeproj'
 project 'Aria2.xcodeproj'
 
 def shared_pods
-    pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream.git', :branch => 'swift3'
+    pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream.git'
 #    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'swift3'
-    pod 'SwiftyJSON', :git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', :branch => 'swift3'
+    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 
