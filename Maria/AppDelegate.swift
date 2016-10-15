@@ -13,38 +13,80 @@ import SwiftyJSON
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let aria2: Aria2
+    let aria2 = Aria2.shared
+    var aria2Core: Aria2Core?
 
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var speedStatusTimer: Timer?
     
     override init() {
-        if !defaults.bool(forKey: "IsNotFirstLaunch") {
-            AppDelegate.userDefaultsInit()
+        if !MariaUserDefault.main.bool(forKey: "IsNotFirstLaunch") {
+            MariaUserDefault.initMain()
+            MariaUserDefault.initExternal()
+            MariaUserDefault.initBuildIn()
         }
-
-//        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-//            let task = Process()
-//            let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
-//            let shFilePath = Bundle.main
-//                .path(forResource: "runAria2c", ofType: "sh")
-//            task.launchPath = shFilePath
-//            task.arguments = [confPath]
-//            task.launch()
-//            task.waitUntilExit()
-//        }
-        aria2 = Aria2.shared
-        super.init()
         
-        // Aria2Core framework test.
-        if let value = defaults.object(forKey: "Aria2ConfPath") as? String {
-            let config = AriaConfig(filePath: value)
-            config.load()
-            print(config.dict)
-            let _ = Aria2Core(options: config.dict)
+        if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+            let resourcePath = Bundle.main.resourcePath!
+            let conf = resourcePath + "/aria2.conf"
+            let session = resourcePath + "/aria2.session"
+            
+            if !FileManager.default.fileExists(atPath: conf) {
+                do {
+                    let defaultConfPath = Bundle.main.path(forResource: "aria2.Maria", ofType: "conf")!
+                    try FileManager.default.copyItem(atPath: defaultConfPath, toPath: conf)
+                    let config = AriaConfig(filePath: conf)
+                    config.load()
+                    config.data.append(("dir", "\(NSHomeDirectory())/Downloads"))
+                    config.data.append(("input-file", "\(Bundle.main.resourcePath!)/aria2.session"))
+                    config.data.append(("save-session", "\(Bundle.main.resourcePath!)/aria2.session"))
+                    config.save()
+                    if !FileManager.default.fileExists(atPath: session) {
+                        FileManager.default.createFile(atPath: session, contents: nil, attributes: nil)
+                    }
+                    defaults.set("6789", forKey: "RPCServerPort")
+                    defaults.set("maria.rpc.2016", forKey: "RPCServerSecret")
+                    defaults.set(conf, forKey: "Aria2ConfPath")
+                } catch {
+                    print(error)
+                }
+            }
+            
+            if let path = Bundle.main.path(forResource: "aria2.Maria", ofType: "conf") {
+                let config = AriaConfig(filePath: path)
+                config.load()
+                aria2Core = Aria2Core(options: config.dict)
+            }
+        } else {
+            if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+                let task = Process()
+                let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
+                let shFilePath = Bundle.main
+                    .path(forResource: "runAria2c", ofType: "sh")
+                task.launchPath = shFilePath
+                task.arguments = [confPath]
+                task.launch()
+                task.waitUntilExit()
+            }
         }
+        
+        if let value = defaults.object(forKey: "RPCServerHost") as? String {
+            aria2.host = value
+        }
+        if let value = defaults.object(forKey: "RPCServerPort") as? String {
+            aria2.port = value
+        }
+        if let value = defaults.object(forKey: "RPCServerPath") as? String {
+            aria2.path = value
+        }
+        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
+            aria2.secret = value
+        }
+        aria2.baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
+        aria2.initSocket()
+        super.init()
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -77,19 +119,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         aria2close()
+        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+            if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+                let task = Process()
+                let pipe = Pipe()
+                let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
+                task.launchPath = shFilePath
+                task.standardOutput = pipe
+                task.launch()
+                task.waitUntilExit()
+                print("EnableAria2AutoLaunch")
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                print(String(data: data, encoding: .utf8))
+            }
+        }
         
-//        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-//            let task = Process()
-//            let pipe = Pipe()
-//            let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
-//            task.launchPath = shFilePath
-//            task.standardOutput = pipe
-//            task.launch()
-//            task.waitUntilExit()
-//            print("EnableAria2AutoLaunch")
-//            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-//            print(String(data: data, encoding: .utf8))
-//        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -195,7 +239,6 @@ extension AppDelegate {
         }
     }
     
-    
     func lowSpeedModeOff() {
         let limitDownloadSpeed = defaults.integer(forKey: "GlobalDownloadRate")
         let limitUploadSpeed = defaults.integer(forKey: "GlobalUploadRate")
@@ -221,7 +264,6 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         aria2configure()
         aria2.connect()
         RPCServerStatus.state = 1
-        
     }
     
     func aria2close() {
@@ -285,9 +327,6 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
             }
         }
         
-        
-        
-        
     }
     
     fileprivate func getStringBy(_ value: Double) -> String {
@@ -309,64 +348,5 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 
             }
         }
-    }
-}
-
-// MARK: - UserDefaults Init
-extension AppDelegate {
-    static func userDefaultsInit() {
-        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
-        
-        // First Launch
-        defaults.set(true, forKey: "IsNotFirstLaunch")
-        
-        
-        // Notification Settings
-        defaults.set(true, forKey: "EnableNotificationWhenStarted")
-        defaults.set(false, forKey: "EnableNotificationWhenStopped")
-        defaults.set(false, forKey: "EnableNotificationWhenPaused")
-        defaults.set(true, forKey: "EnableNotificationWhenCompleted")
-        defaults.set(false, forKey: "EnableNotificationWhenError")
-        
-        defaults.set(false, forKey: "EnableNotificationWhenConnected")
-        defaults.set(true, forKey: "EnableNotificationWhenDisconnected")
-        
-        // Bandwidth Settings
-        defaults.set(false, forKey: "EnableLowSpeedMode")
-        
-        defaults.set(0, forKey: "GlobalDownloadRate")
-        defaults.set(0, forKey: "GlobalUploadRate")
-        defaults.set(0, forKey: "LimitModeDownloadRate")
-        defaults.set(0, forKey: "LimitModeUploadRate")
-        
-        
-        // General Settings
-        defaults.set(false, forKey: "LaunchAtStartup")
-        defaults.set("", forKey: "WebAppPath")
-        defaults.set(false, forKey: "EnableSpeedStatusBar")
-        defaults.set(true, forKey: "EnableDockIcon")
-        
-        
-        // Aria2 Settings
-        defaults.set(true, forKey: "EnableAutoConnectAria2")
-        
-        defaults.set("localhost", forKey: "RPCServerHost")
-        defaults.set("6800", forKey: "RPCServerPort")
-        defaults.set("/jsonrpc", forKey: "RPCServerPath")
-        defaults.set("", forKey: "RPCServerSecret")
-        defaults.set("", forKey: "RPCServerUsername")
-        defaults.set("", forKey: "RPCServerPassword")
-        defaults.set(false, forKey: "EnabledSSL")
-        
-        defaults.set(false, forKey: "EnableAria2AutoLaunch")
-        defaults.set("", forKey: "Aria2ConfPath")
-        
-        
-        
-        // Today Settings
-        defaults.set(5, forKey: "TodayTasksNumber")
-        defaults.set(false, forKey: "TodayEnableTasksSortedByProgress")
-
-        defaults.synchronize()
     }
 }

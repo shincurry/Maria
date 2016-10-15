@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		8806E0081DA5874C00EDEC4C /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8806E0071DA5874C00EDEC4C /* QuickSettingsViewController.swift */; };
 		881687701D8A9C1B00E36678 /* aria2.default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 8816876F1D8A9C1B00E36678 /* aria2.default.conf */; };
+		881F79AB1DB2465000576766 /* Aria2Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; };
+		881F79AC1DB2465000576766 /* Aria2Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		881F79B01DB2677600576766 /* aria2.Maria.conf in Resources */ = {isa = PBXBuildFile; fileRef = 881F79AF1DB2677600576766 /* aria2.Maria.conf */; };
+		881F79B21DB26EB800576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
+		881F79B31DB27FA300576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
 		8827EDF51CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */; };
 		8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */; };
 		8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */; };
@@ -44,9 +49,6 @@
 		88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C478091CEF432000F8026A /* SettingsTodayViewController.swift */; };
 		88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD31CE495D500450E0C /* MariaNotification.swift */; };
-		88DAEEB41D9131D500FF6E35 /* Aria2Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; };
-		88DAEEB51D9131D500FF6E35 /* Aria2Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		88F76A131D87D081002876CD /* DefaultConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F76A121D87D081002876CD /* DefaultConfig.plist */; };
 		88FBE7071D802E6100B7FE9C /* Pods_Maria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC227A1CDFF5C46C8C3C87B8 /* Pods_Maria.framework */; };
 		88FBE7081D802E6100B7FE9C /* Pods_Maria.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EC227A1CDFF5C46C8C3C87B8 /* Pods_Maria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		88FBE7091D802E6D00B7FE9C /* Pods_Maria_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF09F8E5B0C163229FD5AD2B /* Pods_Maria_Widget.framework */; };
@@ -69,7 +71,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				88DAEEB51D9131D500FF6E35 /* Aria2Core.framework in Embed Frameworks */,
+				881F79AC1DB2465000576766 /* Aria2Core.framework in Embed Frameworks */,
 				8882C0831D801BB100511C60 /* Aria2.framework in Embed Frameworks */,
 				88FBE7081D802E6100B7FE9C /* Pods_Maria.framework in Embed Frameworks */,
 			);
@@ -97,6 +99,8 @@
 		881A84621D8CFD6500647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
 		881A84631D8D00C300647DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		881A84641D8D00C800647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		881F79AF1DB2677600576766 /* aria2.Maria.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aria2.Maria.conf; sourceTree = "<group>"; };
+		881F79B11DB26EB800576766 /* MariaUserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaUserDefault.swift; sourceTree = "<group>"; };
 		8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runAria2c.sh; sourceTree = "<group>"; };
 		8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shutdownAria2c.sh; sourceTree = "<group>"; };
 		8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAria2ConfigViewController.swift; sourceTree = "<group>"; };
@@ -141,7 +145,6 @@
 		88D6CDD31CE495D500450E0C /* MariaNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaNotification.swift; sourceTree = "<group>"; };
 		88DAEEB21D91313400FF6E35 /* Maria-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Maria-Bridging-Header.h"; sourceTree = "<group>"; };
 		88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aria2Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88F76A121D87D081002876CD /* DefaultConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultConfig.plist; sourceTree = "<group>"; };
 		D7A99BC2E5B2ACEF6AF6DE67 /* Pods-Maria.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maria.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maria/Pods-Maria.release.xcconfig"; sourceTree = "<group>"; };
 		E41BA69B5CDD140CCBA4EBC2 /* Pods-Maria.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maria.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Maria/Pods-Maria.debug.xcconfig"; sourceTree = "<group>"; };
 		EC227A1CDFF5C46C8C3C87B8 /* Pods_Maria.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maria.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88DAEEB41D9131D500FF6E35 /* Aria2Core.framework in Frameworks */,
+				881F79AB1DB2465000576766 /* Aria2Core.framework in Frameworks */,
 				8882C0821D801BB100511C60 /* Aria2.framework in Frameworks */,
 				88FBE7071D802E6100B7FE9C /* Pods_Maria.framework in Frameworks */,
 			);
@@ -234,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				886AB8611D8672E50053472C /* AriaConfig.swift */,
+				881F79B11DB26EB800576766 /* MariaUserDefault.swift */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -295,6 +299,7 @@
 			children = (
 				8842882C1D8D220E002014E2 /* Localizable.strings */,
 				889485A71CBE4FAF000839CD /* Maria.entitlements */,
+				881F79AF1DB2677600576766 /* aria2.Maria.conf */,
 				8816876F1D8A9C1B00E36678 /* aria2.default.conf */,
 				8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */,
 				8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */,
@@ -444,6 +449,7 @@
 				8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */,
 				8842882A1D8D220E002014E2 /* Localizable.strings in Resources */,
 				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
+				881F79B01DB2677600576766 /* aria2.Maria.conf in Resources */,
 				88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */,
 				8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */,
 			);
@@ -536,6 +542,7 @@
 			files = (
 				88298CFB1D41E56500BBAFE8 /* TodayViewController.swift in Sources */,
 				88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */,
+				881F79B31DB27FA300576766 /* MariaUserDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +567,7 @@
 				8827EDF51CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift in Sources */,
 				888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */,
 				889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */,
+				881F79B21DB26EB800576766 /* MariaUserDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,10 +783,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 525R2U87NG;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -804,10 +809,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 525R2U87NG;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

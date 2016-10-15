@@ -16,7 +16,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     var config: AriaConfig!
     
     @IBOutlet weak var enableAria2AutoLaunch: NSButton!

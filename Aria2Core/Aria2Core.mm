@@ -10,6 +10,8 @@
 #import "Aria2Core.h"
 #include "aria2.h"
 
+NSString * const EmbeddedAria2Version = @"1.19.0 stable";
+
 @implementation Aria2Core {
     aria2::Session * session;
 }
@@ -30,7 +32,7 @@
         config.downloadEventCallback = downloadEventCallback;
         session = aria2::sessionNew(options, config);
         dispatch_async(aria2Queue, ^{
-            // BUG 如果已经有 aria2c 在运行，此处会 Crash ，待修复
+            // BUG 如果 aria2c 运行有问题，整个 Maria 都会崩溃，待解决
             aria2::run(session, aria2::RUN_DEFAULT);
         });
     }

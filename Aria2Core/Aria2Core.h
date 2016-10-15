@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+FOUNDATION_EXPORT NSString * const EmbeddedAria2Version;
 
 @interface Aria2Core : NSObject {
     dispatch_queue_t aria2Queue;
