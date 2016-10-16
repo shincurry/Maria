@@ -8,10 +8,8 @@
 
 import Foundation
 
-let TeamID = "525R2U87NG"
-
 class MariaUserDefault {
-    static var main = UserDefaults(suiteName: "\(TeamID).group.windisco.maria.main")!
+    static var main = UserDefaults(suiteName: "group.windisco.maria.main")!
     
     static var auto: UserDefaults {
         get {
@@ -22,8 +20,8 @@ class MariaUserDefault {
             }
         }
     }
-    static var external = UserDefaults(suiteName: "\(TeamID).group.windisco.maria.external")!
-    static var buildin = UserDefaults(suiteName: "\(TeamID).group.windisco.maria.buildin")!
+    static var external = UserDefaults(suiteName: "group.windisco.maria.external")!
+    static var buildin = UserDefaults(suiteName: "group.windisco.maria.buildin")!
 
     
     static func initMain() {
