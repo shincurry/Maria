@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2548a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -326,14 +326,14 @@
                                         <action selector="clearCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="lwt-MQ-y39"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="A31CC066-930A-4A49-B4AA-36A92CD0448B" id="fWl-Gq-lVn">
+                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="F6358FA5-E8FC-4F38-928D-DC56D7680A37" id="fWl-Gq-lVn">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="atI-Si-Tc8">
                                         <rect key="frame" x="0.0" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="A31CC066-930A-4A49-B4AA-36A92CD0448B" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
+                                        <buttonCell key="cell" type="roundTextured" title="⟳" bezelStyle="texturedRounded" image="F6358FA5-E8FC-4F38-928D-DC56D7680A37" imagePosition="below" alignment="center" borderStyle="border" inset="2" id="Naa-Lc-yiZ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -831,7 +831,8 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="A31CC066-930A-4A49-B4AA-36A92CD0448B" width="1" height="1">
+        <image name="Broom" width="20" height="20"/>
+        <image name="F6358FA5-E8FC-4F38-928D-DC56D7680A37" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -882,7 +883,6 @@ ALAAswC1ALcAuQC7AMAA1wDZANsJiwmQCZsJpAm3CbsJxgnPCdQJ3AnfCeQJ8wn3Cf4KBgoTChgKGgoc
 CiEKKQosCjEKOQo8Ck4KUQpWAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAClg
 </mutableData>
         </image>
-        <image name="Broom" width="20" height="20"/>
         <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>

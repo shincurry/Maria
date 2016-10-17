@@ -10,7 +10,7 @@
 #import "Aria2Core.h"
 #include "aria2.h"
 
-NSString * const EmbeddedAria2Version = @"1.19.0 stable";
+NSString * const EmbeddedAria2Version = @"1.28.0";
 
 @implementation Aria2Core {
     aria2::Session * session;

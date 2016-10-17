@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		881F79AA1DB2449000576766 /* libaria2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 881F79A91DB2449000576766 /* libaria2.0.dylib */; };
+		882A58431DB494AC00C45C4C /* libaria2-1.28.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */; };
+		882A58441DB494B300C45C4C /* libaria2-1.28.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		88DAEE811D912A8900FF6E35 /* Aria2Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DAEE7F1D912A8900FF6E35 /* Aria2Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88DAEE891D912AE700FF6E35 /* aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DAEE871D912AE700FF6E35 /* aria2.h */; };
 		88DAEE8A1D912AE700FF6E35 /* Aria2Core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88DAEE881D912AE700FF6E35 /* Aria2Core.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		882A58401DB4905D00C45C4C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				882A58441DB494B300C45C4C /* libaria2-1.28.0.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		881F79A91DB2449000576766 /* libaria2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaria2.0.dylib; path = Aria2Core/Frameworks/libaria2.0.dylib; sourceTree = "<group>"; };
+		882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaria2-1.28.0.dylib"; path = "Aria2Core/Frameworks/libaria2-1.28.0.dylib"; sourceTree = "<group>"; };
 		88DAEE7C1D912A8900FF6E35 /* Aria2Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DAEE7F1D912A8900FF6E35 /* Aria2Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2Core.h; sourceTree = "<group>"; };
 		88DAEE801D912A8900FF6E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -27,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881F79AA1DB2449000576766 /* libaria2.0.dylib in Frameworks */,
+				882A58431DB494AC00C45C4C /* libaria2-1.28.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +79,7 @@
 		88DAEE8B1D912AFA00FF6E35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				881F79A91DB2449000576766 /* libaria2.0.dylib */,
+				882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,6 +107,7 @@
 				88DAEE781D912A8900FF6E35 /* Frameworks */,
 				88DAEE791D912A8900FF6E35 /* Headers */,
 				88DAEE7A1D912A8900FF6E35 /* Resources */,
+				882A58401DB4905D00C45C4C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -114,6 +129,7 @@
 				TargetAttributes = {
 					88DAEE7B1D912A8900FF6E35 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 525R2U87NG;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -258,15 +274,15 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 525R2U87NG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = Aria2Core/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aria2Core/Frameworks",
@@ -280,18 +296,18 @@
 		88DAEE861D912A8900FF6E35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 525R2U87NG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = Aria2Core/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aria2Core/Frameworks",
