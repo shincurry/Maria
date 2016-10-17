@@ -10,6 +10,8 @@ import Foundation
 
 class MariaUserDefault {
     static var main = UserDefaults(suiteName: "group.windisco.maria.main")!
+    static var external = UserDefaults(suiteName: "group.windisco.maria.external")!
+    static var buildin = UserDefaults(suiteName: "group.windisco.maria.buildin")!
     
     static var auto: UserDefaults {
         get {
@@ -20,9 +22,6 @@ class MariaUserDefault {
             }
         }
     }
-    static var external = UserDefaults(suiteName: "group.windisco.maria.external")!
-    static var buildin = UserDefaults(suiteName: "group.windisco.maria.buildin")!
-
     
     static func initMain() {
         let defaults = main
