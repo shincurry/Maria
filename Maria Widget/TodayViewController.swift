@@ -36,7 +36,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
     var taskData: [Aria2Task] = []
     
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     
     var aria2 = Aria2.shared
     var timer: Timer!
@@ -45,9 +45,25 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
         completionHandler(.newData)
     }
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let value = defaults.object(forKey: "RPCServerHost") as? String {
+            aria2.host = value
+        }
+        if let value = defaults.object(forKey: "RPCServerPort") as? String {
+            aria2.port = value
+        }
+        if let value = defaults.object(forKey: "RPCServerPath") as? String {
+            aria2.path = value
+        }
+        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
+            aria2.secret = value
+        }
+        aria2.baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
+        aria2.initSocket()
         
         let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main)
         taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")

@@ -16,9 +16,10 @@ class SettingsRPCServerViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     
-    @IBOutlet weak var autoConnectAria2Enabled: NSButtonCell!
+    @IBOutlet weak var useEmbeddedAria2Enabled: NSButton!
+    @IBOutlet weak var autoConnectAria2Enabled: NSButton!
     
     @IBOutlet weak var host: NSTextField!
     @IBOutlet weak var port: NSTextField!
@@ -96,8 +97,26 @@ extension SettingsRPCServerViewController {
         defaults.set(boolValue, forKey: "EnableAutoConnectAria2")
         defaults.synchronize()
     }
-    
-    
+    @IBAction func useEmbeddedAria2(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("restartApp.alert.messageText", comment: "")
+        alert.informativeText = NSLocalizedString("restartApp.alert.informativeText", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            if response == NSAlertFirstButtonReturn {
+                let boolValue = sender.state == 0 ? false : true
+                MariaUserDefault.main.set(boolValue, forKey: "UseEmbeddedAria2")
+                MariaUserDefault.main.synchronize()
+                let path = Bundle.main.executablePath!
+                let id = "\(ProcessInfo.processInfo.processIdentifier)"
+                Process.launchedProcess(launchPath: path, arguments: [path, id])
+                NSApp.terminate(self)
+            } else if response == NSAlertSecondButtonReturn {
+                sender.state = (sender.state + 1) & 1
+            }
+        })
+    }
 }
 
 extension SettingsRPCServerViewController: NSTextFieldDelegate {
@@ -131,5 +150,8 @@ extension SettingsRPCServerViewController {
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
         autoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
+        useEmbeddedAria2Enabled.state = MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") ? 1 : 0
+        
+        useEmbeddedAria2Enabled.title = useEmbeddedAria2Enabled.title + "(version \(EmbeddedAria2Version))"
     }
 }

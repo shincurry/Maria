@@ -6,7 +6,7 @@
 
 An OS X app/widget for aria2 download tool.
 
-You can see Maria dev plan in [here](https://github.com/ShinCurry/Maria/projects/1).
+You can see Maria dev plan [here](https://github.com/ShinCurry/Maria/projects/1).
 
 #### Main Window
 
@@ -32,9 +32,14 @@ You can see Maria dev plan in [here](https://github.com/ShinCurry/Maria/projects
 
 ## Thanks
 
-[Starscream](https://github.com/daltoniam/Starscream)
+* [aria2](https://github.com/aria2/aria2)
+* [Starscream](https://github.com/daltoniam/Starscream)
+* [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 
-[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+#### Special Thanks
+
+* @BlueCocoa
+* @Lencerf
 
 ## License
 

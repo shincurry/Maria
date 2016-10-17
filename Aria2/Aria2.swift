@@ -19,49 +19,26 @@ public enum ConnectionStatus {
 
 open class Aria2 {
     
-    open static let shared: Aria2 = {
-        let defaults = UserDefaults(suiteName: "group.windisco.maria")!
-        var host = "localhost"
-        if let value = defaults.object(forKey: "RPCServerHost") as? String {
-            host = value
-        }
-        var port = "6800"
-        if let value = defaults.object(forKey: "RPCServerPort") as? String {
-            port = value
-        }
-        var path = "/jsonrpc"
-        if let value = defaults.object(forKey: "RPCServerPath") as? String {
-            path = value
-        }
-        
-        return Aria2(host: host, port: port, path: path)
-    }()
+    open static let shared = Aria2()
     
-    var baseHost = "http://"
-    var host = "localhost"
-    var port = "6800"
-    var path = "/jsonrpc"
+    open var baseHost = "http://"
+    open var host = "localhost"
+    open var port = "6800"
+    open var path = "/jsonrpc"
     open var url: String {
         get {
             return baseHost + host + ":" + port + path
         }
     }
-    var secret = ""
-    
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    open var secret = ""
     
     var socket: WebSocket!
     
-    public init(host: String, port: String, path: String) {
-        self.baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-        self.host = host
-        self.port = port
-        self.path = path
+    private init() {}
+    
+    open func initSocket() {
         socket = WebSocket(url: URL(string: self.url)!)
         socket.delegate = self
-        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
-            self.secret = value
-        }
     }
     
     // MARK: - Public API

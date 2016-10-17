@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class AriaConfig {
     init(filePath: String) {
         self.filePath = filePath
@@ -16,6 +17,18 @@ class AriaConfig {
     var filePath: String
     typealias AriaConf = [(key: String, value: String)]
     var data = AriaConf()
+    var array: AriaConf {
+        get {
+            return data
+        }
+    }
+    var dict: Dictionary<String, String> {
+        get {
+            var dict = Dictionary<String, String>()
+            data.forEach { dict[$0.key] = $0.value }
+            return dict
+        }
+    }
 
     func load() {
         do {

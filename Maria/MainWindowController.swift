@@ -51,7 +51,7 @@ class MainWindowController: NSWindowController {
         }
     }
     
-    let defaults = UserDefaults(suiteName: "group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     let aria2 = Aria2.shared
     
     @IBOutlet weak var toolbar: NSToolbar!
