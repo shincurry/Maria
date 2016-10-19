@@ -8,7 +8,7 @@
 	<array>
 		<string>group.windisco.maria.external</string>
 		<string>group.windisco.maria.main</string>
-		<string>group.windisco.maria.buildin</string>
+		<string>group.windisco.maria.builtin</string>
 	</array>
 	<key>com.apple.security.network.client</key>
 	<true/>

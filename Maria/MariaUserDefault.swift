@@ -11,12 +11,12 @@ import Foundation
 class MariaUserDefault {
     static var main = UserDefaults(suiteName: "group.windisco.maria.main")!
     static var external = UserDefaults(suiteName: "group.windisco.maria.external")!
-    static var buildin = UserDefaults(suiteName: "group.windisco.maria.buildin")!
+    static var builtIn = UserDefaults(suiteName: "group.windisco.maria.builtin")!
     
     static var auto: UserDefaults {
         get {
             if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
-                return buildin
+                return builtIn
             } else {
                 return external
             }
@@ -37,10 +37,10 @@ class MariaUserDefault {
         defaults.set("/jsonrpc", forKey: "RPCServerPath")
         defaults.set("", forKey: "RPCServerSecret")
     }
-    static func initBuildIn() {
-        MariaUserDefault.initShared(defaults: MariaUserDefault.buildin)
+    static func initBuiltIn() {
+        MariaUserDefault.initShared(defaults: MariaUserDefault.builtIn)
         
-        let defaults = MariaUserDefault.buildin
+        let defaults = MariaUserDefault.builtIn
         defaults.set("6789", forKey: "RPCServerPort")
         defaults.set("/jsonrpc", forKey: "RPCServerPath")
         defaults.set("maria.rpc.2016", forKey: "RPCServerSecret")

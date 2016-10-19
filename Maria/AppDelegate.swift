@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !MariaUserDefault.main.bool(forKey: "IsNotFirstLaunch") {
             MariaUserDefault.initMain()
             MariaUserDefault.initExternal()
-            MariaUserDefault.initBuildIn()
+            MariaUserDefault.initBuiltIn()
         }
         
         if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
