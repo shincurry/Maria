@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <chrono>
+#include <ratio>
+#include <thread>
 #import "Aria2Core.h"
 #include "aria2.h"
 
@@ -45,7 +48,7 @@ NSString * const EmbeddedAria2Version = @"1.28.0";
         aria2::pauseDownload(session, *i);
     }
     while (aria2::getGlobalStat(session).numActive > 0) {
-        system("sleep 0.1"); // +1s
+        std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(100)); // +1s
     }
     printf("all task paused\n");
     aria2::shutdown(session);
