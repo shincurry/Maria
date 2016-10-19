@@ -6,31 +6,13 @@
 //  Copyright © 2016年 ShinCurry. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import "ACModel.h"
+#import "ACDownloadHandle.h"
+#import "ACGlobalStatus.h"
 
 FOUNDATION_EXPORT NSString * const EmbeddedAria2Version;
 
-typedef NSDictionary<NSString *, NSString *> ACKeyVals;
-typedef NSString ACUri;
-typedef NSArray<NSString *> ACUris;
-
-typedef NSNumber ACGid;
-typedef NSArray<NSNumber *> ACGids;
-
-
-struct ACGlobalStatus {
-    int downloadSpeed;
-    int uploadSpeed;
-    int numActive;
-    int numWaiting;
-    int numStopped;
-};
-typedef enum
-{
-    begin,
-    current,
-    end
-} ACOffsetMode;
 
 @interface Aria2Core : NSObject {
     dispatch_queue_t aria2Queue;
@@ -38,7 +20,6 @@ typedef enum
 
 - (instancetype)init;
 - (instancetype)initWithOptions: (NSDictionary *)options;
-
 
 - (int)addUri: (ACUris *)uris
         toGid: (ACGid *)gid
@@ -76,12 +57,16 @@ typedef enum
 
 - (int)changeGlobalOptionWithNewOptions: (ACKeyVals *)options;
 
-- (ACGlobalStatus)getGlobalStatus;
+- (ACGlobalStatus *)getGlobalStatus;
 
 - (int)changePosition:(ACGid *)gid
                    to: (int) position
              withMode: (ACOffsetMode) mode;
 
 - (int)shutdownByforce: (bool)force;
+
+- (ACDownloadHandle *)getDownloadHandleByGid: (ACGid *)gid;
+
+- (int)deleteACDownloadHandleByGid: (ACGid *)gid;
 
 @end

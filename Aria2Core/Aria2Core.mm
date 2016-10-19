@@ -9,18 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "Aria2Core.h"
 #include "aria2.h"
+#import "ACModel.h"
+#import "ACGlobalStatus.h"
+#import "ACDownloadHandle.h"
+#import "ACTool.h"
+
+//typedef std::vector<std::string> Uris;
+//typedef uint64_t Gid;
+//typedef std::vector<uint64_t> Gids;
+//typedef aria2::KeyVals KeyVals;
+//typedef aria2::OffsetMode OffsetMode;
 
 NSString * const EmbeddedAria2Version = @"1.28.0";
-
-typedef std::vector<std::string> Uris;
-typedef uint64_t Gid;
-typedef std::vector<uint64_t> Gids;
-typedef aria2::KeyVals KeyVals;
-typedef aria2::OffsetMode OffsetMode;
 
 @implementation Aria2Core {
     aria2::Session * session;
     aria2::DownloadHandle * downloadHandle;
+    NSDictionary<NSString *, ACDownloadHandle *> * handles;
 }
 
 
@@ -81,7 +86,7 @@ typedef aria2::OffsetMode OffsetMode;
 }
 
 - (int)addMetalink:(NSString *)metalink
-            toGids:(NSArray<NSNumber *> *)gids
+            toGids:(ACGids *)gids
        withOptions:(ACKeyVals *)options {
     
     std::string _metalink = [metalink cStringUsingEncoding:NSUTF8StringEncoding];
@@ -165,14 +170,14 @@ typedef aria2::OffsetMode OffsetMode;
 }
 
 
-- (ACGlobalStatus)getGlobalStatus {
+- (ACGlobalStatus *)getGlobalStatus {
     aria2::GlobalStat status = aria2::getGlobalStat(session);
-    ACGlobalStatus _status;
-    _status.downloadSpeed = status.downloadSpeed;
-    _status.uploadSpeed = status.uploadSpeed;
-    _status.numActive = status.numActive;
-    _status.numStopped = status.numStopped;
-    _status.numWaiting = status.numWaiting;
+    ACGlobalStatus * _status;
+    [_status setDownloadSpeed: status.downloadSpeed];
+    [_status setUploadSpeed: status.uploadSpeed];
+    [_status setNumberOfActive: status.numActive];
+    [_status setNumberOfStopped: status.numStopped];
+    [_status setNumberOfWaiting: status.numWaiting];
     return _status;
 }
 
@@ -188,67 +193,29 @@ typedef aria2::OffsetMode OffsetMode;
     return aria2::shutdown(session, force);
 }
 
+- (ACDownloadHandle *)getACDownloadHandleByGid: (ACGid *)gid {
+    
+    
+    ACDownloadHandle * handle = [handles valueForKey:[gid stringValue]];
+    if (handle == nil) {
+        handle = [[ACDownloadHandle alloc] initWithSession:session andGid:gid];
+        [handles setValue:handle forKey:[gid stringValue]];
+    }
+    return handle;
+}
+
+- (int)deleteACDownloadHandleByGid: (ACGid *)gid {
+    ACDownloadHandle * handle = [handles valueForKey:[gid stringValue]];
+    if (handle != nil) {
+        aria2::deleteDownloadHandle(handle.getDownloadHandle);
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 
 #pragma mark - C Function Tool
-
-// use c function to transform data
-KeyVals ACToKeyVals(ACKeyVals * options) {
-    KeyVals _options;
-    for (NSString * key in [options allKeys]) {
-        std::string first = [key cStringUsingEncoding:NSUTF8StringEncoding];
-        std::string second = [options[key] cStringUsingEncoding:NSUTF8StringEncoding];
-        _options.push_back(std::make_pair(first, second));
-    }
-    return _options;
-}
-
-ACKeyVals * KeyValsToAC(KeyVals options) {
-    NSMutableDictionary<NSString *, NSString *> * _options;
-    
-    for (auto it = options.begin(); it != options.end(); ++it) {
-        NSString * key = [NSString stringWithCString:(it->first).c_str() encoding:NSUTF8StringEncoding];
-        NSString * value = [NSString stringWithCString:(it->first).c_str() encoding:NSUTF8StringEncoding];
-        [_options setValue:value forKey:key];
-    }
-    ACKeyVals * result = [_options copy];
-    return result;
-}
-
-Uris ACToUris(ACUris * uris) {
-    Uris _uris;
-
-    for (ACUri * uri in uris) {
-        _uris.push_back(uri.UTF8String);
-    }
-    return _uris;
-}
-
-Gids ACToGids(ACGids * gids) {
-    Gids _gids;
-    for (NSNumber * gid in gids) {
-        _gids.push_back(gid.unsignedLongLongValue);
-    }
-    return _gids;
-}
-
-OffsetMode ACToOffsetMode(ACOffsetMode mode) {
-    OffsetMode _mode;
-    switch (mode) {
-        case begin:
-            _mode = aria2::OFFSET_MODE_SET;
-            break;
-        case current:
-            _mode = aria2::OFFSET_MODE_CUR;
-            break;
-        case end:
-            _mode = aria2::OFFSET_MODE_END;
-            break;
-        default:
-            _mode = aria2::OFFSET_MODE_SET;
-            break;
-    }
-    return _mode;
-}
 
 int downloadEventCallback(aria2::Session* session, aria2::DownloadEvent event, aria2::A2Gid gid, void* userData) {
     printf("event is %d\n", event);
