@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ACModel.h"
+
+typedef enum {
+    ACUriStatusUsed,
+    ACUriStatusWaiting
+} ACUriStatus;
 
 @interface ACUriData : NSObject
 

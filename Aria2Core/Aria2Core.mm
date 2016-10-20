@@ -9,25 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "Aria2Core.h"
 #include "aria2.h"
-#import "ACModel.h"
+#include <map>
 #import "ACGlobalStatus.h"
-#import "ACDownloadHandle.h"
-#import "ACTool.h"
-
-//typedef std::vector<std::string> Uris;
-//typedef uint64_t Gid;
-//typedef std::vector<uint64_t> Gids;
-//typedef aria2::KeyVals KeyVals;
-//typedef aria2::OffsetMode OffsetMode;
+#import "ACFileData.h"
+#import "ACBtMetaInfoData.h"
 
 NSString * const EmbeddedAria2Version = @"1.28.0";
+
+typedef std::vector<std::string> Uris;
+typedef uint64_t Gid;
+typedef std::vector<uint64_t> Gids;
+typedef aria2::KeyVals KeyVals;
+typedef aria2::OffsetMode OffsetMode;
+typedef aria2::BtFileMode BtFileMode;
+typedef std::vector<aria2::UriData> UriDatas;
+typedef aria2::FileData FileData;
 
 @implementation Aria2Core {
     aria2::Session * session;
     aria2::DownloadHandle * downloadHandle;
-    NSDictionary<NSString *, ACDownloadHandle *> * handles;
+    std::map<std::string, aria2::DownloadHandle *> handles;
 }
-
 
 #pragma mark - Initial
 
@@ -38,7 +40,7 @@ NSString * const EmbeddedAria2Version = @"1.28.0";
 - (instancetype)initWithOptions: (ACKeyVals *)options {
     self = [super init];
     if (self) {
-        aria2Queue = dispatch_queue_create("aria2core.queue", DISPATCH_QUEUE_SERIAL);
+        aria2Queue = dispatch_queue_create("com.windisco.Maria.gcd.aria2core", DISPATCH_QUEUE_SERIAL);
         aria2::libraryInit();
         aria2::KeyVals _options = ACToKeyVals(options);
         aria2::SessionConfig config;
@@ -193,29 +195,317 @@ NSString * const EmbeddedAria2Version = @"1.28.0";
     return aria2::shutdown(session, force);
 }
 
-- (ACDownloadHandle *)getACDownloadHandleByGid: (ACGid *)gid {
+
+#pragma mark - DownloadHandle implementation
+
+- (ACDownloadStatus)getSatusByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return DownloadStatusToAC(handle->getStatus());
+}
+
+- (ACLength *)getTotalLengthByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSNumber numberWithUnsignedLongLong:handle->getTotalLength()];
+}
+
+- (ACLength *)getCompletedLengthByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSNumber numberWithUnsignedLongLong:handle->getCompletedLength()];
+}
+
+- (ACLength *)getUploadLengthByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSNumber numberWithUnsignedLongLong:handle->getUploadLength()];
+}
+
+- (NSString *)getBitfieldByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSString stringWithCString:handle->getBitfield().c_str() encoding:NSUTF8StringEncoding];
+}
+
+- (int)getDownloadSpeedByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getDownloadSpeed();
+}
+
+- (int)getUploadSpeedByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getUploadSpeed();
+}
+
+- (NSString *)getInfoHashByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSString stringWithCString:handle->getInfoHash().c_str() encoding:NSUTF8StringEncoding];
+}
+
+- (size_t)getPieceLengthByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getPieceLength();
+}
+
+- (int)getNumPiecesByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getNumPieces();
+}
+
+- (int)getConnectionsByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getConnections();
+}
+
+- (int)getErrorCodeByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getErrorCode();
+}
+
+- (ACGids *)getFollowedByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return GidsToAC(handle->getFollowedBy());
+}
+- (ACGid *)getFollowingByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSNumber numberWithUnsignedLongLong:handle->getFollowing()];
+}
+- (ACGid *)getBelongsToGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSNumber numberWithUnsignedLongLong:handle->getBelongsTo()];
+}
+- (NSArray<ACFileData *> *)getFilesByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    std::vector<aria2::FileData> files = handle->getFiles();
+    NSMutableArray<ACFileData *> * _files;
+    for (auto it = files.begin(); it != files.end(); ++it) {
+        [_files addObject: FileDataToAC(*it)];
+    }
+    NSArray<ACFileData *> * result = [_files copy];
+    return result;
+}
+- (int)getNumFilesByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return handle->getNumFiles();
+}
+
+- (ACFileData *)getFileByIndex: (int)index
+                         andGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return FileDataToAC(handle->getFile(index));
+}
+
+- (ACBtMetaInfoData *)getBtMetaInfoByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    ACBtMetaInfoData * _data;
+    aria2::BtMetaInfoData data = handle->getBtMetaInfo();
+    NSMutableArray<NSArray<NSString *> *> * announceList;
+    for (auto it = data.announceList.begin(); it != data.announceList.end(); ++it) {
+        NSMutableArray<NSString *> * section;
+        for (auto it2 = it->begin(); it2 != it->end(); ++it2) {
+            [section addObject:[NSString stringWithCString:it2->c_str() encoding:NSUTF8StringEncoding]];
+        }
+        [announceList addObject:[section copy]];
+    }
+    NSArray<NSArray<NSString *> *> * _announceList = [announceList copy];
+    [_data setAnnounceList:_announceList];
+    [_data setComment:[NSString stringWithCString:data.name.c_str() encoding:NSUTF8StringEncoding]];
+    [_data setCreationDate:[NSDate dateWithTimeIntervalSince1970:data.creationDate]];
+    [_data setMode:BtFileModeToAC(data.mode)];
+    [_data setName:[NSString stringWithCString:data.name.c_str() encoding:NSUTF8StringEncoding]];
     
-    
-    ACDownloadHandle * handle = [handles valueForKey:[gid stringValue]];
-    if (handle == nil) {
-        handle = [[ACDownloadHandle alloc] initWithSession:session andGid:gid];
-        [handles setValue:handle forKey:[gid stringValue]];
+    return _data;
+}
+- (NSString *)getOptionByName: (NSString *) name
+                          andGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return [NSString stringWithCString:handle->getOption([name cStringUsingEncoding:NSUTF8StringEncoding]).c_str() encoding:NSUTF8StringEncoding];
+}
+
+- (ACKeyVals *)getOptionsByGid:(ACGid *)gid {
+    aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
+    return KeyValsToAC(handle->getOptions());
+}
+
+// Tool
+- (class aria2::DownloadHandle *)getDownloadHandleByGid: (ACGid *)gid {
+    std::string key = [[gid stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
+    auto it = handles.find(key);
+    aria2::DownloadHandle * handle;
+    if(it == handles.end()) {
+        handle = aria2::getDownloadHandle(session, ACToGid(gid));
+        handles.insert(std::make_pair(key, handle));
+    } else {
+        handle = it->second;
     }
     return handle;
 }
 
-- (int)deleteACDownloadHandleByGid: (ACGid *)gid {
-    ACDownloadHandle * handle = [handles valueForKey:[gid stringValue]];
-    if (handle != nil) {
-        aria2::deleteDownloadHandle(handle.getDownloadHandle);
+- (int)deleteDownloadHandleByGid: (ACGid *)gid {
+    std::string key = [[gid stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
+    auto it = handles.find(key);
+    if(it != handles.end()) {
+        handles.erase(it);
         return 1;
     } else {
         return 0;
     }
 }
 
-
 #pragma mark - C Function Tool
+
+// use c function to transform data
+KeyVals ACToKeyVals(ACKeyVals * options) {
+    KeyVals _options;
+    for (NSString * key in [options allKeys]) {
+        std::string first = [key cStringUsingEncoding:NSUTF8StringEncoding];
+        std::string second = [options[key] cStringUsingEncoding:NSUTF8StringEncoding];
+        _options.push_back(std::make_pair(first, second));
+    }
+    return _options;
+}
+
+ACKeyVals * KeyValsToAC(KeyVals options) {
+    NSMutableDictionary<NSString *, NSString *> * _options;
+    
+    for (auto it = options.begin(); it != options.end(); ++it) {
+        NSString * key = [NSString stringWithCString:(it->first).c_str() encoding:NSUTF8StringEncoding];
+        NSString * value = [NSString stringWithCString:(it->first).c_str() encoding:NSUTF8StringEncoding];
+        [_options setValue:value forKey:key];
+    }
+    ACKeyVals * result = [_options copy];
+    return result;
+}
+
+Uris ACToUris(ACUris * uris) {
+    Uris _uris;
+    
+    for (ACUri * uri in uris) {
+        _uris.push_back(uri.UTF8String);
+    }
+    return _uris;
+}
+
+Gids ACToGids(ACGids * gids) {
+    Gids _gids;
+    for (NSNumber * gid in gids) {
+        _gids.push_back(gid.unsignedLongLongValue);
+    }
+    return _gids;
+}
+
+ACGids * GidsToAC(Gids gids) {
+    NSMutableArray<NSNumber *> * _gids;
+    for (auto it = gids.begin(); it != gids.end(); ++it) {
+        [_gids addObject:[NSNumber numberWithUnsignedLongLong:*it]];
+    }
+    ACGids * result = [_gids copy];
+    return result;
+}
+
+Gid ACToGid(ACGid * gid) {
+    return [gid unsignedLongLongValue];
+}
+
+ACUriStatus UriStatusToAC(aria2::UriStatus status) {
+    ACUriStatus _status;
+    switch (status) {
+        case aria2::URI_USED:
+            _status = ACUriStatusUsed;
+            break;
+        case aria2::URI_WAITING:
+            _status = ACUriStatusWaiting;
+            break;
+        default:
+            _status = ACUriStatusWaiting;
+            break;
+    }
+    return _status;
+}
+
+ACDownloadStatus DownloadStatusToAC(aria2::DownloadStatus status) {
+    ACDownloadStatus _status;
+    switch (status) {
+        case aria2::DOWNLOAD_ACTIVE:
+            _status = ACDownloadStatusActive;
+            break;
+        case aria2::DOWNLOAD_WAITING:
+            _status = ACDownloadStatusWaiting;
+            break;
+        case aria2::DOWNLOAD_PAUSED:
+            _status = ACDownloadStatusPaused;
+            break;
+        case aria2::DOWNLOAD_COMPLETE:
+            _status = ACDownloadStatusComplete;
+            break;
+        case aria2::DOWNLOAD_ERROR:
+            _status = ACDownloadStatusError;
+            break;
+        case aria2::DOWNLOAD_REMOVED:
+            _status = ACDownloadStatusRemoved;
+            break;
+        default:
+            _status = ACDownloadStatusRemoved;
+            break;
+    }
+    return _status;
+}
+
+OffsetMode ACToOffsetMode(ACOffsetMode mode) {
+    OffsetMode _mode;
+    switch (mode) {
+        case ACOffsetModeBegin:
+            _mode = aria2::OFFSET_MODE_SET;
+            break;
+        case ACOffsetModeCurrent:
+            _mode = aria2::OFFSET_MODE_CUR;
+            break;
+        case ACOffsetModeEnd:
+            _mode = aria2::OFFSET_MODE_END;
+            break;
+        default:
+            _mode = aria2::OFFSET_MODE_SET;
+            break;
+    }
+    return _mode;
+}
+
+ACBtFileMode BtFileModeToAC(BtFileMode mode) {
+    ACBtFileMode _mode;
+    switch (mode) {
+        case aria2::BT_FILE_MODE_NONE:
+            _mode = ACBtFileModeNone;
+            break;
+        case aria2::BT_FILE_MODE_SINGLE:
+            _mode = ACBtFileModeSingle;
+            break;
+        case aria2::BT_FILE_MODE_MULTI:
+            _mode = ACBtFileModeMultiple;
+            break;
+        default:
+            _mode = ACBtFileModeNone;
+            break;
+    }
+    return _mode;
+}
+
+ACUriDatas * UriDatasToAC(UriDatas datas) {
+    NSMutableArray<ACUriData *> * _uris;
+    for (auto it2 = datas.begin(); it2 != datas.end(); ++it2) {
+        ACUriData * uri;
+        [uri setUri:[NSString stringWithCString:it2->uri.c_str() encoding:NSUTF8StringEncoding]];
+        [uri setStatus:UriStatusToAC(it2->status)];
+        [_uris addObject:uri];
+    }
+    return [_uris copy];
+}
+
+ACFileData * FileDataToAC(FileData data) {
+    ACFileData * _file;
+    [_file setIndex:data.index];
+    [_file setPath:[NSString stringWithCString:(data.path).c_str() encoding:NSUTF8StringEncoding]];
+    [_file setLength:[NSNumber numberWithUnsignedLongLong:data.length]];
+    [_file setCompletedLength:[NSNumber numberWithUnsignedLongLong:data.completedLength]];
+    [_file setSelected:data.selected];
+    [_file setUris:UriDatasToAC(data.uris)];
+    return _file;
+}
 
 int downloadEventCallback(aria2::Session* session, aria2::DownloadEvent event, aria2::A2Gid gid, void* userData) {
     printf("event is %d\n", event);

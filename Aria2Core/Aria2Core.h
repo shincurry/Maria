@@ -7,19 +7,45 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ACModel.h"
-#import "ACDownloadHandle.h"
+#import "ACFileData.h"
+#import "ACBtMetaInfoData.h"
 #import "ACGlobalStatus.h"
 
 FOUNDATION_EXPORT NSString * const EmbeddedAria2Version;
 
+typedef NSDictionary<NSString *, NSString *> ACKeyVals;
+typedef NSString ACUri;
+typedef NSArray<NSString *> ACUris;
+typedef NSNumber ACGid;
+typedef NSArray<NSNumber *> ACGids;
+typedef NSArray<ACUriData *> ACUriDatas;
+
+typedef enum {
+    ACOffsetModeBegin,
+    ACOffsetModeCurrent,
+    ACOffsetModeEnd
+} ACOffsetMode;
+
+typedef enum {
+    ACDownloadStatusActive,
+    ACDownloadStatusWaiting,
+    ACDownloadStatusPaused,
+    ACDownloadStatusComplete,
+    ACDownloadStatusError,
+    ACDownloadStatusRemoved
+} ACDownloadStatus;
 
 @interface Aria2Core : NSObject {
     dispatch_queue_t aria2Queue;
 }
 
+#pragma mark - initial
+
 - (instancetype)init;
 - (instancetype)initWithOptions: (NSDictionary *)options;
+
+
+#pragma mark - Aria2Core Interface
 
 - (int)addUri: (ACUris *)uris
         toGid: (ACGid *)gid
@@ -65,8 +91,50 @@ FOUNDATION_EXPORT NSString * const EmbeddedAria2Version;
 
 - (int)shutdownByforce: (bool)force;
 
-- (ACDownloadHandle *)getDownloadHandleByGid: (ACGid *)gid;
+#pragma mark - DownloadHandle Interface
 
-- (int)deleteACDownloadHandleByGid: (ACGid *)gid;
+- (ACDownloadStatus)getSatusByGid: (ACGid *)gid;
+
+- (ACLength *)getTotalLengthByGid: (ACGid *)gid;
+
+- (ACLength *)getCompletedLengthByGid: (ACGid *)gid;
+
+- (ACLength *)getUploadLengthByGid: (ACGid *)gid;
+
+- (NSString *)getBitfieldByGid: (ACGid *)gid;
+
+- (int)getDownloadSpeedByGid: (ACGid *)gid;
+
+- (int)getUploadSpeedByGid: (ACGid *)gid;
+
+- (NSString *)getInfoHashByGid: (ACGid *)gid;
+
+- (size_t)getPieceLengthByGid: (ACGid *)gid;
+
+- (int)getNumPiecesByGid: (ACGid *)gid;
+
+- (int)getConnectionsByGid: (ACGid *)gid;
+
+- (int)getErrorCodeByGid: (ACGid *)gid;
+
+- (ACGids *)getFollowedByGid: (ACGid *)gid;
+
+- (ACGid *)getFollowingByGid: (ACGid *)gid;
+
+- (ACGid *)getBelongsToGid: (ACGid *)gid;
+
+- (ACFileData *)getFilesByGid: (ACGid *)gid;
+
+- (int)getNumFilesByGid: (ACGid *)gid;
+
+- (ACFileData *)getFileByIndex: (int)index
+                        andGid: (ACGid *)gid;
+
+- (ACBtMetaInfoData *)getBtMetaInfoByGid: (ACGid *)gid;
+
+- (NSString *)getOptionByName: (NSString *)name
+                       andGid: (ACGid *)gid;
+
+- (ACKeyVals *)getOptionsByGid: (ACGid *)gid;
 
 @end

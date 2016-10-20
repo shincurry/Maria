@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ACModel.h"
+
+typedef enum {
+    ACBtFileModeNone,
+    ACBtFileModeSingle,
+    ACBtFileModeMultiple
+} ACBtFileMode;
 
 @interface ACBtMetaInfoData : NSObject
 

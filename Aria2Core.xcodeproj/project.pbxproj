@@ -9,18 +9,14 @@
 /* Begin PBXBuildFile section */
 		882A58431DB494AC00C45C4C /* libaria2-1.28.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */; };
 		882A58441DB494B300C45C4C /* libaria2-1.28.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		884221131DB66104004B5F7D /* ACGlobalStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 884221111DB66104004B5F7D /* ACGlobalStatus.m */; };
+		884221131DB66104004B5F7D /* ACGlobalStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = 884221111DB66104004B5F7D /* ACGlobalStatus.mm */; };
 		884221261DB7A126004B5F7D /* ACUriData.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221241DB7A126004B5F7D /* ACUriData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		884221271DB7A126004B5F7D /* ACUriData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 884221251DB7A126004B5F7D /* ACUriData.mm */; };
-		8842212A1DB7A135004B5F7D /* ACFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221281DB7A135004B5F7D /* ACFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8842212B1DB7A135004B5F7D /* ACFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 884221291DB7A135004B5F7D /* ACFileData.m */; };
+		8842212B1DB7A135004B5F7D /* ACFileData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 884221291DB7A135004B5F7D /* ACFileData.mm */; };
 		8842212E1DB7A16A004B5F7D /* ACBtMetaInfoData.h in Headers */ = {isa = PBXBuildFile; fileRef = 8842212C1DB7A16A004B5F7D /* ACBtMetaInfoData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8842212F1DB7A16A004B5F7D /* ACBtMetaInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.m */; };
-		884221321DB7A179004B5F7D /* ACDownloadHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221301DB7A179004B5F7D /* ACDownloadHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		884221331DB7A179004B5F7D /* ACDownloadHandle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 884221311DB7A179004B5F7D /* ACDownloadHandle.mm */; };
-		884221361DB7A64D004B5F7D /* ACTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221341DB7A64D004B5F7D /* ACTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		884221371DB7A64E004B5F7D /* ACTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 884221351DB7A64D004B5F7D /* ACTool.mm */; };
-		884221381DB7AEC4004B5F7D /* ACModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 884220FE1DB6424B004B5F7D /* ACModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8842212F1DB7A16A004B5F7D /* ACBtMetaInfoData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.mm */; };
+		889C5BBF1DB88C8900625C82 /* ACGlobalStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221101DB66104004B5F7D /* ACGlobalStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		889C5BC01DB88CDE00625C82 /* ACFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 884221281DB7A135004B5F7D /* ACFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88DAEE811D912A8900FF6E35 /* Aria2Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DAEE7F1D912A8900FF6E35 /* Aria2Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88DAEE891D912AE700FF6E35 /* aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DAEE871D912AE700FF6E35 /* aria2.h */; };
 		88DAEE8A1D912AE700FF6E35 /* Aria2Core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88DAEE881D912AE700FF6E35 /* Aria2Core.mm */; };
@@ -41,19 +37,14 @@
 
 /* Begin PBXFileReference section */
 		882A58421DB494AC00C45C4C /* libaria2-1.28.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaria2-1.28.0.dylib"; path = "Aria2Core/Frameworks/libaria2-1.28.0.dylib"; sourceTree = "<group>"; };
-		884220FE1DB6424B004B5F7D /* ACModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACModel.h; sourceTree = "<group>"; };
 		884221101DB66104004B5F7D /* ACGlobalStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACGlobalStatus.h; sourceTree = "<group>"; };
-		884221111DB66104004B5F7D /* ACGlobalStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACGlobalStatus.m; sourceTree = "<group>"; };
+		884221111DB66104004B5F7D /* ACGlobalStatus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACGlobalStatus.mm; sourceTree = "<group>"; };
 		884221241DB7A126004B5F7D /* ACUriData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUriData.h; sourceTree = "<group>"; };
 		884221251DB7A126004B5F7D /* ACUriData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACUriData.mm; sourceTree = "<group>"; };
 		884221281DB7A135004B5F7D /* ACFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACFileData.h; sourceTree = "<group>"; };
-		884221291DB7A135004B5F7D /* ACFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFileData.m; sourceTree = "<group>"; };
+		884221291DB7A135004B5F7D /* ACFileData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACFileData.mm; sourceTree = "<group>"; };
 		8842212C1DB7A16A004B5F7D /* ACBtMetaInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBtMetaInfoData.h; sourceTree = "<group>"; };
-		8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBtMetaInfoData.m; sourceTree = "<group>"; };
-		884221301DB7A179004B5F7D /* ACDownloadHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDownloadHandle.h; sourceTree = "<group>"; };
-		884221311DB7A179004B5F7D /* ACDownloadHandle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACDownloadHandle.mm; sourceTree = "<group>"; };
-		884221341DB7A64D004B5F7D /* ACTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTool.h; sourceTree = "<group>"; };
-		884221351DB7A64D004B5F7D /* ACTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACTool.mm; sourceTree = "<group>"; };
+		8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACBtMetaInfoData.mm; sourceTree = "<group>"; };
 		88DAEE7C1D912A8900FF6E35 /* Aria2Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DAEE7F1D912A8900FF6E35 /* Aria2Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2Core.h; sourceTree = "<group>"; };
 		88DAEE801D912A8900FF6E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +64,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		889C5BC11DB88D7300625C82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8842212C1DB7A16A004B5F7D /* ACBtMetaInfoData.h */,
+				8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.mm */,
+				884221281DB7A135004B5F7D /* ACFileData.h */,
+				884221291DB7A135004B5F7D /* ACFileData.mm */,
+				884221241DB7A126004B5F7D /* ACUriData.h */,
+				884221251DB7A126004B5F7D /* ACUriData.mm */,
+				884221101DB66104004B5F7D /* ACGlobalStatus.h */,
+				884221111DB66104004B5F7D /* ACGlobalStatus.mm */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		88DAEE721D912A8900FF6E35 = {
 			isa = PBXGroup;
 			children = (
@@ -94,21 +100,9 @@
 		88DAEE7E1D912A8900FF6E35 /* Aria2Core */ = {
 			isa = PBXGroup;
 			children = (
-				884220FE1DB6424B004B5F7D /* ACModel.h */,
-				884221341DB7A64D004B5F7D /* ACTool.h */,
-				884221351DB7A64D004B5F7D /* ACTool.mm */,
-				884221301DB7A179004B5F7D /* ACDownloadHandle.h */,
-				884221311DB7A179004B5F7D /* ACDownloadHandle.mm */,
 				88DAEE7F1D912A8900FF6E35 /* Aria2Core.h */,
 				88DAEE881D912AE700FF6E35 /* Aria2Core.mm */,
-				8842212C1DB7A16A004B5F7D /* ACBtMetaInfoData.h */,
-				8842212D1DB7A16A004B5F7D /* ACBtMetaInfoData.m */,
-				884221281DB7A135004B5F7D /* ACFileData.h */,
-				884221291DB7A135004B5F7D /* ACFileData.m */,
-				884221241DB7A126004B5F7D /* ACUriData.h */,
-				884221251DB7A126004B5F7D /* ACUriData.mm */,
-				884221101DB66104004B5F7D /* ACGlobalStatus.h */,
-				884221111DB66104004B5F7D /* ACGlobalStatus.m */,
+				889C5BC11DB88D7300625C82 /* Model */,
 				88DAEE801D912A8900FF6E35 /* Info.plist */,
 			);
 			path = Aria2Core;
@@ -129,13 +123,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				884221321DB7A179004B5F7D /* ACDownloadHandle.h in Headers */,
-				8842212A1DB7A135004B5F7D /* ACFileData.h in Headers */,
-				8842212E1DB7A16A004B5F7D /* ACBtMetaInfoData.h in Headers */,
-				884221381DB7AEC4004B5F7D /* ACModel.h in Headers */,
-				884221261DB7A126004B5F7D /* ACUriData.h in Headers */,
-				884221361DB7A64D004B5F7D /* ACTool.h in Headers */,
 				88DAEE811D912A8900FF6E35 /* Aria2Core.h in Headers */,
+				8842212E1DB7A16A004B5F7D /* ACBtMetaInfoData.h in Headers */,
+				884221261DB7A126004B5F7D /* ACUriData.h in Headers */,
+				889C5BBF1DB88C8900625C82 /* ACGlobalStatus.h in Headers */,
+				889C5BC01DB88CDE00625C82 /* ACFileData.h in Headers */,
 				88DAEE891D912AE700FF6E35 /* aria2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,13 +202,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				884221371DB7A64E004B5F7D /* ACTool.mm in Sources */,
 				884221271DB7A126004B5F7D /* ACUriData.mm in Sources */,
-				884221331DB7A179004B5F7D /* ACDownloadHandle.mm in Sources */,
-				8842212B1DB7A135004B5F7D /* ACFileData.m in Sources */,
-				8842212F1DB7A16A004B5F7D /* ACBtMetaInfoData.m in Sources */,
+				8842212B1DB7A135004B5F7D /* ACFileData.mm in Sources */,
+				8842212F1DB7A16A004B5F7D /* ACBtMetaInfoData.mm in Sources */,
 				88DAEE8A1D912AE700FF6E35 /* Aria2Core.mm in Sources */,
-				884221131DB66104004B5F7D /* ACGlobalStatus.m in Sources */,
+				884221131DB66104004B5F7D /* ACGlobalStatus.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

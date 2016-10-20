@@ -7,7 +7,6 @@
 //
 
 #import "ACUriData.h"
-#import "aria2.h"
 
 @implementation ACUriData
 

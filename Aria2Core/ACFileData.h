@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ACModel.h"
 #import "ACUriData.h"
+
+typedef NSNumber ACLength;
 
 @interface ACFileData : NSObject
 
