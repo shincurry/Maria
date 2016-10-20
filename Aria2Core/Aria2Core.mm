@@ -22,7 +22,8 @@ typedef std::vector<uint64_t> Gids;
 typedef aria2::KeyVals KeyVals;
 typedef aria2::OffsetMode OffsetMode;
 typedef aria2::BtFileMode BtFileMode;
-typedef std::vector<aria2::UriData> UriDatas;
+typedef aria2::UriData UriData;
+typedef std::vector<UriData> UriDatas;
 typedef aria2::FileData FileData;
 
 @implementation Aria2Core {
@@ -74,86 +75,88 @@ typedef aria2::FileData FileData;
     aria2::libraryDeinit();
 }
 
-
 #pragma mark - Aria2 Objective-C API
 
-- (int)addUri:(ACUris *)uris
-        toGid:(ACGid *)gid
-  withOptions:(ACKeyVals *)options {
-    
+- (ACGid *)addUri:(ACUris *)uris
+      withOptions:(ACKeyVals *)options {
     Uris _uris = ACToUris(uris);
-    Gid _gid = gid.unsignedLongLongValue;
     aria2::KeyVals _options = ACToKeyVals(options);
-    return aria2::addUri(session, &_gid, _uris, _options);
+    Gid gid;
+    if (aria2::addUri(session, &gid, _uris, _options) != 0) {
+        return nil;
+    }
+    if (aria2::isNull(gid)) {
+        return nil;
+    }
+    return GidToAC(gid);
 }
 
-- (int)addMetalink:(NSString *)metalink
-            toGids:(ACGids *)gids
+- (ACGids *)addMetalink:(NSString *)metalink
        withOptions:(ACKeyVals *)options {
-    
     std::string _metalink = [metalink cStringUsingEncoding:NSUTF8StringEncoding];
-    Gids _gids = ACToGids(gids);
+    Gids * gids;
     aria2::KeyVals _options = ACToKeyVals(options);
-    return aria2::addMetalink(session, &_gids, _metalink, _options);
+    if (aria2::addMetalink(session, gids, _metalink, _options) != 0) {
+        return nil;
+    }
+    if (gids == nil) {
+        return nil;
+    }
+    return GidsToAC(*gids);
 }
 
-- (int)addTorrent: (NSString *)torrent
-            toGid: (ACGid *)gid
+- (ACGid *)addTorrent: (NSString *)torrent
       withOptions: (ACKeyVals *)options {
-    
     std::string _torrent = [torrent cStringUsingEncoding:NSUTF8StringEncoding];
-    Gid _gid = gid.unsignedLongLongValue;
     aria2::KeyVals _options = ACToKeyVals(options);
-    return aria2::addTorrent(session, &_gid, _torrent, _options);
+    Gid gid;
+    if (aria2::addTorrent(session, &gid, _torrent, _options) != 0) {
+        return nil;
+    }
+    if (aria2::isNull(gid)) {
+        return nil;
+    }
+    return GidToAC(gid);
 }
 
-- (int)addTorrent: (NSString *)torrent
+- (ACGid *)addTorrent: (NSString *)torrent
    andWebSeedUris: (ACUris *)uris
-            toGid: (ACGid *)gid
       withOptions: (ACKeyVals *)options {
-    
     std::string _torrent = [torrent cStringUsingEncoding:NSUTF8StringEncoding];
-    Gid _gid = gid.unsignedLongLongValue;
     Uris _uris = ACToUris(uris);
     aria2::KeyVals _options = ACToKeyVals(options);
-    return aria2::addTorrent(session, &_gid, _torrent, _uris, _options);
+    Gid gid;
+    if (aria2::addTorrent(session, &gid, _torrent, _uris, _options) != 0) {
+        return nil;
+    }
+    if (aria2::isNull(gid)) {
+        return nil;
+    }
+    return GidToAC(gid);
 }
 
 - (ACGids *)getActiveDownload {
-    auto tasks = aria2::getActiveDownload(session);
-    NSMutableArray<NSNumber *> * _tasks;
-    for(auto const& task: tasks) {
-        [_tasks addObject:[NSNumber numberWithUnsignedLongLong:task]];
-    }
-    NSArray * result = [_tasks copy];
-    return result;
+    return GidsToAC(aria2::getActiveDownload(session));
 }
 
-- (int)removeTasks:(ACGid *)gid
+- (int)removeTasksByGid:(ACGid *)gid
            byForce:(bool)force {
-    
-    Gid _gid = gid.unsignedLongLongValue;
-    return aria2::removeDownload(session, _gid, force);
+    return aria2::removeDownload(session, ACToGid(gid), force);
 }
 
-- (int)pauseTasks:(ACGid *)gid
+- (int)pauseTasksByGid:(ACGid *)gid
            byForce:(bool)force {
-    
-    Gid _gid = gid.unsignedLongLongValue;
-    return aria2::pauseDownload(session, _gid, force);
+    return aria2::pauseDownload(session, ACToGid(gid), force);
 }
 
-- (int)unpauseTasks:(ACGid *)gid {
-    Gid _gid = gid.unsignedLongLongValue;
-    return aria2::unpauseDownload(session, _gid);
+- (int)unpauseTasksByGid:(ACGid *)gid {
+    return aria2::unpauseDownload(session, ACToGid(gid));
 }
 
-- (int)changeOptions: (ACGid *)gid
-      withNewOptions: (ACKeyVals *)options {
-    
-    Gid _gid = gid.unsignedLongLongValue;
+- (int)changeOptionsByGid: (ACGid *)gid
+           withNewOptions: (ACKeyVals *)options {
     KeyVals _options = ACToKeyVals(options);
-    return aria2::changeOption(session, _gid, _options);
+    return aria2::changeOption(session, ACToGid(gid), _options);
 }
 
 - (NSString *)getGlobalOptionByName: (NSString *)name {
@@ -171,7 +174,6 @@ typedef aria2::FileData FileData;
     return aria2::changeGlobalOption(session, _options);
 }
 
-
 - (ACGlobalStatus *)getGlobalStatus {
     aria2::GlobalStat status = aria2::getGlobalStat(session);
     ACGlobalStatus * _status;
@@ -186,15 +188,12 @@ typedef aria2::FileData FileData;
 - (int)changePosition:(ACGid *)gid
                    to: (int) position
              withMode: (ACOffsetMode) mode {
-    
-    Gid _gid = gid.unsignedLongLongValue;
-    return aria2::changePosition(session, _gid, position, ACToOffsetMode(mode));
+    return aria2::changePosition(session, ACToGid(gid), position, ACToOffsetMode(mode));
 }
 
 - (int)shutdownByforce: (bool)force {
     return aria2::shutdown(session, force);
 }
-
 
 #pragma mark - DownloadHandle implementation
 
@@ -203,19 +202,19 @@ typedef aria2::FileData FileData;
     return DownloadStatusToAC(handle->getStatus());
 }
 
-- (ACLength *)getTotalLengthByGid:(ACGid *)gid {
+- (ACLength)getTotalLengthByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
-    return [NSNumber numberWithUnsignedLongLong:handle->getTotalLength()];
+    return handle->getTotalLength();
 }
 
-- (ACLength *)getCompletedLengthByGid:(ACGid *)gid {
+- (ACLength)getCompletedLengthByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
-    return [NSNumber numberWithUnsignedLongLong:handle->getCompletedLength()];
+    return handle->getCompletedLength();
 }
 
-- (ACLength *)getUploadLengthByGid:(ACGid *)gid {
+- (ACLength)getUploadLengthByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
-    return [NSNumber numberWithUnsignedLongLong:handle->getUploadLength()];
+    return handle->getUploadLength();
 }
 
 - (NSString *)getBitfieldByGid:(ACGid *)gid {
@@ -243,7 +242,7 @@ typedef aria2::FileData FileData;
     return handle->getPieceLength();
 }
 
-- (int)getNumPiecesByGid:(ACGid *)gid {
+- (int)getNumberOfPiecesByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     return handle->getNumPieces();
 }
@@ -262,14 +261,17 @@ typedef aria2::FileData FileData;
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     return GidsToAC(handle->getFollowedBy());
 }
+
 - (ACGid *)getFollowingByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
-    return [NSNumber numberWithUnsignedLongLong:handle->getFollowing()];
+    return GidToAC(handle->getFollowing());
 }
+
 - (ACGid *)getBelongsToGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
-    return [NSNumber numberWithUnsignedLongLong:handle->getBelongsTo()];
+    return GidToAC(handle->getBelongsTo());
 }
+
 - (NSArray<ACFileData *> *)getFilesByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     std::vector<aria2::FileData> files = handle->getFiles();
@@ -280,7 +282,8 @@ typedef aria2::FileData FileData;
     NSArray<ACFileData *> * result = [_files copy];
     return result;
 }
-- (int)getNumFilesByGid:(ACGid *)gid {
+
+- (int)getNumberOfFilesByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     return handle->getNumFiles();
 }
@@ -309,11 +312,11 @@ typedef aria2::FileData FileData;
     [_data setCreationDate:[NSDate dateWithTimeIntervalSince1970:data.creationDate]];
     [_data setMode:BtFileModeToAC(data.mode)];
     [_data setName:[NSString stringWithCString:data.name.c_str() encoding:NSUTF8StringEncoding]];
-    
     return _data;
 }
+
 - (NSString *)getOptionByName: (NSString *) name
-                          andGid:(ACGid *)gid {
+                       andGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     return [NSString stringWithCString:handle->getOption([name cStringUsingEncoding:NSUTF8StringEncoding]).c_str() encoding:NSUTF8StringEncoding];
 }
@@ -323,9 +326,8 @@ typedef aria2::FileData FileData;
     return KeyValsToAC(handle->getOptions());
 }
 
-// Tool
 - (class aria2::DownloadHandle *)getDownloadHandleByGid: (ACGid *)gid {
-    std::string key = [[gid stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
+    std::string key = [gid cStringUsingEncoding:NSUTF8StringEncoding];
     auto it = handles.find(key);
     aria2::DownloadHandle * handle;
     if(it == handles.end()) {
@@ -338,13 +340,13 @@ typedef aria2::FileData FileData;
 }
 
 - (int)deleteDownloadHandleByGid: (ACGid *)gid {
-    std::string key = [[gid stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
+    std::string key = [gid cStringUsingEncoding:NSUTF8StringEncoding];
     auto it = handles.find(key);
     if(it != handles.end()) {
         handles.erase(it);
-        return 1;
-    } else {
         return 0;
+    } else {
+        return -1;
     }
 }
 
@@ -384,23 +386,28 @@ Uris ACToUris(ACUris * uris) {
 
 Gids ACToGids(ACGids * gids) {
     Gids _gids;
-    for (NSNumber * gid in gids) {
-        _gids.push_back(gid.unsignedLongLongValue);
+    for (ACGid * gid in gids) {
+        _gids.push_back(ACToGid(gid));
     }
     return _gids;
 }
 
 ACGids * GidsToAC(Gids gids) {
-    NSMutableArray<NSNumber *> * _gids;
+    NSMutableArray<NSString *> * _gids;
     for (auto it = gids.begin(); it != gids.end(); ++it) {
-        [_gids addObject:[NSNumber numberWithUnsignedLongLong:*it]];
+        [_gids addObject:GidToAC(*it)];
     }
     ACGids * result = [_gids copy];
     return result;
 }
 
 Gid ACToGid(ACGid * gid) {
-    return [gid unsignedLongLongValue];
+    
+    return aria2::hexToGid([gid cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+ACGid * GidToAC(Gid gid) {
+    return [NSString stringWithCString:aria2::gidToHex(gid).c_str() encoding:NSUTF8StringEncoding];
 }
 
 ACUriStatus UriStatusToAC(aria2::UriStatus status) {
@@ -500,8 +507,8 @@ ACFileData * FileDataToAC(FileData data) {
     ACFileData * _file;
     [_file setIndex:data.index];
     [_file setPath:[NSString stringWithCString:(data.path).c_str() encoding:NSUTF8StringEncoding]];
-    [_file setLength:[NSNumber numberWithUnsignedLongLong:data.length]];
-    [_file setCompletedLength:[NSNumber numberWithUnsignedLongLong:data.completedLength]];
+    [_file setLength:data.length];
+    [_file setCompletedLength:data.completedLength];
     [_file setSelected:data.selected];
     [_file setUris:UriDatasToAC(data.uris)];
     return _file;

@@ -16,8 +16,8 @@ FOUNDATION_EXPORT NSString * const EmbeddedAria2Version;
 typedef NSDictionary<NSString *, NSString *> ACKeyVals;
 typedef NSString ACUri;
 typedef NSArray<NSString *> ACUris;
-typedef NSNumber ACGid;
-typedef NSArray<NSNumber *> ACGids;
+typedef NSString ACGid;
+typedef NSArray<NSString *> ACGids;
 typedef NSArray<ACUriData *> ACUriDatas;
 
 typedef enum {
@@ -42,40 +42,36 @@ typedef enum {
 #pragma mark - initial
 
 - (instancetype)init;
-- (instancetype)initWithOptions: (NSDictionary *)options;
 
+- (instancetype)initWithOptions: (NSDictionary *)options;
 
 #pragma mark - Aria2Core Interface
 
-- (int)addUri: (ACUris *)uris
-        toGid: (ACGid *)gid
-  withOptions: (ACKeyVals *)options;
-
-- (int)addMetalink: (NSString *)metalink
-            toGids: (ACGids *)gids
-       withOptions: (ACKeyVals *) options;
-
-- (int)addTorrent: (NSString *)torrent
-            toGid: (ACGid *)gid
+- (ACGid *)addUri: (ACUris *)uris
       withOptions: (ACKeyVals *)options;
 
-- (int)addTorrent: (NSString *)torrent
-   andWebSeedUris: (ACUris *)uris
-            toGid: (ACGid *)gid
-      withOptions: (ACKeyVals *)options;
+- (ACGids *)addMetalink: (NSString *)metalink
+            withOptions: (ACKeyVals *) options;
+
+- (ACGid *)addTorrent: (NSString *)torrent
+          withOptions: (ACKeyVals *)options;
+
+- (ACGid *)addTorrent: (NSString *)torrent
+       andWebSeedUris: (ACUris *)uris
+          withOptions: (ACKeyVals *)options;
 
 - (ACGids *)getActiveDownload;
 
-- (int)removeTasks: (ACGid *)gid
-           byForce: (bool)force;
+- (int)removeTasksByGid: (ACGid *)gid
+                byForce: (bool)force;
 
-- (int)pauseTasks: (ACGid *)gid
-          byForce: (bool)force;
+- (int)pauseTasksByGid: (ACGid *)gid
+               byForce: (bool)force;
 
-- (int)unpauseTasks: (ACGid *)gid;
+- (int)unpauseTasksByGid: (ACGid *)gid;
 
-- (int)changeOptions: (ACGid *)gid
-      withNewOptions: (ACKeyVals *)options;
+- (int)changeOptionsByGid: (ACGid *)gid
+           withNewOptions: (ACKeyVals *)options;
 
 - (NSString *)getGlobalOptionByName: (NSString *)name;
 
@@ -95,11 +91,11 @@ typedef enum {
 
 - (ACDownloadStatus)getSatusByGid: (ACGid *)gid;
 
-- (ACLength *)getTotalLengthByGid: (ACGid *)gid;
+- (ACLength)getTotalLengthByGid: (ACGid *)gid;
 
-- (ACLength *)getCompletedLengthByGid: (ACGid *)gid;
+- (ACLength)getCompletedLengthByGid: (ACGid *)gid;
 
-- (ACLength *)getUploadLengthByGid: (ACGid *)gid;
+- (ACLength)getUploadLengthByGid: (ACGid *)gid;
 
 - (NSString *)getBitfieldByGid: (ACGid *)gid;
 
@@ -111,7 +107,7 @@ typedef enum {
 
 - (size_t)getPieceLengthByGid: (ACGid *)gid;
 
-- (int)getNumPiecesByGid: (ACGid *)gid;
+- (int)getNumberOfPiecesByGid: (ACGid *)gid;
 
 - (int)getConnectionsByGid: (ACGid *)gid;
 
@@ -125,7 +121,7 @@ typedef enum {
 
 - (ACFileData *)getFilesByGid: (ACGid *)gid;
 
-- (int)getNumFilesByGid: (ACGid *)gid;
+- (int)getNumberOfFilesByGid: (ACGid *)gid;
 
 - (ACFileData *)getFileByIndex: (int)index
                         andGid: (ACGid *)gid;
