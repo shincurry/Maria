@@ -80,7 +80,7 @@ class MariaUserDefault {
         defaults.set("localhost", forKey: "RPCServerHost")
         defaults.set("", forKey: "RPCServerUsername")
         defaults.set("", forKey: "RPCServerPassword")
-        defaults.set(false, forKey: "EnabledSSL")
+        defaults.set(false, forKey: "RPCServerEnabledSSL")
         
         defaults.set(false, forKey: "EnableAria2AutoLaunch")
         defaults.set("", forKey: "Aria2ConfPath")
@@ -93,4 +93,23 @@ class MariaUserDefault {
         
         defaults.synchronize()
     }
+    
+    static var RPCUrl: String {
+        get {
+            let defaults = MariaUserDefault.auto
+            var url = "http\(defaults.bool(forKey: "RPCServerEnabledSSL") ? "s" : "")://"
+            if let value = defaults.object(forKey: "RPCServerHost") as? String {
+                url += value
+            }
+            url += ":"
+            if let value = defaults.object(forKey: "RPCServerPort") as? String {
+                url += value
+            }
+            if let value = defaults.object(forKey: "RPCServerPath") as? String {
+                url += value
+            }
+            return url
+        }
+    }
+
 }

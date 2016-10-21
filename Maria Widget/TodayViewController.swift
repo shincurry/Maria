@@ -38,7 +38,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     let defaults = MariaUserDefault.auto
     
-    var aria2 = Aria2.shared
+    var aria = Aria.shared
+    
     var timer: Timer!
     var authorized: Bool = true
     
@@ -50,52 +51,36 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let value = defaults.object(forKey: "RPCServerHost") as? String {
-            aria2.host = value
-        }
-        if let value = defaults.object(forKey: "RPCServerPort") as? String {
-            aria2.port = value
-        }
-        if let value = defaults.object(forKey: "RPCServerPath") as? String {
-            aria2.path = value
-        }
-        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
-            aria2.secret = value
-        }
-        aria2.baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-        aria2.initSocket()
-        
         let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main)
         taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
         aria2Config()
-        
     }
 
     override func viewWillAppear() {
-        aria2.connect()
+        aria.rpc!.connect()
         runTimer()
     }
     override func viewWillDisappear() {
-        aria2.disconnect()
+        aria.rpc!.disconnect()
         closeTimer()
     }
     
     func updateListStatus() {
-        if aria2.status == .connected {
-            aria2.getGlobalStatus()
-            aria2.tellActive()
+        if aria.rpc!.status == .connected {
+            aria.rpc!.getGlobalStatus()
+            aria.rpc!.tellActive()
         }
     }
     
     func aria2Config() {
-        aria2.onGlobalStatus = { status in
+        aria.rpc!.onGlobalStatus = { status in
             self.authorized = true
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
         
-        aria2.onActives = { tasks in
+        aria.rpc!.onActives = { tasks in
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
@@ -112,14 +97,14 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             self.taskData = taskArray
             self.updateListView()
         }
-        aria2.onStatusChanged = {
-            let flag = (self.aria2.status == .connected)
+        aria.rpc!.onStatusChanged = {
+            let flag = (self.aria.rpc!.status == .connected)
             self.speedView.isHidden = !flag
             self.separateLine.isHidden = !flag
             self.taskListTableView.isHidden = !flag
             self.alertLabel.isHidden = flag
 
-            switch self.aria2.status {
+            switch self.aria.rpc!.status {
             case .connecting:
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0

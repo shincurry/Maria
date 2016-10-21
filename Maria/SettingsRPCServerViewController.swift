@@ -89,7 +89,7 @@ extension SettingsRPCServerViewController {
     
     @IBAction func enableSSL(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.set(boolValue, forKey: "EnabledSSL")
+        defaults.set(boolValue, forKey: "RPCServerEnabledSSL")
         defaults.synchronize()
     }
     @IBAction func enableAutoConnectAria2(_ sender: NSButton) {
@@ -145,7 +145,7 @@ extension SettingsRPCServerViewController {
         if let value = defaults.object(forKey: "RPCServerPassword") as? String {
             password.stringValue = value
         }
-        sslEnabled.state = defaults.bool(forKey: "EnabledSSL") ? 1 : 0
+        sslEnabled.state = defaults.bool(forKey: "RPCServerEnabledSSL") ? 1 : 0
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         

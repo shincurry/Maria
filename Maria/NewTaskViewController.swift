@@ -16,13 +16,13 @@ class NewTaskViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        aria2.onAddUris = { flag in
+        aria.rpc!.onAddUris = { flag in
         }
-        aria2.onAddTorrent = { flag in
+        aria.rpc!.onAddTorrent = { flag in
         }
     }
     
-    let aria2 = Aria2.shared
+    let aria = Aria.shared
 
     @IBOutlet var linksTextView: NSTextView!
     @IBOutlet weak var startButton: NSButton!
@@ -30,7 +30,8 @@ class NewTaskViewController: NSViewController {
     
     @IBAction func start(_ sender: NSButton) {
         if let uris = linksTextView.string?.components(separatedBy: "\n") {
-            aria2.add(uris: uris.filter({ return !$0.isEmpty }))
+            aria.rpc!.add(uris: uris.filter({ return !$0.isEmpty }))
+//            aria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
             self.dismiss(self)
         }
     }
@@ -47,7 +48,7 @@ class NewTaskViewController: NSViewController {
         openPanel.runModal()
         if let url = openPanel.url {
             if let data = try? Data(contentsOf: url) {
-                aria2.add(torrent: data)
+                aria.rpc!.add(torrent: data)
                 self.dismiss(self)
             }
         }

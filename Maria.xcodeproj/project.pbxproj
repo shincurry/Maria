@@ -46,6 +46,8 @@
 		888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF71D08393F0077EADB /* SettingsWindowController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
 		8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 889485781CBE4D4A000839CD /* Main.storyboard */; };
+		889C5BDF1DB8E61100625C82 /* Aria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C5BDE1DB8E61100625C82 /* Aria.swift */; };
+		889C5BE11DB8EA9A00625C82 /* Aria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C5BE01DB8EA9A00625C82 /* Aria.swift */; };
 		88C4780A1CEF432000F8026A /* SettingsTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C478091CEF432000F8026A /* SettingsTodayViewController.swift */; };
 		88C4780C1CEF5F1900F8026A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
 		88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD31CE495D500450E0C /* MariaNotification.swift */; };
@@ -136,6 +138,8 @@
 		8894857B1CBE4D4A000839CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		889485921CBE4E44000839CD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		889485A71CBE4FAF000839CD /* Maria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Maria.entitlements; sourceTree = "<group>"; };
+		889C5BDE1DB8E61100625C82 /* Aria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria.swift; sourceTree = "<group>"; };
+		889C5BE01DB8EA9A00625C82 /* Aria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria.swift; sourceTree = "<group>"; };
 		88ABC8C01D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		88ABC8C11D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Settings.strings"; sourceTree = "<group>"; };
 		88ABC8C21D953F4D0002146F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TodayViewController.strings"; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		88298CF71D41E56500BBAFE8 /* Maria Widget */ = {
 			isa = PBXGroup;
 			children = (
+				889C5BE01DB8EA9A00625C82 /* Aria.swift */,
 				88298CFA1D41E56500BBAFE8 /* TodayViewController.swift */,
 				88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */,
 				88298CFC1D41E56500BBAFE8 /* TodayViewController.xib */,
@@ -267,6 +272,7 @@
 		889485711CBE4D4A000839CD /* Maria */ = {
 			isa = PBXGroup;
 			children = (
+				889C5BDE1DB8E61100625C82 /* Aria.swift */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
 				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
@@ -541,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88298CFB1D41E56500BBAFE8 /* TodayViewController.swift in Sources */,
+				889C5BE11DB8EA9A00625C82 /* Aria.swift in Sources */,
 				88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */,
 				881F79B31DB27FA300576766 /* MariaUserDefault.swift in Sources */,
 			);
@@ -554,6 +561,7 @@
 				887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */,
 				887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */,
 				883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */,
+				889C5BDF1DB8E61100625C82 /* Aria.swift in Sources */,
 				885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */,
 				883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */,
 				8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */,
