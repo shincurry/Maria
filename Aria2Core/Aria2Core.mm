@@ -278,7 +278,7 @@ typedef aria2::FileData FileData;
 - (NSArray<ACFileData *> *)getFilesByGid:(ACGid *)gid {
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     std::vector<aria2::FileData> files = handle->getFiles();
-    NSMutableArray<ACFileData *> * _files;
+    NSMutableArray<ACFileData *> * _files = [[NSMutableArray<ACFileData *> alloc] init];
     for (auto it = files.begin(); it != files.end(); ++it) {
         [_files addObject: FileDataToAC(*it)];
     }
@@ -301,9 +301,9 @@ typedef aria2::FileData FileData;
     aria2::DownloadHandle * handle = [self getDownloadHandleByGid:gid];
     ACBtMetaInfoData * _data;
     aria2::BtMetaInfoData data = handle->getBtMetaInfo();
-    NSMutableArray<NSArray<NSString *> *> * announceList;
+    NSMutableArray<NSArray<NSString *> *> * announceList = [[NSMutableArray<NSArray<NSString *> *> alloc] init];
     for (auto it = data.announceList.begin(); it != data.announceList.end(); ++it) {
-        NSMutableArray<NSString *> * section;
+        NSMutableArray<NSString *> * section = [[NSMutableArray<NSString *> alloc] init];
         for (auto it2 = it->begin(); it2 != it->end(); ++it2) {
             [section addObject:[NSString stringWithCString:it2->c_str() encoding:NSUTF8StringEncoding]];
         }
@@ -367,7 +367,7 @@ KeyVals ACToKeyVals(ACKeyVals * options) {
 }
 
 ACKeyVals * KeyValsToAC(KeyVals options) {
-    NSMutableDictionary<NSString *, NSString *> * _options;
+    NSMutableDictionary<NSString *, NSString *> * _options = [[NSMutableDictionary<NSString *, NSString *> alloc] init];
     
     for (auto it = options.begin(); it != options.end(); ++it) {
         NSString * key = [NSString stringWithCString:(it->first).c_str() encoding:NSUTF8StringEncoding];
@@ -396,7 +396,7 @@ Gids ACToGids(ACGids * gids) {
 }
 
 ACGids * GidsToAC(Gids gids) {
-    NSMutableArray<NSString *> * _gids;
+    NSMutableArray<NSString *> * _gids = [[NSMutableArray<NSString *> alloc]init];;
     for (auto it = gids.begin(); it != gids.end(); ++it) {
         [_gids addObject:GidToAC(*it)];
     }
@@ -496,7 +496,7 @@ ACBtFileMode BtFileModeToAC(BtFileMode mode) {
 }
 
 ACUriDatas * UriDatasToAC(UriDatas datas) {
-    NSMutableArray<ACUriData *> * _uris;
+    NSMutableArray<ACUriData *> * _uris = [[NSMutableArray<ACUriData *> alloc] init];
     for (auto it2 = datas.begin(); it2 != datas.end(); ++it2) {
         ACUriData * uri;
         [uri setUri:[NSString stringWithCString:it2->uri.c_str() encoding:NSUTF8StringEncoding]];
