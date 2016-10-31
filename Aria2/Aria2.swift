@@ -18,26 +18,16 @@ public enum ConnectionStatus {
 }
 
 open class Aria2 {
-    
-    open static let shared = Aria2()
-    
-    open var baseHost = "http://"
-    open var host = "localhost"
-    open var port = "6800"
-    open var path = "/jsonrpc"
-    open var url: String {
-        get {
-            return baseHost + host + ":" + port + path
-        }
-    }
-    open var secret = ""
-    
+        
     var socket: WebSocket!
     
-    private init() {}
+    var secret = ""
     
-    open func initSocket() {
-        socket = WebSocket(url: URL(string: self.url)!)
+    public init(url: String, secret: String?) {
+        socket = WebSocket(url: URL(string: url)!)
+        if let sec = secret {
+            self.secret = sec
+        }
         socket.delegate = self
     }
     

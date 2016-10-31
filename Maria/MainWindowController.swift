@@ -17,14 +17,14 @@ class MainWindowController: NSWindowController {
         window?.titleVisibility = .hidden
         lowSpeedModeButton.state = defaults.bool(forKey: "EnableLowSpeedMode") ? 1 : 0
         
-        aria2.onPauseAll = { flag in
+        aria.rpc!.onPauseAll = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.updateTasksStatus("paused")
                 }
             }
         }
-        aria2.onUnpauseAll = { flag in
+        aria.rpc!.onUnpauseAll = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.updateTasksStatus("active")
@@ -39,10 +39,10 @@ class MainWindowController: NSWindowController {
                 }
             }
         }
-        aria2.onRemoveActive = onRemove
-        aria2.onRemoveOther = onRemove
+        aria.rpc!.onRemoveActive = onRemove
+        aria.rpc!.onRemoveOther = onRemove
         
-        aria2.onClearCompletedErrorRemoved = { flag in
+        aria.rpc!.onClearCompletedErrorRemoved = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
                     controller.taskListTableView.reloadData()
@@ -52,7 +52,7 @@ class MainWindowController: NSWindowController {
     }
     
     let defaults = MariaUserDefault.auto
-    let aria2 = Aria2.shared
+    let aria = Aria.shared
     
     @IBOutlet weak var toolbar: NSToolbar!
     
@@ -80,10 +80,10 @@ class MainWindowController: NSWindowController {
         lowSpeedModeButton.image = NSImage(named: "TortoiseGray")
     }
     @IBAction func pauseAllTasks(_ sender: NSToolbarItem) {
-        aria2.pauseAll()
+        aria.rpc!.pauseAll()
     }
     @IBAction func startAllTasks(_ sender: NSToolbarItem) {
-        aria2.unpauseAll()
+        aria.rpc!.unpauseAll()
     }
     @IBAction func removeSelectedTasks(_ sender: NSToolbarItem) {
         if let controller = contentViewController as? TaskListViewController {
@@ -110,9 +110,9 @@ class MainWindowController: NSWindowController {
                 if response == NSAlertFirstButtonReturn {
                     tasks.forEach() { (index, task) in
                         if task.status == "active" || task.status == "paused" {
-                            self.aria2.removeActive(task.gid!)
+                            self.aria.rpc!.removeActive(task.gid!)
                         } else {
-                            self.aria2.removeOther(task.gid!)
+                            self.aria.rpc!.removeOther(task.gid!)
                         }
                     }
                 }
@@ -128,7 +128,7 @@ class MainWindowController: NSWindowController {
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
-                self.aria2.clearCompletedErrorRemoved()
+                self.aria.rpc!.clearCompletedErrorRemoved()
             }
         })
     }
