@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 task.waitUntilExit()
                 print("EnableAria2AutoLaunch")
                 let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                print(String(data: data, encoding: .utf8))
+                print(String(data: data, encoding: .utf8)!)
             }
         }
         

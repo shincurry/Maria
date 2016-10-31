@@ -142,6 +142,22 @@ typedef aria2::FileData FileData;
     return GidsToAC(aria2::getActiveDownload(session));
 }
 
+- (ACGids *)getWaitingDownload {
+    return GidsToAC(aria2::getWaitingDownload(session));
+}
+
+- (ACGids *)getStoppedDownload {
+    return GidsToAC(aria2::getStoppedDownload(session));
+}
+
+- (ACGids *)getErrorDownload {
+    return GidsToAC(aria2::getErrorDownload(session));
+}
+
+- (ACGids *)getCompletedDownload {
+    return GidsToAC(aria2::getCompletedDownload(session));
+}
+
 - (int)removeTasksByGid:(ACGid *)gid
            byForce:(bool)force {
     return aria2::removeDownload(session, ACToGid(gid), force);

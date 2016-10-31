@@ -61,3 +61,7 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+
+## aria2
+#Aria2Core/aria2
+Aria2Core/Frameworks/libaria2-1.28.0-maria.dylib
