@@ -273,9 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				889C5BDE1DB8E61100625C82 /* Aria.swift */,
+				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
-				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
 				888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */,
 				883327A21CC751630002B561 /* NewTaskViewController.swift */,

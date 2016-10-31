@@ -183,7 +183,17 @@ extension AppDelegate {
             defaults.set(true, forKey: "EnableLowSpeedMode")
         }
         defaults.synchronize()
-        
+    }
+    
+    func lowSpeedModeOff() {
+        let limitDownloadSpeed = defaults.integer(forKey: "GlobalDownloadRate")
+        let limitUploadSpeed = defaults.integer(forKey: "GlobalUploadRate")
+        aria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
+    }
+    func lowSpeedModeOn() {
+        let limitDownloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
+        let limitUploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
+        aria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
@@ -191,24 +201,6 @@ extension AppDelegate {
         if !path.isEmpty {
             NSWorkspace.shared().open(URL(fileURLWithPath: path))
         }
-    }
-    
-    func lowSpeedModeOff() {
-        let limitDownloadSpeed = defaults.integer(forKey: "GlobalDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "GlobalUploadRate")
-        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-            controller.lowSpeedModeOff()
-        }
-        aria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
-    }
-
-    func lowSpeedModeOn() {
-        let limitDownloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
-        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-            controller.lowSpeedModeOn()
-        }
-        aria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 }
 
@@ -273,14 +265,25 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         aria.rpc!.globalSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 0
+                if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+                    controller.lowSpeedModeButton.state = 0
+                    if let button = controller.touchBarLowSpeedButton {
+                        button.state = 0
+                    }
+                }
             }
         }
         aria.rpc!.lowSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 1
+                if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+                    controller.lowSpeedModeButton.state = 1
+                    if let button = controller.touchBarLowSpeedButton {
+                        button.state = 1
+                    }
+                }
             }
         }
-        
     }
     
     fileprivate func getStringBy(_ value: Double) -> String {

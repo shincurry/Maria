@@ -59,30 +59,24 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var taskRemoveButton: NSToolbarItem!
     @IBOutlet weak var taskCleanButton: NSToolbarItem!
     @IBOutlet weak var lowSpeedModeButton: NSButton!
+    
+    var touchBarLowSpeedButton: NSButton?
+    
     @IBAction func toggleLowSpeedMode(_ sender: NSButton) {
         let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        if lowSpeedModeButton.state == 1 {
-            lowSpeedModeOn()
+        if sender.state == 1 {
+            defaults.set(true, forKey: "EnableLowSpeedMode")
             appDelegate.lowSpeedModeOn()
         } else {
-            lowSpeedModeOff()
+            defaults.set(false, forKey: "EnableLowSpeedMode")
             appDelegate.lowSpeedModeOff()
         }
     }
-    func lowSpeedModeOn() {
-        lowSpeedModeButton.state = 1
-        defaults.set(true, forKey: "EnableLowSpeedMode")
-        lowSpeedModeButton.image = NSImage(named: "TortoiseColorful")
-    }
-    func lowSpeedModeOff() {
-        lowSpeedModeButton.state = 0
-        defaults.set(false, forKey: "EnableLowSpeedMode")
-        lowSpeedModeButton.image = NSImage(named: "TortoiseGray")
-    }
+
     @IBAction func pauseAllTasks(_ sender: NSToolbarItem) {
         aria.rpc!.pauseAll()
     }
-    @IBAction func startAllTasks(_ sender: NSToolbarItem) {
+    @IBAction func resumeAllTasks(_ sender: NSToolbarItem) {
         aria.rpc!.unpauseAll()
     }
     @IBAction func removeSelectedTasks(_ sender: NSToolbarItem) {
@@ -131,5 +125,52 @@ class MainWindowController: NSWindowController {
                 self.aria.rpc!.clearCompletedErrorRemoved()
             }
         })
+    }
+}
+
+// MARK: - NSTouchBar
+fileprivate extension NSTouchBarCustomizationIdentifier {
+    static let controlBar = NSTouchBarCustomizationIdentifier("com.windisco.Maria.controlBar")
+}
+
+fileprivate extension NSTouchBarItemIdentifier {
+    static let resumeAll = NSTouchBarItemIdentifier("com.windisco.Maria.resumeAll")
+    static let pauseAll = NSTouchBarItemIdentifier("com.windisco.Maria.pauseAll")
+    static let lowSpeedMode = NSTouchBarItemIdentifier("com.windisco.Maria.lowSpeedMode")
+}
+
+extension MainWindowController: NSTouchBarDelegate {
+    @available(OSX 10.12.1, *)
+    override func makeTouchBar() -> NSTouchBar? {
+        let touchBar = NSTouchBar()
+        touchBar.delegate = self
+        touchBar.customizationIdentifier = .controlBar
+        touchBar.defaultItemIdentifiers = [.resumeAll, .pauseAll, .lowSpeedMode]
+        touchBar.customizationAllowedItemIdentifiers = [.resumeAll, .pauseAll, .lowSpeedMode]
+        return touchBar
+    }
+    
+    @available(OSX 10.12.1, *)
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+        let touchBarItem = NSCustomTouchBarItem(identifier: identifier)
+        
+        switch identifier {
+        case NSTouchBarItemIdentifier.resumeAll:
+            let button = NSButton(title: "", image: NSImage(named: "Resume")!, target: self, action: #selector(MainWindowController.resumeAllTasks(_:)))
+            touchBarItem.view = button
+        case NSTouchBarItemIdentifier.pauseAll:
+            let button = NSButton(title: "", image: NSImage(named: "Pause")!, target: self, action: #selector(MainWindowController.pauseAllTasks(_:)))
+            touchBarItem.view = button
+        case NSTouchBarItemIdentifier.lowSpeedMode:
+            touchBarLowSpeedButton = NSButton(title: "", target: self, action: #selector(MainWindowController.toggleLowSpeedMode(_:)))
+            touchBarLowSpeedButton!.setButtonType(NSButtonType.toggle)
+            touchBarLowSpeedButton!.image = NSImage(named: "TortoiseGray")
+            touchBarLowSpeedButton!.alternateImage = NSImage(named: "TortoiseColorful")
+            touchBarItem.view = touchBarLowSpeedButton!
+        default:
+            touchBarItem.view = NSButton(title: "", target: self, action: nil)
+        }
+        
+        return touchBarItem;
     }
 }

@@ -55,22 +55,22 @@ class TaskCellView: NSTableCellView {
                 taskStatusLabel.stringValue = "Downloading"
             case "paused":
                 actionButton.action = #selector(actionUnpause)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Paused"
             case "complete":
                 actionButton.image = NSImage(named: "CompleteButton")
                 taskStatusLabel.stringValue = "Complete"
             case "stopped":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Stopped"
             case "removed":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Removed"
             case "error":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Error"
             default:
                 break
