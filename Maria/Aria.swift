@@ -16,8 +16,8 @@ class Aria {
     static let shared = Aria()
     
     private init() {
-        initRPC()
         initCore()
+        initRPC()
     }
     
     private func initRPC() {
@@ -38,16 +38,15 @@ class Aria {
                     if !FileManager.default.fileExists(atPath: session) {
                         FileManager.default.createFile(atPath: session, contents: nil, attributes: nil)
                     }
-                    defaults.set("6789", forKey: "RPCServerPort")
-                    defaults.set("maria.rpc.2016", forKey: "RPCServerSecret")
+                    MariaUserDefault.initBuiltIn()
                     defaults.set(conf, forKey: "Aria2ConfPath")
                 } catch {
                     print(error)
                 }
             }
             
-            if let path = Bundle.main.path(forResource: "aria2", ofType: "conf") {
-                let config = AriaConfig(filePath: path)
+            if Bundle.main.load() {
+                let config = AriaConfig(filePath: conf)
                 config.load()
                 config.data.append(("dir", "\(NSHomeDirectory())/Downloads"))
                 config.data.append(("input-file", "\(Bundle.main.resourcePath!)/aria2.session"))
