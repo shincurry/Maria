@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8806E0081DA5874C00EDEC4C /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8806E0071DA5874C00EDEC4C /* QuickSettingsViewController.swift */; };
 		881687701D8A9C1B00E36678 /* aria2.default.conf in Resources */ = {isa = PBXBuildFile; fileRef = 8816876F1D8A9C1B00E36678 /* aria2.default.conf */; };
-		881F79AB1DB2465000576766 /* Aria2Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; };
-		881F79AC1DB2465000576766 /* Aria2Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		881F79B01DB2677600576766 /* aria2.Maria.conf in Resources */ = {isa = PBXBuildFile; fileRef = 881F79AF1DB2677600576766 /* aria2.Maria.conf */; };
 		881F79B21DB26EB800576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
 		881F79B31DB27FA300576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
@@ -32,6 +30,8 @@
 		8842882A1D8D220E002014E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8842882C1D8D220E002014E2 /* Localizable.strings */; };
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
+		885C95061DE4392A002A9E72 /* Aria2Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; };
+		885C95071DE4392A002A9E72 /* Aria2Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		886AB8621D8672E50053472C /* AriaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886AB8611D8672E50053472C /* AriaConfig.swift */; };
 		8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8870EA241CD4F13E00278B2C /* Settings.storyboard */; };
 		8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870EA281CD5A70200278B2C /* MainWindowController.swift */; };
@@ -73,7 +73,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				881F79AC1DB2465000576766 /* Aria2Core.framework in Embed Frameworks */,
+				885C95071DE4392A002A9E72 /* Aria2Core.framework in Embed Frameworks */,
 				8882C0831D801BB100511C60 /* Aria2.framework in Embed Frameworks */,
 				88FBE7081D802E6100B7FE9C /* Pods_Maria.framework in Embed Frameworks */,
 			);
@@ -171,7 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881F79AB1DB2465000576766 /* Aria2Core.framework in Frameworks */,
+				885C95061DE4392A002A9E72 /* Aria2Core.framework in Frameworks */,
 				8882C0821D801BB100511C60 /* Aria2.framework in Frameworks */,
 				88FBE7071D802E6100B7FE9C /* Pods_Maria.framework in Frameworks */,
 			);
@@ -381,7 +381,7 @@
 				TargetAttributes = {
 					88298CF41D41E56500BBAFE8 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 525R2U87NG;
+						DevelopmentTeam = 8D95HCDEJR;
 						DevelopmentTeamName = "Debra Dean";
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
@@ -396,7 +396,7 @@
 					};
 					8894856E1CBE4D4A000839CD = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 525R2U87NG;
+						DevelopmentTeam = 8D95HCDEJR;
 						DevelopmentTeamName = "Debra Dean";
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
@@ -652,7 +652,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 525R2U87NG;
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -676,7 +676,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Maria Widget/Maria Widget.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 525R2U87NG;
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Maria Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -790,7 +790,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 525R2U87NG;
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -816,7 +816,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 525R2U87NG;
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Maria/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

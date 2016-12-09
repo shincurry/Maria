@@ -62,13 +62,14 @@ extension SettingsRPCServerViewController {
         case host:
             key = "RPCServerHost"
         case port:
-            if let intValue = Int(sender.stringValue) {
-                defaults.set(intValue, forKey: key)
+            key = "RPCServerPort"
+            if Int(sender.stringValue) != nil {
+                defaults.set(sender.stringValue, forKey: key)
                 defaults.synchronize()
             } else {
                 sender.stringValue = "\(defaults.integer(forKey: key))"
             }
-            key = "RPCServerPort"
+            
             return
         case path:
             key = "RPCServerPath"
