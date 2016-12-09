@@ -28,9 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if !MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
-            if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+            if defaults[.enableAria2AutoLaunch] {
                 let task = Process()
-                let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
+                let confPath = defaults[.aria2ConfPath]!
                 let shFilePath = Bundle.main
                     .path(forResource: "runAria2c", ofType: "sh")
                 task.launchPath = shFilePath
@@ -47,14 +47,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSUserNotificationCenter.default.delegate = self
         
-        if defaults.bool(forKey: "EnableAutoConnectAria2") {
+        if defaults[.enableAutoConnectAria2] {
             aria2open()
         }
 
         statusItem.button?.action = #selector(AppDelegate.menuClicked)
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         
-        if defaults.bool(forKey: "EnableSpeedStatusBar") {
+        if defaults[.enableSpeedStatusBar] {
             enableSpeedStatusBar()
         } else {
             disableSpeedStatusBar()
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.canHide = false
         }
         
-        if defaults.bool(forKey: "EnableDockIcon") {
+        if defaults[.enableDockIcon] {
             enableDockIcon()
         } else {
             disableDockIcon()
@@ -74,7 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         aria2close()
         if !MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
-            if defaults.bool(forKey: "EnableAria2AutoLaunch") {
+            if defaults[.enableAria2AutoLaunch] {
                 let task = Process()
                 let pipe = Pipe()
                 let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
@@ -177,28 +177,27 @@ extension AppDelegate {
         let status = sender.state == 0 ? false : true
         if status {
             lowSpeedModeOff()
-            defaults.set(false, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = false
         } else {
             lowSpeedModeOn()
-            defaults.set(true, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = true
         }
         defaults.synchronize()
     }
     
     func lowSpeedModeOff() {
-        let limitDownloadSpeed = defaults.integer(forKey: "GlobalDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "GlobalUploadRate")
+        let limitDownloadSpeed = defaults[.globalDownloadRate]
+        let limitUploadSpeed = defaults[.globalUploadRate]
         aria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
     func lowSpeedModeOn() {
-        let limitDownloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
+        let limitDownloadSpeed = defaults[.limitModeDownloadRate]
+        let limitUploadSpeed = defaults[.limitModeUploadRate]
         aria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
-        let path = defaults.object(forKey: "WebAppPath") as! String
-        if !path.isEmpty {
+        if let path = defaults[.webAppPath], !path.isEmpty {
             NSWorkspace.shared().open(URL(fileURLWithPath: path))
         }
     }
@@ -219,44 +218,44 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2configure() {
         aria.rpc!.onConnect = {
             self.RPCServerStatus.state = 1
-            if self.defaults.bool(forKey: "EnableLowSpeedMode") {
+            if self.defaults[.enableLowSpeedMode] {
                 self.lowSpeedModeOn()
             } else {
                 self.lowSpeedModeOff()
             }
-            if self.defaults.bool(forKey: "EnableNotificationWhenConnected") {
+            if self.defaults[.enableNotificationWhenConnected] {
                 MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(MariaUserDefault.RPCUrl)")
             }
         }
         aria.rpc!.onDisconnect = {
             self.RPCServerStatus.state = 0
-            if self.defaults.bool(forKey: "EnableNotificationWhenDisconnected") {
+            if self.defaults[.enableNotificationWhenDisconnected] {
                 MariaNotification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
         }
         
         aria.rpc!.downloadStarted = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenStarted") {
+            if self.defaults[.enableNotificationWhenStarted] {
                 MariaNotification.notification(title: "Download Started", details: "\(name) started.")
             }
         }
         aria.rpc!.downloadPaused = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenPaused") {
+            if self.defaults[.enableNotificationWhenPaused] {
                 MariaNotification.notification(title: "Download Paused", details: "\(name) paused.")
             }
         }
         aria.rpc!.downloadStopped = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenStopped") {
+            if self.defaults[.enableNotificationWhenStopped] {
                 MariaNotification.notification(title: "Download Stopoped", details: "\(name) stopped.")
             }
         }
         aria.rpc!.downloadCompleted = { (name, path) in
-            if self.defaults.bool(forKey: "EnableNotificationWhenCompleted") {
+            if self.defaults[.enableNotificationWhenCompleted] {
                 MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path as AnyObject])
             }
         }
         aria.rpc!.downloadError = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenError") {
+            if self.defaults[.enableNotificationWhenError] {
                 MariaNotification.notification(title: "Download Error", details: "Download task \(name) have an error.")
             }
         }

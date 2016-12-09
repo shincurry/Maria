@@ -86,10 +86,10 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
             } else {
                 self.taskListTableView.gridStyleMask = NSTableViewGridLineStyle()
-                if self.defaults.bool(forKey: "TodayEnableTasksSortedByProgress") {
+                if self.defaults[.todayEnableTasksSortedByProgress] {
                     taskArray = taskArray.sorted() { return $0.progress > $1.progress }
                 }
-                let number = self.defaults.integer(forKey: "TodayTasksNumber")
+                let number = self.defaults[.todayTasksNumber]
                 if number < taskArray.count {
                     taskArray = taskArray.enumerated().filter({ (index, task) in return index > number-1 }).map({ return $1 })
                 }

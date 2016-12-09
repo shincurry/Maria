@@ -8,6 +8,7 @@
 
 import Cocoa
 import Aria2
+import SwiftyUserDefaults
 
 class SettingsBandwidthViewController: NSViewController {
 
@@ -32,33 +33,33 @@ class SettingsBandwidthViewController: NSViewController {
 extension SettingsBandwidthViewController {
     
     @IBAction func finishEditing(_ sender: NSTextField) {
-        var key = ""
+        var key = DefaultsKeys.globalDownloadRate
         switch sender {
         case globalDownloadRate:
-            key = "GlobalDownloadRate"
+            key = .globalDownloadRate
         case globalUploadRate:
-            key = "GlobalUploadRate"
+            key = .globalUploadRate
         case limitModeDownloadRate:
-            key = "LimitModeDownloadRate"
+            key = .limitModeDownloadRate
         case limitModeUploadRate:
-            key = "LimitModeUploadRate"
+            key = .limitModeUploadRate
         default:
             break
         }
         
         if let intValue = Int(sender.stringValue) {
-            defaults.set(intValue, forKey: key)
+            defaults[key] = intValue
             defaults.synchronize()
         } else {
-            sender.stringValue = "\(defaults.integer(forKey: key))"
+            sender.stringValue = "\(defaults[key])"
         }
         
         
         
-        if defaults.bool(forKey: "EnableLowSpeedMode") {
+        if defaults[.enableLowSpeedMode] {
             if sender == limitModeDownloadRate || sender == limitModeUploadRate {
-                let downloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
-                let uploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
+                let downloadSpeed = defaults[.limitModeDownloadRate]
+                let uploadSpeed = defaults[.limitModeUploadRate]
                 aria.rpc!.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
             }
         }
@@ -69,9 +70,9 @@ extension SettingsBandwidthViewController {
 
 extension SettingsBandwidthViewController {
     func userDefaultsInit() {
-        globalDownloadRate.stringValue = "\(defaults.integer(forKey: "GlobalDownloadRate"))"
-        globalUploadRate.stringValue = "\(defaults.integer(forKey: "GlobalUploadRate"))"
-        limitModeDownloadRate.stringValue = "\(defaults.integer(forKey: "LimitModeDownloadRate"))"
-        limitModeUploadRate.stringValue = "\(defaults.integer(forKey: "LimitModeUploadRate"))"
+        globalDownloadRate.stringValue = "\(defaults[.globalDownloadRate])"
+        globalUploadRate.stringValue = "\(defaults[.globalUploadRate])"
+        limitModeDownloadRate.stringValue = "\(defaults[.limitModeDownloadRate])"
+        limitModeUploadRate.stringValue = "\(defaults[.limitModeUploadRate])"
     }
 }

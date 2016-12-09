@@ -8,6 +8,7 @@
 
 import Cocoa
 import Aria2
+import SwiftyUserDefaults
 
 class QuickSettingsViewController: NSViewController {
 
@@ -27,27 +28,27 @@ class QuickSettingsViewController: NSViewController {
 extension QuickSettingsViewController {
     
     @IBAction func finishEditing(_ sender: NSTextField) {
-        var key = ""
+        var key = DefaultsKeys.limitModeDownloadRate
         switch sender {
         case limitModeDownloadRate:
-            key = "LimitModeDownloadRate"
+            key = .limitModeDownloadRate
         case limitModeUploadRate:
-            key = "LimitModeUploadRate"
+            key = .limitModeUploadRate
         default:
             break
         }
         
         if let intValue = Int(sender.stringValue) {
-            defaults.set(intValue, forKey: key)
+            defaults[key] = intValue
             defaults.synchronize()
         } else {
-            sender.stringValue = "\(defaults.integer(forKey: key))"
+            sender.stringValue = "\(defaults[key])"
         }
         
-        if defaults.bool(forKey: "EnableLowSpeedMode") {
+        if defaults[.enableLowSpeedMode] {
             if sender == limitModeDownloadRate || sender == limitModeUploadRate {
-                let downloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
-                let uploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
+                let downloadSpeed = defaults[.limitModeDownloadRate]
+                let uploadSpeed = defaults[.limitModeUploadRate]
                 aria.rpc!.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
             }
         }
@@ -56,7 +57,7 @@ extension QuickSettingsViewController {
 
 extension QuickSettingsViewController {
     func userDefaultsInit() {
-        limitModeDownloadRate.stringValue = "\(defaults.integer(forKey: "LimitModeDownloadRate"))"
-        limitModeUploadRate.stringValue = "\(defaults.integer(forKey: "LimitModeUploadRate"))"
+        limitModeDownloadRate.stringValue = "\(defaults[.limitModeDownloadRate])"
+        limitModeUploadRate.stringValue = "\(defaults[.limitModeUploadRate])"
     }
 }

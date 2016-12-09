@@ -15,7 +15,7 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
         NSApp.activate(ignoringOtherApps: true)
         window?.titleVisibility = .hidden
-        lowSpeedModeButton.state = defaults.bool(forKey: "EnableLowSpeedMode") ? 1 : 0
+        lowSpeedModeButton.state = defaults[.enableLowSpeedMode] ? 1 : 0
         
         aria.rpc!.onPauseAll = { flag in
             if flag {
@@ -65,10 +65,10 @@ class MainWindowController: NSWindowController {
     @IBAction func toggleLowSpeedMode(_ sender: NSButton) {
         let appDelegate = NSApplication.shared().delegate as! AppDelegate
         if sender.state == 1 {
-            defaults.set(true, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = true
             appDelegate.lowSpeedModeOn()
         } else {
-            defaults.set(false, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = false
             appDelegate.lowSpeedModeOff()
         }
     }

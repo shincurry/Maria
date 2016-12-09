@@ -7,6 +7,51 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
+
+extension DefaultsKeys {
+    // Notification Settings
+    static let enableNotificationWhenStarted = DefaultsKey<Bool>("EnableNotificationWhenStarted")
+    static let enableNotificationWhenStopped = DefaultsKey<Bool>("EnableNotificationWhenStopped")
+    static let enableNotificationWhenPaused = DefaultsKey<Bool>("EnableNotificationWhenPaused")
+    static let enableNotificationWhenCompleted = DefaultsKey<Bool>("EnableNotificationWhenCompleted")
+    static let enableNotificationWhenError = DefaultsKey<Bool>("EnableNotificationWhenError")
+    static let enableNotificationWhenConnected = DefaultsKey<Bool>("EnableNotificationWhenConnected")
+    static let enableNotificationWhenDisconnected = DefaultsKey<Bool>("EnableNotificationWhenDisconnected")
+    
+    // Bandwidth Settings
+    static let enableLowSpeedMode = DefaultsKey<Bool>("EnableLowSpeedMode")
+    static let globalDownloadRate = DefaultsKey<Int>("GlobalDownloadRate")
+    static let globalUploadRate = DefaultsKey<Int>("GlobalUploadRate")
+    static let limitModeDownloadRate = DefaultsKey<Int>("LimitModeDownloadRate")
+    static let limitModeUploadRate = DefaultsKey<Int>("LimitModeUploadRate")
+    
+    // General Settings
+    static let launchAtStartup = DefaultsKey<Bool>("LaunchAtStartup")
+    static let webAppPath = DefaultsKey<String?>("WebAppPath")
+    static let enableSpeedStatusBar = DefaultsKey<Bool>("EnableSpeedStatusBar")
+    static let enableDockIcon = DefaultsKey<Bool>("EnableDockIcon")
+
+    // Aria2 Settings
+    static let enableAutoConnectAria2 = DefaultsKey<Bool>("EnableAutoConnectAria2")
+    static let rpcServerHost = DefaultsKey<String?>("RPCServerHost")
+    static let rpcServerUsername = DefaultsKey<String?>("RPCServerUsername")
+    static let rpcServerPassword = DefaultsKey<String?>("RPCServerPassword")
+    static let rpcServerPort = DefaultsKey<String?>("RPCServerPort")
+    static let rpcServerPath = DefaultsKey<String?>("RPCServerPath")
+    static let rpcServerSecret = DefaultsKey<String?>("RPCServerSecret")
+    static let rpcServerEnabledSSL = DefaultsKey<Bool>("RPCServerEnabledSSL")
+    static let enableAria2AutoLaunch = DefaultsKey<Bool>("EnableAria2AutoLaunch")
+    static let aria2ConfPath = DefaultsKey<String?>("Aria2ConfPath")
+    
+    // Today Settings
+    static let todayTasksNumber = DefaultsKey<Int>("TodayTasksNumber")
+    static let todayEnableTasksSortedByProgress = DefaultsKey<Bool>("TodayEnableTasksSortedByProgress")
+    
+    // Main settings
+    static let isNotFirstLaunch = DefaultsKey<Bool>("IsNotFirstLaunch")
+    static let useEmbeddedAria2 = DefaultsKey<Bool>("UseEmbeddedAria2")
+}
 
 class MariaUserDefault {
     static var main = UserDefaults(suiteName: "group.windisco.maria.main")!
@@ -25,87 +70,80 @@ class MariaUserDefault {
     
     static func initMain() {
         let defaults = main
-        defaults.set(true, forKey: "IsNotFirstLaunch")
-        defaults.set(false, forKey: "UseEmbeddedAria2")
+        defaults[.isNotFirstLaunch] = true
+        defaults[.useEmbeddedAria2] = false
     }
     
     static func initExternal() {
         MariaUserDefault.initShared(defaults: MariaUserDefault.external)
         
         let defaults = MariaUserDefault.external
-        defaults.set("6800", forKey: "RPCServerPort")
-        defaults.set("/jsonrpc", forKey: "RPCServerPath")
-        defaults.set("", forKey: "RPCServerSecret")
+        defaults[.rpcServerPort] = "6800"
+        defaults[.rpcServerPath] = "/jsonrpc"
+        defaults[.rpcServerSecret] = ""
     }
     static func initBuiltIn() {
         MariaUserDefault.initShared(defaults: MariaUserDefault.builtIn)
         
         let defaults = MariaUserDefault.builtIn
-        defaults.set("6789", forKey: "RPCServerPort")
-        defaults.set("/jsonrpc", forKey: "RPCServerPath")
-        defaults.set("maria.rpc.2016", forKey: "RPCServerSecret")
+        defaults[.rpcServerPort] = "6789"
+        defaults[.rpcServerPath] = "/jsonrpc"
+        defaults[.rpcServerSecret] = "maria.rpc.2016"
     }
     
     private static func initShared(defaults: UserDefaults) {
         
         // Notification Settings
-        defaults.set(true, forKey: "EnableNotificationWhenStarted")
-        defaults.set(false, forKey: "EnableNotificationWhenStopped")
-        defaults.set(false, forKey: "EnableNotificationWhenPaused")
-        defaults.set(true, forKey: "EnableNotificationWhenCompleted")
-        defaults.set(false, forKey: "EnableNotificationWhenError")
-        
-        defaults.set(false, forKey: "EnableNotificationWhenConnected")
-        defaults.set(true, forKey: "EnableNotificationWhenDisconnected")
+        defaults[.enableNotificationWhenStarted] = true
+        defaults[.enableNotificationWhenStopped] = false
+        defaults[.enableNotificationWhenPaused] = false
+        defaults[.enableNotificationWhenCompleted] = true
+        defaults[.enableNotificationWhenError] = false
+        defaults[.enableNotificationWhenConnected] = false
+        defaults[.enableNotificationWhenDisconnected] = true
         
         // Bandwidth Settings
-        defaults.set(false, forKey: "EnableLowSpeedMode")
-        
-        defaults.set(0, forKey: "GlobalDownloadRate")
-        defaults.set(0, forKey: "GlobalUploadRate")
-        defaults.set(0, forKey: "LimitModeDownloadRate")
-        defaults.set(0, forKey: "LimitModeUploadRate")
-        
+        defaults[.enableLowSpeedMode] = false
+        defaults[.globalDownloadRate] = 0
+        defaults[.globalUploadRate] = 0
+        defaults[.limitModeDownloadRate] = 0
+        defaults[.limitModeUploadRate] = 0
         
         // General Settings
-        defaults.set(false, forKey: "LaunchAtStartup")
-        defaults.set("", forKey: "WebAppPath")
-        defaults.set(false, forKey: "EnableSpeedStatusBar")
-        defaults.set(true, forKey: "EnableDockIcon")
-        
+        defaults[.launchAtStartup] = false
+        defaults[.webAppPath] = ""
+        defaults[.enableSpeedStatusBar] = false
+        defaults[.enableDockIcon] = true
         
         // Aria2 Settings
-        defaults.set(true, forKey: "EnableAutoConnectAria2")
-        
-        defaults.set("localhost", forKey: "RPCServerHost")
-        defaults.set("", forKey: "RPCServerUsername")
-        defaults.set("", forKey: "RPCServerPassword")
-        defaults.set(false, forKey: "RPCServerEnabledSSL")
-        
-        defaults.set(false, forKey: "EnableAria2AutoLaunch")
-        defaults.set("", forKey: "Aria2ConfPath")
-        
-        
+        defaults[.enableAutoConnectAria2] = true
+        defaults[.rpcServerHost] = "localhost"
+        defaults[.rpcServerUsername] = ""
+        defaults[.rpcServerPassword] = ""
+        defaults[.rpcServerEnabledSSL] = false
+        defaults[.enableAria2AutoLaunch] = false
+        defaults[.aria2ConfPath] = ""
         
         // Today Settings
-        defaults.set(5, forKey: "TodayTasksNumber")
-        defaults.set(false, forKey: "TodayEnableTasksSortedByProgress")
+        defaults[.todayTasksNumber] = 5
+        defaults[.todayEnableTasksSortedByProgress] = false
         
         defaults.synchronize()
     }
     
     static var RPCUrl: String {
         get {
+            
             let defaults = MariaUserDefault.auto
-            var url = "http\(defaults.bool(forKey: "RPCServerEnabledSSL") ? "s" : "")://"
-            if let value = defaults.object(forKey: "RPCServerHost") as? String {
+            var url = "http\(defaults[.rpcServerEnabledSSL] ? "s" : "")://"
+            if let value = defaults[.rpcServerHost] {
                 url += value
             }
             url += ":"
-            if let value = defaults.object(forKey: "RPCServerPort") as? String {
+            if let value = defaults[.rpcServerPort] {
                 url += value
             }
-            if let value = defaults.object(forKey: "RPCServerPath") as? String {
+            if let value = defaults[.rpcServerPath] {
                 url += value
             }
             return url

@@ -39,7 +39,7 @@ class Aria {
                         FileManager.default.createFile(atPath: session, contents: nil, attributes: nil)
                     }
                     MariaUserDefault.initBuiltIn()
-                    defaults.set(conf, forKey: "Aria2ConfPath")
+                    defaults[.aria2ConfPath] = conf
                 } catch {
                     print(error)
                 }

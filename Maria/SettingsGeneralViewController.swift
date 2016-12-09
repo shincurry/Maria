@@ -30,14 +30,14 @@ class SettingsGeneralViewController: NSViewController {
         let boolValue = sender.state == 1 ? true : false
         switch sender {
         case enableSpeedStatusBar:
-            defaults.set(boolValue, forKey: "EnableSpeedStatusBar")
+            defaults[.enableSpeedStatusBar] = boolValue
             if boolValue {
                 appDelegate.enableSpeedStatusBar()
             } else {
                 appDelegate.disableSpeedStatusBar()
             }
         case enableDockIcon:
-            defaults.set(boolValue, forKey: "EnableDockIcon")
+            defaults[.enableDockIcon] = boolValue
             if boolValue {
                 appDelegate.enableDockIcon()
             } else {
@@ -49,7 +49,7 @@ class SettingsGeneralViewController: NSViewController {
     }
     
     @IBAction func finishEditing(_ sender: NSTextField) {
-        defaults.set(sender.stringValue, forKey: "WebAppPath")
+        defaults[.webAppPath] = sender.stringValue
         defaults.synchronize()
     }
     
@@ -62,7 +62,7 @@ class SettingsGeneralViewController: NSViewController {
         openPanel.showsHiddenFiles = true
         openPanel.beginSheetModal(for: self.view.window!, completionHandler: { key in
             if key == 1, let url = openPanel.url?.relativePath {
-                self.defaults.set(url, forKey: "WebAppPath")
+                self.defaults[.webAppPath] = url
                 self.webAppPathButton.item(at: 0)!.title = url
             }
         })
@@ -71,11 +71,11 @@ class SettingsGeneralViewController: NSViewController {
 
 extension SettingsGeneralViewController {
     func userDefaultsInit() {
-        if let value = defaults.object(forKey: "WebAppPath") as? String {
+        if let value = defaults[.webAppPath] {
             webAppPathButton.item(at: 0)!.title = value
         }
-        enableSpeedStatusBar.state = defaults.bool(forKey: "EnableSpeedStatusBar") ? 1 : 0
-        enableDockIcon.state  = defaults.bool(forKey: "EnableDockIcon") ? 1 : 0
+        enableSpeedStatusBar.state = defaults[.enableSpeedStatusBar] ? 1 : 0
+        enableDockIcon.state  = defaults[.enableDockIcon] ? 1 : 0
     }
 }
 

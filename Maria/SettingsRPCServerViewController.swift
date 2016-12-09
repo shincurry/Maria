@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwiftyUserDefaults
 
 class SettingsRPCServerViewController: NSViewController {
 
@@ -57,32 +58,32 @@ class SettingsRPCServerViewController: NSViewController {
 extension SettingsRPCServerViewController {
     
     @IBAction func finishEditing(_ sender: NSTextField) {
-        var key = ""
+        var key = DefaultsKeys.rpcServerHost
         switch sender {
         case host:
-            key = "RPCServerHost"
+            key = .rpcServerHost
         case port:
-            key = "RPCServerPort"
+            key = .rpcServerPort
             if Int(sender.stringValue) != nil {
-                defaults.set(sender.stringValue, forKey: key)
+                defaults[key] = sender.stringValue
                 defaults.synchronize()
             } else {
-                sender.stringValue = "\(defaults.integer(forKey: key))"
+                sender.stringValue = "\(defaults[key])"
             }
             
             return
         case path:
-            key = "RPCServerPath"
+            key = .rpcServerPath
         case secret:
-            key = "RPCServerSecret"
+            key = .rpcServerSecret
         case username:
-            key = "RPCServerUsername"
+            key = .rpcServerUsername
         case password:
-            key = "RPCServerPassword"
+            key = .rpcServerPassword
         default:
             break
         }
-        defaults.set(sender.stringValue, forKey: key)
+        defaults[key] = sender.stringValue
         defaults.synchronize()
     }
     
@@ -90,12 +91,12 @@ extension SettingsRPCServerViewController {
     
     @IBAction func enableSSL(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.set(boolValue, forKey: "RPCServerEnabledSSL")
+        defaults[.rpcServerEnabledSSL] = boolValue
         defaults.synchronize()
     }
     @IBAction func enableAutoConnectAria2(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.set(boolValue, forKey: "EnableAutoConnectAria2")
+        defaults[.enableAutoConnectAria2] = boolValue
         defaults.synchronize()
     }
     @IBAction func useEmbeddedAria2(_ sender: NSButton) {
@@ -128,29 +129,29 @@ extension SettingsRPCServerViewController: NSTextFieldDelegate {
 
 extension SettingsRPCServerViewController {
     func userDefaultsInit() {
-        if let value = defaults.object(forKey: "RPCServerHost") as? String {
+        if let value = defaults[.rpcServerHost] {
             host.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPort") as? String {
+        if let value = defaults[.rpcServerPort] {
             port.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPath") as? String {
+        if let value = defaults[.rpcServerPath] {
             path.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
+        if let value = defaults[.rpcServerSecret] {
             secret.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerUsername") as? String {
+        if let value = defaults[.rpcServerUsername] {
             username.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPassword") as? String {
+        if let value = defaults[.rpcServerPassword] {
             password.stringValue = value
         }
-        sslEnabled.state = defaults.bool(forKey: "RPCServerEnabledSSL") ? 1 : 0
+        sslEnabled.state = defaults[.rpcServerEnabledSSL] ? 1 : 0
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
-        autoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
+        autoConnectAria2Enabled.state = defaults[.enableAutoConnectAria2] ? 1 : 0
         useEmbeddedAria2Enabled.state = MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") ? 1 : 0
         
         useEmbeddedAria2Enabled.title = useEmbeddedAria2Enabled.title + "(version \(EmbeddedAria2Version))"

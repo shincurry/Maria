@@ -36,7 +36,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         openPanel.showsHiddenFiles = true
         openPanel.beginSheetModal(for: self.view.window!, completionHandler: { key in
             if key == 1, let url = openPanel.url?.relativePath {
-                self.defaults.set(url, forKey: "Aria2ConfPath")
+                self.defaults[.aria2ConfPath] = url
                 self.aria2ConfPathButton.item(at: 0)!.title = url
                 self.config.reload()
                 self.aria2ConfTableView.reloadData()
@@ -48,7 +48,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         let boolValue = sender.state == 1 ? true : false
         switch sender {
         case enableAria2AutoLaunch:
-            defaults.set(boolValue, forKey: "EnableAria2AutoLaunch")
+            defaults[.enableAria2AutoLaunch] = boolValue
         default:
             break
         }
@@ -110,7 +110,7 @@ class SettingsAria2ConfigViewController: NSViewController {
                 let when = DispatchTime.now() + 1
                 DispatchQueue.main.asyncAfter(deadline: when) {
                     let run = Process()
-                    let confPath = self.defaults.object(forKey: "Aria2ConfPath") as! String
+                    let confPath = self.defaults[.aria2ConfPath]!
                     let runSH = Bundle.main
                         .path(forResource: "runAria2c", ofType: "sh")
                     run.launchPath = runSH
@@ -160,8 +160,8 @@ extension SettingsAria2ConfigViewController: NSTableViewDelegate, NSTableViewDat
 
 extension SettingsAria2ConfigViewController {
     func userDefaultsInit() {
-        enableAria2AutoLaunch.state = defaults.bool(forKey: "EnableAria2AutoLaunch") ? 1 : 0
-        if let value = defaults.object(forKey: "Aria2ConfPath") as? String {
+        enableAria2AutoLaunch.state = defaults[.enableAria2AutoLaunch] ? 1 : 0
+        if let value = defaults[.aria2ConfPath] {
             aria2ConfPathButton.item(at: 0)!.title = value
             config = AriaConfig(filePath: value)
             config.load()
