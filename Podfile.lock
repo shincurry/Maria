@@ -1,16 +1,20 @@
 PODS:
   - Starscream (2.0.0)
   - SwiftyJSON (3.1.1)
+  - SwiftyUserDefaults (3.0.1)
 
 DEPENDENCIES:
   - Starscream (from `https://github.com/daltoniam/Starscream.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults.git`)
 
 EXTERNAL SOURCES:
   Starscream:
     :git: https://github.com/daltoniam/Starscream.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  SwiftyUserDefaults:
+    :git: https://github.com/radex/SwiftyUserDefaults.git
 
 CHECKOUT OPTIONS:
   Starscream:
@@ -19,11 +23,15 @@ CHECKOUT OPTIONS:
   SwiftyJSON:
     :commit: 707516458b618c48ad9365d23a0dad3c3b860fa0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  SwiftyUserDefaults:
+    :commit: cfcf2b8004b9b108ceb7c8f99f79654e7b05d739
+    :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
   Starscream: 947c865596f0d6bb3f0203fee23228ed2d471468
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: 0a70fb30e2c1c943e2c23f2f2e9bed6960d649d8
+PODFILE CHECKSUM: 825f14e3db0b95e6b58f393a17c29d71c36516ea
 
-COCOAPODS: 1.1.0.beta.2
+COCOAPODS: 1.2.0.beta.1
