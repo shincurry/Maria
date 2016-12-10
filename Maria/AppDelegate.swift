@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var speedStatusTimer: Timer?
+    var dockTileTimer: Timer?
     
     override init() {
         if !MariaUserDefault.main.bool(forKey: "IsNotFirstLaunch") {
@@ -71,6 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         NSApp.dockTile.contentView = dockTileView
+        dockTileTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateDockTile), userInfo: nil, repeats: true)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -141,6 +143,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func disableDockIcon() {
         NSApp.setActivationPolicy(.accessory)
+    }
+    
+    func updateDockTile() {
+        aria.rpc!.onGlobalStatus = { status in
+            if MariaUserDefault.auto[.enableDockIcon] {
+                if status.speed!.download == 0 {
+                    self.dockTileView.badgeBox.isHidden = true
+                } else {
+                    self.dockTileView.badgeBox.isHidden = false
+                    self.dockTileView.badgeTitle.stringValue = status.speed!.downloadIntString
+                }
+                NSApp.dockTile.display()
+            }
+        }
+        aria.rpc!.getGlobalStatus()
     }
     
     func updateSpeedStatus() {

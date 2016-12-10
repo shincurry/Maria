@@ -82,16 +82,6 @@ extension TaskListViewController {
                 let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
                 self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
                 self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
-                
-                if MariaUserDefault.auto[.enableDockIcon], let view = NSApp.dockTile.contentView as? DockTileView {
-                    if status.speed!.download == 0 {
-                        view.badgeBox.isHidden = true
-                    } else {
-                        view.badgeBox.isHidden = false
-                        view.badgeTitle.stringValue = status.speed!.downloadIntString
-                        NSApp.dockTile.display()
-                    }
-                }
             }
         }
     }
