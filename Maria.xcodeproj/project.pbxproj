@@ -12,6 +12,7 @@
 		881F79B01DB2677600576766 /* aria2.Maria.conf in Resources */ = {isa = PBXBuildFile; fileRef = 881F79AF1DB2677600576766 /* aria2.Maria.conf */; };
 		881F79B21DB26EB800576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
 		881F79B31DB27FA300576766 /* MariaUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F79B11DB26EB800576766 /* MariaUserDefault.swift */; };
+		8820772A1DFC1B3500054C2D /* DockTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882077291DFC1B3500054C2D /* DockTileView.swift */; };
 		8827EDF51CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */; };
 		8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */; };
 		8827EDF71CCB59D100DDB09D /* shutdownAria2c.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */; };
@@ -103,6 +104,7 @@
 		881A84641D8D00C800647DE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		881F79AF1DB2677600576766 /* aria2.Maria.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aria2.Maria.conf; sourceTree = "<group>"; };
 		881F79B11DB26EB800576766 /* MariaUserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MariaUserDefault.swift; sourceTree = "<group>"; };
+		882077291DFC1B3500054C2D /* DockTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockTileView.swift; sourceTree = "<group>"; };
 		8827EDEF1CCB47DD00DDB09D /* runAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runAria2c.sh; sourceTree = "<group>"; };
 		8827EDF01CCB4C0300DDB09D /* shutdownAria2c.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shutdownAria2c.sh; sourceTree = "<group>"; };
 		8827EDF41CCB50A700DDB09D /* SettingsAria2ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAria2ConfigViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
+				882077291DFC1B3500054C2D /* DockTileView.swift */,
 				888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */,
 				883327A21CC751630002B561 /* NewTaskViewController.swift */,
 				88D6CDD51CE4963100450E0C /* Main */,
@@ -565,6 +568,7 @@
 				885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */,
 				883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */,
 				8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */,
+				8820772A1DFC1B3500054C2D /* DockTileView.swift in Sources */,
 				885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */,
 				88D6CDD41CE495D500450E0C /* MariaNotification.swift in Sources */,
 				888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */,

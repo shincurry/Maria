@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -212,6 +213,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Maria" customModuleProvider="target">
                     <connections>
                         <outlet property="RPCServerStatus" destination="dZv-dt-4RV" id="SXs-OW-3zp"/>
+                        <outlet property="dockTileView" destination="tJT-eS-s5Z" id="049-sE-hIf"/>
                         <outlet property="lowSpeedMode" destination="PKO-Vg-5WC" id="EiS-jf-By3"/>
                         <outlet property="statusMenu" destination="MJv-Mw-dce" id="CqR-TF-HZJ"/>
                     </connections>
@@ -264,6 +266,57 @@
                     </connections>
                 </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customView id="tJT-eS-s5Z" customClass="DockTileView" customModule="Maria" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWB-vs-XgS">
+                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="WV4-Rw-SMW"/>
+                        </imageView>
+                        <box boxType="custom" borderType="none" cornerRadius="4" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-17-foE">
+                            <rect key="frame" x="14" y="2" width="100" height="28"/>
+                            <view key="contentView" id="VvJ-O7-bjr">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="twf-ap-q25">
+                                        <rect key="frame" x="6" y="0.0" width="88" height="26"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0 KB/s" id="rf9-hk-cOU">
+                                            <font key="font" metaFont="system" size="19"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="twf-ap-q25" firstAttribute="top" secondItem="VvJ-O7-bjr" secondAttribute="top" constant="2" id="1SK-Nt-rGb"/>
+                                    <constraint firstAttribute="bottom" secondItem="twf-ap-q25" secondAttribute="bottom" id="6gy-6Y-rPN"/>
+                                    <constraint firstAttribute="trailing" secondItem="twf-ap-q25" secondAttribute="trailing" constant="8" id="Li1-tI-9bZ"/>
+                                    <constraint firstItem="twf-ap-q25" firstAttribute="leading" secondItem="VvJ-O7-bjr" secondAttribute="leading" constant="8" id="pSG-l2-Dud"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="q9E-ru-bfK"/>
+                            </constraints>
+                            <color key="borderColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="fillColor" red="1" green="0.0" blue="0.0" alpha="0.9493257705479452" colorSpace="calibratedRGB"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yWB-vs-XgS" secondAttribute="trailing" id="P8c-oH-slt"/>
+                        <constraint firstAttribute="bottom" secondItem="ovi-17-foE" secondAttribute="bottom" constant="2" id="Sn2-Md-nfM"/>
+                        <constraint firstItem="yWB-vs-XgS" firstAttribute="leading" secondItem="tJT-eS-s5Z" secondAttribute="leading" id="bXn-TS-EOY"/>
+                        <constraint firstAttribute="bottom" secondItem="yWB-vs-XgS" secondAttribute="bottom" id="kxW-Dy-SSz"/>
+                        <constraint firstItem="ovi-17-foE" firstAttribute="leading" secondItem="tJT-eS-s5Z" secondAttribute="leading" constant="14" id="qcx-GD-Yhx"/>
+                        <constraint firstAttribute="trailing" secondItem="ovi-17-foE" secondAttribute="trailing" constant="14" id="v3B-PK-bHa"/>
+                        <constraint firstItem="yWB-vs-XgS" firstAttribute="top" secondItem="tJT-eS-s5Z" secondAttribute="top" id="w6c-6q-2hy"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="badgeBox" destination="ovi-17-foE" id="2is-uF-fkN"/>
+                        <outlet property="badgeTitle" destination="twf-ap-q25" id="aCq-gw-qoZ"/>
+                    </connections>
+                </customView>
             </objects>
             <point key="canvasLocation" x="71.5" y="-53"/>
         </scene>
@@ -832,6 +885,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="AppIcon" width="128" height="128"/>
         <image name="Broom" width="20" height="20"/>
         <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>

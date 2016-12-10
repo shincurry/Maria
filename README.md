@@ -39,6 +39,7 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki).
 * [aria2](https://github.com/aria2/aria2)
 * [Starscream](https://github.com/daltoniam/Starscream)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+* [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
 
 #### Special Thanks
 

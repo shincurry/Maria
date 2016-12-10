@@ -19,21 +19,45 @@ public struct Aria2Speed {
     
     public var downloadString: String {
         get {
-            let dl = Double(download) / 1024.0
-            return self.getStringBySpeed(dl)
+            return self.getStringBySpeed(download)
         }
     }
     public var uploadString: String {
         get {
-            let ul = Double(upload) / 1024.0
-            return self.getStringBySpeed(ul)
+            return self.getStringBySpeed(upload)
         }
     }
-    private func getStringBySpeed(_ value: Double) -> String {
-        if value > 1024 {
-            return String(format: "%.2f MB/s", value / 1024.0)
+    private func getStringBySpeed(_ value: Int) -> String {
+        let kbps = Double(value) / 1024.0
+        if kbps > 1024 {
+            return String(format: "%.2f MB/s", kbps / 1024.0)
+        } else if value > 1 {
+            return String(format: "%.2f KB/s", kbps)
         } else {
-            return String(format: "%.2f KB/s", value)
+            return String(format: "%d B/s", value)
         }
     }
+    
+    public var downloadIntString: String {
+        get {
+            return self.getIntStringBySpeed(download)
+        }
+    }
+    public var uploadIntString: String {
+        get {
+            return self.getIntStringBySpeed(upload)
+        }
+    }
+    
+    private func getIntStringBySpeed(_ value: Int) -> String {
+        let kbps = value / 1024
+        if kbps > 1024 {
+            return String(format: "%d MB/s", kbps / 1024)
+        } else if value > 1 {
+            return String(format: "%d KB/s", kbps)
+        } else {
+            return String(format: "%d B/s", value)
+        }
+    }
+    
 }

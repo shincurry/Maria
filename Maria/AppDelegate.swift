@@ -69,6 +69,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             disableDockIcon()
         }
+        
+        NSApp.dockTile.contentView = dockTileView
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -145,6 +147,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if aria.rpc!.status == .connected {
             aria.rpc!.getGlobalStatus()
         }
+        
         aria.rpc!.onGlobalStatus = { status in
             if let button = self.statusItem.button {
                 button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
@@ -157,6 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RPCServerStatus: NSMenuItem!
     @IBOutlet weak var lowSpeedMode: NSMenuItem!
     
+    @IBOutlet weak var dockTileView: DockTileView!
 }
 
 extension AppDelegate {
