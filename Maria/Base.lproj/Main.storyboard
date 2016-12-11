@@ -847,6 +847,14 @@ DQ
                                     <action selector="start:" target="3Py-Pw-Qec" id="hfi-RB-han"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-lG-CmJ">
+                                <rect key="frame" x="141" y="21" width="98" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Use you-get" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QXg-2J-lp8">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="NPn-yX-ShL" secondAttribute="trailing" id="0rf-uS-kEc"/>
@@ -869,6 +877,7 @@ DQ
                     <connections>
                         <outlet property="linksTextView" destination="NVg-hI-Dtz" id="LhP-9e-pYT"/>
                         <outlet property="startButton" destination="nM7-o5-2jr" id="Lmh-8H-rgw"/>
+                        <outlet property="useYouget" destination="rRK-lG-CmJ" id="cLa-19-s94"/>
                     </connections>
                 </viewController>
                 <customObject id="hob-hO-07W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

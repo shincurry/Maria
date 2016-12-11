@@ -31,6 +31,7 @@ extension DefaultsKeys {
     static let webAppPath = DefaultsKey<String?>("WebAppPath")
     static let enableSpeedStatusBar = DefaultsKey<Bool>("EnableSpeedStatusBar")
     static let enableDockIcon = DefaultsKey<Bool>("EnableDockIcon")
+    static let yougetPath = DefaultsKey<String?>("you-getPath")
 
     // Aria2 Settings
     static let enableAutoConnectAria2 = DefaultsKey<Bool>("EnableAutoConnectAria2")
@@ -114,6 +115,7 @@ class MariaUserDefault {
         defaults[.webAppPath] = ""
         defaults[.enableSpeedStatusBar] = false
         defaults[.enableDockIcon] = true
+        defaults[.yougetPath] = ""
         
         // Aria2 Settings
         defaults[.enableAutoConnectAria2] = true

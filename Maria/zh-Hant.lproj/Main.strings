@@ -170,6 +170,9 @@
 /* Class = "NSButtonCell"; title = "Open Torrent Files"; ObjectID = "koC-Kd-wzl"; */
 "koC-Kd-wzl.title" = "打開 BT 文件";
 
+/* Class = "NSButtonCell"; title = "Use you-get"; ObjectID = "QXg-2J-lp8"; */
+"QXg-2J-lp8.title" = "使用 you-get";
+
 /* Class = "NSWindow"; title = "Maria"; ObjectID = "o4S-zO-VLD"; */
 "o4S-zO-VLD.title" = "Maria";
 
