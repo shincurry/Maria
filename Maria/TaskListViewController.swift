@@ -31,8 +31,8 @@ class TaskListViewController: NSViewController {
     }
     
     var timer: Timer!
-    var aria2 = Aria2.shared
-
+    let aria = Aria.shared
+    
     var currentStatus: ConnectionStatus = .disconnected
 
     typealias NumberOfTask = (active: Int,waiting: Int,stopped: Int)
@@ -62,13 +62,22 @@ class TaskListViewController: NSViewController {
 
 extension TaskListViewController {
     func updateListStatus() {
-        if aria2.status == .connected {
-            aria2.tellActive()
-            aria2.tellWaiting()
-            aria2.tellStopped()
+//        if let core = aria.core {
+//            print("---core---")
+//            if let tasks = core.getActiveDownload() {
+//                print(tasks)
+//            } else {
+//                print("nil")
+//            }
+//        }
+        
+        if aria.rpc!.status == .connected {
+            aria.rpc!.tellActive()
+            aria.rpc!.tellWaiting()
+            aria.rpc!.tellStopped()
             
-            aria2.getGlobalStatus()
-            aria2.onGlobalStatus = { status in
+            aria.rpc!.getGlobalStatus()
+            aria.rpc!.onGlobalStatus = { status in
                 let activeNumber = status.numberOfActiveTask!
                 let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
                 self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
@@ -78,22 +87,22 @@ extension TaskListViewController {
     }
     
     func aria2Config() {
-        aria2.onActives = { self.newTaskData.active = $0 }
-        aria2.onWaitings = { self.newTaskData.waiting = $0 }
-        aria2.onStoppeds = {
+        aria.rpc!.onActives = { self.newTaskData.active = $0 }
+        aria.rpc!.onWaitings = { self.newTaskData.waiting = $0 }
+        aria.rpc!.onStoppeds = {
             self.newTaskData.stopped = $0.filter({ return !($0.title!.range(of: "[METADATA]") != nil && $0.status! == "complete") })
             self.updateListView()
         }
         
-        aria2.onStatusChanged = {
-            if self.aria2.status == .connecting || self.aria2.status == .disconnected {
+        aria.rpc!.onStatusChanged = {
+            if self.aria.rpc!.status == .connecting || self.aria.rpc!.status == .disconnected {
                 self.taskData = []
                 self.numberOfTask.active = 0
                 self.numberOfTask.waiting = 0
                 self.numberOfTask.stopped = 0
                 self.taskListTableView.reloadData()
             }
-            switch self.aria2.status {
+            switch self.aria.rpc!.status {
             case .connecting:
                 self.alertLabel.isHidden = false
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")

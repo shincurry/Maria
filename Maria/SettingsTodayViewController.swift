@@ -16,7 +16,7 @@ class SettingsTodayViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     
     @IBOutlet weak var stepper: NSStepper!
     @IBOutlet weak var numberOfTasksTextField: NSTextField!
@@ -29,12 +29,12 @@ extension SettingsTodayViewController {
     @IBAction func didChangeStepperValue(_ sender: NSStepper) {
         let value = sender.integerValue
         numberOfTasksTextField.stringValue = "\(value)"
-        defaults.set(value, forKey: "TodayTasksNumber")
+        defaults[.todayTasksNumber] = value
     }
 
     @IBAction func switchOption(_ sender: NSButton) {
         let boolValue = (sender.state == 1 ? true : false)
-        defaults.set(boolValue, forKey: "TodayEnableTasksSortedByProgress")
+        defaults[.todayEnableTasksSortedByProgress] = boolValue
     }
 }
 
@@ -42,8 +42,8 @@ extension SettingsTodayViewController {
 extension SettingsTodayViewController {
     func userDefaultsInit() {
         rangeLabel.stringValue = "(\(Int(stepper.minValue)) ~ \(Int(stepper.maxValue)))"
-        stepper.integerValue = defaults.integer(forKey: "TodayTasksNumber")
+        stepper.integerValue = defaults[.todayTasksNumber]
         numberOfTasksTextField.stringValue = "\(stepper.integerValue)"
-        enableTasksSortedByProgress.state = defaults.bool(forKey: "TodayEnableTasksSortedByProgress") ? 1 : 0
+        enableTasksSortedByProgress.state = defaults[.todayEnableTasksSortedByProgress] ? 1 : 0
     }
 }

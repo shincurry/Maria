@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwiftyUserDefaults
 
 class SettingsRPCServerViewController: NSViewController {
 
@@ -16,9 +17,10 @@ class SettingsRPCServerViewController: NSViewController {
         userDefaultsInit()
     }
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     
-    @IBOutlet weak var autoConnectAria2Enabled: NSButtonCell!
+    @IBOutlet weak var useEmbeddedAria2Enabled: NSButton!
+    @IBOutlet weak var autoConnectAria2Enabled: NSButton!
     
     @IBOutlet weak var host: NSTextField!
     @IBOutlet weak var port: NSTextField!
@@ -56,31 +58,32 @@ class SettingsRPCServerViewController: NSViewController {
 extension SettingsRPCServerViewController {
     
     @IBAction func finishEditing(_ sender: NSTextField) {
-        var key = ""
+        var key = DefaultsKeys.rpcServerHost
         switch sender {
         case host:
-            key = "RPCServerHost"
+            key = .rpcServerHost
         case port:
-            if let intValue = Int(sender.stringValue) {
-                defaults.set(intValue, forKey: key)
+            key = .rpcServerPort
+            if Int(sender.stringValue) != nil {
+                defaults[key] = sender.stringValue
                 defaults.synchronize()
             } else {
-                sender.stringValue = "\(defaults.integer(forKey: key))"
+                sender.stringValue = "\(defaults[key])"
             }
-            key = "RPCServerPort"
+            
             return
         case path:
-            key = "RPCServerPath"
+            key = .rpcServerPath
         case secret:
-            key = "RPCServerSecret"
+            key = .rpcServerSecret
         case username:
-            key = "RPCServerUsername"
+            key = .rpcServerUsername
         case password:
-            key = "RPCServerPassword"
+            key = .rpcServerPassword
         default:
             break
         }
-        defaults.set(sender.stringValue, forKey: key)
+        defaults[key] = sender.stringValue
         defaults.synchronize()
     }
     
@@ -88,16 +91,34 @@ extension SettingsRPCServerViewController {
     
     @IBAction func enableSSL(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.set(boolValue, forKey: "EnabledSSL")
+        defaults[.rpcServerEnabledSSL] = boolValue
         defaults.synchronize()
     }
     @IBAction func enableAutoConnectAria2(_ sender: NSButton) {
         let boolValue = sender.state == 0 ? false : true
-        defaults.set(boolValue, forKey: "EnableAutoConnectAria2")
+        defaults[.enableAutoConnectAria2] = boolValue
         defaults.synchronize()
     }
-    
-    
+    @IBAction func useEmbeddedAria2(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("restartApp.alert.messageText", comment: "")
+        alert.informativeText = NSLocalizedString("restartApp.alert.informativeText", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            if response == NSAlertFirstButtonReturn {
+                let boolValue = sender.state == 0 ? false : true
+                MariaUserDefault.main.set(boolValue, forKey: "UseEmbeddedAria2")
+                MariaUserDefault.main.synchronize()
+                let path = Bundle.main.executablePath!
+                let id = "\(ProcessInfo.processInfo.processIdentifier)"
+                Process.launchedProcess(launchPath: path, arguments: [path, id])
+                NSApp.terminate(self)
+            } else if response == NSAlertSecondButtonReturn {
+                sender.state = (sender.state + 1) & 1
+            }
+        })
+    }
 }
 
 extension SettingsRPCServerViewController: NSTextFieldDelegate {
@@ -108,28 +129,31 @@ extension SettingsRPCServerViewController: NSTextFieldDelegate {
 
 extension SettingsRPCServerViewController {
     func userDefaultsInit() {
-        if let value = defaults.object(forKey: "RPCServerHost") as? String {
+        if let value = defaults[.rpcServerHost] {
             host.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPort") as? String {
+        if let value = defaults[.rpcServerPort] {
             port.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPath") as? String {
+        if let value = defaults[.rpcServerPath] {
             path.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerSecret") as? String {
+        if let value = defaults[.rpcServerSecret] {
             secret.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerUsername") as? String {
+        if let value = defaults[.rpcServerUsername] {
             username.stringValue = value
         }
-        if let value = defaults.object(forKey: "RPCServerPassword") as? String {
+        if let value = defaults[.rpcServerPassword] {
             password.stringValue = value
         }
-        sslEnabled.state = defaults.bool(forKey: "EnabledSSL") ? 1 : 0
+        sslEnabled.state = defaults[.rpcServerEnabledSSL] ? 1 : 0
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
-        autoConnectAria2Enabled.state = defaults.bool(forKey: "EnableAutoConnectAria2") ? 1 : 0
+        autoConnectAria2Enabled.state = defaults[.enableAutoConnectAria2] ? 1 : 0
+        useEmbeddedAria2Enabled.state = MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") ? 1 : 0
+        
+        useEmbeddedAria2Enabled.title = useEmbeddedAria2Enabled.title + "(version \(EmbeddedAria2Version))"
     }
 }

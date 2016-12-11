@@ -13,29 +13,34 @@ import SwiftyJSON
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let aria2: Aria2
-
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    var aria = Aria.shared
+    let defaults = MariaUserDefault.auto
+    
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var speedStatusTimer: Timer?
+    var dockTileTimer: Timer?
     
     override init() {
-        if !defaults.bool(forKey: "IsNotFirstLaunch") {
-            AppDelegate.userDefaultsInit()
+        if !MariaUserDefault.main.bool(forKey: "IsNotFirstLaunch") {
+            MariaUserDefault.initMain()
+            MariaUserDefault.initExternal()
+            MariaUserDefault.initBuiltIn()
         }
-
-        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-            let task = Process()
-            let confPath = defaults.object(forKey: "Aria2ConfPath") as! String
-            let shFilePath = Bundle.main
-                .path(forResource: "runAria2c", ofType: "sh")
-            task.launchPath = shFilePath
-            task.arguments = [confPath]
-            task.launch()
-            task.waitUntilExit()
+        
+        if !MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+            if defaults[.enableAria2AutoLaunch] {
+                let task = Process()
+                let confPath = defaults[.aria2ConfPath]!
+                let shFilePath = Bundle.main
+                    .path(forResource: "runAria2c", ofType: "sh")
+                task.launchPath = shFilePath
+                task.arguments = [confPath]
+                task.launch()
+                task.waitUntilExit()
+            }
         }
-        aria2 = Aria2.shared
+        
         super.init()
     }
     
@@ -43,14 +48,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSUserNotificationCenter.default.delegate = self
         
-        if defaults.bool(forKey: "EnableAutoConnectAria2") {
+        if defaults[.enableAutoConnectAria2] {
             aria2open()
         }
 
         statusItem.button?.action = #selector(AppDelegate.menuClicked)
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         
-        if defaults.bool(forKey: "EnableSpeedStatusBar") {
+        if defaults[.enableSpeedStatusBar] {
             enableSpeedStatusBar()
         } else {
             disableSpeedStatusBar()
@@ -60,28 +65,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.canHide = false
         }
         
-        if defaults.bool(forKey: "EnableDockIcon") {
+        if defaults[.enableDockIcon] {
             enableDockIcon()
         } else {
             disableDockIcon()
         }
+        
+        NSApp.dockTile.contentView = dockTileView
+        dockTileTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateDockTile), userInfo: nil, repeats: true)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         aria2close()
-        
-        if defaults.bool(forKey: "EnableAria2AutoLaunch") {
-            let task = Process()
-            let pipe = Pipe()
-            let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
-            task.launchPath = shFilePath
-            task.standardOutput = pipe
-            task.launch()
-            task.waitUntilExit()
-            print("EnableAria2AutoLaunch")
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            print(String(data: data, encoding: .utf8))
+        if !MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+            if defaults[.enableAria2AutoLaunch] {
+                let task = Process()
+                let pipe = Pipe()
+                let shFilePath = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
+                task.launchPath = shFilePath
+                task.standardOutput = pipe
+                task.launch()
+                task.waitUntilExit()
+                print("EnableAria2AutoLaunch")
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                print(String(data: data, encoding: .utf8)!)
+            }
         }
+        
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -135,11 +145,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
     }
     
-    func updateSpeedStatus() {
-        if aria2.status == .connected {
-            aria2.getGlobalStatus()
+    func updateDockTile() {
+        aria.rpc!.onGlobalStatus = { status in
+            if MariaUserDefault.auto[.enableDockIcon] {
+                if status.speed!.download == 0 {
+                    self.dockTileView.badgeBox.isHidden = true
+                } else {
+                    self.dockTileView.badgeBox.isHidden = false
+                    self.dockTileView.badgeTitle.stringValue = status.speed!.downloadIntString
+                }
+                NSApp.dockTile.display()
+            }
         }
-        aria2.onGlobalStatus = { status in
+        aria.rpc!.getGlobalStatus()
+    }
+    
+    func updateSpeedStatus() {
+        if aria.rpc!.status == .connected {
+            aria.rpc!.getGlobalStatus()
+        }
+        
+        aria.rpc!.onGlobalStatus = { status in
             if let button = self.statusItem.button {
                 button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
             }
@@ -151,6 +177,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RPCServerStatus: NSMenuItem!
     @IBOutlet weak var lowSpeedMode: NSMenuItem!
     
+    @IBOutlet weak var dockTileView: DockTileView!
 }
 
 extension AppDelegate {
@@ -171,39 +198,29 @@ extension AppDelegate {
         let status = sender.state == 0 ? false : true
         if status {
             lowSpeedModeOff()
-            defaults.set(false, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = false
         } else {
             lowSpeedModeOn()
-            defaults.set(true, forKey: "EnableLowSpeedMode")
+            defaults[.enableLowSpeedMode] = true
         }
         defaults.synchronize()
-        
+    }
+    
+    func lowSpeedModeOff() {
+        let limitDownloadSpeed = defaults[.globalDownloadRate]
+        let limitUploadSpeed = defaults[.globalUploadRate]
+        aria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
+    }
+    func lowSpeedModeOn() {
+        let limitDownloadSpeed = defaults[.limitModeDownloadRate]
+        let limitUploadSpeed = defaults[.limitModeUploadRate]
+        aria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
-        let path = defaults.object(forKey: "WebAppPath") as! String
-        if !path.isEmpty {
+        if let path = defaults[.webAppPath], !path.isEmpty {
             NSWorkspace.shared().open(URL(fileURLWithPath: path))
         }
-    }
-    
-    
-    func lowSpeedModeOff() {
-        let limitDownloadSpeed = defaults.integer(forKey: "GlobalDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "GlobalUploadRate")
-        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-            controller.lowSpeedModeOff()
-        }
-        aria2.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
-    }
-
-    func lowSpeedModeOn() {
-        let limitDownloadSpeed = defaults.integer(forKey: "LimitModeDownloadRate")
-        let limitUploadSpeed = defaults.integer(forKey: "LimitModeUploadRate")
-        if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-            controller.lowSpeedModeOn()
-        }
-        aria2.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 }
 
@@ -211,80 +228,82 @@ extension AppDelegate {
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
         aria2configure()
-        aria2.connect()
+        aria.rpc!.connect()
         RPCServerStatus.state = 1
-        
     }
     
     func aria2close() {
-        aria2.disconnect()
+        aria.rpc!.disconnect()
     }
     
     func aria2configure() {
-        aria2.onConnect = {
+        aria.rpc!.onConnect = {
             self.RPCServerStatus.state = 1
-            if self.defaults.bool(forKey: "EnableLowSpeedMode") {
+            if self.defaults[.enableLowSpeedMode] {
                 self.lowSpeedModeOn()
             } else {
                 self.lowSpeedModeOff()
             }
-            if self.defaults.bool(forKey: "EnableNotificationWhenConnected") {
-                let baseHost = "http" + (self.defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-                let host = self.defaults.object(forKey: "RPCServerHost") as! String
-                let port = self.defaults.object(forKey: "RPCServerPort") as! String
-                let path = self.defaults.object(forKey: "RPCServerPath") as! String
-                let url = baseHost + host + ":" + port + path
-                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(url)")
+            if self.defaults[.enableNotificationWhenConnected] {
+                MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(MariaUserDefault.RPCUrl)")
             }
         }
-        aria2.onDisconnect = {
+        aria.rpc!.onDisconnect = {
             self.RPCServerStatus.state = 0
-            if self.defaults.bool(forKey: "EnableNotificationWhenDisconnected") {
+            if self.defaults[.enableNotificationWhenDisconnected] {
                 MariaNotification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
         }
         
-        aria2.downloadStarted = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenStarted") {
+        aria.rpc!.downloadStarted = { name in
+            if self.defaults[.enableNotificationWhenStarted] {
                 MariaNotification.notification(title: "Download Started", details: "\(name) started.")
             }
         }
-        aria2.downloadPaused = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenPaused") {
+        aria.rpc!.downloadPaused = { name in
+            if self.defaults[.enableNotificationWhenPaused] {
                 MariaNotification.notification(title: "Download Paused", details: "\(name) paused.")
             }
         }
-        aria2.downloadStopped = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenStopped") {
+        aria.rpc!.downloadStopped = { name in
+            if self.defaults[.enableNotificationWhenStopped] {
                 MariaNotification.notification(title: "Download Stopoped", details: "\(name) stopped.")
             }
         }
-        aria2.downloadCompleted = { (name, path) in
-            if self.defaults.bool(forKey: "EnableNotificationWhenCompleted") {
+        aria.rpc!.downloadCompleted = { (name, path) in
+            if self.defaults[.enableNotificationWhenCompleted] {
                 MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path as AnyObject])
             }
         }
-        aria2.downloadError = { name in
-            if self.defaults.bool(forKey: "EnableNotificationWhenError") {
+        aria.rpc!.downloadError = { name in
+            if self.defaults[.enableNotificationWhenError] {
                 MariaNotification.notification(title: "Download Error", details: "Download task \(name) have an error.")
             }
         }
         
         
-        aria2.globalSpeedLimitOK = { result in
+        aria.rpc!.globalSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 0
+                if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+                    controller.lowSpeedModeButton.state = 0
+                    if let button = controller.touchBarLowSpeedButton {
+                        button.state = 0
+                    }
+                }
             }
         }
-        aria2.lowSpeedLimitOK = { result in
+        aria.rpc!.lowSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 1
+                if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
+                    controller.lowSpeedModeButton.state = 1
+                    if let button = controller.touchBarLowSpeedButton {
+                        button.state = 1
+                    }
+                }
             }
         }
-        
-        
-        
-        
     }
     
     fileprivate func getStringBy(_ value: Double) -> String {
@@ -306,63 +325,5 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 
             }
         }
-    }
-}
-
-// MARK: - UserDefaults Init
-extension AppDelegate {
-    static func userDefaultsInit() {
-        let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
-        
-        // First Launch
-        defaults.set(true, forKey: "IsNotFirstLaunch")
-        
-        
-        // Notification Settings
-        defaults.set(true, forKey: "EnableNotificationWhenStarted")
-        defaults.set(false, forKey: "EnableNotificationWhenStopped")
-        defaults.set(false, forKey: "EnableNotificationWhenPaused")
-        defaults.set(true, forKey: "EnableNotificationWhenCompleted")
-        defaults.set(false, forKey: "EnableNotificationWhenError")
-        
-        defaults.set(false, forKey: "EnableNotificationWhenConnected")
-        defaults.set(true, forKey: "EnableNotificationWhenDisconnected")
-        
-        // Bandwidth Settings
-        defaults.set(false, forKey: "EnableLowSpeedMode")
-        
-        defaults.set(0, forKey: "GlobalDownloadRate")
-        defaults.set(0, forKey: "GlobalUploadRate")
-        defaults.set(0, forKey: "LimitModeDownloadRate")
-        defaults.set(0, forKey: "LimitModeUploadRate")
-        
-        
-        // General Settings
-        defaults.set(false, forKey: "LaunchAtStartup")
-        defaults.set("", forKey: "WebAppPath")
-        defaults.set(false, forKey: "EnableSpeedStatusBar")
-        defaults.set(true, forKey: "EnableDockIcon")
-        
-        
-        // Aria2 Settings
-        defaults.set(true, forKey: "EnableAutoConnectAria2")
-        
-        defaults.set("localhost", forKey: "RPCServerHost")
-        defaults.set("6800", forKey: "RPCServerPort")
-        defaults.set("/jsonrpc", forKey: "RPCServerPath")
-        defaults.set("", forKey: "RPCServerSecret")
-        defaults.set("", forKey: "RPCServerUsername")
-        defaults.set("", forKey: "RPCServerPassword")
-        defaults.set(false, forKey: "EnabledSSL")
-        
-        defaults.set(false, forKey: "EnableAria2AutoLaunch")
-        defaults.set("", forKey: "Aria2ConfPath")
-        
-        defaults.synchronize()
-        
-        // Today Settings
-        defaults.set(5, forKey: "TodayTasksNumber")
-        defaults.set(false, forKey: "TodayEnableTasksSortedByProgress")
-
     }
 }

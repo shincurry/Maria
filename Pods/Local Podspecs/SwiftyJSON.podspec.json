@@ -1,6 +1,6 @@
 {
   "name": "SwiftyJSON",
-  "version": "2.3.2",
+  "version": "3.1.1",
   "summary": "SwiftyJSON makes it easy to deal with JSON data in Swift",
   "homepage": "https://github.com/SwiftyJSON/SwiftyJSON",
   "license": {
@@ -17,12 +17,12 @@
     "watchos": "2.0",
     "tvos": "9.0"
   },
-  "pod_target_xcconfig": {
-    "SWIFT_VERSION": "3.0"
-  },
   "source": {
     "git": "https://github.com/SwiftyJSON/SwiftyJSON.git",
-    "tag": "2.3.2"
+    "tag": "v3.1.1"
   },
-  "source_files": "Source/*.swift"
+  "source_files": "Source/*.swift",
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  }
 }

@@ -29,6 +29,9 @@
 "aria2.status.disconnected" = "Disconnected to aria2.";
 
 // MARK: SettingsRPCServerViewController
+"useEmbeddedAria2.alert.messageText" = "This operation need restart Maria";
+"useEmbeddedAria2.alert.informativeText" = "Are you sure to restart Maria?";
+
 "restartApp.alert.messageText" = "Restart Maria";
 "restartApp.alert.informativeText" = "Are you sure to restart Maria?";
 

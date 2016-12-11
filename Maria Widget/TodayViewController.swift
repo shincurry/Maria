@@ -36,15 +36,17 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
     var taskData: [Aria2Task] = []
     
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
+    let defaults = MariaUserDefault.auto
     
-    var aria2 = Aria2.shared
+    var aria = Aria.shared
+    
     var timer: Timer!
     var authorized: Bool = true
     
     func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
         completionHandler(.newData)
     }
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,42 +55,41 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")
         taskListTableView.rowHeight = cellHeight
         aria2Config()
-        
     }
 
     override func viewWillAppear() {
-        aria2.connect()
+        aria.rpc!.connect()
         runTimer()
     }
     override func viewWillDisappear() {
-        aria2.disconnect()
+        aria.rpc!.disconnect()
         closeTimer()
     }
     
     func updateListStatus() {
-        if aria2.status == .connected {
-            aria2.getGlobalStatus()
-            aria2.tellActive()
+        if aria.rpc!.status == .connected {
+            aria.rpc!.getGlobalStatus()
+            aria.rpc!.tellActive()
         }
     }
     
     func aria2Config() {
-        aria2.onGlobalStatus = { status in
+        aria.rpc!.onGlobalStatus = { status in
             self.authorized = true
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
         
-        aria2.onActives = { tasks in
+        aria.rpc!.onActives = { tasks in
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
             } else {
                 self.taskListTableView.gridStyleMask = NSTableViewGridLineStyle()
-                if self.defaults.bool(forKey: "TodayEnableTasksSortedByProgress") {
+                if self.defaults[.todayEnableTasksSortedByProgress] {
                     taskArray = taskArray.sorted() { return $0.progress > $1.progress }
                 }
-                let number = self.defaults.integer(forKey: "TodayTasksNumber")
+                let number = self.defaults[.todayTasksNumber]
                 if number < taskArray.count {
                     taskArray = taskArray.enumerated().filter({ (index, task) in return index > number-1 }).map({ return $1 })
                 }
@@ -96,14 +97,14 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             self.taskData = taskArray
             self.updateListView()
         }
-        aria2.onStatusChanged = {
-            let flag = (self.aria2.status == .connected)
+        aria.rpc!.onStatusChanged = {
+            let flag = (self.aria.rpc!.status == .connected)
             self.speedView.isHidden = !flag
             self.separateLine.isHidden = !flag
             self.taskListTableView.isHidden = !flag
             self.alertLabel.isHidden = flag
 
-            switch self.aria2.status {
+            switch self.aria.rpc!.status {
             case .connecting:
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0

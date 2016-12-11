@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gqa-IX-nBG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -193,9 +194,10 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8ED-SF-jvZ">
-                                            <rect key="frame" x="118" y="13" width="105" height="26"/>
+                                            <rect key="frame" x="118" y="13" width="145" height="26"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="U2p-e0-p8o"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="320" id="AGj-gY-w4q"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="U2p-e0-p8o"/>
                                             </constraints>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingMiddle" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2C6-o5-bRx" id="nwJ-O9-ZWQ">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -403,13 +405,13 @@
             <objects>
                 <viewController title="RPC Server" id="jsm-It-tHy" customClass="SettingsRPCServerViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WTw-he-Tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="508" height="380"/>
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="402"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="General" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-rS-big">
-                                <rect key="frame" x="17" y="299" width="474" height="71"/>
+                                <rect key="frame" x="17" y="299" width="474" height="93"/>
                                 <view key="contentView" id="fFg-U6-hg9">
-                                    <rect key="frame" x="2" y="2" width="470" height="54"/>
+                                    <rect key="frame" x="2" y="2" width="470" height="76"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="r4z-MS-3sp">
@@ -418,16 +420,30 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="enableAutoConnectAria2:" target="jsm-It-tHy" id="Ir8-K1-L28"/>
+                                            </connections>
+                                        </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="6Iw-7g-JtN">
+                                            <rect key="frame" x="18" y="40" width="188" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Use embedded aria2 (beta)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0ys-B7-w4U">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="useEmbeddedAria2:" target="jsm-It-tHy" id="Q4b-mR-yNI"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="r4z-MS-3sp" secondAttribute="bottom" constant="20" id="3wk-VN-YP6"/>
-                                        <constraint firstItem="r4z-MS-3sp" firstAttribute="top" secondItem="fFg-U6-hg9" secondAttribute="top" constant="20" id="CGJ-Ui-OKk"/>
+                                        <constraint firstItem="r4z-MS-3sp" firstAttribute="top" secondItem="6Iw-7g-JtN" secondAttribute="bottom" constant="8" id="M6D-yD-epY"/>
                                         <constraint firstItem="r4z-MS-3sp" firstAttribute="leading" secondItem="fFg-U6-hg9" secondAttribute="leading" constant="20" id="Ngi-XQ-U6q"/>
+                                        <constraint firstItem="6Iw-7g-JtN" firstAttribute="top" secondItem="fFg-U6-hg9" secondAttribute="top" constant="20" id="bms-SG-PLA"/>
+                                        <constraint firstItem="6Iw-7g-JtN" firstAttribute="leading" secondItem="fFg-U6-hg9" secondAttribute="leading" constant="20" id="dn0-YO-jH4"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="67" id="3P1-0n-m9u"/>
                                     <constraint firstAttribute="width" constant="468" id="Aqv-KI-dhe"/>
                                 </constraints>
                             </box>
@@ -438,9 +454,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2sV-os-73Z">
-                                            <rect key="frame" x="215" y="221" width="184" height="22"/>
+                                            <rect key="frame" x="215" y="221" width="187" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="184" id="r5H-YX-NXU"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="184" id="r5H-YX-NXU"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="localhost" drawsBackground="YES" id="DBY-wr-PRz">
                                                 <font key="font" metaFont="system"/>
@@ -507,7 +523,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AQL-tN-EA8">
-                                            <rect key="frame" x="399" y="224" width="11" height="17"/>
+                                            <rect key="frame" x="402" y="224" width="8" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title=":" id="xOW-Nf-Qag">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -533,7 +549,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="finishEditing:" target="jsm-It-tHy" id="Gr5-qu-IxW"/>
+                                                <action selector="finishEditing:" target="jsm-It-tHy" id="IxW-gt-DUj"/>
                                                 <outlet property="delegate" destination="jsm-It-tHy" id="wuW-Eh-G0Y"/>
                                             </connections>
                                         </textField>
@@ -680,7 +696,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="autoConnectAria2Enabled" destination="eob-aj-KjL" id="lu9-eZ-Xgp"/>
+                        <outlet property="autoConnectAria2Enabled" destination="r4z-MS-3sp" id="bLg-9p-7gY"/>
                         <outlet property="basePath" destination="mtV-XZ-wbA" id="PQ0-OZ-dkE"/>
                         <outlet property="host" destination="2sV-os-73Z" id="ilW-9G-cjf"/>
                         <outlet property="password" destination="2fg-Bg-Yzh" id="e8M-hX-4km"/>
@@ -688,12 +704,13 @@
                         <outlet property="port" destination="NM7-Vk-2eD" id="bVK-HN-eoR"/>
                         <outlet property="secret" destination="LS6-VL-n5A" id="MIE-Lg-ST4"/>
                         <outlet property="sslEnabled" destination="cgX-YH-pno" id="I4V-Bp-rCl"/>
+                        <outlet property="useEmbeddedAria2Enabled" destination="6Iw-7g-JtN" id="aYk-nO-hKf"/>
                         <outlet property="username" destination="GTU-eL-jg2" id="ArU-GM-bTC"/>
                     </connections>
                 </viewController>
                 <customObject id="DTa-Jl-hSU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="1554"/>
+            <point key="canvasLocation" x="1137" y="1599.5"/>
         </scene>
         <!--General-->
         <scene sceneID="dYH-VV-qY1">

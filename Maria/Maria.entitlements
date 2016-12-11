@@ -4,7 +4,9 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.windisco.maria</string>
+		<string>group.windisco.maria.external</string>
+		<string>group.windisco.maria.builtin</string>
+		<string>group.windisco.maria.main</string>
 	</array>
 </dict>
 </plist>

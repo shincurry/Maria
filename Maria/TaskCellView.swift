@@ -17,12 +17,12 @@ class TaskCellView: NSTableCellView {
         // Drawing code here.
         actionButton.target = self
         
-        aria2.onUnpause = { flag in
+        aria.rpc!.onUnpause = { flag in
             if flag {
                 self.status = "active"
             }
         }
-        aria2.onPause = { flag in
+        aria.rpc!.onPause = { flag in
             if flag {
                 self.status = "paused"
             }
@@ -38,7 +38,7 @@ class TaskCellView: NSTableCellView {
             }
         }
     }
-    let aria2 = Aria2.shared
+    let aria = Aria.shared
     
     var data: Aria2Task?
     
@@ -55,22 +55,22 @@ class TaskCellView: NSTableCellView {
                 taskStatusLabel.stringValue = "Downloading"
             case "paused":
                 actionButton.action = #selector(actionUnpause)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Paused"
             case "complete":
                 actionButton.image = NSImage(named: "CompleteButton")
                 taskStatusLabel.stringValue = "Complete"
             case "stopped":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Stopped"
             case "removed":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Removed"
             case "error":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "RestartButton")
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Error"
             default:
                 break
@@ -93,17 +93,17 @@ class TaskCellView: NSTableCellView {
     @IBOutlet weak var actionButton: NSButton!
     
     func actionUnpause() {
-        aria2.unpause(gid)
+        aria.rpc!.unpause(gid)
     }
     func actionPause() {
-        aria2.pause(gid)
+        aria.rpc!.pause(gid)
     }
     func actionStop() {
         
     }
     func actionRestart() {
         if !isBtDownload {
-            aria2.restart(data!)
+            aria.rpc!.restart(data!)
         }
     }
     

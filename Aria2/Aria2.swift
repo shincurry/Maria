@@ -19,25 +19,17 @@ public enum ConnectionStatus {
 
 @objc(Aria2)
 open class Aria2 {
-    
-    open static let shared: Aria2 = {
-        let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
-        let baseHost = "http" + (defaults.bool(forKey: "SSLEnabled") ? "s" : "") + "://"
-        let host = defaults.object(forKey: "RPCServerHost") as! String
-        let port = defaults.object(forKey: "RPCServerPort") as! String
-        let path = defaults.object(forKey: "RPCServerPath") as! String
-        return Aria2(url: baseHost + host + ":" + port + path)
-    }()
-    
-    var secret = ""
-    let defaults = UserDefaults(suiteName: "525R2U87NG.group.windisco.maria")!
-    
+        
     var socket: WebSocket!
     
-    public init(url: String) {
+    var secret = ""
+    
+    public init(url: String, secret: String?) {
         socket = WebSocket(url: URL(string: url)!)
+        if let sec = secret {
+            self.secret = sec
+        }
         socket.delegate = self
-        secret = defaults.object(forKey: "RPCServerSecret") as! String
     }
     
     // MARK: - Public API
@@ -279,21 +271,21 @@ extension Aria2 {
 
 // MARK: - Web socket delegate
 extension Aria2: WebSocketDelegate {
-    public func websocketDidConnect(_ socket: WebSocket) {
+    public func websocketDidConnect(socket: WebSocket) {
         print("WebSocket connected")
         status = .connected
         onConnect?()
     }
-    public func websocketDidDisconnect(_ socket: WebSocket, error: NSError?) {
+    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket disconnected: \(error)")
         status = .disconnected
         onDisconnect?()
     }
-    public func websocketDidReceiveData(_ socket: WebSocket, data: Data) {
+    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
         print(data)
     }
     
-    public func websocketDidReceiveMessage(_ socket: WebSocket, text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         let results = JSON(data: text.data(using: .utf8)!)
         if results["error"]["message"] == "Unauthorized" {
             self.status = .unauthorized
