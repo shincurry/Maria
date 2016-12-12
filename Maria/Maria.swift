@@ -1,5 +1,5 @@
 //
-//  Aria.swift
+//  maria.swift
 //  Maria
 //
 //  Created by ShinCurry on 2016/10/20.
@@ -8,17 +8,19 @@
 
 import Cocoa
 import Aria2
+import YouGet
 
-class Aria {
+class Maria {
     var rpc: Aria2!
     var core: Aria2Core?
     var youget: YouGet?
     
-    static let shared = Aria()
+    static let shared = Maria()
     
     private init() {
         initCore()
         initRPC()
+        initYouGet()
     }
     
     private func initRPC() {
@@ -54,6 +56,12 @@ class Aria {
                 config.data.append(("save-session", "\(Bundle.main.resourcePath!)/aria2.session"))
                 core = Aria2Core(options: config.dict)
             }
+        }
+    }
+    
+    private func initYouGet() {
+        if MariaUserDefault.auto[.enableYouGet] {
+            youget = YouGet()
         }
     }
 }

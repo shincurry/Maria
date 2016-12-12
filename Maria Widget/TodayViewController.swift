@@ -38,7 +38,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     let defaults = MariaUserDefault.auto
     
-    var aria = Aria.shared
+    var maria = Maria.shared
     
     var timer: Timer!
     var authorized: Bool = true
@@ -58,29 +58,29 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
 
     override func viewWillAppear() {
-        aria.rpc!.connect()
+        maria.rpc!.connect()
         runTimer()
     }
     override func viewWillDisappear() {
-        aria.rpc!.disconnect()
+        maria.rpc!.disconnect()
         closeTimer()
     }
     
     func updateListStatus() {
-        if aria.rpc!.status == .connected {
-            aria.rpc!.getGlobalStatus()
-            aria.rpc!.tellActive()
+        if maria.rpc!.status == .connected {
+            maria.rpc!.getGlobalStatus()
+            maria.rpc!.tellActive()
         }
     }
     
     func aria2Config() {
-        aria.rpc!.onGlobalStatus = { status in
+        maria.rpc!.onGlobalStatus = { status in
             self.authorized = true
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
         
-        aria.rpc!.onActives = { tasks in
+        maria.rpc!.onActives = { tasks in
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
@@ -97,14 +97,14 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             self.taskData = taskArray
             self.updateListView()
         }
-        aria.rpc!.onStatusChanged = {
-            let flag = (self.aria.rpc!.status == .connected)
+        maria.rpc!.onStatusChanged = {
+            let flag = (self.maria.rpc!.status == .connected)
             self.speedView.isHidden = !flag
             self.separateLine.isHidden = !flag
             self.taskListTableView.isHidden = !flag
             self.alertLabel.isHidden = flag
 
-            switch self.aria.rpc!.status {
+            switch self.maria.rpc!.status {
             case .connecting:
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0

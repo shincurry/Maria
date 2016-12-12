@@ -16,24 +16,55 @@ class NewTaskViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        aria.rpc!.onAddUris = { flag in
+        maria.rpc!.onAddUris = { flag in
+            if flag {
+                self.dismiss(self)
+            } else {
+                self.view.window?.shakeWindow()
+            }
         }
-        aria.rpc!.onAddTorrent = { flag in
+        maria.rpc!.onAddTorrent = { flag in
+            if flag {
+                self.dismiss(self)
+            } else {
+                
+            }
+        }
+
+        size = progressIndicator.frame.size
+        progressIndicator.frame.size = NSSize.zero
+    }
+    
+    override func viewWillAppear() {
+        if defaults[.enableYouGet] {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(youget), userInfo: nil, repeats: true)
         }
     }
     
-    let aria = Aria.shared
-
-    @IBOutlet var linksTextView: NSTextView!
+    override func viewWillDisappear() {
+        if defaults[.enableYouGet] {
+            timer.invalidate()
+            timer = nil
+        }
+    }
+    
+    let defaults = MariaUserDefault.auto
+    let maria = Maria.shared
+    
+    var downloadUrl = [""]
+    var size: NSSize!
+    var shouldYouGet = 0
+    var doYouGet = 0
+    var timer: Timer!
+    @IBOutlet weak var linkTextField: NSTextField!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    @IBOutlet weak var messageTextField: NSTextField!
     @IBOutlet weak var startButton: NSButton!
     
     
     @IBAction func start(_ sender: NSButton) {
-        if let uris = linksTextView.string?.components(separatedBy: "\n") {
-            aria.rpc!.add(uris: uris.filter({ return !$0.isEmpty }))
-//            aria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
-            self.dismiss(self)
-        }
+        maria.rpc!.add(uris: downloadUrl)
+//        maria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
     }
 
     @IBAction func openBtFile(_ sender: NSButton) {
@@ -48,17 +79,92 @@ class NewTaskViewController: NSViewController {
         openPanel.runModal()
         if let url = openPanel.url {
             if let data = try? Data(contentsOf: url) {
-                aria.rpc!.add(torrent: data)
+                maria.rpc!.add(torrent: data)
                 self.dismiss(self)
             }
         }
     }
 }
 
-extension NewTaskViewController: NSTextViewDelegate {
-    func textDidChange(_ notification: Notification) {
-        if let text = linksTextView.string {
-            startButton.isEnabled = !text.isEmpty
+extension NewTaskViewController: NSTextFieldDelegate {
+    override func controlTextDidChange(_ obj: Notification) {
+        let url = linkTextField.stringValue
+        if url.isEmpty {
+            self.startButton.isEnabled = false
+            return
+        }else {
+            self.startButton.isEnabled = true
         }
+        let pattern = "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
+        if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {
+            self.startButton.isEnabled = true
+        } else {
+            self.startButton.isEnabled = false
+            return
+        }
+        
+        downloadUrl = [url]
+        shouldYouGet += 1
+    }
+    
+    func youget() {
+        if shouldYouGet != 0 && shouldYouGet == doYouGet {
+            let url = linkTextField.stringValue
+            downloadUrl = [url]
+            messageTextField.stringValue = ""
+            DispatchQueue.global().async {
+                self.startButton.isEnabled = false
+                self.showProgressIndicator()
+                if let result = self.maria.youget?.fetchData(fromLink: url) {
+                    self.messageTextField.stringValue = result.description
+                    self.downloadUrl = result.sources
+                }
+                self.hideProgressIndicator()
+                self.startButton.isEnabled = true
+            }
+            shouldYouGet = 0
+            doYouGet = 0
+        } else {
+            doYouGet = shouldYouGet
+        }
+    }
+}
+
+extension NewTaskViewController {
+    //NSProgressIndicator.isHidden doesn't work.
+    func showProgressIndicator() {
+        self.progressIndicator.frame.size = self.size
+        self.progressIndicator.needsLayout = true
+        self.progressIndicator.startAnimation(self)
+    }
+    
+    func hideProgressIndicator() {
+        self.progressIndicator.stopAnimation(self)
+        self.progressIndicator.frame.size = NSSize.zero
+        self.progressIndicator.needsLayout = true
+    }
+}
+
+extension NSWindow {
+    func shakeWindow(){
+        let numberOfShakes = 3
+        let durationOfShake = 0.35
+        let vigourOfShake: CGFloat = 0.05
+        
+        let frame = self.frame
+        let shakeAnimation  = CAKeyframeAnimation()
+        
+        let shakePath = CGMutablePath()
+        shakePath.move(to: CGPoint(x: NSMinX(frame), y: NSMinY(frame)))
+        for _ in 0..<numberOfShakes {
+            shakePath.addLine(to: CGPoint(x: NSMinX(frame) - frame.size.width * vigourOfShake, y: NSMinY(frame)))
+            shakePath.addLine(to: CGPoint(x: NSMinX(frame) + frame.size.width * vigourOfShake - frame.size.width * vigourOfShake, y: NSMinY(frame)))
+        }
+        shakePath.closeSubpath()
+        shakeAnimation.path = shakePath;
+        shakeAnimation.duration = durationOfShake;
+        
+        self.animations = ["frameOrigin": shakeAnimation]
+        self.animator().setFrameOrigin(self.frame.origin)
     }
 }

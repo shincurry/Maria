@@ -22,6 +22,7 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var enableSpeedStatusBar: NSButton!
     
     @IBOutlet weak var enableDockIcon: NSButton!
+    @IBOutlet weak var enableYouGet: NSButton!
     
     @IBOutlet weak var webAppPathButton: NSPopUpButton!
     
@@ -43,6 +44,8 @@ class SettingsGeneralViewController: NSViewController {
             } else {
                 appDelegate.disableDockIcon()
             }
+        case enableYouGet:
+            defaults[.enableYouGet] = boolValue
         default:
             break
         }
@@ -76,6 +79,7 @@ extension SettingsGeneralViewController {
         }
         enableSpeedStatusBar.state = defaults[.enableSpeedStatusBar] ? 1 : 0
         enableDockIcon.state  = defaults[.enableDockIcon] ? 1 : 0
+        enableYouGet.state = defaults[.enableYouGet] ? 1 : 0
     }
 }
 
