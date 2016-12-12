@@ -12,6 +12,7 @@ import Aria2
 class Aria {
     var rpc: Aria2!
     var core: Aria2Core?
+    var youget: YouGet?
     
     static let shared = Aria()
     

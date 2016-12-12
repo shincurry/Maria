@@ -171,7 +171,9 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cell = tableView.make(withIdentifier: "TaskCell", owner: self) as! TaskCellView
+        guard let cell = tableView.make(withIdentifier: "TaskCell", owner: self) as? TaskCellView else {
+            fatalError("Unexpected cell type at \(row)")
+        }
         cell.update(taskData[row])
         return cell
     }

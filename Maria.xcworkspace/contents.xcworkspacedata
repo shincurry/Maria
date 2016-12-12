@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:YouGet/YouGet.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Aria2Core.xcodeproj">
    </FileRef>
    <FileRef
@@ -12,5 +15,8 @@
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:YouGet.xcodeproj">
    </FileRef>
 </Workspace>
