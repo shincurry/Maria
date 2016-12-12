@@ -91,15 +91,21 @@ extension NewTaskViewController: NSTextFieldDelegate {
         let url = linkTextField.stringValue
         if url.isEmpty {
             self.startButton.isEnabled = false
+            shouldYouGet = 0
+            doYouGet = 0
+            hideProgressIndicator()
             return
         }else {
             self.startButton.isEnabled = true
         }
-        let pattern = "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?$"
+        let pattern = "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?"
         if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {
             self.startButton.isEnabled = true
         } else {
             self.startButton.isEnabled = false
+            shouldYouGet = 0
+            doYouGet = 0
+            hideProgressIndicator()
             return
         }
         
@@ -115,9 +121,11 @@ extension NewTaskViewController: NSTextFieldDelegate {
             DispatchQueue.global().async {
                 self.startButton.isEnabled = false
                 self.showProgressIndicator()
-                if let result = self.maria.youget?.fetchData(fromLink: url) {
-                    self.messageTextField.stringValue = result.description
-                    self.downloadUrl = result.sources
+                if let result = self.maria.youget?.fetchInfo(fromLink: url) {
+                    self.messageTextField.stringValue = result
+                    if let src = self.maria.youget?.fetchUrl(fromLink: url) {
+                        self.downloadUrl = [src]
+                    }
                 }
                 self.hideProgressIndicator()
                 self.startButton.isEnabled = true

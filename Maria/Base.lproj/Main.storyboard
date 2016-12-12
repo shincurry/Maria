@@ -820,12 +820,12 @@ DQ
                                 <rect key="frame" x="430" y="186" width="16" height="16"/>
                             </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEu-Mo-GMw">
-                                <rect key="frame" x="18" y="61" width="410" height="110"/>
+                                <rect key="frame" x="22" y="61" width="402" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="mpo-jv-JE1"/>
                                 </constraints>
-                                <textFieldCell key="cell" selectable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" placeholderString="" id="1IR-Wf-ZVu">
-                                    <font key="font" metaFont="system" size="11"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" placeholderString="" id="1IR-Wf-ZVu">
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -833,34 +833,34 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kB8-sw-fcI">
                                 <rect key="frame" x="18" y="43" width="410" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Maria support you-get now. visit https://you-get.org for more details." id="KIg-ti-y0Z">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="leading" secondItem="Pxw-AI-2S1" secondAttribute="leading" id="BmB-yG-YyF"/>
                             <constraint firstItem="vEu-Mo-GMw" firstAttribute="top" secondItem="6Lh-aY-ONW" secondAttribute="bottom" constant="12" id="CLi-53-ete"/>
                             <constraint firstAttribute="bottom" secondItem="nM7-o5-2jr" secondAttribute="bottom" constant="20" id="DjB-Vb-Zgo"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="leading" secondItem="qAc-gW-pQT" secondAttribute="trailing" constant="8" id="IAt-Aq-uhc"/>
+                            <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" id="Kxi-Mr-hux"/>
+                            <constraint firstItem="kB8-sw-fcI" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" id="Me0-GO-Kxd"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="vEu-Mo-GMw" secondAttribute="bottom" constant="20" id="Nw0-pV-cLl"/>
                             <constraint firstItem="6Lh-aY-ONW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="Ooq-Ze-qaX"/>
                             <constraint firstItem="kB8-sw-fcI" firstAttribute="top" secondItem="vEu-Mo-GMw" secondAttribute="bottom" constant="2" id="Rxi-Zi-mUy"/>
                             <constraint firstAttribute="trailing" secondItem="kM6-KK-2eh" secondAttribute="trailing" constant="8" id="Rzm-2F-33W"/>
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="ThB-mo-fby"/>
-                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" id="Uib-RD-Uxi"/>
+                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="-4" id="Uib-RD-Uxi"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="kB8-sw-fcI" secondAttribute="bottom" constant="2" id="VtL-o4-j81"/>
                             <constraint firstItem="kM6-KK-2eh" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="4" id="X0f-Cb-MOf"/>
                             <constraint firstItem="kM6-KK-2eh" firstAttribute="centerY" secondItem="6Lh-aY-ONW" secondAttribute="centerY" id="ZeF-n3-waH"/>
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="top" secondItem="Yqt-Qp-1qf" secondAttribute="top" constant="10" id="c9d-hJ-ILQ"/>
-                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="vEu-Mo-GMw" secondAttribute="trailing" id="eUx-bv-bKs"/>
-                            <constraint firstItem="kB8-sw-fcI" firstAttribute="trailing" secondItem="vEu-Mo-GMw" secondAttribute="trailing" id="hac-CB-gAy"/>
+                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" id="ehz-1S-fbF"/>
                             <constraint firstItem="qAc-gW-pQT" firstAttribute="centerY" secondItem="Pxw-AI-2S1" secondAttribute="centerY" id="hxU-sg-9Um"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="centerY" secondItem="qAc-gW-pQT" secondAttribute="centerY" id="m6y-V3-Cxk"/>
-                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" id="oIJ-nb-W6x"/>
+                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" constant="4" id="oIJ-nb-W6x"/>
                             <constraint firstItem="6Lh-aY-ONW" firstAttribute="top" secondItem="3Mq-qW-PTW" secondAttribute="bottom" constant="8" id="ucb-Gx-YeT"/>
-                            <constraint firstItem="kB8-sw-fcI" firstAttribute="leading" secondItem="vEu-Mo-GMw" secondAttribute="leading" id="wqJ-Ax-KmS"/>
+                            <constraint firstItem="kB8-sw-fcI" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" id="xjp-ok-Rn3"/>
                         </constraints>
                     </view>
                     <connections>
