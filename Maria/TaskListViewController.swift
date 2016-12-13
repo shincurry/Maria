@@ -21,6 +21,7 @@ class TaskListViewController: NSViewController {
         taskListTableView.selectionHighlightStyle = .none
         
         aria2Config()
+        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSForegroundColorAttributeName: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSFontAttributeName: NSFont.systemFont(ofSize: 14)])
     }
     
     override func viewWillAppear() {
@@ -31,6 +32,9 @@ class TaskListViewController: NSViewController {
     }
     
     var timer: Timer!
+    
+    var timeToConnectAria = 4
+    var countdownTimeToConnectAria = 4
     let aria = Aria.shared
     
     var currentStatus: ConnectionStatus = .disconnected
@@ -45,6 +49,7 @@ class TaskListViewController: NSViewController {
     let selectedColor = NSColor(calibratedRed: 211.0/255.0, green: 231.0/255.0, blue: 250.0/255.0, alpha: 1.0).cgColor
     
     @IBOutlet weak var alertLabel: NSTextField!
+    @IBOutlet weak var alertConnectButton: NSButton!
     @IBOutlet weak var taskListTableView: NSTableView!
     
     @IBOutlet weak var globalSpeedLabel: NSTextField!
@@ -56,6 +61,9 @@ class TaskListViewController: NSViewController {
         if theEvent.keyCode == 53 {
             taskListTableView.deselectRow(taskListTableView.selectedRow)
         }
+    }
+    @IBAction func connectToAria(_ sender: NSButton) {
+        aria.rpc.connect()
     }
 }
 
@@ -71,7 +79,21 @@ extension TaskListViewController {
 //            }
 //        }
         
-        if aria.rpc!.status == .connected {
+        switch aria.rpc!.status {
+        case .disconnected:
+            countdownTimeToConnectAria -= 1
+            if countdownTimeToConnectAria == 0 {
+                aria.rpc.connect()
+                timeToConnectAria *= 2
+                countdownTimeToConnectAria = timeToConnectAria
+            } else {
+                let localized = NSLocalizedString("aria2.status.disconnected", comment: "")
+                alertLabel.stringValue = String(format: localized, countdownTimeToConnectAria)
+            }
+        case .connected:
+            timeToConnectAria = 4
+            countdownTimeToConnectAria = 4
+            
             aria.rpc!.tellActive()
             aria.rpc!.tellWaiting()
             aria.rpc!.tellStopped()
@@ -83,6 +105,8 @@ extension TaskListViewController {
                 self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
                 self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
             }
+        default:
+            break
         }
     }
     
@@ -106,14 +130,17 @@ extension TaskListViewController {
             case .connecting:
                 self.alertLabel.isHidden = false
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
+                self.alertConnectButton.isHidden = true
             case .connected:
+                self.alertLabel.isHidden = true
                 self.alertLabel.isHidden = true
             case .unauthorized:
                 self.alertLabel.isHidden = false
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.unauthorized", comment: "")
+                self.alertConnectButton.isHidden = true
             case .disconnected:
                 self.alertLabel.isHidden = false
-                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
+                self.alertConnectButton.isHidden = false
             }
         }
     }

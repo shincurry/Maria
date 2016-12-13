@@ -56,8 +56,8 @@
 /* Class = "NSButtonCell"; title = "Show speed on status bar"; ObjectID = "B5P-Mc-fMu"; */
 "B5P-Mc-fMu.title" = "在狀態欄顯示速度";
 
-/* Class = "NSButtonCell"; title = "Show Dock icon"; ObjectID = "qpa-Fh-aLe"; */
-"qpa-Fh-aLe.title" = "在 Dock 上顯示圖標";
+/* Class = "NSButtonCell"; title = "StatusBar mode"; ObjectID = "qpa-Fh-aLe"; */
+"qpa-Fh-aLe.title" = "狀態欄模式 (StatusBar App)";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "B9Z-fe-DcI"; */
 "B9Z-fe-DcI.title" = "0";

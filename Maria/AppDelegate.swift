@@ -16,19 +16,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var aria = Aria.shared
     let defaults = MariaUserDefault.auto
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    var statusItem: NSStatusItem?
     
     var speedStatusTimer: Timer?
     var dockTileTimer: Timer?
     
     override init() {
-        if !MariaUserDefault.main.bool(forKey: "IsNotFirstLaunch") {
+        if !MariaUserDefault.main[.isNotFirstLaunch] {
             MariaUserDefault.initMain()
             MariaUserDefault.initExternal()
             MariaUserDefault.initBuiltIn()
         }
         
-        if !MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+        if !MariaUserDefault.main[.useEmbeddedAria2] {
             if defaults[.enableAria2AutoLaunch] {
                 let task = Process()
                 let confPath = defaults[.aria2ConfPath]!
@@ -42,20 +42,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         super.init()
+        
+        if defaults[.enableAutoConnectAria2] {
+            aria.rpc.connect()
+        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         NSUserNotificationCenter.default.delegate = self
-        
-        if defaults[.enableAutoConnectAria2] {
-            aria2open()
-        }
 
-        statusItem.button?.action = #selector(AppDelegate.menuClicked)
-        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        if defaults[.enableStatusBarMode] {
+            statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+            statusItem?.button?.action = #selector(AppDelegate.menuClicked)
+            statusItem?.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        }
         
-        if defaults[.enableSpeedStatusBar] {
+        
+        if defaults[.enableStatusBarMode] && defaults[.enableSpeedStatusBar] {
             enableSpeedStatusBar()
         } else {
             disableSpeedStatusBar()
@@ -65,10 +69,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.canHide = false
         }
         
-        if defaults[.enableDockIcon] {
-            enableDockIcon()
-        } else {
+        if defaults[.enableStatusBarMode] {
             disableDockIcon()
+        } else {
+            enableDockIcon()
         }
         
         NSApp.dockTile.contentView = dockTileView
@@ -106,14 +110,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: SpeedBar
     func enableSpeedStatusBar() {
         speedStatusTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSpeedStatus), userInfo: nil, repeats: true)
-        if let button = statusItem.button {
+        if let button = statusItem?.button {
             button.image = nil
         }
     }
     
     func disableSpeedStatusBar() {
         speedStatusTimer?.invalidate()
-        if let button = statusItem.button {
+        if let button = statusItem?.button {
             button.image = NSImage(named: "Arrow")
             button.title = ""
         }
@@ -122,10 +126,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func menuClicked(sender: NSStatusBarButton) {
         if NSApp.currentEvent!.type == NSEventType.rightMouseUp {
-            statusItem.popUpMenu(statusMenu)
+            statusItem?.popUpMenu(statusMenu)
         } else {
             if NSApp.isActive {
-               statusItem.popUpMenu(statusMenu)
+               statusItem?.popUpMenu(statusMenu)
                 return
             }
             for window in NSApp.windows {
@@ -147,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateDockTile() {
         aria.rpc!.onGlobalStatus = { status in
-            if MariaUserDefault.auto[.enableDockIcon] {
+            if !MariaUserDefault.auto[.enableStatusBarMode] {
                 if status.speed!.download == 0 {
                     self.dockTileView.badgeBox.isHidden = true
                 } else {
@@ -166,7 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         aria.rpc!.onGlobalStatus = { status in
-            if let button = self.statusItem.button {
+            if let button = self.statusItem?.button {
                 button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
             }
         }

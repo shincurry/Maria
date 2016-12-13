@@ -30,7 +30,7 @@ extension DefaultsKeys {
     static let launchAtStartup = DefaultsKey<Bool>("LaunchAtStartup")
     static let webAppPath = DefaultsKey<String?>("WebAppPath")
     static let enableSpeedStatusBar = DefaultsKey<Bool>("EnableSpeedStatusBar")
-    static let enableDockIcon = DefaultsKey<Bool>("EnableDockIcon")
+    static let enableStatusBarMode = DefaultsKey<Bool>("EnableStatusBarMode")
 
     // Aria2 Settings
     static let enableAutoConnectAria2 = DefaultsKey<Bool>("EnableAutoConnectAria2")
@@ -113,7 +113,7 @@ class MariaUserDefault {
         defaults[.launchAtStartup] = false
         defaults[.webAppPath] = ""
         defaults[.enableSpeedStatusBar] = false
-        defaults[.enableDockIcon] = true
+        defaults[.enableStatusBarMode] = false
         
         // Aria2 Settings
         defaults[.enableAutoConnectAria2] = true

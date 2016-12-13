@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -428,14 +429,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" image="NSSmartBadgeTemplate" id="3Rf-Mp-fbB">
+                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" image="Speedmeter" id="3Rf-Mp-fbB">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="MB1-qk-bcG">
                                         <rect key="frame" x="22" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSSmartBadgeTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="WBI-uM-RVe">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Speedmeter" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="WBI-uM-RVe">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -565,21 +566,33 @@
                                         </scroller>
                                     </scrollView>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="giE-Fo-SRL">
-                                        <rect key="frame" x="24" y="115" width="532" height="46"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please run and connect to aria2" id="QBt-GT-5Ao">
-                                            <font key="font" metaFont="system" size="38"/>
+                                        <rect key="frame" x="96" y="123" width="301" height="31"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Reconnect to aria2 in 1s..." id="QBt-GT-5Ao">
+                                            <font key="font" metaFont="system" size="26"/>
                                             <color key="textColor" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-9V-3n1">
+                                        <rect key="frame" x="403" y="125" width="58" height="19"/>
+                                        <buttonCell key="cell" type="square" title="try now" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" inset="2" id="P3g-c0-Ld9">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="16"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="connectToAria:" target="37H-HT-bWJ" id="uxq-yu-ZbA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ZTZ-fb-fPN" secondAttribute="bottom" id="Ct8-YQ-6DZ"/>
                                     <constraint firstItem="ZTZ-fb-fPN" firstAttribute="top" secondItem="mjo-9s-C0c" secondAttribute="top" id="DfF-0l-kH8"/>
                                     <constraint firstItem="giE-Fo-SRL" firstAttribute="centerY" secondItem="mjo-9s-C0c" secondAttribute="centerY" id="HBz-sd-CLY"/>
-                                    <constraint firstItem="giE-Fo-SRL" firstAttribute="centerX" secondItem="mjo-9s-C0c" secondAttribute="centerX" id="WsM-8Z-lwT"/>
+                                    <constraint firstItem="giE-Fo-SRL" firstAttribute="centerX" secondItem="mjo-9s-C0c" secondAttribute="centerX" multiplier="0.85" id="WsM-8Z-lwT"/>
                                     <constraint firstAttribute="trailing" secondItem="ZTZ-fb-fPN" secondAttribute="trailing" id="q7b-fl-OzB"/>
                                     <constraint firstItem="ZTZ-fb-fPN" firstAttribute="leading" secondItem="mjo-9s-C0c" secondAttribute="leading" id="ucf-Td-Ty6"/>
+                                    <constraint firstItem="yvQ-9V-3n1" firstAttribute="leading" secondItem="giE-Fo-SRL" secondAttribute="trailing" constant="8" id="xZL-OZ-aso"/>
+                                    <constraint firstItem="yvQ-9V-3n1" firstAttribute="baseline" secondItem="giE-Fo-SRL" secondAttribute="baseline" id="zOl-wq-VSj"/>
                                 </constraints>
                             </visualEffectView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOJ-nC-MDI">
@@ -613,6 +626,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alertConnectButton" destination="yvQ-9V-3n1" id="1G3-f7-hQC"/>
                         <outlet property="alertLabel" destination="giE-Fo-SRL" id="9dO-b2-6rH"/>
                         <outlet property="globalSpeedLabel" destination="QOJ-nC-MDI" id="AFy-71-O8N"/>
                         <outlet property="globalTaskNumberLabel" destination="JhC-kn-LtG" id="h9h-sU-05q"/>
@@ -889,11 +903,11 @@ DQ
         <image name="Broom" width="20" height="20"/>
         <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="Pause" width="20" height="20"/>
         <image name="RedBall" width="16" height="12"/>
         <image name="Remove" width="20" height="20"/>
         <image name="Resume" width="20" height="20"/>
+        <image name="Speedmeter" width="20" height="20"/>
         <image name="TortoiseColorful" width="20" height="20"/>
         <image name="TortoiseGray" width="20" height="20"/>
     </resources>
