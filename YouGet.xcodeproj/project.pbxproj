@@ -10,7 +10,10 @@
 		117DA24D4D52D542E20D7C11 /* Pods_YouGet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870C3B7B7964C264310B6754 /* Pods_YouGet.framework */; };
 		888EE2F71DFE62DD0048F788 /* YouGet.h in Headers */ = {isa = PBXBuildFile; fileRef = 888EE2F51DFE62DD0048F788 /* YouGet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		888EE2FE1DFE62F10048F788 /* YouGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EE2FD1DFE62F10048F788 /* YouGet.swift */; };
-		88F201631DFE78DF0010CA9D /* YouGetResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F201621DFE78DF0010CA9D /* YouGetResult.swift */; };
+		88C9C0521E00476E00201E7E /* YGStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C9C0511E00476E00201E7E /* YGStream.swift */; };
+		88C9C0551E004B0700201E7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88C9C0571E004B0700201E7E /* Localizable.strings */; };
+		88C9C05E1E005AF100201E7E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C9C05D1E005AF100201E7E /* Extension.swift */; };
+		88F201631DFE78DF0010CA9D /* YGResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F201621DFE78DF0010CA9D /* YGResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,7 +23,11 @@
 		888EE2F51DFE62DD0048F788 /* YouGet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YouGet.h; sourceTree = "<group>"; };
 		888EE2F61DFE62DD0048F788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		888EE2FD1DFE62F10048F788 /* YouGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouGet.swift; sourceTree = "<group>"; };
-		88F201621DFE78DF0010CA9D /* YouGetResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouGetResult.swift; sourceTree = "<group>"; };
+		88C9C0511E00476E00201E7E /* YGStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YGStream.swift; sourceTree = "<group>"; };
+		88C9C0561E004B0700201E7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		88C9C0581E004B1B00201E7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		88C9C05D1E005AF100201E7E /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		88F201621DFE78DF0010CA9D /* YGResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YGResult.swift; sourceTree = "<group>"; };
 		94087839F37E6458C5BFC570 /* Pods-YouGet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouGet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YouGet/Pods-YouGet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +75,11 @@
 			children = (
 				888EE2F51DFE62DD0048F788 /* YouGet.h */,
 				888EE2FD1DFE62F10048F788 /* YouGet.swift */,
-				88F201621DFE78DF0010CA9D /* YouGetResult.swift */,
+				88F201621DFE78DF0010CA9D /* YGResult.swift */,
+				88C9C0511E00476E00201E7E /* YGStream.swift */,
 				888EE2F61DFE62DD0048F788 /* Info.plist */,
+				88C9C0571E004B0700201E7E /* Localizable.strings */,
+				88C9C05D1E005AF100201E7E /* Extension.swift */,
 			);
 			path = YouGet;
 			sourceTree = "<group>";
@@ -138,6 +148,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 888EE2E81DFE62DD0048F788;
 			productRefGroup = 888EE2F31DFE62DD0048F788 /* Products */;
@@ -154,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C9C0551E004B0700201E7E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,17 +210,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				888EE2FE1DFE62F10048F788 /* YouGet.swift in Sources */,
-				88F201631DFE78DF0010CA9D /* YouGetResult.swift in Sources */,
+				88C9C0521E00476E00201E7E /* YGStream.swift in Sources */,
+				88F201631DFE78DF0010CA9D /* YGResult.swift in Sources */,
+				88C9C05E1E005AF100201E7E /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		88C9C0571E004B0700201E7E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88C9C0561E004B0700201E7E /* en */,
+				88C9C0581E004B1B00201E7E /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		888EE2F81DFE62DD0048F788 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -246,7 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -261,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -292,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

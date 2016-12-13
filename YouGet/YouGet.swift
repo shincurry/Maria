@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ShinCurry. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 import SwiftyJSON
 
 public enum ProcessMode {
@@ -35,17 +35,17 @@ public class YouGet {
      
      - parameter uris:	download task links
      */
-    public func fetchData(fromLink link: String) -> YouGetResult? {
+    public func fetchData(fromLink link: String) -> YGResult? {
         guard let jsonString = sh(command: "\(bin) --json \(link)"), !jsonString.isEmpty else {
             print("you-get fetch data failed.")
             return nil
         }
-        guard let data = jsonString.data(using: .utf8, allowLossyConversion: false) else {
+        guard let data = revise(JSONString: jsonString).data(using: .utf8, allowLossyConversion: false) else {
             return nil
         }
         
         let json = JSON(data: data)
-        return YouGetResult(json: json)
+        return YGResult(json: json)
     }
     
     /**
@@ -107,5 +107,13 @@ public class YouGet {
         task.launch()
         task.waitUntilExit()
         return output
+    }
+    
+    // revise wrong json from you-get
+    private func revise(JSONString str: String) -> String {
+        if str.contains("163.com") {
+            return str.components(separatedBy: "\n").dropLast(2).reduce("", { $0 + $1 + "\n" })
+        }
+        return str
     }
 }

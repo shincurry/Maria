@@ -140,7 +140,7 @@ fileprivate extension NSTouchBarItemIdentifier {
 }
 
 extension MainWindowController: NSTouchBarDelegate {
-    @available(OSX 10.12.1, *)
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         let touchBar = NSTouchBar()
         touchBar.delegate = self
@@ -150,7 +150,7 @@ extension MainWindowController: NSTouchBarDelegate {
         return touchBar
     }
     
-    @available(OSX 10.12.1, *)
+    @available(OSX 10.12.2, *)
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
         let touchBarItem = NSCustomTouchBarItem(identifier: identifier)
         

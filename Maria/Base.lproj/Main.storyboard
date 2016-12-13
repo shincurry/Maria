@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -752,11 +753,11 @@
             <objects>
                 <viewController title="Add New task" showSeguePresentationStyle="single" id="3Py-Pw-Qec" customClass="NewTaskViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Yqt-Qp-1qf">
-                        <rect key="frame" x="0.0" y="0.0" width="454" height="242"/>
+                        <rect key="frame" x="0.0" y="0.0" width="466" height="242"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAc-gW-pQT">
-                                <rect key="frame" x="272" y="13" width="82" height="32"/>
+                                <rect key="frame" x="292" y="13" width="82" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="L0A-eZ-eX5"/>
                                 </constraints>
@@ -790,7 +791,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nM7-o5-2jr">
-                                <rect key="frame" x="350" y="13" width="82" height="32"/>
+                                <rect key="frame" x="370" y="13" width="82" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="sSB-Cj-Vu2"/>
                                 </constraints>
@@ -806,8 +807,8 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Lh-aY-ONW">
-                                <rect key="frame" x="20" y="183" width="406" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="http(s)://" drawsBackground="YES" id="TEq-li-T9R">
+                                <rect key="frame" x="20" y="183" width="354" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="http(s)://" bezelStyle="round" id="TEq-li-T9R" customClass="LoadingTextFieldCell" customModule="Maria" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -816,11 +817,8 @@ DQ
                                     <outlet property="delegate" destination="3Py-Pw-Qec" id="xaS-eU-wXg"/>
                                 </connections>
                             </textField>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kM6-KK-2eh">
-                                <rect key="frame" x="430" y="186" width="16" height="16"/>
-                            </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEu-Mo-GMw">
-                                <rect key="frame" x="22" y="61" width="402" height="110"/>
+                                <rect key="frame" x="22" y="61" width="426" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="mpo-jv-JE1"/>
                                 </constraints>
@@ -831,40 +829,61 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kB8-sw-fcI">
-                                <rect key="frame" x="18" y="43" width="410" height="16"/>
+                                <rect key="frame" x="18" y="43" width="430" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Maria support you-get now. visit https://you-get.org for more details." id="KIg-ti-y0Z">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="At8-om-9hN">
+                                <rect key="frame" x="374" y="180" width="75" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="6zo-UE-mfC"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AKv-Cq-qRI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="EwK-8p-D8W"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="switchContainer:" target="3Py-Pw-Qec" id="QGz-Mc-lM6"/>
+                                </connections>
+                            </popUpButton>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kM6-KK-2eh">
+                                <rect key="frame" x="354" y="186" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="vEu-Mo-GMw" secondAttribute="trailing" id="6h2-jM-UyN"/>
                             <constraint firstItem="vEu-Mo-GMw" firstAttribute="top" secondItem="6Lh-aY-ONW" secondAttribute="bottom" constant="12" id="CLi-53-ete"/>
                             <constraint firstAttribute="bottom" secondItem="nM7-o5-2jr" secondAttribute="bottom" constant="20" id="DjB-Vb-Zgo"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="leading" secondItem="qAc-gW-pQT" secondAttribute="trailing" constant="8" id="IAt-Aq-uhc"/>
                             <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" id="Kxi-Mr-hux"/>
-                            <constraint firstItem="kB8-sw-fcI" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" id="Me0-GO-Kxd"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="vEu-Mo-GMw" secondAttribute="bottom" constant="20" id="Nw0-pV-cLl"/>
                             <constraint firstItem="6Lh-aY-ONW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="Ooq-Ze-qaX"/>
+                            <constraint firstItem="At8-om-9hN" firstAttribute="baseline" secondItem="6Lh-aY-ONW" secondAttribute="baseline" multiplier="0.96" id="RoG-uT-iCC"/>
                             <constraint firstItem="kB8-sw-fcI" firstAttribute="top" secondItem="vEu-Mo-GMw" secondAttribute="bottom" constant="2" id="Rxi-Zi-mUy"/>
-                            <constraint firstAttribute="trailing" secondItem="kM6-KK-2eh" secondAttribute="trailing" constant="8" id="Rzm-2F-33W"/>
+                            <constraint firstItem="kM6-KK-2eh" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="-4" id="Sof-2B-AFm"/>
+                            <constraint firstAttribute="trailing" secondItem="At8-om-9hN" secondAttribute="trailing" constant="20" id="Sv4-7A-kqk"/>
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="ThB-mo-fby"/>
-                            <constraint firstItem="vEu-Mo-GMw" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="-4" id="Uib-RD-Uxi"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="kB8-sw-fcI" secondAttribute="bottom" constant="2" id="VtL-o4-j81"/>
-                            <constraint firstItem="kM6-KK-2eh" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="4" id="X0f-Cb-MOf"/>
                             <constraint firstItem="kM6-KK-2eh" firstAttribute="centerY" secondItem="6Lh-aY-ONW" secondAttribute="centerY" id="ZeF-n3-waH"/>
+                            <constraint firstAttribute="trailing" secondItem="nM7-o5-2jr" secondAttribute="trailing" constant="20" id="aHn-xD-A26"/>
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="top" secondItem="Yqt-Qp-1qf" secondAttribute="top" constant="10" id="c9d-hJ-ILQ"/>
-                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" id="ehz-1S-fbF"/>
+                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="kB8-sw-fcI" secondAttribute="trailing" id="dfN-Hx-1Wa"/>
                             <constraint firstItem="qAc-gW-pQT" firstAttribute="centerY" secondItem="Pxw-AI-2S1" secondAttribute="centerY" id="hxU-sg-9Um"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="centerY" secondItem="qAc-gW-pQT" secondAttribute="centerY" id="m6y-V3-Cxk"/>
                             <constraint firstItem="vEu-Mo-GMw" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" constant="4" id="oIJ-nb-W6x"/>
                             <constraint firstItem="6Lh-aY-ONW" firstAttribute="top" secondItem="3Mq-qW-PTW" secondAttribute="bottom" constant="8" id="ucb-Gx-YeT"/>
+                            <constraint firstItem="At8-om-9hN" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="2" id="wl3-u1-Ytj"/>
                             <constraint firstItem="kB8-sw-fcI" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="leading" id="xjp-ok-Rn3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerSwitchButton" destination="At8-om-9hN" id="ex1-eb-l14"/>
                         <outlet property="linkTextField" destination="6Lh-aY-ONW" id="Fu4-rJ-baa"/>
+                        <outlet property="linkTextFieldCell" destination="TEq-li-T9R" id="Ztv-F6-8Bs"/>
                         <outlet property="messageTextField" destination="vEu-Mo-GMw" id="I5U-Jn-HVV"/>
                         <outlet property="progressIndicator" destination="kM6-KK-2eh" id="RNj-CY-95U"/>
                         <outlet property="startButton" destination="nM7-o5-2jr" id="Lmh-8H-rgw"/>
@@ -872,7 +891,7 @@ DQ
                 </viewController>
                 <customObject id="hob-hO-07W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="-153"/>
+            <point key="canvasLocation" x="1354" y="-153"/>
         </scene>
         <!--Settings-->
         <scene sceneID="PWW-IL-bJi">
