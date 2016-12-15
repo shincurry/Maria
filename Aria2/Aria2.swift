@@ -71,11 +71,38 @@ open class Aria2 {
      
      - parameter uris:	download task links
      */
-    open func add(uris: [String]) {
-        uris.forEach() { uri in
-            request(method: .addUri, params: "[\"\(uri)\"]")
-        }
+    
+    open func add(uri: String, withOptions options: [String: String]? = nil) {
+        add(uris: [uri], withOptions: options)
     }
+    
+    open func add(uris: [String], withOptions options: [String: String]? = nil) {
+        var urisString = "\""
+        uris.enumerated().forEach { (index, uri) in
+            urisString += (index == 0 ? "" : "\t") + "\(uri)"
+        }
+        urisString += "\""
+        
+        var params = ""
+        if let opts = options {
+            var optionsString = "{ "
+            opts.enumerated().forEach { (index, option) in
+                optionsString += (index == 0 ? "" : ", ") + "\"\(option.key)\": \"\(option.value)\""
+            }
+            optionsString += " }"
+            params = "[\(urisString)], \(optionsString)"
+        } else {
+            params = "[\(urisString)]"
+        }
+        
+        request(method: .addUri, params: params)
+    }
+    
+//    open func add(uris: [String]) {
+//        uris.forEach() { uri in
+//            request(method: .addUri, params: "[\"\(uri)\"]")
+//        }
+//    }
     open var onAddUris: ((_ flag: Bool) -> Void)?
 
     open func getUris(_ gid: String) {

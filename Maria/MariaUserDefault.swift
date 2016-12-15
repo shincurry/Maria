@@ -51,6 +51,8 @@ extension DefaultsKeys {
     // Main settings
     static let isNotFirstLaunch = DefaultsKey<Bool>("IsNotFirstLaunch")
     static let useEmbeddedAria2 = DefaultsKey<Bool>("UseEmbeddedAria2")
+    
+    static let enableYouGet = DefaultsKey<Bool>("EnableYouGet")
 }
 
 class MariaUserDefault {
@@ -60,7 +62,7 @@ class MariaUserDefault {
     
     static var auto: UserDefaults {
         get {
-            if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+            if MariaUserDefault.main[.useEmbeddedAria2] {
                 return builtIn
             } else {
                 return external
@@ -127,6 +129,8 @@ class MariaUserDefault {
         // Today Settings
         defaults[.todayTasksNumber] = 5
         defaults[.todayEnableTasksSortedByProgress] = false
+        
+        defaults[.enableYouGet] = false
         
         defaults.synchronize()
     }

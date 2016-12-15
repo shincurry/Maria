@@ -19,7 +19,7 @@ class SettingsBandwidthViewController: NSViewController {
     }
     
     let defaults = MariaUserDefault.auto
-    let aria = Aria.shared
+    let maria = Maria.shared
     
     
     @IBOutlet weak var globalDownloadRate: NSTextField!
@@ -54,17 +54,13 @@ extension SettingsBandwidthViewController {
             sender.stringValue = "\(defaults[key])"
         }
         
-        
-        
         if defaults[.enableLowSpeedMode] {
             if sender == limitModeDownloadRate || sender == limitModeUploadRate {
                 let downloadSpeed = defaults[.limitModeDownloadRate]
                 let uploadSpeed = defaults[.limitModeUploadRate]
-                aria.rpc!.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
+                maria.rpc!.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
             }
         }
-        
-
     }
 }
 

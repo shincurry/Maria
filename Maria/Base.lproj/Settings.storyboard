@@ -717,17 +717,17 @@
             <objects>
                 <viewController title="General" id="Rd7-l1-zR2" customClass="SettingsGeneralViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zdc-MW-g94">
-                        <rect key="frame" x="0.0" y="0.0" width="498" height="229"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="251"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
-                                <rect key="frame" x="17" y="93" width="464" height="126"/>
+                                <rect key="frame" x="17" y="93" width="464" height="148"/>
                                 <view key="contentView" id="sn5-9m-lOh">
-                                    <rect key="frame" x="1" y="1" width="462" height="110"/>
+                                    <rect key="frame" x="1" y="1" width="462" height="132"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kix-YB-kfm">
-                                            <rect key="frame" x="18" y="70" width="202" height="22"/>
+                                            <rect key="frame" x="18" y="92" width="202" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="98s-Af-CMi"/>
                                             </constraints>
@@ -737,7 +737,7 @@
                                             </buttonCell>
                                         </button>
                                         <button verticalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-zq-afV">
-                                            <rect key="frame" x="18" y="18" width="119" height="22"/>
+                                            <rect key="frame" x="18" y="40" width="119" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="bGC-ks-klL"/>
                                             </constraints>
@@ -747,7 +747,7 @@
                                             </buttonCell>
                                         </button>
                                         <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="cwr-nY-ML0">
-                                            <rect key="frame" x="18" y="44" width="180" height="22"/>
+                                            <rect key="frame" x="18" y="66" width="180" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="fgt-3p-wSN"/>
                                             </constraints>
@@ -759,13 +759,28 @@
                                                 <action selector="switchOptions:" target="Rd7-l1-zR2" id="HvX-Jr-lHr"/>
                                             </connections>
                                         </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="68N-Kn-OHM">
+                                            <rect key="frame" x="18" y="18" width="151" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="dna-eH-5JA"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Enable YouGet (Beta)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ytk-j9-BIX">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="switchOptions:" target="Rd7-l1-zR2" id="c1M-pA-OsS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="68N-Kn-OHM" firstAttribute="top" secondItem="x7w-zq-afV" secondAttribute="bottom" constant="8" id="0zq-Gh-FKv"/>
                                         <constraint firstItem="cwr-nY-ML0" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="75t-SX-yvc"/>
                                         <constraint firstItem="x7w-zq-afV" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="PY5-jX-ldF"/>
                                         <constraint firstItem="x7w-zq-afV" firstAttribute="top" secondItem="cwr-nY-ML0" secondAttribute="bottom" constant="8" id="RF4-2l-ptj"/>
-                                        <constraint firstAttribute="bottom" secondItem="x7w-zq-afV" secondAttribute="bottom" constant="20" id="gLZ-r4-VYR"/>
+                                        <constraint firstAttribute="bottom" secondItem="68N-Kn-OHM" secondAttribute="bottom" constant="20" id="WEh-1s-dbV"/>
                                         <constraint firstItem="cwr-nY-ML0" firstAttribute="top" secondItem="kix-YB-kfm" secondAttribute="bottom" constant="8" id="hXJ-3w-IEr"/>
+                                        <constraint firstItem="68N-Kn-OHM" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="kR4-vm-Qzi"/>
                                         <constraint firstItem="kix-YB-kfm" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="n4n-l7-jag"/>
                                         <constraint firstItem="kix-YB-kfm" firstAttribute="top" secondItem="sn5-9m-lOh" secondAttribute="top" constant="20" id="rKJ-0Q-Jsv"/>
                                     </constraints>
@@ -832,12 +847,13 @@
                         <outlet property="enableDockIcon" destination="x7w-zq-afV" id="nQs-e2-rCt"/>
                         <outlet property="enableSpeedStatusBar" destination="cwr-nY-ML0" id="Een-C8-2Fi"/>
                         <outlet property="enableStatusBarMode" destination="x7w-zq-afV" id="UwL-pI-Pum"/>
+                        <outlet property="enableYouGet" destination="68N-Kn-OHM" id="ucv-Kq-w9l"/>
                         <outlet property="webAppPathButton" destination="zFy-uC-i9T" id="LN0-OM-sIy"/>
                     </connections>
                 </viewController>
                 <customObject id="4t3-Sm-nw9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="2047"/>
+            <point key="canvasLocation" x="-64" y="2046.5"/>
         </scene>
         <!--General-->
         <scene sceneID="h2g-FH-FHu">

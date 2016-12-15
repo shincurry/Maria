@@ -9,10 +9,10 @@
 import Cocoa
 import Aria2
 
-class Aria {
+class Maria {
     var rpc: Aria2!
     
-    static let shared = Aria()
+    static let shared = Maria()
     
     private init() {
         rpc = Aria2(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)

@@ -13,7 +13,7 @@ import SwiftyJSON
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var aria = Aria.shared
+    var maria = Maria.shared
     let defaults = MariaUserDefault.auto
     
     var statusItem: NSStatusItem?
@@ -44,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
         
         if defaults[.enableAutoConnectAria2] {
-            aria.rpc.connect()
+            maria.rpc.connect()
         }
     }
     
@@ -150,7 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateDockTile() {
-        aria.rpc!.onGlobalStatus = { status in
+        maria.rpc!.onGlobalStatus = { status in
             if !MariaUserDefault.auto[.enableStatusBarMode] {
                 if status.speed!.download == 0 {
                     self.dockTileView.badgeBox.isHidden = true
@@ -161,15 +161,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApp.dockTile.display()
             }
         }
-        aria.rpc!.getGlobalStatus()
+        maria.rpc!.getGlobalStatus()
     }
     
     func updateSpeedStatus() {
-        if aria.rpc!.status == .connected {
-            aria.rpc!.getGlobalStatus()
+        if maria.rpc!.status == .connected {
+            maria.rpc!.getGlobalStatus()
         }
         
-        aria.rpc!.onGlobalStatus = { status in
+        maria.rpc!.onGlobalStatus = { status in
             if let button = self.statusItem?.button {
                 button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
             }
@@ -213,12 +213,12 @@ extension AppDelegate {
     func lowSpeedModeOff() {
         let limitDownloadSpeed = defaults[.globalDownloadRate]
         let limitUploadSpeed = defaults[.globalUploadRate]
-        aria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
+        maria.rpc!.globalSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
     func lowSpeedModeOn() {
         let limitDownloadSpeed = defaults[.limitModeDownloadRate]
         let limitUploadSpeed = defaults[.limitModeUploadRate]
-        aria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
+        maria.rpc!.lowSpeedLimit(download: limitDownloadSpeed, upload: limitUploadSpeed)
     }
 
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
@@ -232,16 +232,16 @@ extension AppDelegate {
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
         aria2configure()
-        aria.rpc!.connect()
+        maria.rpc!.connect()
         RPCServerStatus.state = 1
     }
     
     func aria2close() {
-        aria.rpc!.disconnect()
+        maria.rpc!.disconnect()
     }
     
     func aria2configure() {
-        aria.rpc!.onConnect = {
+        maria.rpc!.onConnect = {
             self.RPCServerStatus.state = 1
             if self.defaults[.enableLowSpeedMode] {
                 self.lowSpeedModeOn()
@@ -252,41 +252,41 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 MariaNotification.notification(title: "Aria2 Connected", details: "Aria2 server connected at \(MariaUserDefault.RPCUrl)")
             }
         }
-        aria.rpc!.onDisconnect = {
+        maria.rpc!.onDisconnect = {
             self.RPCServerStatus.state = 0
             if self.defaults[.enableNotificationWhenDisconnected] {
                 MariaNotification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
         }
         
-        aria.rpc!.downloadStarted = { name in
+        maria.rpc!.downloadStarted = { name in
             if self.defaults[.enableNotificationWhenStarted] {
                 MariaNotification.notification(title: "Download Started", details: "\(name) started.")
             }
         }
-        aria.rpc!.downloadPaused = { name in
+        maria.rpc!.downloadPaused = { name in
             if self.defaults[.enableNotificationWhenPaused] {
                 MariaNotification.notification(title: "Download Paused", details: "\(name) paused.")
             }
         }
-        aria.rpc!.downloadStopped = { name in
+        maria.rpc!.downloadStopped = { name in
             if self.defaults[.enableNotificationWhenStopped] {
                 MariaNotification.notification(title: "Download Stopoped", details: "\(name) stopped.")
             }
         }
-        aria.rpc!.downloadCompleted = { (name, path) in
+        maria.rpc!.downloadCompleted = { (name, path) in
             if self.defaults[.enableNotificationWhenCompleted] {
                 MariaNotification.actionNotification(identifier: "complete", title: "Download Completed", details: "\(name) completed.", userInfo: ["path": path as AnyObject])
             }
         }
-        aria.rpc!.downloadError = { name in
+        maria.rpc!.downloadError = { name in
             if self.defaults[.enableNotificationWhenError] {
                 MariaNotification.notification(title: "Download Error", details: "Download task \(name) have an error.")
             }
         }
         
         
-        aria.rpc!.globalSpeedLimitOK = { result in
+        maria.rpc!.globalSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 0
                 if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
@@ -297,7 +297,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
                 }
             }
         }
-        aria.rpc!.lowSpeedLimitOK = { result in
+        maria.rpc!.lowSpeedLimitOK = { result in
             if result["result"].stringValue == "OK" {
                 self.lowSpeedMode.state = 1
                 if let controller = NSApp.mainWindow?.windowController as? MainWindowController {

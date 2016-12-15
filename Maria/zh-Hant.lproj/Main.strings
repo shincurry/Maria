@@ -119,8 +119,8 @@
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
 "Xz5-n4-O0W.title" = "查找…";
 
-/* Class = "NSTextFieldCell"; title = "URLs"; ObjectID = "Y77-oY-dn3"; */
-"Y77-oY-dn3.title" = "URLs";
+/* Class = "NSTextFieldCell"; title = "New Task"; ObjectID = "Y77-oY-dn3"; */
+"Y77-oY-dn3.title" = "新任務";
 
 /* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz"; */
 "YEy-JH-Tfz.title" = "查找並替換…";
