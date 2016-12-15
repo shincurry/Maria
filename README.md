@@ -29,14 +29,15 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki).
 
 ## Test Environment
 
-* Xcode 8.1 (8B62)
+* Xcode 8.2 (8C38)
 * Swift 3
-* macOS Sierra 10.12.1 (16B2657)
+* macOS Sierra 10.12.2 (16C67)
 * CocoaPods 1.1.0.beta.2
 
 ## Thanks
 
 * [aria2](https://github.com/aria2/aria2)
+* [you-get](https://github.com/soimort/you-get)
 * [Starscream](https://github.com/daltoniam/Starscream)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)

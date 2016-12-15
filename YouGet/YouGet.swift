@@ -24,6 +24,7 @@ public class YouGet {
         }
     }
     
+    
     public var processMode = ProcessMode.single
     
     private var bin = ""

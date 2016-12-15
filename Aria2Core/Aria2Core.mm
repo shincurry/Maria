@@ -63,7 +63,7 @@ typedef aria2::FileData FileData;
     return self;
 }
 
-- (void)dealloc {
+- (void)stop {
     Gids tasks = aria2::getActiveDownload(session);
     for (auto it = tasks.begin(); it != tasks.end(); ++it) {
         aria2::pauseDownload(session, *it);
@@ -71,10 +71,10 @@ typedef aria2::FileData FileData;
     while (aria2::getGlobalStat(session).numActive > 0) {
         std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(100));
     }
-    aria2::shutdown(session);
-    dispatch_sync(aria2Queue, ^{
-        aria2::sessionFinal(session);
+    dispatch_async(aria2Queue, ^{
+        aria2::shutdown(session);
     });
+    aria2::sessionFinal(session);
     aria2::libraryDeinit();
 }
 

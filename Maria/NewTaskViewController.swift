@@ -31,53 +31,57 @@ class NewTaskViewController: NSViewController {
                 self.view.window?.shakeWindow()
             }
         }
-
-        startButtonTitle = startButton.title
-        size = progressIndicator.frame.size
-        progressIndicator.frame.size = NSSize.zero
-    }
-    
-    override func viewWillAppear() {
+        viewInitial()
+        
         if defaults[.enableYouGet] {
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(youget), userInfo: nil, repeats: true)
         }
     }
     
-    override func viewWillDisappear() {
-        if defaults[.enableYouGet] {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
     var startButtonTitle = ""
     let defaults = MariaUserDefault.auto
     let maria = Maria.shared
     
     var result: YGResult?
-    var downloadUrl = ""
+    var downloadUrls: [String] = []
     var downloadOptions: [String: String] = [:]
-    var size: NSSize!
+//    var size: NSSize!
     var shouldYouGet = 0
     var doYouGet = 0
     var timer: Timer?
+    
+    @IBOutlet weak var enableYouGetButton: NSButton!
     @IBOutlet weak var linkTextField: NSTextField!
     @IBOutlet weak var linkTextFieldCell: LoadingTextFieldCell!
     @IBOutlet weak var containerSwitchButton: NSPopUpButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    @IBOutlet weak var messageTextField: NSTextField!
+    
+    @IBOutlet weak var messageScrollView: NSScrollView!
+    @IBOutlet weak var messageTextView: NSTextView!
     @IBOutlet weak var startButton: NSButton!
     
     
+    @IBAction func toggleYouGet(_ sender: NSButton) {
+        let flag = (sender.state == 0 ? false : true)
+        defaults[.enableYouGet] = flag
+        if flag {
+            _ = maria.initYouGet()
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(youget), userInfo: nil, repeats: true)
+        } else {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
     
     @IBAction func switchContainer(_ sender: NSPopUpButton) {
         if let result = result {
-            downloadUrl = result.streams[sender.state].sources.first!
+            downloadUrls = result.streams[sender.state].sources
             downloadOptions = ["out": "\(result.title).\(result.streams[sender.state].container)"]
         }
     }
     
     @IBAction func start(_ sender: NSButton) {
-        maria.rpc!.add(uris: [downloadUrl], withOptions: downloadOptions)
+        maria.rpc!.add(uris: downloadUrls, withOptions: downloadOptions)
 //        maria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
     }
 
@@ -102,9 +106,10 @@ class NewTaskViewController: NSViewController {
 
 extension NewTaskViewController: NSTextFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
-        self.startButton.title = startButtonTitle
-        self.containerSwitchButton.removeAllItems()
-        self.containerSwitchButton.isEnabled = false
+        startButton.title = startButtonTitle
+        containerSwitchButton.removeAllItems()
+        containerSwitchButton.isEnabled = false
+        messageTextView.string = ""
 
         let url = linkTextField.stringValue
         if url.isEmpty {
@@ -116,8 +121,19 @@ extension NewTaskViewController: NSTextFieldDelegate {
         }else {
             self.startButton.isEnabled = true
         }
-        let pattern = "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?"
-        if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {
+        
+        // ip addr. matcher
+        let patterns = ["^(https?://)?(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])/?", "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?"]
+        
+        let isMatched = patterns.reduce(false, { (result, pattern) in
+            if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {
+                return result || true
+            } else {
+                return result || false
+            }
+        })
+        
+        if isMatched {
             self.startButton.isEnabled = true
         } else {
             self.startButton.isEnabled = false
@@ -127,33 +143,42 @@ extension NewTaskViewController: NSTextFieldDelegate {
             return
         }
         
-        downloadUrl = url
+        downloadUrls = [url]
         shouldYouGet += 1
     }
     
     func youget() {
+        guard defaults[.enableYouGet] else {
+            return
+        }
+        
         if shouldYouGet != 0 && shouldYouGet == doYouGet {
             let url = linkTextField.stringValue
-            downloadUrl = url
-            messageTextField.stringValue = ""
+            downloadUrls = [url]
+
             DispatchQueue.global().async {
-                self.startButton.isEnabled = false
-                self.showProgressIndicator()
+                DispatchQueue.main.async {
+                    self.showProgressIndicator()
+                }
 
                 if let result = self.maria.youget?.fetchData(fromLink: url) {
                     self.result = result
-                    self.messageTextField.stringValue = result.description
-                    self.containerSwitchButton.isEnabled = true
-                    self.containerSwitchButton.removeAllItems()
-                    self.containerSwitchButton.addItems(withTitles: result.streams.map({ $0.name }))
+                    DispatchQueue.main.async {
+                        self.messageTextView.string = result.description
+                        self.containerSwitchButton.isEnabled = true
+                        self.containerSwitchButton.removeAllItems()
+                        self.containerSwitchButton.addItems(withTitles: result.streams.map({ $0.name }))
+                    }
+                    
                     if let stream = result.streams.first {
-                        self.downloadUrl = stream.sources.first!
+                        self.downloadUrls = stream.sources
                         self.startButton.title = "YouGet!"
                         self.downloadOptions = ["out": "\(result.title).\(result.streams.first!.container)"]
                     }
                 }
-                self.hideProgressIndicator()
-                self.startButton.isEnabled = true
+                DispatchQueue.main.async {
+                    self.hideProgressIndicator()
+                }
             }
             shouldYouGet = 0
             doYouGet = 0
@@ -166,9 +191,9 @@ extension NewTaskViewController: NSTextFieldDelegate {
 extension NewTaskViewController {
     //NSProgressIndicator.isHidden doesn't work.
     func showProgressIndicator() {
-        self.progressIndicator.frame.size = self.size
-        self.progressIndicator.needsLayout = true
-        self.progressIndicator.startAnimation(self)
+        progressIndicator.sizeToFit()
+        progressIndicator.needsLayout = true
+        progressIndicator.startAnimation(self)
     }
     
     func hideProgressIndicator() {
@@ -199,5 +224,16 @@ extension NSWindow {
         
         self.animations = ["frameOrigin": shakeAnimation]
         self.animator().setFrameOrigin(self.frame.origin)
+    }
+}
+
+
+extension NewTaskViewController {
+    func viewInitial() {
+        enableYouGetButton.state = defaults[.enableYouGet] ? 1 : 0
+        
+        messageScrollView.scrollerStyle = .overlay
+        startButtonTitle = startButton.title
+        progressIndicator.frame.size = NSSize.zero
     }
 }

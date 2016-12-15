@@ -62,7 +62,7 @@ class MariaUserDefault {
     
     static var auto: UserDefaults {
         get {
-            if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
+            if MariaUserDefault.main[.useEmbeddedAria2] {
                 return builtIn
             } else {
                 return external
