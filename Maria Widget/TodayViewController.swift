@@ -40,7 +40,10 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     var maria = Maria.shared
     
-    var timer: Timer!
+    var timer: Timer?
+    
+    var timeToConnectAria = 4
+    var countdownTimeToConnectAria = 4
     var authorized: Bool = true
     
     func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
@@ -67,9 +70,25 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
     
     func updateListStatus() {
-        if maria.rpc?.status == .connected {
+        switch maria.rpc!.status {
+        case .disconnected:
+            countdownTimeToConnectAria -= 1
+            if countdownTimeToConnectAria == 0 {
+                maria.rpc?.connect()
+                timeToConnectAria *= 2
+                countdownTimeToConnectAria = timeToConnectAria
+            } else {
+                let localized = NSLocalizedString("aria2.status.disconnected", comment: "")
+                alertLabel.stringValue = String(format: localized, countdownTimeToConnectAria)
+            }
+        case .connected:
+            timeToConnectAria = 4
+            countdownTimeToConnectAria = 4
+            
             maria.rpc?.getGlobalStatus()
             maria.rpc?.tellActive()
+        default:
+            break
         }
     }
     
@@ -120,7 +139,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.taskListScrollViewHeightConstraint.constant = 0
             case .disconnected:
                 self.noTaskAlertLabel.isHidden = true
-                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
             }
         }
@@ -134,7 +152,7 @@ extension TodayViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
     fileprivate func closeTimer() {
-        timer.invalidate()
+        timer?.invalidate()
         timer = nil
     }
 }

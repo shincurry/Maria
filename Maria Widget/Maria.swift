@@ -10,7 +10,7 @@ import Cocoa
 import Aria2RPC
 
 class Maria {
-    var rpc: Aria2RPC!
+    var rpc: Aria2RPC?
     
     static let shared = Maria()
     
