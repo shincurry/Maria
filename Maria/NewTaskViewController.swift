@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 import SwiftyJSON
 import YouGet
 
@@ -17,14 +17,14 @@ class NewTaskViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        maria.rpc!.onAddUris = { flag in
+        maria.rpc?.onAddUris = { flag in
             if flag {
                 self.dismiss(self)
             } else {
                 self.view.window?.shakeWindow()
             }
         }
-        maria.rpc!.onAddTorrent = { flag in
+        maria.rpc?.onAddTorrent = { flag in
             if flag {
                 self.dismiss(self)
             } else {
@@ -81,7 +81,7 @@ class NewTaskViewController: NSViewController {
     }
     
     @IBAction func start(_ sender: NSButton) {
-        maria.rpc!.add(uris: downloadUrls, withOptions: downloadOptions)
+        maria.rpc?.add(uris: downloadUrls, withOptions: downloadOptions)
 //        maria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
     }
 
@@ -97,7 +97,7 @@ class NewTaskViewController: NSViewController {
         openPanel.runModal()
         if let url = openPanel.url {
             if let data = try? Data(contentsOf: url) {
-                maria.rpc!.add(torrent: data)
+                maria.rpc?.add(torrent: data)
                 self.dismiss(self)
             }
         }

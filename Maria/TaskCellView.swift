@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 
 
 class TaskCellView: NSTableCellView {
@@ -17,12 +17,12 @@ class TaskCellView: NSTableCellView {
         // Drawing code here.
         actionButton.target = self
         
-        maria.rpc!.onUnpause = { flag in
+        maria.rpc?.onUnpause = { flag in
             if flag {
                 self.status = "active"
             }
         }
-        maria.rpc!.onPause = { flag in
+        maria.rpc?.onPause = { flag in
             if flag {
                 self.status = "paused"
             }
@@ -93,17 +93,17 @@ class TaskCellView: NSTableCellView {
     @IBOutlet weak var actionButton: NSButton!
     
     func actionUnpause() {
-        maria.rpc!.unpause(gid)
+        maria.rpc?.unpause(gid)
     }
     func actionPause() {
-        maria.rpc!.pause(gid)
+        maria.rpc?.pause(gid)
     }
     func actionStop() {
         
     }
     func actionRestart() {
         if !isBtDownload {
-            maria.rpc!.restart(data!)
+            maria.rpc?.restart(data!)
         }
     }
     

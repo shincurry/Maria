@@ -7,14 +7,14 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 
 class Maria {
-    var rpc: Aria2!
+    var rpc: Aria2RPC!
     
     static let shared = Maria()
     
     private init() {
-        rpc = Aria2(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
+        rpc = Aria2RPC(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
     }
 }

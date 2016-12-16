@@ -36,8 +36,8 @@ target 'Maria Widget' do
     shared_pods
 end
 
-target 'Aria2' do
-    project 'Aria2'
+target 'Aria2RPC' do
+    project 'Aria2RPC'
     starscream
     swifty_json
 end

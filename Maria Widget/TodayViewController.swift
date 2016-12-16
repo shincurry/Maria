@@ -8,7 +8,7 @@
 
 import Cocoa
 import NotificationCenter
-import Aria2
+import Aria2RPC
 import SwiftyJSON
 
 class TodayViewController: NSViewController, NCWidgetProviding {
@@ -58,29 +58,32 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
 
     override func viewWillAppear() {
-        maria.rpc!.connect()
+        maria.rpc?.connect()
         runTimer()
     }
     override func viewWillDisappear() {
-        maria.rpc!.disconnect()
+        maria.rpc?.disconnect()
         closeTimer()
     }
     
     func updateListStatus() {
-        if maria.rpc!.status == .connected {
-            maria.rpc!.getGlobalStatus()
-            maria.rpc!.tellActive()
+        if maria.rpc?.status == .connected {
+            maria.rpc?.getGlobalStatus()
+            maria.rpc?.tellActive()
         }
     }
     
     func aria2Config() {
-        maria.rpc!.onGlobalStatus = { status in
+        maria.rpc?.onGlobalStatus = { status in
             self.authorized = true
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
         
-        maria.rpc!.onActives = { tasks in
+        maria.rpc?.onActives = {
+            guard let tasks = $0 else {
+                return
+            }
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
@@ -97,8 +100,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             self.taskData = taskArray
             self.updateListView()
         }
-        maria.rpc!.onStatusChanged = {
-            let flag = (self.maria.rpc!.status == .connected)
+        maria.rpc?.onStatusChanged = {
+            let flag = (self.maria.rpc?.status == .connected)
             self.speedView.isHidden = !flag
             self.separateLine.isHidden = !flag
             self.taskListTableView.isHidden = !flag

@@ -23,6 +23,7 @@
 		88298D051D41E56600BBAFE8 /* Maria Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88298CF51D41E56500BBAFE8 /* Maria Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		88298D0D1D41E63E00BBAFE8 /* TodayTaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */; };
 		88298D0F1D41E64A00BBAFE8 /* TodayTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */; };
+		882BCF821E0398EB00DFF67D /* Aria2RPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860B6A21E02ACF3001B5E8C /* Aria2RPC.framework */; };
 		882EE79A1D8D321200CD4BA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8842882C1D8D220E002014E2 /* Localizable.strings */; };
 		883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883327A21CC751630002B561 /* NewTaskViewController.swift */; };
 		883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */; };
@@ -33,6 +34,8 @@
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
 		885C95061DE4392A002A9E72 /* Aria2Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; };
 		885C95071DE4392A002A9E72 /* Aria2Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8860B6A31E02ACF3001B5E8C /* Aria2RPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860B6A21E02ACF3001B5E8C /* Aria2RPC.framework */; };
+		8860B6A41E02ACF3001B5E8C /* Aria2RPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8860B6A21E02ACF3001B5E8C /* Aria2RPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		886AB8621D8672E50053472C /* AriaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886AB8611D8672E50053472C /* AriaConfig.swift */; };
 		8870EA261CD4F13E00278B2C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8870EA241CD4F13E00278B2C /* Settings.storyboard */; };
 		8870EA291CD5A70200278B2C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8870EA281CD5A70200278B2C /* MainWindowController.swift */; };
@@ -40,9 +43,6 @@
 		887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */; };
 		887AE46B1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */; };
 		888176371D4234F50040D767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 889485761CBE4D4A000839CD /* Assets.xcassets */; };
-		8882C0821D801BB100511C60 /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8882C07F1D7FDA8A00511C60 /* Aria2.framework */; };
-		8882C0831D801BB100511C60 /* Aria2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8882C07F1D7FDA8A00511C60 /* Aria2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8882C0841D801BB600511C60 /* Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8882C07F1D7FDA8A00511C60 /* Aria2.framework */; };
 		888EAAF61D0837E90077EADB /* NewTaskWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */; };
 		888EAAF81D08393F0077EADB /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EAAF71D08393F0077EADB /* SettingsWindowController.swift */; };
 		889485731CBE4D4A000839CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889485721CBE4D4A000839CD /* AppDelegate.swift */; };
@@ -80,7 +80,7 @@
 			files = (
 				885C95071DE4392A002A9E72 /* Aria2Core.framework in Embed Frameworks */,
 				88C9C05A1E0058AF00201E7E /* YouGet.framework in Embed Frameworks */,
-				8882C0831D801BB100511C60 /* Aria2.framework in Embed Frameworks */,
+				8860B6A41E02ACF3001B5E8C /* Aria2RPC.framework in Embed Frameworks */,
 				88FBE7081D802E6100B7FE9C /* Pods_Maria.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -120,6 +120,7 @@
 		88298D0B1D41E5F700BBAFE8 /* Maria Widget.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Maria Widget.entitlements"; sourceTree = "<group>"; };
 		88298D0C1D41E63E00BBAFE8 /* TodayTaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTaskCellView.xib; sourceTree = "<group>"; };
 		88298D0E1D41E64A00BBAFE8 /* TodayTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTaskCellView.swift; sourceTree = "<group>"; };
+		882BCF801E0398E500DFF67D /* Pods_Aria2RPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Aria2RPC.framework; path = "../../../Library/Developer/Xcode/DerivedData/Maria-dlomxwiyclvxcobtrpqovlcatgey/Build/Products/Debug/Pods_Aria2RPC.framework"; sourceTree = "<group>"; };
 		883327A21CC751630002B561 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		883EA5271CE1D4EF00B10A25 /* TaskCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCellView.xib; sourceTree = "<group>"; };
 		883EA52A1CE1D52300B10A25 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		8842882E1D8D293E002014E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		8860B6A21E02ACF3001B5E8C /* Aria2RPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aria2RPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8866AD8C1D8D0B65006FF797 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Settings.strings"; sourceTree = "<group>"; };
 		886AB8611D8672E50053472C /* AriaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriaConfig.swift; sourceTree = "<group>"; };
 		8870EA251CD4F13E00278B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 		887AE4561CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRPCServerViewController.swift; sourceTree = "<group>"; };
 		887AE4641CC13A5000AAD3E3 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		887AE46A1CC15CB800AAD3E3 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
-		8882C07F1D7FDA8A00511C60 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskWindowController.swift; sourceTree = "<group>"; };
 		888EAAF71D08393F0077EADB /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		8894856F1CBE4D4A000839CD /* Maria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maria.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +172,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882BCF821E0398EB00DFF67D /* Aria2RPC.framework in Frameworks */,
 				88FBE7091D802E6D00B7FE9C /* Pods_Maria_Widget.framework in Frameworks */,
-				8882C0841D801BB600511C60 /* Aria2.framework in Frameworks */,
 				88298CF61D41E56500BBAFE8 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,7 +184,7 @@
 			files = (
 				885C95061DE4392A002A9E72 /* Aria2Core.framework in Frameworks */,
 				88C9C0591E0058AF00201E7E /* YouGet.framework in Frameworks */,
-				8882C0821D801BB100511C60 /* Aria2.framework in Frameworks */,
+				8860B6A31E02ACF3001B5E8C /* Aria2RPC.framework in Frameworks */,
 				88FBE7071D802E6100B7FE9C /* Pods_Maria.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,9 +195,10 @@
 		28088A4E27634CD587DFE218 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				882BCF801E0398E500DFF67D /* Pods_Aria2RPC.framework */,
 				88F2015F1DFE78B90010CA9D /* YouGet.framework */,
 				88DAEEB31D9131D500FF6E35 /* Aria2Core.framework */,
-				8882C07F1D7FDA8A00511C60 /* Aria2.framework */,
+				8860B6A21E02ACF3001B5E8C /* Aria2RPC.framework */,
 				889485921CBE4E44000839CD /* NotificationCenter.framework */,
 				EC227A1CDFF5C46C8C3C87B8 /* Pods_Maria.framework */,
 				EF09F8E5B0C163229FD5AD2B /* Pods_Maria_Widget.framework */,

@@ -7,11 +7,11 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 import YouGet
 
 class Maria {
-    var rpc: Aria2!
+    var rpc: Aria2RPC?
     var core: Aria2Core?
     var youget: YouGet?
     
@@ -32,7 +32,7 @@ class Maria {
             }
         }
 
-        rpc = Aria2(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
+        rpc = Aria2RPC(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
         return true
     }
     

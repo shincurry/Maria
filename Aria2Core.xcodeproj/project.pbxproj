@@ -160,7 +160,7 @@
 		88DAEE731D912A8900FF6E35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = ShinCurry;
 				TargetAttributes = {
 					88DAEE7B1D912A8900FF6E35 = {

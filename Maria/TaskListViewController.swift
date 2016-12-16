@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 import SwiftyJSON
 
 class TaskListViewController: NSViewController {
@@ -64,7 +64,7 @@ class TaskListViewController: NSViewController {
         }
     }
     @IBAction func connectToAria(_ sender: NSButton) {
-        maria.rpc.connect()
+        maria.rpc?.connect()
     }
 }
 
@@ -84,7 +84,7 @@ extension TaskListViewController {
         case .disconnected:
             countdownTimeToConnectAria -= 1
             if countdownTimeToConnectAria == 0 {
-                maria.rpc.connect()
+                maria.rpc?.connect()
                 timeToConnectAria *= 2
                 countdownTimeToConnectAria = timeToConnectAria
             } else {
@@ -95,12 +95,12 @@ extension TaskListViewController {
             timeToConnectAria = 4
             countdownTimeToConnectAria = 4
             
-            maria.rpc!.tellActive()
-            maria.rpc!.tellWaiting()
-            maria.rpc!.tellStopped()
+            maria.rpc?.tellActive()
+            maria.rpc?.tellWaiting()
+            maria.rpc?.tellStopped()
             
-            maria.rpc!.getGlobalStatus()
-            maria.rpc!.onGlobalStatus = { status in
+            maria.rpc?.getGlobalStatus()
+            maria.rpc?.onGlobalStatus = { status in
                 let activeNumber = status.numberOfActiveTask!
                 let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
                 self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
@@ -112,19 +112,30 @@ extension TaskListViewController {
     }
     
     func aria2Config() {
-        maria.rpc!.onActives = { self.newTaskData.active = $0 }
-        maria.rpc!.onWaitings = { self.newTaskData.waiting = $0 }
-        maria.rpc!.onStoppeds = {
-            self.newTaskData.stopped = $0.filter({ return !($0.title!.range(of: "[METADATA]") != nil && $0.status! == "complete") })
+        maria.rpc?.onActives = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.active = tasks
+        }
+        maria.rpc?.onWaitings = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.waiting = tasks
+        }
+        maria.rpc?.onStoppeds = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.stopped = tasks.filter({ return !($0.title!.range(of: "[METADATA]") != nil && $0.status! == "complete") })
             self.updateListView()
         }
         
-        maria.rpc!.onStatusChanged = {
-            if self.maria.rpc!.status == .connecting || self.maria.rpc!.status == .disconnected {
+        maria.rpc?.onStatusChanged = {
+            if self.maria.rpc?.status == .connecting || self.maria.rpc?.status == .disconnected {
                 self.taskData = []
-                self.numberOfTask.active = 0
-                self.numberOfTask.waiting = 0
-                self.numberOfTask.stopped = 0
+                self.numberOfTask = (0, 0, 0)
                 self.taskListTableView.reloadData()
             }
             switch self.maria.rpc!.status {
