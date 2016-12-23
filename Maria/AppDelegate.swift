@@ -156,7 +156,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     self.dockTileView.badgeBox.isHidden = true
                 } else {
                     self.dockTileView.badgeBox.isHidden = false
-                    self.dockTileView.badgeTitle.stringValue = status.speed!.downloadIntString
+                    self.dockTileView.badgeTitle.stringValue = status.speed!.downloadString
                 }
                 NSApp.dockTile.display()
             }
