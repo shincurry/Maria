@@ -17,7 +17,7 @@ public enum ProcessMode {
 public class YouGet {
     
     public init?() {
-        if let bin = sh(command: "/usr/bin/which you-get"), !bin.isEmpty {
+        if let bin = sh(command: ["you-get"], exec: "/usr/bin/which"), !bin.isEmpty {
             self.bin = bin.replacingOccurrences(of: "\n", with: "")
         } else {
             return nil
@@ -37,7 +37,7 @@ public class YouGet {
      - parameter uris:	download task links
      */
     public func fetchData(fromLink link: String) -> YGResult? {
-        guard let jsonString = sh(command: "\(bin) --json \(link)"), !jsonString.isEmpty else {
+        guard let jsonString = sh(command: ["--json", link], exec: bin), !jsonString.isEmpty else {
             print("you-get fetch data failed.")
             return nil
         }
@@ -55,7 +55,7 @@ public class YouGet {
      - parameter uris:	download task links
      */
     public func fetchInfo(fromLink link: String) -> String? {
-        return sh(command: "\(bin) --info \(link)")
+        return sh(command: ["--info", link], exec: bin)
     }
     
     /**
@@ -64,11 +64,11 @@ public class YouGet {
      - parameter link:	target link url
      */
     public func fetchUrl(fromLink link: String) -> String? {
-        return sh(command: "\(bin) --url \(link)")?.components(separatedBy: "\n").dropLast().last
+        return sh(command: ["--url", link], exec: bin)?.components(separatedBy: "\n").dropLast().last
     }
     
     
-    private func sh(command: String) -> String? {
+    private func sh(command: [String], exec binary: String = "/bin/sh") -> String? {
         var task: Process
         switch processMode {
         case .single:
@@ -78,10 +78,16 @@ public class YouGet {
             task = Process()
         }
 
-        task.launchPath = "/bin/sh"
+        task.launchPath = binary
+        if binary != "/bin/sh" {
+            task.arguments = command
+        } else {
+            task.arguments = ["-c"]
+            task.arguments?.append(contentsOf: command)
+        }
         task.environment = ["PATH": String(cString: getenv("PATH")) + ":/usr/local/bin",
                             "LC_CTYPE": "en_US.UTF-8"]
-        task.arguments = ["-c", command]
+
         let pip = Pipe()
         task.standardOutput = pip
         
