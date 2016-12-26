@@ -119,8 +119,8 @@
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
 "Xz5-n4-O0W.title" = "查找…";
 
-/* Class = "NSTextFieldCell"; title = "URLs"; ObjectID = "Y77-oY-dn3"; */
-"Y77-oY-dn3.title" = "URLs";
+/* Class = "NSTextFieldCell"; title = "New Task"; ObjectID = "Y77-oY-dn3"; */
+"Y77-oY-dn3.title" = "新任务";
 
 /* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz"; */
 "YEy-JH-Tfz.title" = "查找并替换…";
@@ -169,9 +169,6 @@
 
 /* Class = "NSButtonCell"; title = "Open Torrent Files"; ObjectID = "koC-Kd-wzl"; */
 "koC-Kd-wzl.title" = "打开 BT 文件";
-
-/* Class = "NSButtonCell"; title = "Use you-get"; ObjectID = "QXg-2J-lp8"; */
-"QXg-2J-lp8.title" = "使用 you-get";
 
 /* Class = "NSWindow"; title = "Maria"; ObjectID = "o4S-zO-VLD"; */
 "o4S-zO-VLD.title" = "Maria";

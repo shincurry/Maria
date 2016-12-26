@@ -45,6 +45,8 @@ typedef enum {
 
 - (instancetype)initWithOptions: (NSDictionary *)options;
 
+- (void)stop;
+
 #pragma mark - Aria2Core Interface
 
 - (ACGid *)addUri: (ACUris *)uris

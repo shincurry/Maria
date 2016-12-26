@@ -21,7 +21,8 @@ class SettingsGeneralViewController: NSViewController {
     // little bug -- use a new thread?
     @IBOutlet weak var enableSpeedStatusBar: NSButton!
     
-    @IBOutlet weak var enableDockIcon: NSButton!
+    @IBOutlet weak var enableStatusBarMode: NSButton!
+    @IBOutlet weak var enableYouGet: NSButton!
     
     @IBOutlet weak var webAppPathButton: NSPopUpButton!
     
@@ -36,13 +37,15 @@ class SettingsGeneralViewController: NSViewController {
             } else {
                 appDelegate.disableSpeedStatusBar()
             }
-        case enableDockIcon:
-            defaults[.enableDockIcon] = boolValue
+        case enableStatusBarMode:
+            defaults[.enableStatusBarMode] = boolValue
             if boolValue {
                 appDelegate.enableDockIcon()
             } else {
                 appDelegate.disableDockIcon()
             }
+        case enableYouGet:
+            defaults[.enableYouGet] = boolValue
         default:
             break
         }
@@ -75,7 +78,8 @@ extension SettingsGeneralViewController {
             webAppPathButton.item(at: 0)!.title = value
         }
         enableSpeedStatusBar.state = defaults[.enableSpeedStatusBar] ? 1 : 0
-        enableDockIcon.state  = defaults[.enableDockIcon] ? 1 : 0
+        enableStatusBarMode.state  = defaults[.enableStatusBarMode] ? 1 : 0
+        enableYouGet.state = defaults[.enableYouGet] ? 1 : 0
     }
 }
 

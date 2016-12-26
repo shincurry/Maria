@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 import SwiftyUserDefaults
 
 class QuickSettingsViewController: NSViewController {
@@ -19,7 +19,7 @@ class QuickSettingsViewController: NSViewController {
     }
     
     let defaults = MariaUserDefault.auto
-    let aria = Aria.shared
+    let maria = Maria.shared
     
     @IBOutlet weak var limitModeDownloadRate: NSTextField!
     @IBOutlet weak var limitModeUploadRate: NSTextField!
@@ -49,7 +49,7 @@ extension QuickSettingsViewController {
             if sender == limitModeDownloadRate || sender == limitModeUploadRate {
                 let downloadSpeed = defaults[.limitModeDownloadRate]
                 let uploadSpeed = defaults[.limitModeUploadRate]
-                aria.rpc!.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
+                maria.rpc?.lowSpeedLimit(download: downloadSpeed, upload: uploadSpeed)
             }
         }
     }

@@ -17,6 +17,7 @@ public enum Aria2Method: String {
     case tellWaiting
     case tellStopped
     case shutdown
+    case forceShutdown
     
     case addUri
     case addTorrent

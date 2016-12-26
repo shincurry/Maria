@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 import SwiftyJSON
 
 class TaskListViewController: NSViewController {
@@ -21,6 +21,7 @@ class TaskListViewController: NSViewController {
         taskListTableView.selectionHighlightStyle = .none
         
         aria2Config()
+        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSForegroundColorAttributeName: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSFontAttributeName: NSFont.systemFont(ofSize: 14)])
     }
     
     override func viewWillAppear() {
@@ -31,7 +32,11 @@ class TaskListViewController: NSViewController {
     }
     
     var timer: Timer!
-    let aria = Aria.shared
+    
+    var timeToConnectAria = 4
+    var countdownTimeToConnectAria = 4
+    let maria = Maria.shared
+
     
     var currentStatus: ConnectionStatus = .disconnected
 
@@ -45,6 +50,7 @@ class TaskListViewController: NSViewController {
     let selectedColor = NSColor(calibratedRed: 211.0/255.0, green: 231.0/255.0, blue: 250.0/255.0, alpha: 1.0).cgColor
     
     @IBOutlet weak var alertLabel: NSTextField!
+    @IBOutlet weak var alertConnectButton: NSButton!
     @IBOutlet weak var taskListTableView: NSTableView!
     
     @IBOutlet weak var globalSpeedLabel: NSTextField!
@@ -57,12 +63,15 @@ class TaskListViewController: NSViewController {
             taskListTableView.deselectRow(taskListTableView.selectedRow)
         }
     }
+    @IBAction func connectToAria(_ sender: NSButton) {
+        maria.rpc?.connect()
+    }
 }
 
 
 extension TaskListViewController {
     func updateListStatus() {
-//        if let core = aria.core {
+//        if let core = maria.core {
 //            print("---core---")
 //            if let tasks = core.getActiveDownload() {
 //                print(tasks)
@@ -71,49 +80,79 @@ extension TaskListViewController {
 //            }
 //        }
         
-        if aria.rpc!.status == .connected {
-            aria.rpc!.tellActive()
-            aria.rpc!.tellWaiting()
-            aria.rpc!.tellStopped()
+        switch maria.rpc!.status {
+        case .disconnected:
+            countdownTimeToConnectAria -= 1
+            if countdownTimeToConnectAria == 0 {
+                maria.rpc?.connect()
+                timeToConnectAria *= 2
+                countdownTimeToConnectAria = timeToConnectAria
+            } else {
+                let localized = NSLocalizedString("aria2.status.disconnected", comment: "")
+                alertLabel.stringValue = String(format: localized, countdownTimeToConnectAria)
+            }
+        case .connected:
+            timeToConnectAria = 4
+            countdownTimeToConnectAria = 4
             
-            aria.rpc!.getGlobalStatus()
-            aria.rpc!.onGlobalStatus = { status in
+            maria.rpc?.tellActive()
+            maria.rpc?.tellWaiting()
+            maria.rpc?.tellStopped()
+            
+            maria.rpc?.getGlobalStatus()
+            maria.rpc?.onGlobalStatus = { status in
                 let activeNumber = status.numberOfActiveTask!
                 let totalNumber = status.numberOfActiveTask! + status.numberOfWaitingTask!
                 self.globalTaskNumberLabel.stringValue = "\(activeNumber) of \(totalNumber) download(s)"
                 self.globalSpeedLabel.stringValue = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
             }
+        default:
+            break
         }
     }
     
     func aria2Config() {
-        aria.rpc!.onActives = { self.newTaskData.active = $0 }
-        aria.rpc!.onWaitings = { self.newTaskData.waiting = $0 }
-        aria.rpc!.onStoppeds = {
-            self.newTaskData.stopped = $0.filter({ return !($0.title!.range(of: "[METADATA]") != nil && $0.status! == "complete") })
+        maria.rpc?.onActives = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.active = tasks
+        }
+        maria.rpc?.onWaitings = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.waiting = tasks
+        }
+        maria.rpc?.onStoppeds = {
+            guard let tasks = $0 else {
+                return
+            }
+            self.newTaskData.stopped = tasks.filter({ return !($0.title!.range(of: "[METADATA]") != nil && $0.status! == "complete") })
             self.updateListView()
         }
         
-        aria.rpc!.onStatusChanged = {
-            if self.aria.rpc!.status == .connecting || self.aria.rpc!.status == .disconnected {
+        maria.rpc?.onStatusChanged = {
+            if self.maria.rpc?.status == .connecting || self.maria.rpc?.status == .disconnected {
                 self.taskData = []
-                self.numberOfTask.active = 0
-                self.numberOfTask.waiting = 0
-                self.numberOfTask.stopped = 0
+                self.numberOfTask = (0, 0, 0)
                 self.taskListTableView.reloadData()
             }
-            switch self.aria.rpc!.status {
+            switch self.maria.rpc!.status {
             case .connecting:
                 self.alertLabel.isHidden = false
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
+                self.alertConnectButton.isHidden = true
             case .connected:
+                self.alertLabel.isHidden = true
                 self.alertLabel.isHidden = true
             case .unauthorized:
                 self.alertLabel.isHidden = false
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.unauthorized", comment: "")
+                self.alertConnectButton.isHidden = true
             case .disconnected:
                 self.alertLabel.isHidden = false
-                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
+                self.alertConnectButton.isHidden = false
             }
         }
     }
@@ -171,7 +210,9 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cell = tableView.make(withIdentifier: "TaskCell", owner: self) as! TaskCellView
+        guard let cell = tableView.make(withIdentifier: "TaskCell", owner: self) as? TaskCellView else {
+            fatalError("Unexpected cell type at \(row)")
+        }
         cell.update(taskData[row])
         return cell
     }

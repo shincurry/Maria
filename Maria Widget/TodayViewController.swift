@@ -8,7 +8,7 @@
 
 import Cocoa
 import NotificationCenter
-import Aria2
+import Aria2RPC
 import SwiftyJSON
 
 class TodayViewController: NSViewController, NCWidgetProviding {
@@ -38,9 +38,12 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     let defaults = MariaUserDefault.auto
     
-    var aria = Aria.shared
+    var maria = Maria.shared
     
-    var timer: Timer!
+    var timer: Timer?
+    
+    var timeToConnectAria = 4
+    var countdownTimeToConnectAria = 4
     var authorized: Bool = true
     
     func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
@@ -58,29 +61,48 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     }
 
     override func viewWillAppear() {
-        aria.rpc!.connect()
+        maria.rpc?.connect()
         runTimer()
     }
     override func viewWillDisappear() {
-        aria.rpc!.disconnect()
+        maria.rpc?.disconnect()
         closeTimer()
     }
     
     func updateListStatus() {
-        if aria.rpc!.status == .connected {
-            aria.rpc!.getGlobalStatus()
-            aria.rpc!.tellActive()
+        switch maria.rpc!.status {
+        case .disconnected:
+            countdownTimeToConnectAria -= 1
+            if countdownTimeToConnectAria == 0 {
+                maria.rpc?.connect()
+                timeToConnectAria *= 2
+                countdownTimeToConnectAria = timeToConnectAria
+            } else {
+                let localized = NSLocalizedString("aria2.status.disconnected", comment: "")
+                alertLabel.stringValue = String(format: localized, countdownTimeToConnectAria)
+            }
+        case .connected:
+            timeToConnectAria = 4
+            countdownTimeToConnectAria = 4
+            
+            maria.rpc?.getGlobalStatus()
+            maria.rpc?.tellActive()
+        default:
+            break
         }
     }
     
     func aria2Config() {
-        aria.rpc!.onGlobalStatus = { status in
+        maria.rpc?.onGlobalStatus = { status in
             self.authorized = true
             self.downloadSpeedLabel.stringValue = status.speed!.downloadString
             self.uploadSpeedLabel.stringValue = status.speed!.uploadString
         }
         
-        aria.rpc!.onActives = { tasks in
+        maria.rpc?.onActives = {
+            guard let tasks = $0 else {
+                return
+            }
             var taskArray = tasks
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
@@ -97,14 +119,14 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             self.taskData = taskArray
             self.updateListView()
         }
-        aria.rpc!.onStatusChanged = {
-            let flag = (self.aria.rpc!.status == .connected)
+        maria.rpc?.onStatusChanged = {
+            let flag = (self.maria.rpc?.status == .connected)
             self.speedView.isHidden = !flag
             self.separateLine.isHidden = !flag
             self.taskListTableView.isHidden = !flag
             self.alertLabel.isHidden = flag
 
-            switch self.aria.rpc!.status {
+            switch self.maria.rpc!.status {
             case .connecting:
                 self.alertLabel.stringValue = NSLocalizedString("aria2.status.connecting", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
@@ -117,7 +139,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.taskListScrollViewHeightConstraint.constant = 0
             case .disconnected:
                 self.noTaskAlertLabel.isHidden = true
-                self.alertLabel.stringValue = NSLocalizedString("aria2.status.disconnected", comment: "")
                 self.taskListScrollViewHeightConstraint.constant = 0
             }
         }
@@ -131,7 +152,7 @@ extension TodayViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateListStatus), userInfo: nil, repeats: true)
     }
     fileprivate func closeTimer() {
-        timer.invalidate()
+        timer?.invalidate()
         timer = nil
     }
 }

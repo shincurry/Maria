@@ -1,5 +1,5 @@
 //
-//  Aria.swift
+//  maria.swift
 //  Maria
 //
 //  Created by ShinCurry on 2016/10/20.
@@ -7,24 +7,45 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
+import YouGet
 
-class Aria {
-    var rpc: Aria2!
+class Maria {
+    var rpc: Aria2RPC?
     var core: Aria2Core?
+    var youget: YouGet?
     
-    static let shared = Aria()
+    static let shared = Maria()
     
     private init() {
-        initCore()
-        initRPC()
+        _ = initCore()
+        _ = initRPC()
+        _ = initYouGet()
     }
     
-    private func initRPC() {
-        rpc = Aria2(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
+    func initRPC(forced: Bool = true) -> Bool  {
+        if forced {
+            rpc = nil
+        } else {
+            guard rpc == nil else {
+                return false
+            }
+        }
+
+        rpc = Aria2RPC(url: MariaUserDefault.RPCUrl, secret: MariaUserDefault.auto.object(forKey: "RPCServerSecret") as? String)
+        return true
     }
     
-    private func initCore() {
+    func initCore(forced: Bool = true) -> Bool {
+        if forced {
+            core?.stop()
+            core = nil
+        } else {
+            guard core == nil else {
+                return false
+            }
+        }
+
         if MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") {
             let resourcePath = Bundle.main.resourcePath!
             let conf = resourcePath + "/aria2.conf"
@@ -52,7 +73,24 @@ class Aria {
                 config.data.append(("input-file", "\(Bundle.main.resourcePath!)/aria2.session"))
                 config.data.append(("save-session", "\(Bundle.main.resourcePath!)/aria2.session"))
                 core = Aria2Core(options: config.dict)
+                return true
             }
         }
+        return false
+    }
+    
+    func initYouGet(forced: Bool = true) -> Bool {
+        if forced {
+            youget = nil
+        } else {
+            guard youget == nil else {
+                return false
+            }
+        }
+        
+        if MariaUserDefault.auto[.enableYouGet] && youget == nil {
+            youget = YouGet()
+        }
+        return true
     }
 }

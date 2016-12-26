@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  YouGet
+
+  Created by ShinCurry on 2016/12/13.
+  Copyright © 2016年 ShinCurry. All rights reserved.
+*/
+
+"default" = "DEFAULT";
+"unknown" = "Unknown";
+
+"site" = "Site";
+"title" = "Title";
+"size" = "Size";
+"container" = "Container";
+"realUrls" = "Real Urls";

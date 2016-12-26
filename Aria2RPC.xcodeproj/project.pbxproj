@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		156783852650DAE5D696EC40 /* Pods_Aria2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */; };
-		887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */; };
-		8897835B1CBE105400C12387 /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8897835A1CBE105400C12387 /* Aria2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		889783691CBE105C00C12387 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889783681CBE105C00C12387 /* Aria2.swift */; };
-		88D6CDCE1CE44B9200450E0C /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */; };
-		88D6CDD01CE479E900450E0C /* Aria2GlobalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */; };
-		88D6CDD21CE47A1B00450E0C /* Aria2Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */; };
+		0111B7A9D16B3D88FCF28B78 /* Pods_Aria2RPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55378921CC48E8E389847503 /* Pods_Aria2RPC.framework */; };
+		8860B6AD1E02AE0A001B5E8C /* Aria2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8860B6A71E02AE0A001B5E8C /* Aria2.h */; };
+		8860B6AE1E02AE0A001B5E8C /* Aria2GlobalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860B6A81E02AE0A001B5E8C /* Aria2GlobalStatus.swift */; };
+		8860B6AF1E02AE0A001B5E8C /* Aria2Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860B6A91E02AE0A001B5E8C /* Aria2Method.swift */; };
+		8860B6B01E02AE0A001B5E8C /* Aria2RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860B6AA1E02AE0A001B5E8C /* Aria2RPC.swift */; };
+		8860B6B11E02AE0A001B5E8C /* Aria2Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860B6AB1E02AE0A001B5E8C /* Aria2Speed.swift */; };
+		8860B6B21E02AE0A001B5E8C /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860B6AC1E02AE0A001B5E8C /* Aria2Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Method.swift; sourceTree = "<group>"; };
-		889783571CBE105400C12387 /* Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8897835A1CBE105400C12387 /* Aria2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aria2.h; sourceTree = "<group>"; };
-		8897835C1CBE105400C12387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		889783681CBE105C00C12387 /* Aria2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2.swift; sourceTree = "<group>"; };
-		88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
-		88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2GlobalStatus.swift; sourceTree = "<group>"; };
-		88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Speed.swift; sourceTree = "<group>"; };
-		C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2/Pods-Aria2.debug.xcconfig"; sourceTree = "<group>"; };
-		D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2/Pods-Aria2.release.xcconfig"; sourceTree = "<group>"; };
-		DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aria2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55378921CC48E8E389847503 /* Pods_Aria2RPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aria2RPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6223B11273725B9FCD5E9F92 /* Pods-Aria2RPC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2RPC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2RPC/Pods-Aria2RPC.debug.xcconfig"; sourceTree = "<group>"; };
+		8860B6A51E02ADED001B5E8C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Aria2RPC/Info.plist; sourceTree = "<group>"; };
+		8860B6A71E02AE0A001B5E8C /* Aria2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Aria2.h; path = Aria2RPC/Aria2.h; sourceTree = SOURCE_ROOT; };
+		8860B6A81E02AE0A001B5E8C /* Aria2GlobalStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Aria2GlobalStatus.swift; path = Aria2RPC/Aria2GlobalStatus.swift; sourceTree = SOURCE_ROOT; };
+		8860B6A91E02AE0A001B5E8C /* Aria2Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Aria2Method.swift; path = Aria2RPC/Aria2Method.swift; sourceTree = SOURCE_ROOT; };
+		8860B6AA1E02AE0A001B5E8C /* Aria2RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Aria2RPC.swift; path = Aria2RPC/Aria2RPC.swift; sourceTree = SOURCE_ROOT; };
+		8860B6AB1E02AE0A001B5E8C /* Aria2Speed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Aria2Speed.swift; path = Aria2RPC/Aria2Speed.swift; sourceTree = SOURCE_ROOT; };
+		8860B6AC1E02AE0A001B5E8C /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Aria2Task.swift; path = Aria2RPC/Aria2Task.swift; sourceTree = SOURCE_ROOT; };
+		889783571CBE105400C12387 /* Aria2RPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aria2RPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9A85C0E5B98F1B3ED7C7D0 /* Pods-Aria2RPC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aria2RPC.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aria2RPC/Pods-Aria2RPC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				156783852650DAE5D696EC40 /* Pods_Aria2.framework in Frameworks */,
+				0111B7A9D16B3D88FCF28B78 /* Pods_Aria2RPC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,8 +45,8 @@
 		62F5BD2B4D1B6A0BB85CF3D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */,
-				D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */,
+				6223B11273725B9FCD5E9F92 /* Pods-Aria2RPC.debug.xcconfig */,
+				9D9A85C0E5B98F1B3ED7C7D0 /* Pods-Aria2RPC.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -54,7 +54,7 @@
 		880980151D2F850900237D8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDA08EBD2CDAA86158160FF1 /* Pods_Aria2.framework */,
+				55378921CC48E8E389847503 /* Pods_Aria2RPC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -62,7 +62,8 @@
 		8897834D1CBE105400C12387 = {
 			isa = PBXGroup;
 			children = (
-				889783591CBE105400C12387 /* Aria2 */,
+				889783591CBE105400C12387 /* Aria2RPC */,
+				8860B6A51E02ADED001B5E8C /* Info.plist */,
 				889783581CBE105400C12387 /* Products */,
 				880980151D2F850900237D8E /* Frameworks */,
 				62F5BD2B4D1B6A0BB85CF3D0 /* Pods */,
@@ -72,29 +73,29 @@
 		889783581CBE105400C12387 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				889783571CBE105400C12387 /* Aria2.framework */,
+				889783571CBE105400C12387 /* Aria2RPC.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		889783591CBE105400C12387 /* Aria2 */ = {
+		889783591CBE105400C12387 /* Aria2RPC */ = {
 			isa = PBXGroup;
 			children = (
-				8897835A1CBE105400C12387 /* Aria2.h */,
-				887AE4591CC0CE7700AAD3E3 /* Aria2Method.swift */,
-				889783681CBE105C00C12387 /* Aria2.swift */,
+				8860B6A71E02AE0A001B5E8C /* Aria2.h */,
+				8860B6A91E02AE0A001B5E8C /* Aria2Method.swift */,
+				8860B6AA1E02AE0A001B5E8C /* Aria2RPC.swift */,
 				88CAFFE31CFB43A900D83FF3 /* Model */,
-				8897835C1CBE105400C12387 /* Info.plist */,
 			);
+			name = Aria2RPC;
 			path = Aria2;
 			sourceTree = "<group>";
 		};
 		88CAFFE31CFB43A900D83FF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				88D6CDCD1CE44B9200450E0C /* Aria2Task.swift */,
-				88D6CDCF1CE479E900450E0C /* Aria2GlobalStatus.swift */,
-				88D6CDD11CE47A1B00450E0C /* Aria2Speed.swift */,
+				8860B6A81E02AE0A001B5E8C /* Aria2GlobalStatus.swift */,
+				8860B6AB1E02AE0A001B5E8C /* Aria2Speed.swift */,
+				8860B6AC1E02AE0A001B5E8C /* Aria2Task.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -106,16 +107,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8897835B1CBE105400C12387 /* Aria2.h in Headers */,
+				8860B6AD1E02AE0A001B5E8C /* Aria2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		889783561CBE105400C12387 /* Aria2 */ = {
+		889783561CBE105400C12387 /* Aria2RPC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8897835F1CBE105400C12387 /* Build configuration list for PBXNativeTarget "Aria2" */;
+			buildConfigurationList = 8897835F1CBE105400C12387 /* Build configuration list for PBXNativeTarget "Aria2RPC" */;
 			buildPhases = (
 				6C379AC9196C68F4954D2389 /* [CP] Check Pods Manifest.lock */,
 				889783521CBE105400C12387 /* Sources */,
@@ -128,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = Aria2;
+			name = Aria2RPC;
 			productName = Aria2;
-			productReference = 889783571CBE105400C12387 /* Aria2.framework */;
+			productReference = 889783571CBE105400C12387 /* Aria2RPC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -139,17 +140,18 @@
 		8897834E1CBE105400C12387 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = ShinCurry;
 				TargetAttributes = {
 					889783561CBE105400C12387 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = 8D95HCDEJR;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 889783511CBE105400C12387 /* Build configuration list for PBXProject "Aria2" */;
+			buildConfigurationList = 889783511CBE105400C12387 /* Build configuration list for PBXProject "Aria2RPC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -161,7 +163,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				889783561CBE105400C12387 /* Aria2 */,
+				889783561CBE105400C12387 /* Aria2RPC */,
 			);
 		};
 /* End PBXProject section */
@@ -204,7 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aria2/Pods-Aria2-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aria2RPC/Pods-Aria2RPC-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -214,11 +216,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88D6CDD21CE47A1B00450E0C /* Aria2Speed.swift in Sources */,
-				887AE45A1CC0CE7700AAD3E3 /* Aria2Method.swift in Sources */,
-				889783691CBE105C00C12387 /* Aria2.swift in Sources */,
-				88D6CDD01CE479E900450E0C /* Aria2GlobalStatus.swift in Sources */,
-				88D6CDCE1CE44B9200450E0C /* Aria2Task.swift in Sources */,
+				8860B6AF1E02AE0A001B5E8C /* Aria2Method.swift in Sources */,
+				8860B6AE1E02AE0A001B5E8C /* Aria2GlobalStatus.swift in Sources */,
+				8860B6B01E02AE0A001B5E8C /* Aria2RPC.swift in Sources */,
+				8860B6B11E02AE0A001B5E8C /* Aria2Speed.swift in Sources */,
+				8860B6B21E02AE0A001B5E8C /* Aria2Task.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,8 +241,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -287,8 +291,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -315,46 +321,49 @@
 		};
 		889783601CBE105400C12387 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3E763E58751C6B447F349D8 /* Pods-Aria2.debug.xcconfig */;
+			baseConfigurationReference = 6223B11273725B9FCD5E9F92 /* Pods-Aria2RPC.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Aria2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Aria2RPC/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2RPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		889783611CBE105400C12387 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D560C11E59F7932E17B01274 /* Pods-Aria2.release.xcconfig */;
+			baseConfigurationReference = 9D9A85C0E5B98F1B3ED7C7D0 /* Pods-Aria2RPC.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8D95HCDEJR;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Aria2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Aria2RPC/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.windisco.Aria2RPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -365,7 +374,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		889783511CBE105400C12387 /* Build configuration list for PBXProject "Aria2" */ = {
+		889783511CBE105400C12387 /* Build configuration list for PBXProject "Aria2RPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8897835D1CBE105400C12387 /* Debug */,
@@ -374,7 +383,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8897835F1CBE105400C12387 /* Build configuration list for PBXNativeTarget "Aria2" */ = {
+		8897835F1CBE105400C12387 /* Build configuration list for PBXNativeTarget "Aria2RPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				889783601CBE105400C12387 /* Debug */,

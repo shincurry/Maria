@@ -2,10 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Aria2Core.xcodeproj">
+      location = "group:YouGet.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Aria2.xcodeproj">
+      location = "group:Aria2RPC.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Aria2Core.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Maria.xcodeproj">

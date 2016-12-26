@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Aria2
+import Aria2RPC
 
 class TodayTaskCellView: NSTableCellView {
     

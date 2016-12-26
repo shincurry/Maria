@@ -26,7 +26,8 @@
 
 "aria2.status.connecting" = "Connecting to aria2...";
 "aria2.status.unauthorized" = "Connection unauthorized.";
-"aria2.status.disconnected" = "Disconnected to aria2.";
+"aria2.status.disconnected" = "Reconnect to aria2 in %ds...";
+"aria2.status.disconnected.tryNow" = "try now";
 
 // MARK: SettingsRPCServerViewController
 "useEmbeddedAria2.alert.messageText" = "This operation need restart Maria";

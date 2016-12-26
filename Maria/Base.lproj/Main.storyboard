@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -428,14 +429,14 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" image="NSSmartBadgeTemplate" id="3Rf-Mp-fbB">
+                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" image="Speedmeter" id="3Rf-Mp-fbB">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="MB1-qk-bcG">
                                         <rect key="frame" x="22" y="14" width="40" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSSmartBadgeTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="WBI-uM-RVe">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Speedmeter" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="WBI-uM-RVe">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="17"/>
                                         </buttonCell>
@@ -565,21 +566,33 @@
                                         </scroller>
                                     </scrollView>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="giE-Fo-SRL">
-                                        <rect key="frame" x="24" y="115" width="532" height="46"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please run and connect to aria2" id="QBt-GT-5Ao">
-                                            <font key="font" metaFont="system" size="38"/>
+                                        <rect key="frame" x="96" y="123" width="301" height="31"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Reconnect to aria2 in 1s..." id="QBt-GT-5Ao">
+                                            <font key="font" metaFont="system" size="26"/>
                                             <color key="textColor" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-9V-3n1">
+                                        <rect key="frame" x="403" y="125" width="58" height="19"/>
+                                        <buttonCell key="cell" type="square" title="try now" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" inset="2" id="P3g-c0-Ld9">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="16"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="connectToAria:" target="37H-HT-bWJ" id="uxq-yu-ZbA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ZTZ-fb-fPN" secondAttribute="bottom" id="Ct8-YQ-6DZ"/>
                                     <constraint firstItem="ZTZ-fb-fPN" firstAttribute="top" secondItem="mjo-9s-C0c" secondAttribute="top" id="DfF-0l-kH8"/>
                                     <constraint firstItem="giE-Fo-SRL" firstAttribute="centerY" secondItem="mjo-9s-C0c" secondAttribute="centerY" id="HBz-sd-CLY"/>
-                                    <constraint firstItem="giE-Fo-SRL" firstAttribute="centerX" secondItem="mjo-9s-C0c" secondAttribute="centerX" id="WsM-8Z-lwT"/>
+                                    <constraint firstItem="giE-Fo-SRL" firstAttribute="centerX" secondItem="mjo-9s-C0c" secondAttribute="centerX" multiplier="0.85" id="WsM-8Z-lwT"/>
                                     <constraint firstAttribute="trailing" secondItem="ZTZ-fb-fPN" secondAttribute="trailing" id="q7b-fl-OzB"/>
                                     <constraint firstItem="ZTZ-fb-fPN" firstAttribute="leading" secondItem="mjo-9s-C0c" secondAttribute="leading" id="ucf-Td-Ty6"/>
+                                    <constraint firstItem="yvQ-9V-3n1" firstAttribute="leading" secondItem="giE-Fo-SRL" secondAttribute="trailing" constant="8" id="xZL-OZ-aso"/>
+                                    <constraint firstItem="yvQ-9V-3n1" firstAttribute="baseline" secondItem="giE-Fo-SRL" secondAttribute="baseline" id="zOl-wq-VSj"/>
                                 </constraints>
                             </visualEffectView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOJ-nC-MDI">
@@ -613,6 +626,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alertConnectButton" destination="yvQ-9V-3n1" id="1G3-f7-hQC"/>
                         <outlet property="alertLabel" destination="giE-Fo-SRL" id="9dO-b2-6rH"/>
                         <outlet property="globalSpeedLabel" destination="QOJ-nC-MDI" id="AFy-71-O8N"/>
                         <outlet property="globalTaskNumberLabel" destination="JhC-kn-LtG" id="h9h-sU-05q"/>
@@ -752,45 +766,11 @@
             <objects>
                 <viewController title="Add New task" showSeguePresentationStyle="single" id="3Py-Pw-Qec" customClass="NewTaskViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Yqt-Qp-1qf">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="252"/>
+                        <rect key="frame" x="0.0" y="0.0" width="466" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPn-yX-ShL">
-                                <rect key="frame" x="20" y="85" width="400" height="120"/>
-                                <clipView key="contentView" id="YVz-AE-RvJ">
-                                    <rect key="frame" x="1" y="1" width="398" height="118"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="NVg-hI-Dtz">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="118"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="398" height="118"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
-                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="3Py-Pw-Qec" id="o6o-HK-D3d"/>
-                                            </connections>
-                                        </textView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="962-3n-PrD"/>
-                                    <constraint firstAttribute="width" constant="400" id="drQ-sd-uOs"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="njT-8b-zow"/>
-                                </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="FFb-64-fjl">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ywJ-xK-3E4">
-                                    <rect key="frame" x="383" y="1" width="16" height="118"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAc-gW-pQT">
-                                <rect key="frame" x="266" y="13" width="82" height="32"/>
+                                <rect key="frame" x="292" y="13" width="82" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="L0A-eZ-eX5"/>
                                 </constraints>
@@ -805,16 +785,8 @@ Gw
                                     <action selector="dismissController:" target="3Py-Pw-Qec" id="eKH-Jr-dNf"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="pnp-aE-6g2">
-                                <rect key="frame" x="18" y="49" width="404" height="28"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="You can add multiple downloads (files) at the same time by putting URIs for each file on a separate line." id="auM-Th-oQW">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" red="0.34248798079999998" green="0.34248798079999998" blue="0.34248798079999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pxw-AI-2S1">
-                                <rect key="frame" x="20" y="21" width="115" height="17"/>
+                                <rect key="frame" x="20" y="22" width="115" height="17"/>
                                 <buttonCell key="cell" type="inline" title="Open Torrent Files" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="koC-Kd-wzl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystemBold"/>
@@ -824,19 +796,19 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Mq-qW-PTW">
-                                <rect key="frame" x="18" y="213" width="41" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URLs" id="Y77-oY-dn3">
+                                <rect key="frame" x="18" y="227" width="71" height="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New Task" id="Y77-oY-dn3">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nM7-o5-2jr">
-                                <rect key="frame" x="344" y="13" width="82" height="32"/>
+                                <rect key="frame" x="370" y="13" width="82" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="sSB-Cj-Vu2"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K7r-6T-5XW">
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K7r-6T-5XW">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -847,42 +819,120 @@ DQ
                                     <action selector="start:" target="3Py-Pw-Qec" id="hfi-RB-han"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-lG-CmJ">
-                                <rect key="frame" x="141" y="21" width="98" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Use you-get" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QXg-2J-lp8">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Lh-aY-ONW">
+                                <rect key="frame" x="20" y="197" width="392" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="b2h-Qj-Mo8"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="[url] [magnet] [ed2k] [you-get]" usesSingleLineMode="YES" bezelStyle="round" id="TEq-li-T9R" customClass="LoadingTextFieldCell" customModule="Maria" customModuleProvider="target">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="3Py-Pw-Qec" id="xaS-eU-wXg"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kB8-sw-fcI">
+                                <rect key="frame" x="18" y="43" width="430" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Maria support you-get now. visit https://you-get.org for more details." id="KIg-ti-y0Z">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="At8-om-9hN">
+                                <rect key="frame" x="412" y="194" width="37" height="26"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AKv-Cq-qRI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="EwK-8p-D8W"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="switchContainer:" target="3Py-Pw-Qec" id="QGz-Mc-lM6"/>
+                                </connections>
+                            </popUpButton>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kM6-KK-2eh">
+                                <rect key="frame" x="392" y="200" width="16" height="16"/>
+                            </progressIndicator>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wit-CB-UBT">
+                                <rect key="frame" x="89" y="227" width="30" height="18"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="YouGetIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="yUc-6O-blW">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="toggleYouGet:" target="3Py-Pw-Qec" id="AZu-dr-o28"/>
+                                </connections>
                             </button>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJj-X2-UMf">
+                                <rect key="frame" x="20" y="65" width="426" height="124"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="im9-g9-IHq">
+                                    <rect key="frame" x="0.0" y="0.0" width="426" height="124"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="68h-Y4-ARI">
+                                            <rect key="frame" x="0.0" y="0.0" width="426" height="124"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="426" height="124"/>
+                                            <size key="maxSize" width="468" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="WTO-CQ-xSc">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3No-5R-KLi">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="144"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="NPn-yX-ShL" secondAttribute="trailing" id="0rf-uS-kEc"/>
-                            <constraint firstItem="pnp-aE-6g2" firstAttribute="top" secondItem="NPn-yX-ShL" secondAttribute="bottom" constant="8" id="AE0-ci-a8r"/>
+                            <constraint firstItem="wit-CB-UBT" firstAttribute="bottom" secondItem="3Mq-qW-PTW" secondAttribute="bottom" id="0z1-5i-rgx"/>
+                            <constraint firstItem="wJj-X2-UMf" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="9LY-d5-DPh"/>
+                            <constraint firstItem="wJj-X2-UMf" firstAttribute="top" secondItem="6Lh-aY-ONW" secondAttribute="bottom" constant="8" id="Amz-RE-WWT"/>
                             <constraint firstAttribute="bottom" secondItem="nM7-o5-2jr" secondAttribute="bottom" constant="20" id="DjB-Vb-Zgo"/>
-                            <constraint firstItem="NPn-yX-ShL" firstAttribute="top" secondItem="3Mq-qW-PTW" secondAttribute="bottom" constant="8" id="EfF-EO-1CI"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="leading" secondItem="qAc-gW-pQT" secondAttribute="trailing" constant="8" id="IAt-Aq-uhc"/>
-                            <constraint firstAttribute="trailing" secondItem="pnp-aE-6g2" secondAttribute="trailing" constant="20" id="ICV-2P-3t3"/>
+                            <constraint firstItem="kM6-KK-2eh" firstAttribute="trailing" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="-4" id="Sof-2B-AFm"/>
+                            <constraint firstAttribute="trailing" secondItem="At8-om-9hN" secondAttribute="trailing" constant="20" id="Sv4-7A-kqk"/>
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="ThB-mo-fby"/>
-                            <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="pnp-aE-6g2" secondAttribute="bottom" constant="8" id="VyX-Tv-kHF"/>
-                            <constraint firstItem="3Mq-qW-PTW" firstAttribute="top" secondItem="Yqt-Qp-1qf" secondAttribute="top" constant="20" id="c9d-hJ-ILQ"/>
-                            <constraint firstItem="NPn-yX-ShL" firstAttribute="leading" secondItem="3Mq-qW-PTW" secondAttribute="leading" id="dIC-gP-Mp6"/>
+                            <constraint firstItem="nM7-o5-2jr" firstAttribute="top" secondItem="kB8-sw-fcI" secondAttribute="bottom" constant="2" id="VtL-o4-j81"/>
+                            <constraint firstItem="kB8-sw-fcI" firstAttribute="top" secondItem="wJj-X2-UMf" secondAttribute="bottom" constant="8" id="ZXG-86-6ay"/>
+                            <constraint firstItem="kM6-KK-2eh" firstAttribute="centerY" secondItem="6Lh-aY-ONW" secondAttribute="centerY" id="ZeF-n3-waH"/>
+                            <constraint firstItem="At8-om-9hN" firstAttribute="centerY" secondItem="6Lh-aY-ONW" secondAttribute="centerY" id="ZeI-UD-7pF"/>
+                            <constraint firstAttribute="trailing" secondItem="nM7-o5-2jr" secondAttribute="trailing" constant="20" id="aHn-xD-A26"/>
+                            <constraint firstItem="3Mq-qW-PTW" firstAttribute="top" secondItem="Yqt-Qp-1qf" secondAttribute="top" constant="10" id="c9d-hJ-ILQ"/>
+                            <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="kB8-sw-fcI" secondAttribute="leading" id="cIc-2P-zH8"/>
+                            <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="kB8-sw-fcI" secondAttribute="trailing" id="dfN-Hx-1Wa"/>
+                            <constraint firstItem="wit-CB-UBT" firstAttribute="leading" secondItem="3Mq-qW-PTW" secondAttribute="trailing" constant="2" id="hPP-x8-2Oc"/>
                             <constraint firstItem="qAc-gW-pQT" firstAttribute="centerY" secondItem="Pxw-AI-2S1" secondAttribute="centerY" id="hxU-sg-9Um"/>
-                            <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="NPn-yX-ShL" secondAttribute="leading" id="hzE-dF-Bmd"/>
-                            <constraint firstAttribute="trailing" secondItem="nM7-o5-2jr" secondAttribute="trailing" constant="20" id="iRA-6t-A4Y"/>
+                            <constraint firstItem="6Lh-aY-ONW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="lZ9-D7-dgj"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="centerY" secondItem="qAc-gW-pQT" secondAttribute="centerY" id="m6y-V3-Cxk"/>
-                            <constraint firstItem="pnp-aE-6g2" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="oWX-LR-aXr"/>
+                            <constraint firstAttribute="trailing" secondItem="wJj-X2-UMf" secondAttribute="trailing" constant="20" id="tpQ-OU-Nch"/>
+                            <constraint firstItem="6Lh-aY-ONW" firstAttribute="top" secondItem="3Mq-qW-PTW" secondAttribute="bottom" constant="8" id="ucb-Gx-YeT"/>
+                            <constraint firstItem="At8-om-9hN" firstAttribute="leading" secondItem="6Lh-aY-ONW" secondAttribute="trailing" constant="2" id="wl3-u1-Ytj"/>
+                            <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="xHV-9u-JkQ"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="linksTextView" destination="NVg-hI-Dtz" id="LhP-9e-pYT"/>
+                        <outlet property="containerSwitchButton" destination="At8-om-9hN" id="ex1-eb-l14"/>
+                        <outlet property="enableYouGetButton" destination="wit-CB-UBT" id="X2p-hN-dkL"/>
+                        <outlet property="linkTextField" destination="6Lh-aY-ONW" id="Fu4-rJ-baa"/>
+                        <outlet property="linkTextFieldCell" destination="TEq-li-T9R" id="Ztv-F6-8Bs"/>
+                        <outlet property="messageScrollView" destination="wJj-X2-UMf" id="cGc-T5-DEm"/>
+                        <outlet property="messageTextView" destination="68h-Y4-ARI" id="pGh-pp-wXf"/>
+                        <outlet property="progressIndicator" destination="kM6-KK-2eh" id="RNj-CY-95U"/>
                         <outlet property="startButton" destination="nM7-o5-2jr" id="Lmh-8H-rgw"/>
-                        <outlet property="useYouget" destination="rRK-lG-CmJ" id="cLa-19-s94"/>
                     </connections>
                 </viewController>
                 <customObject id="hob-hO-07W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1343" y="-174"/>
+            <point key="canvasLocation" x="1354" y="-56"/>
         </scene>
         <!--Settings-->
         <scene sceneID="PWW-IL-bJi">
@@ -898,17 +948,18 @@ DQ
         <image name="Broom" width="20" height="20"/>
         <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="Pause" width="20" height="20"/>
         <image name="RedBall" width="16" height="12"/>
         <image name="Remove" width="20" height="20"/>
         <image name="Resume" width="20" height="20"/>
+        <image name="Speedmeter" width="20" height="20"/>
         <image name="TortoiseColorful" width="20" height="20"/>
         <image name="TortoiseGray" width="20" height="20"/>
+        <image name="YouGetIcon" width="30" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kMs-7f-Cnb"/>
         <segue reference="uT7-5m-1AB"/>
+        <segue reference="kMs-7f-Cnb"/>
         <segue reference="MnT-tc-ZNs"/>
     </inferredMetricsTieBreakers>
 </document>

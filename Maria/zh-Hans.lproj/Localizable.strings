@@ -26,7 +26,9 @@
 
 "aria2.status.connecting" = "正在连接到 aria2...";
 "aria2.status.unauthorized" = "连接验证失败";
-"aria2.status.disconnected" = "与 aria2 连接中断";
+"aria2.status.disconnected" = "将在 %d 秒之后尝试与 aria2 连接...";
+"aria2.status.disconnected.tryNow" = "现在连接";
+
 
 // MARK: SettingsRPCServerViewController
 "useEmbeddedAria2.alert.messageText" = "这个操作需要重启 Maria";
