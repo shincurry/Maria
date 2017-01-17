@@ -824,7 +824,7 @@ DQ
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="b2h-Qj-Mo8"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="[url] [magnet] [ed2k] [you-get]" usesSingleLineMode="YES" bezelStyle="round" id="TEq-li-T9R" customClass="LoadingTextFieldCell" customModule="Maria" customModuleProvider="target">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="[url] [magnet] [you-get]" usesSingleLineMode="YES" bezelStyle="round" id="TEq-li-T9R" customClass="LoadingTextFieldCell" customModule="Maria" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -924,8 +924,8 @@ DQ
                         <outlet property="enableYouGetButton" destination="wit-CB-UBT" id="X2p-hN-dkL"/>
                         <outlet property="linkTextField" destination="6Lh-aY-ONW" id="Fu4-rJ-baa"/>
                         <outlet property="linkTextFieldCell" destination="TEq-li-T9R" id="Ztv-F6-8Bs"/>
-                        <outlet property="messageScrollView" destination="wJj-X2-UMf" id="cGc-T5-DEm"/>
-                        <outlet property="messageTextView" destination="68h-Y4-ARI" id="pGh-pp-wXf"/>
+                        <outlet property="messageScrollView" destination="wJj-X2-UMf" id="Woo-9O-Qol"/>
+                        <outlet property="messageTextView" destination="68h-Y4-ARI" id="d5P-mb-1WB"/>
                         <outlet property="progressIndicator" destination="kM6-KK-2eh" id="RNj-CY-95U"/>
                         <outlet property="startButton" destination="nM7-o5-2jr" id="Lmh-8H-rgw"/>
                     </connections>

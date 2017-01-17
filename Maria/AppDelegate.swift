@@ -44,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
         
         if defaults[.enableAutoConnectAria2] {
+            aria2configure()
             maria.rpc?.connect()
         }
     }

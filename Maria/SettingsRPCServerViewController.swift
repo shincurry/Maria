@@ -108,7 +108,7 @@ extension SettingsRPCServerViewController {
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
             if response == NSAlertFirstButtonReturn {
                 let boolValue = sender.state == 0 ? false : true
-                MariaUserDefault.main.set(boolValue, forKey: "UseEmbeddedAria2")
+                MariaUserDefault.main[.useEmbeddedAria2] = boolValue
                 MariaUserDefault.main.synchronize()
                 let path = Bundle.main.executablePath!
                 let id = "\(ProcessInfo.processInfo.processIdentifier)"
@@ -152,7 +152,7 @@ extension SettingsRPCServerViewController {
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
         autoConnectAria2Enabled.state = defaults[.enableAutoConnectAria2] ? 1 : 0
-        useEmbeddedAria2Enabled.state = MariaUserDefault.main.bool(forKey: "UseEmbeddedAria2") ? 1 : 0
+        useEmbeddedAria2Enabled.state = MariaUserDefault.main[.useEmbeddedAria2] ? 1 : 0
         
         useEmbeddedAria2Enabled.title = useEmbeddedAria2Enabled.title + "(version \(EmbeddedAria2Version))"
     }

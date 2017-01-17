@@ -10,10 +10,51 @@ import Foundation
 
 
 class AriaConfig {
+    static var builtIn: AriaConfig? {
+        get {
+            
+            let resourcePath = Bundle.main.resourcePath!
+            let conf = resourcePath + "/aria2.conf"
+            let session = resourcePath + "/aria2.session"
+            
+            if !FileManager.default.fileExists(atPath: conf) {
+                do {
+                    let defaults = MariaUserDefault.auto
+                    let defaultConfPath = Bundle.main.path(forResource: "aria2.Maria", ofType: "conf")!
+                    try FileManager.default.copyItem(atPath: defaultConfPath, toPath: conf)
+                    if !FileManager.default.fileExists(atPath: session) {
+                        FileManager.default.createFile(atPath: session, contents: nil, attributes: nil)
+                    }
+                    MariaUserDefault.initBuiltIn()
+                    defaults[.aria2ConfPath] = conf
+                    guard Bundle.main.load() else {
+                        return nil
+                    }
+                    
+                    let config = AriaConfig(filePath: conf)
+                    config.load()
+                    config.data.append(("dir", "\(NSHomeDirectory())/Downloads"))
+                    
+                    config.data.append(("input-file", "\(Bundle.main.resourcePath!)/aria2.session"))
+                    config.data.append(("save-session", "\(Bundle.main.resourcePath!)/aria2.session"))
+                    config.save()
+                    return config
+                } catch {
+                    print(error)
+                    return nil
+                }
+            } else {
+                let config = AriaConfig(filePath: conf)
+                config.load()
+                return config
+            }
+        }
+    }
+    
     init(filePath: String) {
         self.filePath = filePath
     }
-    
+
     var filePath: String
     typealias AriaConf = [(key: String, value: String)]
     var data = AriaConf()
@@ -29,6 +70,7 @@ class AriaConfig {
             return dict
         }
     }
+    
 
     func load() {
         do {
@@ -45,9 +87,12 @@ class AriaConfig {
     
     func reset() {
         do {
-            let path = Bundle.main.path(forResource: "aria2.default", ofType: ".conf")!
+            let resource = MariaUserDefault.main[.useEmbeddedAria2] ? "aria2.Maria" : "aria2.default"
+            
+            let path = Bundle.main.path(forResource: resource, ofType: ".conf")!
             let conf = try String(contentsOfFile: path)
             data = parseConfig(from: conf)
+            
             data.append(("dir", "\(NSHomeDirectory())/Downloads"))
             data.append(("input-file", "\(NSHomeDirectory())/.aria2/aria2.session"))
             data.append(("save-session", "\(NSHomeDirectory())/.aria2/aria2.session"))

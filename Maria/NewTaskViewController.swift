@@ -57,7 +57,7 @@ class NewTaskViewController: NSViewController {
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     @IBOutlet weak var messageScrollView: NSScrollView!
-    @IBOutlet weak var messageTextView: NSTextView!
+    @IBOutlet var messageTextView: NSTextView!
     @IBOutlet weak var startButton: NSButton!
     
     
@@ -123,7 +123,7 @@ extension NewTaskViewController: NSTextFieldDelegate {
         }
         
         // ip addr. matcher
-        let patterns = ["^(https?://)?(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])/?", "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?", "^magnet:\\?", "^ed2k://"]
+        let patterns = ["^(https?://)?(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])/?", "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?", "^magnet:\\?"]
         
         let isMatched = patterns.reduce(false, { (result, pattern) in
             if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {

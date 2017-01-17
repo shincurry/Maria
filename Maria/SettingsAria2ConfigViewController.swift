@@ -163,8 +163,15 @@ extension SettingsAria2ConfigViewController {
         enableAria2AutoLaunch.state = defaults[.enableAria2AutoLaunch] ? 1 : 0
         if let value = defaults[.aria2ConfPath] {
             aria2ConfPathButton.item(at: 0)!.title = value
-            config = AriaConfig(filePath: value)
-            config.load()
+
+            if MariaUserDefault.main[.useEmbeddedAria2] {
+                config = AriaConfig.builtIn
+            } else {
+                config = AriaConfig(filePath: value)
+                config.load()
+            }
+        } else {
+            config = AriaConfig(filePath: "")
         }
     }
 }

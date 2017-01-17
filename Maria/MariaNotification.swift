@@ -23,4 +23,7 @@ open class MariaNotification {
         notification.userInfo = userInfo
         NSUserNotificationCenter.default.deliver(notification)
     }
+    static public func removeAllNotification() {
+        NSUserNotificationCenter.default.removeAllDeliveredNotifications()
+    }
 }

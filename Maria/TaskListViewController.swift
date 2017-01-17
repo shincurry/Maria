@@ -30,6 +30,9 @@ class TaskListViewController: NSViewController {
     override func viewWillDisappear() {
         closeTimer()
     }
+    override func viewDidAppear() {
+        MariaNotification.removeAllNotification()
+    }
     
     var timer: Timer!
     
