@@ -1,9 +1,11 @@
 PODS:
+  - Sparkle (1.14.0)
   - Starscream (2.0.0)
   - SwiftyJSON (3.1.1)
   - SwiftyUserDefaults (3.0.1)
 
 DEPENDENCIES:
+  - Sparkle
   - Starscream (from `https://github.com/daltoniam/Starscream.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults.git`)
@@ -28,10 +30,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
+  Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
   Starscream: 947c865596f0d6bb3f0203fee23228ed2d471468
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: 513243bec1517ec734800c3e64bba6bb070e3f24
+PODFILE CHECKSUM: 2b1fadb4be58fd94b9ca877cf16edd0faeb3f3b2
 
 COCOAPODS: 1.2.0.beta.1

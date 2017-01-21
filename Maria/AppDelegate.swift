@@ -9,6 +9,7 @@
 import Cocoa
 import Aria2RPC
 import SwiftyJSON
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -27,6 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             MariaUserDefault.initExternal()
             MariaUserDefault.initBuiltIn()
         }
+        let updater = SUUpdater(for: Bundle.main)
+        updater?.automaticallyChecksForUpdates = true
         
         if !MariaUserDefault.main[.useEmbeddedAria2] {
             if defaults[.enableAria2AutoLaunch] {

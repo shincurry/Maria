@@ -28,6 +28,7 @@ end
 
 target 'Maria' do
     project 'Maria'
+    pod 'Sparkle'
     shared_pods
 end
 

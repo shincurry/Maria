@@ -20,6 +20,9 @@
 /* Class = "NSMenuItem"; title = "About Maria"; ObjectID = "5kV-Vb-QxS"; */
 "5kV-Vb-QxS.title" = "關於 Maria";
 
+/* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "ggJ-Cn-ORb"; */
+"ggJ-Cn-ORb.title" = "檢查軟件更新...";
+
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "重做";
 

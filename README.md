@@ -8,7 +8,7 @@ An OS X app/widget for aria2 download tool.
 
 You can see dev plan [here](https://github.com/ShinCurry/Maria/projects/1).
 
-More details in [Wiki](https://github.com/ShinCurry/Maria/wiki).
+More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTANT
 
 #### Main Window
 
@@ -29,10 +29,10 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki).
 
 ## Test Environment
 
-* Xcode 8.2 (8C38)
+* Xcode 8.2.1 (8C1002)
 * Swift 3
 * macOS Sierra 10.12.2 (16C67)
-* CocoaPods 1.1.0.beta.2
+* CocoaPods 1.1.1
 
 ## Thanks
 
@@ -41,6 +41,7 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki).
 * [Starscream](https://github.com/daltoniam/Starscream)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 * [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
+* [Sparkle](https://github.com/sparkle-project/Sparkle)
 
 #### Special Thanks
 

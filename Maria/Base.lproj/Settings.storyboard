@@ -717,25 +717,15 @@
             <objects>
                 <viewController title="General" id="Rd7-l1-zR2" customClass="SettingsGeneralViewController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zdc-MW-g94">
-                        <rect key="frame" x="0.0" y="0.0" width="498" height="251"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="247"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="General" translatesAutoresizingMaskIntoConstraints="NO" id="420-G2-XQD">
-                                <rect key="frame" x="17" y="93" width="464" height="148"/>
+                                <rect key="frame" x="17" y="93" width="464" height="144"/>
                                 <view key="contentView" id="sn5-9m-lOh">
-                                    <rect key="frame" x="1" y="1" width="462" height="132"/>
+                                    <rect key="frame" x="1" y="1" width="462" height="128"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="kix-YB-kfm">
-                                            <rect key="frame" x="18" y="92" width="202" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="18" id="98s-Af-CMi"/>
-                                            </constraints>
-                                            <buttonCell key="cell" type="check" title="Start Maria on system startup" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="1ex-du-E9X">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
                                         <button verticalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-zq-afV">
                                             <rect key="frame" x="18" y="40" width="119" height="22"/>
                                             <constraints>
@@ -775,17 +765,30 @@
                                                 <action selector="switchOptions:" target="Rd7-l1-zR2" id="c1M-pA-OsS"/>
                                             </connections>
                                         </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-xB-IJ5">
+                                            <rect key="frame" x="18" y="92" width="198" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="gLY-ho-5Gg"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Check updates automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Q9u-9b-Ajm">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="JwD-wE-cbm" name="value" keyPath="values.SUEnableAutomaticChecks" id="GJ4-ly-wCW"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="68N-Kn-OHM" firstAttribute="top" secondItem="x7w-zq-afV" secondAttribute="bottom" constant="8" id="0zq-Gh-FKv"/>
                                         <constraint firstItem="cwr-nY-ML0" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="75t-SX-yvc"/>
                                         <constraint firstItem="x7w-zq-afV" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="PY5-jX-ldF"/>
                                         <constraint firstItem="x7w-zq-afV" firstAttribute="top" secondItem="cwr-nY-ML0" secondAttribute="bottom" constant="8" id="RF4-2l-ptj"/>
+                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="top" secondItem="Ygt-xB-IJ5" secondAttribute="bottom" constant="8" id="TRr-Ws-Itk"/>
                                         <constraint firstAttribute="bottom" secondItem="68N-Kn-OHM" secondAttribute="bottom" constant="20" id="WEh-1s-dbV"/>
-                                        <constraint firstItem="cwr-nY-ML0" firstAttribute="top" secondItem="kix-YB-kfm" secondAttribute="bottom" constant="8" id="hXJ-3w-IEr"/>
+                                        <constraint firstItem="Ygt-xB-IJ5" firstAttribute="top" secondItem="sn5-9m-lOh" secondAttribute="top" constant="20" id="by7-2m-f8d"/>
                                         <constraint firstItem="68N-Kn-OHM" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="kR4-vm-Qzi"/>
-                                        <constraint firstItem="kix-YB-kfm" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="n4n-l7-jag"/>
-                                        <constraint firstItem="kix-YB-kfm" firstAttribute="top" secondItem="sn5-9m-lOh" secondAttribute="top" constant="20" id="rKJ-0Q-Jsv"/>
+                                        <constraint firstItem="Ygt-xB-IJ5" firstAttribute="leading" secondItem="sn5-9m-lOh" secondAttribute="leading" constant="20" id="w6O-r0-hj0"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -854,8 +857,9 @@
                     </connections>
                 </viewController>
                 <customObject id="4t3-Sm-nw9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="JwD-wE-cbm"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="2046.5"/>
+            <point key="canvasLocation" x="-64" y="2030"/>
         </scene>
         <!--General-->
         <scene sceneID="h2g-FH-FHu">

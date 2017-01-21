@@ -59,6 +59,9 @@
 /* Class = "NSButtonCell"; title = "StatusBar mode"; ObjectID = "qpa-Fh-aLe"; */
 "qpa-Fh-aLe.title" = "狀態欄模式 (StatusBar App)";
 
+/* Class = "NSButtonCell"; title = "Check updates automatically"; ObjectID = "Q9u-9b-Ajm"; */
+"Q9u-9b-Ajm.title" = "自動檢查軟件更新";
+
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "B9Z-fe-DcI"; */
 "B9Z-fe-DcI.title" = "0";
 
