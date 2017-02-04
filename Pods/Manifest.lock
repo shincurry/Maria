@@ -1,10 +1,16 @@
 PODS:
+  - Aria2Core (1.0.0)
+  - Aria2RPC (1.0.0):
+    - Starscream (~> 2.0.0)
+    - SwiftyJSON (~> 3.1.1)
   - Sparkle (1.14.0)
   - Starscream (2.0.0)
   - SwiftyJSON (3.1.1)
   - SwiftyUserDefaults (3.0.1)
 
 DEPENDENCIES:
+  - Aria2Core (~> 1.0.0)
+  - Aria2RPC (~> 1.0.0)
   - Sparkle
   - Starscream (from `https://github.com/daltoniam/Starscream.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -30,11 +36,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
+  Aria2Core: 80c8551d8b08d74a462f2353484731b3e756daee
+  Aria2RPC: 8f201d505a17094b8c051fa28c8c94740f98b516
   Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
   Starscream: 947c865596f0d6bb3f0203fee23228ed2d471468
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: 2b1fadb4be58fd94b9ca877cf16edd0faeb3f3b2
+PODFILE CHECKSUM: 9ed511c81cf6d0cd5030c413361ae50b0777f6b2
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.0

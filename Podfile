@@ -5,7 +5,7 @@ use_frameworks!
 workspace 'Maria.xcworkspace'
 
 project 'Maria.xcodeproj'
-project 'Aria2.xcodeproj'
+project 'YouGet.xcodeproj'
 
 def starscream
     pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream.git'
@@ -19,31 +19,42 @@ def swifty_userdefaults
     pod 'SwiftyUserDefaults', :git => 'https://github.com/radex/SwiftyUserDefaults.git'
 end
 
-def shared_pods
-    starscream
-    swifty_json
-    swifty_userdefaults
+def aria2rpc
+    pod 'Aria2RPC', '~> 1.0.0'
+end
+
+def aria2core
+    pod 'Aria2Core', '~> 1.0.0'
+end
+
+def sparkle
+    pod 'Sparkle'
 end
 
 
 target 'Maria' do
     project 'Maria'
-    pod 'Sparkle'
-    shared_pods
+    
+    starscream
+    swifty_json
+    swifty_userdefaults
+    aria2rpc
+    aria2core
+    sparkle
+
 end
 
 target 'Maria Widget' do
     project 'Maria'
-    shared_pods
-end
-
-target 'Aria2RPC' do
-    project 'Aria2RPC'
+    
     starscream
     swifty_json
+    swifty_userdefaults
+    aria2rpc
 end
 
 target 'YouGet' do
     project 'YouGet'
+    
     swifty_json
 end

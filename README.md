@@ -37,6 +37,7 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTA
 ## Thanks
 
 * [aria2](https://github.com/aria2/aria2)
+* [Aria2Core](https://github.com/ShinCurry/Aria2Core) & [Aria2RPC](https://github.com/ShinCurry/Aria2RPC)
 * [you-get](https://github.com/soimort/you-get)
 * [Starscream](https://github.com/daltoniam/Starscream)
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)

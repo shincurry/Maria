@@ -8,6 +8,7 @@
 
 import Cocoa
 import Aria2RPC
+import Aria2Core
 import YouGet
 
 class Maria {

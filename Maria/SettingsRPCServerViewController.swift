@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Aria2Core
 import SwiftyUserDefaults
 
 class SettingsRPCServerViewController: NSViewController {
