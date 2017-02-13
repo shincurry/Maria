@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let defaults = MariaUserDefault.auto
     
     var statusItem: NSStatusItem?
+    var statusItemView: StatusItemView?
     
     var speedStatusTimer: Timer?
     var dockTileTimer: Timer?
@@ -56,28 +57,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSUserNotificationCenter.default.delegate = self
 
-        if defaults[.enableStatusBarMode] {
-            statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-            statusItem?.button?.action = #selector(AppDelegate.menuClicked)
-            statusItem?.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        var objects = NSArray()
+        if Bundle.main.loadNibNamed("StatusItemView", owner: self, topLevelObjects: &objects)  {
+            print(objects.count)
+            statusItemView = objects.filter({ $0 as? StatusItemView != nil }).first as? StatusItemView
         }
+        statusItemView?.menuButton.action = #selector(AppDelegate.menuClicked)
+        statusItemView?.menuButton.sendAction(on: [.leftMouseUp, .rightMouseUp])
         
+        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+        statusItem?.view = statusItemView
         
-        if defaults[.enableStatusBarMode] && defaults[.enableSpeedStatusBar] {
-            enableSpeedStatusBar()
-        } else {
-            disableSpeedStatusBar()
-        }
-
-        for window in NSApp.windows {
-            window.canHide = false
-        }
-        
-        if defaults[.enableStatusBarMode] {
-            disableDockIcon()
-        } else {
-            enableDockIcon()
-        }
+        updateStatusBarStatus()
         
         NSApp.dockTile.contentView = dockTileView
         dockTileTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateDockTile), userInfo: nil, repeats: true)
@@ -111,29 +102,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    // MARK: SpeedBar
+    func updateStatusBarStatus() {
+        statusItemView?.isShowSpeed = defaults[.enableSpeedStatusBar]
+        switch (defaults[.enableStatusBarMode], defaults[.enableSpeedStatusBar]) {
+        case (true, true):
+            statusItemView?.isHidden = false
+            disableDockIcon()
+            enableSpeedStatusBar()
+        case (false, true):
+            statusItemView?.isHidden = false
+            enableDockIcon()
+            enableSpeedStatusBar()
+        case (true, false):
+            statusItemView?.isHidden = false
+            disableDockIcon()
+            disableSpeedStatusBar()
+        case (false, false):
+            statusItemView?.isHidden = true
+            enableDockIcon()
+            disableSpeedStatusBar()
+        }
+    }
+    
     func enableSpeedStatusBar() {
         speedStatusTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSpeedStatus), userInfo: nil, repeats: true)
-        if let button = statusItem?.button {
-            button.image = nil
-        }
     }
     
     func disableSpeedStatusBar() {
         speedStatusTimer?.invalidate()
-        if let button = statusItem?.button {
-            button.image = NSImage(named: "Arrow")
-            button.title = ""
-        }
-        
     }
     
     func menuClicked(sender: NSStatusBarButton) {
-        if NSApp.currentEvent!.type == NSEventType.rightMouseUp {
+        if NSApp.currentEvent!.type == .rightMouseUp {
             statusItem?.popUpMenu(statusMenu)
         } else {
             if NSApp.isActive {
-               statusItem?.popUpMenu(statusMenu)
+                statusItem?.popUpMenu(statusMenu)
                 return
             }
             for window in NSApp.windows {
@@ -174,9 +178,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         maria.rpc?.onGlobalStatus = { status in
-            if let button = self.statusItem?.button {
-                button.title = "⬇︎ " + status.speed!.downloadString + " ⬆︎ " + status.speed!.uploadString
-            }
+            self.statusItemView?.uploadSpeedLabel.stringValue = status.speed!.uploadString + "⬆︎"
+            self.statusItemView?.downloadSpeedLabel.stringValue =  status.speed!.downloadString + "⬇︎"
         }
     }
     

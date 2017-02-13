@@ -29,6 +29,8 @@
 		883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52A1CE1D52300B10A25 /* TaskCellView.swift */; };
 		883EA52D1CE1DEBF00B10A25 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */; };
 		8842882A1D8D220E002014E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8842882C1D8D220E002014E2 /* Localizable.strings */; };
+		885AB77A1E518CD300848C0D /* StatusItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885AB7791E518CD300848C0D /* StatusItemView.xib */; };
+		885AB77C1E518DA300848C0D /* StatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885AB77B1E518DA300848C0D /* StatusItemView.swift */; };
 		885B9ED21CBF7806001BA477 /* SettingsBandwidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */; };
 		885B9ED51CBF8169001BA477 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885B9ED31CBF8169001BA477 /* AboutViewController.swift */; };
 		886AB8621D8672E50053472C /* AriaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886AB8611D8672E50053472C /* AriaConfig.swift */; };
@@ -120,6 +122,8 @@
 		883EA52C1CE1DEBF00B10A25 /* TaskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		8842882B1D8D220E002014E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8842882E1D8D293E002014E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		885AB7791E518CD300848C0D /* StatusItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusItemView.xib; sourceTree = "<group>"; };
+		885AB77B1E518DA300848C0D /* StatusItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemView.swift; sourceTree = "<group>"; };
 		885B9ED11CBF7806001BA477 /* SettingsBandwidthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBandwidthViewController.swift; sourceTree = "<group>"; };
 		885B9ED31CBF8169001BA477 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		8866AD8C1D8D0B65006FF797 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Settings.strings"; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 				88D6CDD31CE495D500450E0C /* MariaNotification.swift */,
 				889485781CBE4D4A000839CD /* Main.storyboard */,
 				8870EA241CD4F13E00278B2C /* Settings.storyboard */,
+				885AB7791E518CD300848C0D /* StatusItemView.xib */,
+				885AB77B1E518DA300848C0D /* StatusItemView.swift */,
 				889485721CBE4D4A000839CD /* AppDelegate.swift */,
 				882077291DFC1B3500054C2D /* DockTileView.swift */,
 				888EAAF51D0837E90077EADB /* NewTaskWindowController.swift */,
@@ -456,6 +462,7 @@
 				8894857A1CBE4D4A000839CD /* Main.storyboard in Resources */,
 				8827EDF61CCB59CF00DDB09D /* runAria2c.sh in Resources */,
 				8842882A1D8D220E002014E2 /* Localizable.strings in Resources */,
+				885AB77A1E518CD300848C0D /* StatusItemView.xib in Resources */,
 				88EC234C1E33421B00363FC7 /* dsa_pub.pem in Resources */,
 				883EA5281CE1D4EF00B10A25 /* TaskCellView.xib in Resources */,
 				881F79B01DB2677600576766 /* aria2.Maria.conf in Resources */,
@@ -562,6 +569,7 @@
 			files = (
 				883EA52B1CE1D52300B10A25 /* TaskCellView.swift in Sources */,
 				887AE4651CC13A5000AAD3E3 /* SettingsNotificationViewController.swift in Sources */,
+				885AB77C1E518DA300848C0D /* StatusItemView.swift in Sources */,
 				88F201671DFEC5C30010CA9D /* RegexHelper.swift in Sources */,
 				887AE4571CC0B85E00AAD3E3 /* SettingsRPCServerViewController.swift in Sources */,
 				883327A31CC751630002B561 /* NewTaskViewController.swift in Sources */,

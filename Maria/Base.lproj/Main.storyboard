@@ -226,53 +226,6 @@
                     </connections>
                 </customObject>
                 <customObject id="ztS-N7-MYK" customClass="SUUpdater"/>
-                <menu id="MJv-Mw-dce">
-                    <items>
-                        <menuItem title="Aria2 RPC Server" onStateImage="GreenBall" offStateImage="RedBall" id="dZv-dt-4RV">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="switchRPCServerStatus:" target="Voe-Tx-rLC" id="prX-89-V2M"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="Mtm-YT-dtR"/>
-                        <menuItem title="Open Web-UI App" id="VB9-a7-JLt">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="openWebUIApp:" target="Voe-Tx-rLC" id="tTP-Pd-iRD"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="c4t-QA-gc4"/>
-                        <menuItem title="Add New Task" id="iRo-W5-b4D">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <segue destination="KON-1O-740" kind="modal" id="MnT-tc-ZNs"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Low Speed Mode" id="PKO-Vg-5WC">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="speedLimitMode:" target="Voe-Tx-rLC" id="HYh-My-KSi"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="GMp-eI-cUk"/>
-                        <menuItem title="Settings" id="gy5-LC-31T">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <segue destination="916-nZ-hnX" kind="show" id="zaZ-iz-Pj8"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem isSeparatorItem="YES" id="Zuo-0W-6HU"/>
-                        <menuItem title="Quit" id="uWA-Xp-MTd">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="quit:" target="Voe-Tx-rLC" id="CgV-xb-fr6"/>
-                            </connections>
-                        </menuItem>
-                    </items>
-                    <connections>
-                        <outlet property="delegate" destination="Voe-Tx-rLC" id="sih-x0-2s1"/>
-                    </connections>
-                </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customView id="tJT-eS-s5Z" customClass="DockTileView" customModule="Maria" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -325,6 +278,53 @@
                         <outlet property="badgeTitle" destination="twf-ap-q25" id="aCq-gw-qoZ"/>
                     </connections>
                 </customView>
+                <menu id="MJv-Mw-dce">
+                    <items>
+                        <menuItem title="Aria2 RPC Server" onStateImage="2D9F9386-60ED-4E76-8DB5-D410DE9CAF42" offStateImage="2D256D59-0B6C-4AD9-A154-8B0FB20E7B9F" id="dZv-dt-4RV">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="switchRPCServerStatus:" target="Voe-Tx-rLC" id="prX-89-V2M"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Mtm-YT-dtR"/>
+                        <menuItem title="Open Web-UI App" id="VB9-a7-JLt">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="openWebUIApp:" target="Voe-Tx-rLC" id="tTP-Pd-iRD"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="c4t-QA-gc4"/>
+                        <menuItem title="Add New Task" id="iRo-W5-b4D">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="KON-1O-740" kind="modal" id="MnT-tc-ZNs"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Low Speed Mode" id="PKO-Vg-5WC">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="speedLimitMode:" target="Voe-Tx-rLC" id="HYh-My-KSi"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="GMp-eI-cUk"/>
+                        <menuItem title="Settings" id="gy5-LC-31T">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="916-nZ-hnX" kind="show" id="zaZ-iz-Pj8"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="Zuo-0W-6HU"/>
+                        <menuItem title="Quit" id="uWA-Xp-MTd">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="quit:" target="Voe-Tx-rLC" id="CgV-xb-fr6"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="sih-x0-2s1"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="71.5" y="-53"/>
         </scene>
@@ -340,8 +340,7 @@
                         <toolbar key="toolbar" implicitIdentifier="F02A8C2B-6FEF-45CB-A24A-2BDC365A2BD1" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="tbY-fm-beI">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ZgK-y3-fYa"/>
-                                <toolbarItem implicitItemIdentifier="262307EC-5DCB-45CB-AA05-335D9AB0E957" label="" paletteLabel="Add" image="NSAddTemplate" id="Uk5-8X-N0F">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="262307EC-5DCB-45CB-AA05-335D9AB0E957" label="" paletteLabel="Add" toolTip="Add new task." image="NSAddTemplate" id="Uk5-8X-N0F">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="sT6-T0-TSL">
@@ -356,8 +355,7 @@
                                         <segue destination="3Py-Pw-Qec" kind="sheet" id="uT7-5m-1AB"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="0A30482C-7A35-40AE-85EB-AFBFDBEC8825" label="" paletteLabel="Remove" image="Remove" id="HqC-AM-IPb">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="0A30482C-7A35-40AE-85EB-AFBFDBEC8825" label="" paletteLabel="Remove" toolTip="Remove task(s)." image="Remove" id="HqC-AM-IPb">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="djx-CC-Iaq">
@@ -372,8 +370,7 @@
                                         <action selector="removeSelectedTasks:" target="5mb-Q8-ck4" id="koA-Cg-Oiv"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CBCF6047-1780-4829-8D7F-C6D98F28AAE7" label="" paletteLabel="Clean" image="Broom" id="BCs-Tm-DpQ">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="CBCF6047-1780-4829-8D7F-C6D98F28AAE7" label="" paletteLabel="Clean" toolTip="Clean completed and error tasks." image="Broom" id="BCs-Tm-DpQ">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="gau-o3-cLC">
@@ -388,8 +385,7 @@
                                         <action selector="clearCompletedErrorRemovedTasks:" target="5mb-Q8-ck4" id="lwt-MQ-y39"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" image="Resume" id="fWl-Gq-lVn">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="CD626368-D9F8-4549-AFCD-0F8E3A61B07B" label="" paletteLabel="Start" toolTip="Start all tasks." image="Resume" id="fWl-Gq-lVn">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="atI-Si-Tc8">
@@ -404,8 +400,7 @@
                                         <action selector="resumeAllTasks:" target="5mb-Q8-ck4" id="ldC-KH-Blg"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9241FC05-F770-4B5E-9525-CA958A87EC20" label="" paletteLabel="Pause" image="Pause" id="pSw-ex-VbY">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="9241FC05-F770-4B5E-9525-CA958A87EC20" label="" paletteLabel="Pause" toolTip="Pause all tasks." image="Pause" id="pSw-ex-VbY">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="Kxf-na-3GQ">
@@ -420,8 +415,7 @@
                                         <action selector="pauseAllTasks:" target="5mb-Q8-ck4" id="UZO-Rg-iJP"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="11ED636B-FA54-4382-AC94-408E59E4ABC5" label="" paletteLabel="Low Speed Mode" image="TortoiseGray" id="M8C-q3-NSj">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="11ED636B-FA54-4382-AC94-408E59E4ABC5" label="" paletteLabel="Low Speed Mode" toolTip="Toggle low speed mode." image="TortoiseGray" id="M8C-q3-NSj">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="v4f-Bn-CvL">
@@ -436,8 +430,7 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" image="Speedmeter" id="3Rf-Mp-fbB">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="9814083E-0C40-4A99-929D-2D734D7E348B" label="" paletteLabel="Quick Settings" toolTip="Quick settings." image="Speedmeter" id="3Rf-Mp-fbB">
                                     <size key="minSize" width="40" height="32"/>
                                     <size key="maxSize" width="40" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="MB1-qk-bcG">
@@ -862,7 +855,7 @@ DQ
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kM6-KK-2eh">
                                 <rect key="frame" x="392" y="200" width="16" height="16"/>
                             </progressIndicator>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wit-CB-UBT">
+                            <button toolTip="Toggle you-get module." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wit-CB-UBT">
                                 <rect key="frame" x="89" y="227" width="30" height="18"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="YouGetIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="yUc-6O-blW">
                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -951,12 +944,168 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="2D256D59-0B6C-4AD9-A154-8B0FB20E7B9F" width="16" height="12">
+            <mutableData key="keyedArchiveRepresentation">
+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
+AAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2Rl
+c2MAAAEIAAAAQGNwcnQAAAFIAAAAI3d0cHQAAAFsAAAAFHJYWVoAAAGAAAAAFGdYWVoAAAGUAAAAFGJY
+WVoAAAGoAAAAFHJUUkMAAAG8AAAAIGNoYWQAAAHcAAAALGNocm0AAAIIAAAAJGJUUkMAAAG8AAAAIGdU
+UkMAAAG8AAAAIG1sdWMAAAAAAAAAAQAAAAxlblVTAAAAJAAAABwAcwBSAEcAQgAgAEkARQBDADYAMQA5
+ADYANgAtADIALgAxAAB0ZXh0AAAAAENvcHlyaWdodCBBcHBsZSBJbmMuLCAyMDE2AABYWVogAAAAAAAA
+9tYAAQAAAADTLVhZWiAAAAAAAABvlAAAOO4AAAOQWFlaIAAAAAAAAGKlAAC3kAAAGN5YWVogAAAAAAAA
+JJ0AAA+DAAC2vnBhcmEAAAAAAAMAAAACZmYAAPKnAAANWQAAE9AAAApbc2YzMgAAAAAAAQxKAAAF4///
+8yoAAAebAAD9h///+6L///2jAAAD2AAAwJRjaHJtAAAAAAADAAAAAKPXAABUewAATM0AAJmaAAAmZgAA
+D1zSIiMkJVokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMkJidaTlNJbWFnZVJl
+cFhOU09iamVjdNIiIykqV05TQXJyYXmiKSfSIiMsLV5OU011dGFibGVBcnJheaMsKSfTLzAJMTIzV05T
+V2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIjNTZXTlNDb2xvcqI1J9IiIzg5V05TSW1hZ2WiOCdf
+EA9OU0tleWVkQXJjaGl2ZXLRPD1Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFQAWwBoAG8AdwB5AH4A
+gACCAIcAkgCUAJYAmACdAKAAogCkAKYAqACtAMQAxgDID/IP9xACEAsQHhAiEC0QNhA7EEMQRhBLEFoQ
+XhBlEG0QehB/EIEQgxCIEJAQkxCYEKAQoxC1ELgQvQAAAAAAAAIBAAAAAAAAAD4AAAAAAAAAAAAAAAAA
+ABC/A
+</mutableData>
+        </image>
+        <image name="2D9F9386-60ED-4E76-8DB5-D410DE9CAF42" width="16" height="12">
+            <mutableData key="keyedArchiveRepresentation">
+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
+AAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2Rl
+c2MAAAEIAAAAQGNwcnQAAAFIAAAAI3d0cHQAAAFsAAAAFHJYWVoAAAGAAAAAFGdYWVoAAAGUAAAAFGJY
+WVoAAAGoAAAAFHJUUkMAAAG8AAAAIGNoYWQAAAHcAAAALGNocm0AAAIIAAAAJGJUUkMAAAG8AAAAIGdU
+UkMAAAG8AAAAIG1sdWMAAAAAAAAAAQAAAAxlblVTAAAAJAAAABwAcwBSAEcAQgAgAEkARQBDADYAMQA5
+ADYANgAtADIALgAxAAB0ZXh0AAAAAENvcHlyaWdodCBBcHBsZSBJbmMuLCAyMDE2AABYWVogAAAAAAAA
+9tYAAQAAAADTLVhZWiAAAAAAAABvlAAAOO4AAAOQWFlaIAAAAAAAAGKlAAC3kAAAGN5YWVogAAAAAAAA
+JJ0AAA+DAAC2vnBhcmEAAAAAAAMAAAACZmYAAPKnAAANWQAAE9AAAApbc2YzMgAAAAAAAQxKAAAF4///
+8yoAAAebAAD9h///+6L///2jAAAD2AAAwJRjaHJtAAAAAAADAAAAAKPXAABUewAATM0AAJmaAAAmZgAA
+D1zSIiMkJVokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMkJidaTlNJbWFnZVJl
+cFhOU09iamVjdNIiIykqV05TQXJyYXmiKSfSIiMsLV5OU011dGFibGVBcnJheaMsKSfTLzAJMTIzV05T
+V2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIjNTZXTlNDb2xvcqI1J9IiIzg5V05TSW1hZ2WiOCdf
+EA9OU0tleWVkQXJjaGl2ZXLRPD1Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFQAWwBoAG8AdwB5AH4A
+gACCAIcAkgCUAJYAmACdAKAAogCkAKYAqACtAMQAxgDID/IP9xACEAsQHhAiEC0QNhA7EEMQRhBLEFoQ
+XhBlEG0QehB/EIEQgxCIEJAQkxCYEKAQoxC1ELgQvQAAAAAAAAIBAAAAAAAAAD4AAAAAAAAAAAAAAAAA
+ABC/A
+</mutableData>
+        </image>
         <image name="AppIcon" width="128" height="128"/>
         <image name="Broom" width="20" height="20"/>
-        <image name="GreenBall" width="16" height="12"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="Pause" width="20" height="20"/>
-        <image name="RedBall" width="16" height="12"/>
         <image name="Remove" width="20" height="20"/>
         <image name="Resume" width="20" height="20"/>
         <image name="Speedmeter" width="20" height="20"/>
@@ -966,7 +1115,7 @@ DQ
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uT7-5m-1AB"/>
-        <segue reference="kMs-7f-Cnb"/>
-        <segue reference="MnT-tc-ZNs"/>
+        <segue reference="dLI-9M-ESM"/>
+        <segue reference="zaZ-iz-Pj8"/>
     </inferredMetricsTieBreakers>
 </document>

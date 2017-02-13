@@ -32,18 +32,10 @@ class SettingsGeneralViewController: NSViewController {
         switch sender {
         case enableSpeedStatusBar:
             defaults[.enableSpeedStatusBar] = boolValue
-            if boolValue {
-                appDelegate.enableSpeedStatusBar()
-            } else {
-                appDelegate.disableSpeedStatusBar()
-            }
+            appDelegate.updateStatusBarStatus()
         case enableStatusBarMode:
             defaults[.enableStatusBarMode] = boolValue
-            if boolValue {
-                appDelegate.enableDockIcon()
-            } else {
-                appDelegate.disableDockIcon()
-            }
+            appDelegate.updateStatusBarStatus()
         case enableYouGet:
             defaults[.enableYouGet] = boolValue
         default:
