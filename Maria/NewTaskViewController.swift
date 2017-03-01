@@ -44,7 +44,6 @@ class NewTaskViewController: NSViewController {
     
     var result: YGResult?
     var downloadUrls: [String] = []
-    var downloadOptions: [String: String] = [:]
 //    var size: NSSize!
     var shouldYouGet = 0
     var doYouGet = 0
@@ -76,13 +75,11 @@ class NewTaskViewController: NSViewController {
     @IBAction func switchContainer(_ sender: NSPopUpButton) {
         if let result = result {
             downloadUrls = result.streams[sender.state].sources
-            downloadOptions = ["out": "\(result.title).\(result.streams[sender.state].container)"]
         }
     }
     
     @IBAction func start(_ sender: NSButton) {
-        maria.rpc?.add(uris: downloadUrls, withOptions: downloadOptions)
-//        maria.core?.addUri(uris.filter({ return !$0.isEmpty }), withOptions: nil)
+        downloadUrls.forEach { self.maria.rpc?.add(uri: $0) }
     }
 
     @IBAction func openBtFile(_ sender: NSButton) {
@@ -173,7 +170,6 @@ extension NewTaskViewController: NSTextFieldDelegate {
                     if let stream = result.streams.first {
                         self.downloadUrls = stream.sources
                         self.startButton.title = "YouGet!"
-                        self.downloadOptions = ["out": "\(result.title).\(result.streams.first!.container)"]
                     }
                 }
                 DispatchQueue.main.async {

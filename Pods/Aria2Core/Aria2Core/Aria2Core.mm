@@ -534,7 +534,6 @@ ACFileData * FileDataToAC(FileData data) {
 }
 
 int downloadEventCallback(aria2::Session* session, aria2::DownloadEvent event, aria2::A2Gid gid, void* userData) {
-    printf("event is %d\n", event);
     return 0;
 }
 

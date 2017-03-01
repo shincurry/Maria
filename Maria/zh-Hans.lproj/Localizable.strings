@@ -11,6 +11,7 @@
 "button.ok" = "好的";
 "button.sure" = "确定";
 "button.remove" = "移除";
+"button.delete" = "删除";
 "button.clean" = "清除";
 
 // MARK: NewTaskViewController

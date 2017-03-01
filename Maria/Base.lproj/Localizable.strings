@@ -11,6 +11,7 @@
 "button.ok" = "OK";
 "button.sure" = "Sure";
 "button.remove" = "Remove";
+"button.delete" = "Delete";
 "button.clean" = "Clean";
 
 // MARK: NewTaskViewController

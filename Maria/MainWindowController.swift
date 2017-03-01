@@ -99,10 +99,11 @@ class MainWindowController: NSWindowController {
             }
             
             alert.addButton(withTitle: NSLocalizedString("button.remove", comment: ""))
+            alert.addButton(withTitle: NSLocalizedString("button.delete", comment: ""))
             alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
             alert.beginSheetModal(for: self.window!, completionHandler: { response in
-                if response == NSAlertFirstButtonReturn {
-                    tasks.forEach() { (index, task) in
+                func remove(tasks: [(Int, Aria2Task)]) {
+                    tasks.forEach() { (_, task) in
                         if task.status == "active" || task.status == "paused" {
                             self.maria.rpc?.removeActive(task.gid!)
                         } else {
@@ -110,6 +111,34 @@ class MainWindowController: NSWindowController {
                         }
                     }
                 }
+                func delete(tasks: [(Int, Aria2Task)]) {
+                    let fileManager = FileManager.default
+                    
+                    tasks.forEach() { (_, task) in
+                        guard let filePath = task.filePath else { return }
+                        let aria2FilePath = "\(filePath).aria2"
+                        do {
+                            if (fileManager.fileExists(atPath: aria2FilePath)) {
+                                try fileManager.removeItem(atPath: aria2FilePath)
+                            }
+                            if (fileManager.fileExists(atPath: filePath)) {
+                                try fileManager.removeItem(atPath: filePath)
+                            }
+                        } catch (let error) {
+                            print(error)
+                        }
+                    }
+                }
+                
+                switch response {
+                case NSAlertFirstButtonReturn:
+                    remove(tasks: tasks)
+                case NSAlertSecondButtonReturn:
+                    remove(tasks: tasks)
+                    delete(tasks: tasks)
+                default: break
+                }
+
             })
         }
     }
