@@ -1,22 +1,10 @@
 # Maria
 
-![Maria Logo](https://obhajdt0c.qnssl.com/Maria/Banner.png)
-
-## What's Maria?
-
 An OS X app/widget for aria2 download tool.
 
 You can see dev plan [here](https://github.com/ShinCurry/Maria/projects/1).
 
 More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTANT
-
-#### Main Window
-
-![Maria App](https://obhajdt0c.qnssl.com/Maria/App-3.png)
-
-#### Today Widget
-
-![Maria Today Widget](https://obhajdt0c.qnssl.com/Maria/Today-Widget-Sierra.png)
 
 ## Features
 
