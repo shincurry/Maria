@@ -32,7 +32,7 @@ class TaskCellView: NSTableCellView {
     var fileName: String? {
         didSet {
             if let ext = fileName!.components(separatedBy: ".").last?.lowercased() {
-                let taskIconImage = NSWorkspace.shared().icon(forFileType: ext)
+                let taskIconImage = NSWorkspace.shared.icon(forFileType: ext)
                 taskIconImage.size = taskTypeImageView.frame.size
                 taskTypeImageView.image = taskIconImage
             }
@@ -51,26 +51,26 @@ class TaskCellView: NSTableCellView {
                 fallthrough
             case "active":
                 actionButton.action = #selector(actionPause)
-                actionButton.image = NSImage(named: "PauseButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "PauseButton"))
                 taskStatusLabel.stringValue = "Downloading"
             case "paused":
                 actionButton.action = #selector(actionUnpause)
-                actionButton.image = NSImage(named: "ResumeButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
                 taskStatusLabel.stringValue = "Paused"
             case "complete":
-                actionButton.image = NSImage(named: "CompleteButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "CompleteButton"))
                 taskStatusLabel.stringValue = "Complete"
             case "stopped":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "ResumeButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
                 taskStatusLabel.stringValue = "Stopped"
             case "removed":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "ResumeButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
                 taskStatusLabel.stringValue = "Removed"
             case "error":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: "ResumeButton")
+                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
                 taskStatusLabel.stringValue = "Error"
             default:
                 break
@@ -92,16 +92,16 @@ class TaskCellView: NSTableCellView {
     @IBOutlet weak var findPathButton: NSLayoutConstraint!
     @IBOutlet weak var actionButton: NSButton!
     
-    func actionUnpause() {
+    @objc func actionUnpause() {
         maria.rpc?.unpause(gid)
     }
-    func actionPause() {
+    @objc func actionPause() {
         maria.rpc?.pause(gid)
     }
     func actionStop() {
         
     }
-    func actionRestart() {
+    @objc func actionRestart() {
         if !isBtDownload {
             maria.rpc?.restart(data!)
         }
@@ -113,7 +113,7 @@ class TaskCellView: NSTableCellView {
         status = task.status!
         isBtDownload = task.isBtTask!
         if isBtDownload {
-            taskTypeImageView.image = NSImage(named: "TorrentIcon")
+            taskTypeImageView.image = NSImage(named: NSImage.Name(rawValue: "TorrentIcon"))
         } else {
             fileName = task.fileName!
         }
@@ -127,7 +127,7 @@ class TaskCellView: NSTableCellView {
     
     @IBAction func findPath(_ sender: NSButton) {
         let path = isBtDownload ? data!.torrentDirectoryPath! : data!.filePath!
-        NSWorkspace.shared().selectFile(path, inFileViewerRootedAtPath: "")
+        NSWorkspace.shared.selectFile(path, inFileViewerRootedAtPath: "")
     }
 }
 

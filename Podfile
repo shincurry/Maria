@@ -20,11 +20,11 @@ def swifty_userdefaults
 end
 
 def aria2rpc
-    pod 'Aria2RPC', '~> 1.0.0'
+    pod 'Aria2RPC', :git => 'https://github.com/ShinCurry/Aria2RPC.git'
 end
 
 def aria2core
-    pod 'Aria2Core', '~> 1.0.0'
+    pod 'Aria2Core', :git => 'https://github.com/ShinCurry/Aria2Core.git'
 end
 
 def sparkle

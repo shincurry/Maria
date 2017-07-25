@@ -45,8 +45,13 @@ public class YouGet {
             return nil
         }
         
-        let json = JSON(data: data)
-        return YGResult(json: json)
+        do {
+            let json = try JSON(data: data)
+            return YGResult(json: json)
+        } catch(let error) {
+            print(error)
+            return nil
+        }
     }
     
     /**
@@ -89,7 +94,7 @@ public class YouGet {
         outHandle.waitForDataInBackgroundAndNotify()
         
         var output = "";
-        var progressObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: outHandle, queue: nil) { notification -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable, object: outHandle, queue: nil) { notification -> Void in
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = String(data: data, encoding: String.Encoding.utf8) as String? {
@@ -101,7 +106,7 @@ public class YouGet {
             }
         }
         
-        var terminationObserver = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil) { notification -> Void in
+        NotificationCenter.default.addObserver(forName: Process.didTerminateNotification, object: task, queue: nil) { notification -> Void in
             NotificationCenter.default.removeObserver(self)
         }
         

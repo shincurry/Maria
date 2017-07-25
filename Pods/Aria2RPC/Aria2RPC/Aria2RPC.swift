@@ -60,7 +60,7 @@ open class Aria2RPC {
             onStatusChanged?()
         }
     }
-    open var onStatusChanged: ((Void) -> Void)?
+    open var onStatusChanged: (() -> Void)?
     
     /**
      shutdown aria2
@@ -323,7 +323,7 @@ extension Aria2RPC: WebSocketDelegate {
         onConnect?()
     }
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("WebSocket disconnected: \(error)")
+        print("WebSocket disconnected: \(String(describing: error))")
         status = .disconnected
         onDisconnect?()
     }
@@ -332,112 +332,118 @@ extension Aria2RPC: WebSocketDelegate {
     }
     
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        let results = JSON(data: text.data(using: .utf8)!)
-        if results["error"]["message"] == "Unauthorized" {
-            self.status = .unauthorized
-            return
-        } else {
-            self.status = .connected
-        }
-
-        if let idString = results["id"].string {
-            if let method = Aria2Method(rawValue: idString) {
-                switch method {
-                case .getGlobalStat:
-                    onGlobalStatus?(getGlobalStatusByJSON(results))
-                // --------------------
-                case .tellActive:
-                    onActives?(getTasksByJSON(results))
-                case .tellWaiting:
-                    onWaitings?(getTasksByJSON(results))
-                case .tellStopped:
-                    onStoppeds?(getTasksByJSON(results))
-                // --------------------
-                case .remove:
-                    onRemoveActive?((results["error"] != JSON.null) ? false : true)
-                    removeOther(results["result"].stringValue)
-                case .removeDownloadResult:
-                    onRemoveOther?((results["error"] != JSON.null) ? false : true)
-                case .purgeDownloadResult:
-                    onClearCompletedErrorRemoved?((results["error"] != JSON.null) ? false : true)
-                case .pause:
-                    onPause?((results["error"] != JSON.null) ? false : true)
-                case .pauseAll:
-                    onPauseAll?((results["error"] != JSON.null) ? false : true)
-                case .unpause:
-                    onUnpause?((results["error"] != JSON.null) ? false : true)
-                case .unpauseAll:
-                    onUnpauseAll?((results["error"] != JSON.null) ? false : true)
-                // --------------------
-                case .shutdown:
-                    break
-                case .tellStatus:
-                    break
-                case .addUri:
-                    onAddUris?((results["error"] != JSON.null) ? false : true)
-                case .addTorrent:
-                    onAddTorrent?((results["error"] != JSON.null) ? false : true)
-                case .getUris:
-                    onGetUris?(results["result"].array!.map({ result in return result["uri"].stringValue }))
-                case .changeGlobalOption:
-                    onChangeGlobalOption?(results["error"] == JSON.null)
-                default:
-                    break
-                }
+        do {
+            let results = try JSON(data: text.data(using: .utf8)!)
+            
+            if results["error"]["message"] == "Unauthorized" {
+                self.status = .unauthorized
+                return
+            } else {
+                self.status = .connected
             }
             
-            switch idString {
-            case "aria2.tellStatus.downloadStatus":
-                getDownloadStatus!(results)
-            case "aria2.changeGlobalOption.globalSpeedLimit":
-                onGlobalSpeedLimitOK?(results["result"].stringValue == "OK")
-            case "aria2.changeGlobalOption.lowSpeedLimit":
-                onLowSpeedLimitOK?(results["result"].stringValue == "OK")
-            case "aria2.remove.restart":
-                onRemoveOtherToRestart?(results["error"] == JSON.null)
-            case "aria2.restart":
-                onRestart?((results["error"] != JSON.null) ? false : true)
-            default:
-                break
-            }
-
-        }
-        
-        if let methodString = results["method"].string {
-            let rawValue = methodString.components(separatedBy: ".")[1]
-            let method = Aria2Method(rawValue: rawValue)!
-
-            getDownloadStatus = { result in
-                var downloadName = ""
-                if let btName = result["result"]["bittorrent"]["info"]["name"].string {
-                    downloadName = btName
-                } else {
-                    downloadName = result["result"]["files"][0]["path"].stringValue.components(separatedBy: "/").last!
+            if let idString = results["id"].string {
+                if let method = Aria2Method(rawValue: idString) {
+                    switch method {
+                    case .getGlobalStat:
+                        onGlobalStatus?(getGlobalStatusByJSON(results))
+                    // --------------------
+                    case .tellActive:
+                        onActives?(getTasksByJSON(results))
+                    case .tellWaiting:
+                        onWaitings?(getTasksByJSON(results))
+                    case .tellStopped:
+                        onStoppeds?(getTasksByJSON(results))
+                    // --------------------
+                    case .remove:
+                        onRemoveActive?((results["error"] != JSON.null) ? false : true)
+                        removeOther(results["result"].stringValue)
+                    case .removeDownloadResult:
+                        onRemoveOther?((results["error"] != JSON.null) ? false : true)
+                    case .purgeDownloadResult:
+                        onClearCompletedErrorRemoved?((results["error"] != JSON.null) ? false : true)
+                    case .pause:
+                        onPause?((results["error"] != JSON.null) ? false : true)
+                    case .pauseAll:
+                        onPauseAll?((results["error"] != JSON.null) ? false : true)
+                    case .unpause:
+                        onUnpause?((results["error"] != JSON.null) ? false : true)
+                    case .unpauseAll:
+                        onUnpauseAll?((results["error"] != JSON.null) ? false : true)
+                    // --------------------
+                    case .shutdown:
+                        break
+                    case .tellStatus:
+                        break
+                    case .addUri:
+                        onAddUris?((results["error"] != JSON.null) ? false : true)
+                    case .addTorrent:
+                        onAddTorrent?((results["error"] != JSON.null) ? false : true)
+                    case .getUris:
+                        onGetUris?(results["result"].array!.map({ result in return result["uri"].stringValue }))
+                    case .changeGlobalOption:
+                        onChangeGlobalOption?(results["error"] == JSON.null)
+                    default:
+                        break
+                    }
                 }
                 
-                switch method {
-                case .onDownloadStart:
-                    self.downloadStarted?(downloadName)
-                case .onDownloadPause:
-                    self.downloadPaused?(downloadName)
-                case .onDownloadStop:
-                    self.downloadStopped?(downloadName)
-                case .onBtDownloadComplete:
-                    fallthrough
-                case .onDownloadComplete:
-                    let path = result["result"]["dir"].stringValue
-                    self.downloadCompleted?(downloadName, path)
-                case .onDownloadError:
-                    self.downloadError?(downloadName)
+                switch idString {
+                case "aria2.tellStatus.downloadStatus":
+                    getDownloadStatus!(results)
+                case "aria2.changeGlobalOption.globalSpeedLimit":
+                    onGlobalSpeedLimitOK?(results["result"].stringValue == "OK")
+                case "aria2.changeGlobalOption.lowSpeedLimit":
+                    onLowSpeedLimitOK?(results["result"].stringValue == "OK")
+                case "aria2.remove.restart":
+                    onRemoveOtherToRestart?(results["error"] == JSON.null)
+                case "aria2.restart":
+                    onRestart?((results["error"] != JSON.null) ? false : true)
                 default:
                     break
                 }
                 
             }
-            results["params"].array!.forEach() { result in
-                self.request(method: .tellStatus, id: "aria2.tellStatus.downloadStatus", params: [result["gid"].stringValue])
+            
+            if let methodString = results["method"].string {
+                let rawValue = methodString.components(separatedBy: ".")[1]
+                let method = Aria2Method(rawValue: rawValue)!
+                
+                getDownloadStatus = { result in
+                    var downloadName = ""
+                    if let btName = result["result"]["bittorrent"]["info"]["name"].string {
+                        downloadName = btName
+                    } else {
+                        downloadName = result["result"]["files"][0]["path"].stringValue.components(separatedBy: "/").last!
+                    }
+                    
+                    switch method {
+                    case .onDownloadStart:
+                        self.downloadStarted?(downloadName)
+                    case .onDownloadPause:
+                        self.downloadPaused?(downloadName)
+                    case .onDownloadStop:
+                        self.downloadStopped?(downloadName)
+                    case .onBtDownloadComplete:
+                        fallthrough
+                    case .onDownloadComplete:
+                        let path = result["result"]["dir"].stringValue
+                        self.downloadCompleted?(downloadName, path)
+                    case .onDownloadError:
+                        self.downloadError?(downloadName)
+                    default:
+                        break
+                    }
+                    
+                }
+                results["params"].array!.forEach() { result in
+                    self.request(method: .tellStatus, id: "aria2.tellStatus.downloadStatus", params: [result["gid"].stringValue])
+                }
             }
+        } catch(let error) {
+            print(error)
         }
+        
     }
     
     // MARK: Convert JSON to Swift Struct

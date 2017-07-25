@@ -15,19 +15,19 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
         NSApp.activate(ignoringOtherApps: true)
         window?.titleVisibility = .hidden
-        lowSpeedModeButton.state = defaults[.enableLowSpeedMode] ? 1 : 0
+        lowSpeedModeButton.state = defaults[.enableLowSpeedMode] ? .on : .off
         
         maria.rpc?.onPauseAll = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
-                    controller.updateTasksStatus("paused")
+                    controller.updateTasks(status: "paused")
                 }
             }
         }
         maria.rpc?.onUnpauseAll = { flag in
             if flag {
                 if let controller = self.contentViewController as? TaskListViewController {
-                    controller.updateTasksStatus("active")
+                    controller.updateTasks(status: "active")
                 }
             }
         }
@@ -63,8 +63,8 @@ class MainWindowController: NSWindowController {
     var touchBarLowSpeedButton: NSButton?
     
     @IBAction func toggleLowSpeedMode(_ sender: NSButton) {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        if sender.state == 1 {
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        if sender.state == .on {
             defaults[.enableLowSpeedMode] = true
             appDelegate.lowSpeedModeOn()
         } else {
@@ -83,7 +83,9 @@ class MainWindowController: NSWindowController {
         if let controller = contentViewController as? TaskListViewController {
             let tableView = controller.taskListTableView
             let indexes = controller.taskListTableView.selectedRowIndexes.enumerated()
-            let tasks: [(Int, Aria2Task)] = indexes.map() { (_, index) in
+            let tasks: [(Int, Aria2Task)] = indexes.map() { (arg) in
+                let (_, index) = arg
+                
                 let cell = tableView?.view(atColumn: 0, row: index, makeIfNecessary: true) as! TaskCellView
                 return (index, cell.data!)
             }
@@ -102,8 +104,10 @@ class MainWindowController: NSWindowController {
             alert.addButton(withTitle: NSLocalizedString("button.delete", comment: ""))
             alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
             alert.beginSheetModal(for: self.window!, completionHandler: { response in
-                func remove(tasks: [(Int, Aria2Task)]) {
-                    tasks.forEach() { (_, task) in
+                func remove(_ tasks: [(Int, Aria2Task)]) {
+                    tasks.forEach() { (arg) in
+                        let (_, task) = arg
+                        
                         if task.status == "active" || task.status == "paused" {
                             self.maria.rpc?.removeActive(task.gid!)
                         } else {
@@ -111,10 +115,12 @@ class MainWindowController: NSWindowController {
                         }
                     }
                 }
-                func delete(tasks: [(Int, Aria2Task)]) {
+                func delete(_ tasks: [(Int, Aria2Task)]) {
                     let fileManager = FileManager.default
                     
-                    tasks.forEach() { (_, task) in
+                    tasks.forEach() { (arg) in
+                        let (_, task) = arg
+                        
                         guard let filePath = task.filePath else { return }
                         let aria2FilePath = "\(filePath).aria2"
                         do {
@@ -131,11 +137,11 @@ class MainWindowController: NSWindowController {
                 }
                 
                 switch response {
-                case NSAlertFirstButtonReturn:
-                    remove(tasks: tasks)
-                case NSAlertSecondButtonReturn:
-                    remove(tasks: tasks)
-                    delete(tasks: tasks)
+                case .alertFirstButtonReturn:
+                    remove(tasks)
+                case .alertSecondButtonReturn:
+                    remove(tasks)
+                    delete(tasks)
                 default: break
                 }
 
@@ -150,7 +156,7 @@ class MainWindowController: NSWindowController {
         alert.addButton(withTitle: NSLocalizedString("button.clean", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.window!, completionHandler: { response in
-            if response == NSAlertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {
                 self.maria.rpc?.clearCompletedErrorRemoved()
             }
         })
@@ -158,14 +164,16 @@ class MainWindowController: NSWindowController {
 }
 
 // MARK: - NSTouchBar
-fileprivate extension NSTouchBarCustomizationIdentifier {
-    static let controlBar = NSTouchBarCustomizationIdentifier("com.windisco.Maria.controlBar")
+@available(OSX 10.12.2, *)
+fileprivate extension NSTouchBar.CustomizationIdentifier {
+    static let controlBar = NSTouchBar.CustomizationIdentifier("com.windisco.Maria.controlBar")
 }
 
-fileprivate extension NSTouchBarItemIdentifier {
-    static let resumeAll = NSTouchBarItemIdentifier("com.windisco.Maria.resumeAll")
-    static let pauseAll = NSTouchBarItemIdentifier("com.windisco.Maria.pauseAll")
-    static let lowSpeedMode = NSTouchBarItemIdentifier("com.windisco.Maria.lowSpeedMode")
+@available(OSX 10.12.2, *)
+fileprivate extension NSTouchBarItem.Identifier {
+    static let resumeAll = NSTouchBarItem.Identifier("com.windisco.Maria.resumeAll")
+    static let pauseAll = NSTouchBarItem.Identifier("com.windisco.Maria.pauseAll")
+    static let lowSpeedMode = NSTouchBarItem.Identifier("com.windisco.Maria.lowSpeedMode")
 }
 
 extension MainWindowController: NSTouchBarDelegate {
@@ -180,21 +188,21 @@ extension MainWindowController: NSTouchBarDelegate {
     }
     
     @available(OSX 10.12.2, *)
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         let touchBarItem = NSCustomTouchBarItem(identifier: identifier)
         
         switch identifier {
-        case NSTouchBarItemIdentifier.resumeAll:
-            let button = NSButton(title: "", image: NSImage(named: "Resume")!, target: self, action: #selector(MainWindowController.resumeAllTasks(_:)))
+        case NSTouchBarItem.Identifier.resumeAll:
+            let button = NSButton(title: "", image: NSImage(named: NSImage.Name(rawValue: "Resume"))!, target: self, action: #selector(MainWindowController.resumeAllTasks(_:)))
             touchBarItem.view = button
-        case NSTouchBarItemIdentifier.pauseAll:
-            let button = NSButton(title: "", image: NSImage(named: "Pause")!, target: self, action: #selector(MainWindowController.pauseAllTasks(_:)))
+        case NSTouchBarItem.Identifier.pauseAll:
+            let button = NSButton(title: "", image: NSImage(named: NSImage.Name(rawValue: "Pause"))!, target: self, action: #selector(MainWindowController.pauseAllTasks(_:)))
             touchBarItem.view = button
-        case NSTouchBarItemIdentifier.lowSpeedMode:
+        case NSTouchBarItem.Identifier.lowSpeedMode:
             touchBarLowSpeedButton = NSButton(title: "", target: self, action: #selector(MainWindowController.toggleLowSpeedMode(_:)))
-            touchBarLowSpeedButton!.setButtonType(NSButtonType.toggle)
-            touchBarLowSpeedButton!.image = NSImage(named: "TortoiseGray")
-            touchBarLowSpeedButton!.alternateImage = NSImage(named: "TortoiseColorful")
+            touchBarLowSpeedButton!.setButtonType(NSButton.ButtonType.toggle)
+            touchBarLowSpeedButton!.image = NSImage(named: NSImage.Name(rawValue: "TortoiseGray"))
+            touchBarLowSpeedButton!.alternateImage = NSImage(named: NSImage.Name(rawValue: "TortoiseColorful"))
             touchBarItem.view = touchBarLowSpeedButton!
         default:
             touchBarItem.view = NSButton(title: "", target: self, action: nil)

@@ -30,7 +30,7 @@ class StatusItemView: NSView {
                 downloadSpeedLabel.isHidden = false
                 menuButtonWidthConstraint.constant = 60
             } else {
-                menuButton.image = NSImage(named: "Arrow")
+                menuButton.image = NSImage(named: NSImage.Name(rawValue: "Arrow"))
                 uploadSpeedLabel.isHidden = true
                 downloadSpeedLabel.isHidden = true
                 menuButtonWidthConstraint.constant = 22

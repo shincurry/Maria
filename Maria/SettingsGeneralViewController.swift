@@ -27,8 +27,8 @@ class SettingsGeneralViewController: NSViewController {
     @IBOutlet weak var webAppPathButton: NSPopUpButton!
     
     @IBAction func switchOptions(_ sender: NSButton) {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
-        let boolValue = sender.state == 1 ? true : false
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        let boolValue = sender.state == .on ? true : false
         switch sender {
         case enableSpeedStatusBar:
             defaults[.enableSpeedStatusBar] = boolValue
@@ -56,7 +56,7 @@ class SettingsGeneralViewController: NSViewController {
         openPanel.canCreateDirectories = false
         openPanel.showsHiddenFiles = true
         openPanel.beginSheetModal(for: self.view.window!, completionHandler: { key in
-            if key == 1, let url = openPanel.url?.relativePath {
+            if key.rawValue == 1, let url = openPanel.url?.relativePath {
                 self.defaults[.webAppPath] = url
                 self.webAppPathButton.item(at: 0)!.title = url
             }
@@ -69,9 +69,9 @@ extension SettingsGeneralViewController {
         if let value = defaults[.webAppPath] {
             webAppPathButton.item(at: 0)!.title = value
         }
-        enableSpeedStatusBar.state = defaults[.enableSpeedStatusBar] ? 1 : 0
-        enableStatusBarMode.state  = defaults[.enableStatusBarMode] ? 1 : 0
-        enableYouGet.state = defaults[.enableYouGet] ? 1 : 0
+        enableSpeedStatusBar.state = defaults[.enableSpeedStatusBar] ? .on : .off
+        enableStatusBarMode.state = defaults[.enableStatusBarMode] ? .on : .off
+        enableYouGet.state = defaults[.enableYouGet] ? .on : .off
     }
 }
 

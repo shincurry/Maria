@@ -25,9 +25,9 @@ class AboutViewController: NSViewController {
     @IBOutlet weak var versionBuildNumber: NSTextField!
     
     @IBAction func openAnIssuesOnGithub(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/ShinCurry/Maria/issues/new")!)
+        NSWorkspace.shared.open(URL(string: "https://github.com/ShinCurry/Maria/issues/new")!)
     }
     @IBAction func contactMeOnTwitter(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "https://twitter.com/ShinCurryy")!)
+        NSWorkspace.shared.open(URL(string: "https://twitter.com/ShinCurryy")!)
     }
 }

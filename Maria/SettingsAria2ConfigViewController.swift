@@ -35,7 +35,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         openPanel.canCreateDirectories = false
         openPanel.showsHiddenFiles = true
         openPanel.beginSheetModal(for: self.view.window!, completionHandler: { key in
-            if key == 1, let url = openPanel.url?.relativePath {
+            if key.rawValue == 1, let url = openPanel.url?.relativePath {
                 self.defaults[.aria2ConfPath] = url
                 self.aria2ConfPathButton.item(at: 0)!.title = url
                 self.config.reload()
@@ -45,7 +45,7 @@ class SettingsAria2ConfigViewController: NSViewController {
     }
     
     @IBAction func switchOptions(_ sender: NSButton) {
-        let boolValue = sender.state == 1 ? true : false
+        let boolValue = sender.state == .on ? true : false
         switch sender {
         case enableAria2AutoLaunch:
             defaults[.enableAria2AutoLaunch] = boolValue
@@ -86,7 +86,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
-            if response == NSAlertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {
                 self.config.reset()
                 self.aria2ConfTableView.reloadData()
             }
@@ -100,7 +100,7 @@ class SettingsAria2ConfigViewController: NSViewController {
         alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
-            if response == NSAlertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {
                 let shutdown = Process()
                 let shutdownSH = Bundle.main.path(forResource: "shutdownAria2c", ofType: "sh")
                 shutdown.launchPath = shutdownSH
@@ -118,7 +118,7 @@ class SettingsAria2ConfigViewController: NSViewController {
                     run.launch()
                     run.waitUntilExit()
                     
-                    let appDelegate = NSApplication.shared().delegate as! AppDelegate
+                    let appDelegate = NSApplication.shared.delegate as! AppDelegate
                     appDelegate.aria2open()
                 }
             }
@@ -160,7 +160,8 @@ extension SettingsAria2ConfigViewController: NSTableViewDelegate, NSTableViewDat
 
 extension SettingsAria2ConfigViewController {
     func userDefaultsInit() {
-        enableAria2AutoLaunch.state = defaults[.enableAria2AutoLaunch] ? 1 : 0
+        
+        enableAria2AutoLaunch.state = defaults[.enableAria2AutoLaunch] ? .on : .off
         if let value = defaults[.aria2ConfPath] {
             aria2ConfPathButton.item(at: 0)!.title = value
 

@@ -15,13 +15,13 @@ class TaskListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        let nib = NSNib(nibNamed: "TaskCellView", bundle: Bundle.main)
-        taskListTableView.register(nib!, forIdentifier: "TaskCell")
+        let nib = NSNib(nibNamed: NSNib.Name("TaskCellView"), bundle: Bundle.main)
+        taskListTableView.register(nib!, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TaskCell"))
         taskListTableView.rowHeight = 64
         taskListTableView.selectionHighlightStyle = .none
         
         aria2Config()
-        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSForegroundColorAttributeName: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSFontAttributeName: NSFont.systemFont(ofSize: 14)])
+        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSAttributedStringKey.foregroundColor: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSAttributedStringKey.font: NSFont.systemFont(ofSize: 14)])
     }
     
     override func viewWillAppear() {
@@ -73,7 +73,7 @@ class TaskListViewController: NSViewController {
 
 
 extension TaskListViewController {
-    func updateListStatus() {
+    @objc func updateListStatus() {
 //        if let core = maria.core {
 //            print("---core---")
 //            if let tasks = core.getActiveDownload() {
@@ -200,7 +200,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
 //        NSApplication.shared().dockTile.badgeLabel = (numberOfTask.active == 0 ? nil : "\(numberOfTask.active)")
     }
     
-    func updateTasksStatus(_ status: String) {
+    func updateTasks(status: String) {
         for index in 0..<taskData.count {
             if let cell = taskListTableView.view(atColumn: 0, row: index, makeIfNecessary: true) as? TaskCellView {
                 cell.status = status
@@ -213,7 +213,7 @@ extension TaskListViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cell = tableView.make(withIdentifier: "TaskCell", owner: self) as? TaskCellView else {
+        guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TaskCell"), owner: self) as? TaskCellView else {
             fatalError("Unexpected cell type at \(row)")
         }
         cell.update(taskData[row])

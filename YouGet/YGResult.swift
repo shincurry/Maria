@@ -27,7 +27,7 @@ public struct YGResult: CustomStringConvertible {
                 self.streams.append(stream)
             }
         }
-        self.streams.sorted { $0.size > $1.size }
+        self.streams.sort { $0.size > $1.size }
         
         self.url = json["url"].string ?? ""
     }

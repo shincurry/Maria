@@ -13,7 +13,7 @@ import Cocoa
 struct RegexHelper {
     let regex: NSRegularExpression
     
-    init(_ pattern: String) throws {
+    init(pattern: String) throws {
         try regex = NSRegularExpression(pattern: pattern, options: .caseInsensitive)
     }
     

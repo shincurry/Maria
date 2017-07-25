@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var maria = Maria.shared
     let defaults = MariaUserDefault.auto
     
+    var objects = NSArray()
+
+    
     var statusItem: NSStatusItem?
     var statusItemView: StatusItemView?
     
@@ -57,15 +60,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSUserNotificationCenter.default.delegate = self
 
-        var objects = NSArray()
-        if Bundle.main.loadNibNamed("StatusItemView", owner: self, topLevelObjects: &objects)  {
-            print(objects.count)
-            statusItemView = objects.filter({ $0 as? StatusItemView != nil }).first as? StatusItemView
+        let pointers = AutoreleasingUnsafeMutablePointer<NSArray?>(&self.objects)
+        
+        if Bundle.main.loadNibNamed(NSNib.Name("StatusItemView"), owner: self, topLevelObjects: pointers)  {
+            statusItemView = self.objects.filter({ $0 as? StatusItemView != nil }).first as? StatusItemView
         }
         statusItemView?.menuButton.action = #selector(AppDelegate.menuClicked)
         statusItemView?.menuButton.sendAction(on: [.leftMouseUp, .rightMouseUp])
         
-        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem?.view = statusItemView
         
         updateStatusBarStatus()
@@ -132,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         speedStatusTimer?.invalidate()
     }
     
-    func menuClicked(sender: NSStatusBarButton) {
+    @objc func menuClicked(sender: NSStatusBarButton) {
         if NSApp.currentEvent!.type == .rightMouseUp {
             statusItem?.popUpMenu(statusMenu)
         } else {
@@ -157,7 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
     }
     
-    func updateDockTile() {
+    @objc func updateDockTile() {
         maria.rpc?.onGlobalStatus = { status in
             if !MariaUserDefault.auto[.enableStatusBarMode] {
                 if status.speed!.download == 0 {
@@ -172,7 +175,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         maria.rpc?.getGlobalStatus()
     }
     
-    func updateSpeedStatus() {
+    @objc func updateSpeedStatus() {
         if maria.rpc?.status == .connected {
             maria.rpc?.getGlobalStatus()
         }
@@ -185,7 +188,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     @IBOutlet weak var statusMenu: NSMenu!
-    @IBOutlet weak var RPCServerStatus: NSMenuItem!
+    @IBOutlet weak var rpcServerStatus: NSMenuItem!
     @IBOutlet weak var lowSpeedMode: NSMenuItem!
     
     @IBOutlet weak var dockTileView: DockTileView!
@@ -193,7 +196,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate {
     @IBAction func switchRPCServerStatus(_ sender: NSMenuItem) {
-        let status = sender.state == 0 ? false : true
+        let status = sender.state == .off ? false : true
         if status {
             aria2close()
         } else {
@@ -206,7 +209,7 @@ extension AppDelegate {
     }
     
     @IBAction func speedLimitMode(_ sender: NSMenuItem) {
-        let status = sender.state == 0 ? false : true
+        let status = sender.state == .off ? false : true
         if status {
             lowSpeedModeOff()
             defaults[.enableLowSpeedMode] = false
@@ -230,7 +233,7 @@ extension AppDelegate {
 
     @IBAction func openWebUIApp(_ sender: NSMenuItem) {
         if let path = defaults[.webAppPath], !path.isEmpty {
-            NSWorkspace.shared().open(URL(fileURLWithPath: path))
+            NSWorkspace.shared.open(URL(fileURLWithPath: path))
         }
     }
 }
@@ -240,7 +243,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     func aria2open() {
         aria2configure()
         maria.rpc?.connect()
-        RPCServerStatus.state = 1
+        rpcServerStatus.state = .on
     }
     
     func aria2close() {
@@ -249,7 +252,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     
     func aria2configure() {
         maria.rpc?.onConnect = {
-            self.RPCServerStatus.state = 1
+            self.rpcServerStatus.state = .on
             if self.defaults[.enableLowSpeedMode] {
                 self.lowSpeedModeOn()
             } else {
@@ -260,7 +263,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
             }
         }
         maria.rpc?.onDisconnect = {
-            self.RPCServerStatus.state = 0
+            self.rpcServerStatus.state = .off
             if self.defaults[.enableNotificationWhenDisconnected] {
                 MariaNotification.notification(title: "Aria2 Disconnected", details: "Aria2 server disconnected")
             }
@@ -295,22 +298,22 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
         
         maria.rpc?.onGlobalSpeedLimitOK = { flag in
             if flag {
-                self.lowSpeedMode.state = 0
+                self.lowSpeedMode.state = .off
                 if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-                    controller.lowSpeedModeButton.state = 0
+                    controller.lowSpeedModeButton.state = .off
                     if let button = controller.touchBarLowSpeedButton {
-                        button.state = 0
+                        button.state = .off
                     }
                 }
             }
         }
         maria.rpc?.onLowSpeedLimitOK = { flag in
             if flag {
-                self.lowSpeedMode.state = 1
+                self.lowSpeedMode.state = .on
                 if let controller = NSApp.mainWindow?.windowController as? MainWindowController {
-                    controller.lowSpeedModeButton.state = 1
+                    controller.lowSpeedModeButton.state = .on
                     if let button = controller.touchBarLowSpeedButton {
-                        button.state = 1
+                        button.state = .on
                     }
                 }
             }
@@ -330,7 +333,7 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
             switch id {
             case "complete":
                 let path = notification.userInfo!["path"] as! String
-                NSWorkspace.shared().open(URL(string: "file://\(path)")!)
+                NSWorkspace.shared.open(URL(string: "file://\(path)")!)
             default:
                 break
                 

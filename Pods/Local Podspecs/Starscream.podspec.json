@@ -1,6 +1,6 @@
 {
   "name": "Starscream",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "summary": "A conforming WebSocket RFC 6455 client library in Swift for iOS and OSX.",
   "homepage": "https://github.com/daltoniam/Starscream",
   "license": "Apache License, Version 2.0",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/daltoniam/Starscream.git",
-    "tag": "2.0.0"
+    "tag": "2.1.0"
   },
   "social_media_url": "http://twitter.com/daltoniam",
   "platforms": {
@@ -19,5 +19,10 @@
     "tvos": "9.0"
   },
   "source_files": "Source/*.swift",
-  "requires_arc": "true"
+  "requires_arc": "true",
+  "libraries": "z",
+  "pod_target_xcconfig": {
+    "SWIFT_INCLUDE_PATHS": "$(PODS_ROOT)/Starscream/zlib"
+  },
+  "preserve_paths": "zlib/*"
 }

@@ -13,8 +13,8 @@ import SwiftyJSON
 
 class TodayViewController: NSViewController, NCWidgetProviding {
     
-    override var nibName: String? {
-        return "TodayViewController"
+    override var nibName: NSNib.Name? {
+        return NSNib.Name("TodayViewController")
     }
     
     @IBOutlet weak var downloadSpeedLabel: NSTextField!
@@ -54,8 +54,8 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = NSNib(nibNamed: "TodayTaskCellView", bundle: Bundle.main)
-        taskListTableView.register(nib!, forIdentifier: "TodayTaskCell")
+        let nib = NSNib(nibNamed: NSNib.Name("TodayTaskCellView"), bundle: Bundle.main)
+        taskListTableView.register(nib!, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TodayTaskCell"))
         taskListTableView.rowHeight = cellHeight
         aria2Config()
     }
@@ -69,7 +69,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         closeTimer()
     }
     
-    func updateListStatus() {
+    @objc func updateListStatus() {
         switch maria.rpc!.status {
         case .disconnected:
             countdownTimeToConnectAria -= 1
@@ -107,13 +107,13 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             if taskArray.isEmpty {
                 self.taskListTableView.gridStyleMask = .solidHorizontalGridLineMask
             } else {
-                self.taskListTableView.gridStyleMask = NSTableViewGridLineStyle()
+                self.taskListTableView.gridStyleMask = NSTableView.GridLineStyle()
                 if self.defaults[.todayEnableTasksSortedByProgress] {
                     taskArray = taskArray.sorted() { return $0.progress > $1.progress }
                 }
                 let number = self.defaults[.todayTasksNumber]
                 if number < taskArray.count {
-                    taskArray = taskArray.enumerated().filter({ (index, task) in return index > number-1 }).map({ return $1 })
+                    taskArray = taskArray.enumerated().filter({ let (index, _) = $0; return index > number-1 }).map({ return $0.1 })
                 }
             }
             self.taskData = taskArray
@@ -141,7 +141,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                 self.noTaskAlertLabel.isHidden = true
                 self.taskListScrollViewHeightConstraint.constant = 0
             }
-        }
+        } as (() -> Void)
     }
 }
 
@@ -184,7 +184,7 @@ extension TodayViewController: NSTableViewDelegate, NSTableViewDataSource {
         if taskData.isEmpty {
             return NSTableCellView()
         }
-        let cell = tableView.make(withIdentifier: "TodayTaskCell", owner: self) as! TodayTaskCellView
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TodayTaskCell"), owner: self) as! TodayTaskCellView
         cell.update(taskData[row], isLast: row == taskData.count-1)
         return cell
     }

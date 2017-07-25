@@ -93,7 +93,7 @@ class MariaUserDefault {
         defaults[.rpcServerSecret] = "maria.rpc.2016"
     }
     
-    private static func initShared(defaults: UserDefaults) {
+    fileprivate static func initShared(defaults: UserDefaults) {
         
         // Notification Settings
         defaults[.enableNotificationWhenStarted] = true

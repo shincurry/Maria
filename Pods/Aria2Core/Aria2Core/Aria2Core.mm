@@ -97,7 +97,7 @@ typedef aria2::FileData FileData;
 - (ACGids *)addMetalink:(NSString *)metalink
        withOptions:(ACKeyVals *)options {
     std::string _metalink = [metalink cStringUsingEncoding:NSUTF8StringEncoding];
-    Gids * gids;
+    Gids * gids = NULL;
     aria2::KeyVals _options = ACToKeyVals(options);
     if (aria2::addMetalink(session, gids, _metalink, _options) != 0) {
         return nil;
@@ -534,6 +534,7 @@ ACFileData * FileDataToAC(FileData data) {
 }
 
 int downloadEventCallback(aria2::Session* session, aria2::DownloadEvent event, aria2::A2Gid gid, void* userData) {
+    printf("event is %d\n", event);
     return 0;
 }
 

@@ -33,7 +33,7 @@ extension SettingsTodayViewController {
     }
 
     @IBAction func switchOption(_ sender: NSButton) {
-        let boolValue = (sender.state == 1 ? true : false)
+        let boolValue = (sender.state == .on ? true : false)
         defaults[.todayEnableTasksSortedByProgress] = boolValue
     }
 }
@@ -44,6 +44,6 @@ extension SettingsTodayViewController {
         rangeLabel.stringValue = "(\(Int(stepper.minValue)) ~ \(Int(stepper.maxValue)))"
         stepper.integerValue = defaults[.todayTasksNumber]
         numberOfTasksTextField.stringValue = "\(stepper.integerValue)"
-        enableTasksSortedByProgress.state = defaults[.todayEnableTasksSortedByProgress] ? 1 : 0
+        enableTasksSortedByProgress.state = defaults[.todayEnableTasksSortedByProgress] ? .on : .off
     }
 }

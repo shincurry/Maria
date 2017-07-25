@@ -45,7 +45,7 @@ class SettingsRPCServerViewController: NSViewController {
         alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
-            if response == NSAlertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {
                 let path = Bundle.main.executablePath!
                 let id = "\(ProcessInfo.processInfo.processIdentifier)"
                 Process.launchedProcess(launchPath: path, arguments: [path, id])
@@ -69,7 +69,7 @@ extension SettingsRPCServerViewController {
                 defaults[key] = sender.stringValue
                 defaults.synchronize()
             } else {
-                sender.stringValue = "\(defaults[key])"
+                sender.stringValue = "\(String(describing: defaults[key]))"
             }
             
             return
@@ -91,12 +91,12 @@ extension SettingsRPCServerViewController {
     
     
     @IBAction func enableSSL(_ sender: NSButton) {
-        let boolValue = sender.state == 0 ? false : true
+        let boolValue = sender.state == .off ? false : true
         defaults[.rpcServerEnabledSSL] = boolValue
         defaults.synchronize()
     }
     @IBAction func enableAutoConnectAria2(_ sender: NSButton) {
-        let boolValue = sender.state == 0 ? false : true
+        let boolValue = sender.state == .off ? false : true
         defaults[.enableAutoConnectAria2] = boolValue
         defaults.synchronize()
     }
@@ -107,16 +107,16 @@ extension SettingsRPCServerViewController {
         alert.addButton(withTitle: NSLocalizedString("button.sure", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("button.cancel", comment: ""))
         alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
-            if response == NSAlertFirstButtonReturn {
-                let boolValue = sender.state == 0 ? false : true
+            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
+                let boolValue = sender.state == .off ? false : true
                 MariaUserDefault.main[.useEmbeddedAria2] = boolValue
                 MariaUserDefault.main.synchronize()
                 let path = Bundle.main.executablePath!
                 let id = "\(ProcessInfo.processInfo.processIdentifier)"
                 Process.launchedProcess(launchPath: path, arguments: [path, id])
                 NSApp.terminate(self)
-            } else if response == NSAlertSecondButtonReturn {
-                sender.state = (sender.state + 1) & 1
+            } else if response == NSApplication.ModalResponse.alertSecondButtonReturn {
+                sender.state = NSControl.StateValue(rawValue: (sender.state.rawValue + 1) & 1)
             }
         })
     }
@@ -148,12 +148,13 @@ extension SettingsRPCServerViewController {
         if let value = defaults[.rpcServerPassword] {
             password.stringValue = value
         }
-        sslEnabled.state = defaults[.rpcServerEnabledSSL] ? 1 : 0
+        sslEnabled.state = defaults[.rpcServerEnabledSSL] ? .on : .off
         
         basePath.stringValue = "https://" + host.stringValue + ":" + port.stringValue
         
-        autoConnectAria2Enabled.state = defaults[.enableAutoConnectAria2] ? 1 : 0
-        useEmbeddedAria2Enabled.state = MariaUserDefault.main[.useEmbeddedAria2] ? 1 : 0
+        autoConnectAria2Enabled.state = defaults[.enableAutoConnectAria2] ? .on : .off
+            
+        useEmbeddedAria2Enabled.state = MariaUserDefault.main[.useEmbeddedAria2] ? .on : .off
         
         useEmbeddedAria2Enabled.title = useEmbeddedAria2Enabled.title + "(version \(EmbeddedAria2Version))"
     }

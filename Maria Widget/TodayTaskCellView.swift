@@ -25,7 +25,7 @@ class TodayTaskCellView: NSTableCellView {
     var isBtTask = false {
         didSet {
             if isBtTask {
-                taskImageView.image = NSImage(named: "TodayTorrentIcon")
+                taskImageView.image = NSImage(named: NSImage.Name(rawValue: "TodayTorrentIcon"))
             }
         }
     }

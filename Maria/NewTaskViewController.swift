@@ -61,7 +61,7 @@ class NewTaskViewController: NSViewController {
     
     
     @IBAction func toggleYouGet(_ sender: NSButton) {
-        let flag = (sender.state == 0 ? false : true)
+        let flag = (sender.state == .off ? false : true)
         defaults[.enableYouGet] = flag
         if flag {
             _ = maria.initYouGet()
@@ -74,7 +74,7 @@ class NewTaskViewController: NSViewController {
     
     @IBAction func switchContainer(_ sender: NSPopUpButton) {
         if let result = result {
-            downloadUrls = result.streams[sender.state].sources
+            downloadUrls = result.streams[sender.state.rawValue].sources
         }
     }
     
@@ -123,7 +123,7 @@ extension NewTaskViewController: NSTextFieldDelegate {
         let patterns = ["^(https?://)?(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])/?", "^(https?://)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([/\\w \\.-]*)*/?", "^magnet:\\?"]
         
         let isMatched = patterns.reduce(false, { (result, pattern) in
-            if let matcher = try? RegexHelper(pattern), matcher.match(input: url) {
+            if let matcher = try? RegexHelper(pattern: pattern), matcher.match(input: url) {
                 return result || true
             } else {
                 return result || false
@@ -144,7 +144,7 @@ extension NewTaskViewController: NSTextFieldDelegate {
         shouldYouGet += 1
     }
     
-    func youget() {
+    @objc func youget() {
         guard defaults[.enableYouGet] else {
             return
         }
@@ -218,7 +218,7 @@ extension NSWindow {
         shakeAnimation.path = shakePath;
         shakeAnimation.duration = durationOfShake;
         
-        self.animations = ["frameOrigin": shakeAnimation]
+        self.animations = [NSAnimatablePropertyKey(rawValue: "frameOrigin"): shakeAnimation]
         self.animator().setFrameOrigin(self.frame.origin)
     }
 }
@@ -226,7 +226,7 @@ extension NSWindow {
 
 extension NewTaskViewController {
     func viewInitial() {
-        enableYouGetButton.state = defaults[.enableYouGet] ? 1 : 0
+        enableYouGetButton.state = defaults[.enableYouGet] ? .on : .off
         
         messageScrollView.scrollerStyle = .overlay
         startButtonTitle = startButton.title

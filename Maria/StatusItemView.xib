@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13122.17" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,18 +13,18 @@
             <rect key="frame" x="0.0" y="0.0" width="50" height="23"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESV-Ys-agJ">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESV-Ys-agJ">
                     <rect key="frame" x="-2" y="12" width="54" height="11"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0 KB/s⬆︎" usesSingleLineMode="YES" id="tGu-rQ-xnj">
-                        <font key="font" metaFont="system" size="9"/>
+                        <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psq-Ca-4hZ">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Psq-Ca-4hZ">
                     <rect key="frame" x="-2" y="2" width="54" height="11"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0 KB/s⬇︎" usesSingleLineMode="YES" id="0GB-5a-1xM">
-                        <font key="font" metaFont="system" size="9"/>
+                        <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -54,46 +55,12 @@
                 <constraint firstItem="3Ik-B0-DyF" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="zud-uZ-dlU"/>
             </constraints>
             <connections>
-                <outlet property="RPCServerStatus" destination="fcY-ma-TqE" id="jCG-DX-xE3"/>
                 <outlet property="downloadSpeedLabel" destination="Psq-Ca-4hZ" id="Q0C-P8-JWE"/>
-                <outlet property="lowSpeedMode" destination="JeH-Lq-F3c" id="L6h-eJ-wSM"/>
                 <outlet property="menuButton" destination="3Ik-B0-DyF" id="U9m-ib-kNe"/>
                 <outlet property="menuButtonWidthConstraint" destination="WBM-ey-9gW" id="HEo-mY-cDR"/>
-                <outlet property="statusMenu" destination="jiu-z1-Maf" id="9qp-kK-1OS"/>
                 <outlet property="uploadSpeedLabel" destination="ESV-Ys-agJ" id="MG6-2G-Vq8"/>
             </connections>
-            <point key="canvasLocation" x="-251" y="102"/>
+            <point key="canvasLocation" x="-481" y="198.5"/>
         </customView>
-        <menu id="jiu-z1-Maf">
-            <items>
-                <menuItem title="Aria2 RPC Server" onStateImage="GreenBall" offStateImage="RedBall" id="fcY-ma-TqE">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="gNF-j8-klo"/>
-                <menuItem title="Open Web-UI App" id="LET-6m-sT6">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="gta-QC-1zJ"/>
-                <menuItem title="Add New Task" id="aGB-2t-l2p">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Low Speed Mode" id="JeH-Lq-F3c">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="pbq-pv-NJt"/>
-                <menuItem title="Settings" id="niG-9R-3h1">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="R61-9P-92K"/>
-                <menuItem title="Quit" id="5Gd-eR-6S9">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="-383" y="274"/>
-        </menu>
     </objects>
-    <resources>
-        <image name="GreenBall" width="16" height="12"/>
-        <image name="RedBall" width="16" height="12"/>
-    </resources>
 </document>

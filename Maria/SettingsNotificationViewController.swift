@@ -30,7 +30,8 @@ class SettingsNotificationViewController: NSViewController {
     let defaults = MariaUserDefault.auto
     
     @IBAction func switchNotification(_ sender: NSButton) {
-        let boolValue = sender.state == 0 ? false : true
+        
+        let boolValue = sender.state == .off ? false : true
         
         var key = DefaultsKeys.enableNotificationWhenError
         switch sender {
@@ -54,20 +55,16 @@ class SettingsNotificationViewController: NSViewController {
         defaults[key] = boolValue
         defaults.synchronize()
     }
-    
-    func checkButtonState(by value: Bool) -> Int {
-        return value ? 1 : 0
-    }
 }
 
 extension SettingsNotificationViewController {
     func userDefaultsInit() {
-        notificationWhenStarted.state = checkButtonState(by: defaults[.enableNotificationWhenStarted])
-        notificationWhenPaused.state = checkButtonState(by: defaults[.enableNotificationWhenStopped])
-        notificationWhenStopped.state = checkButtonState(by: defaults[.enableNotificationWhenPaused])
-        notificationWhenCompleted.state = checkButtonState(by: defaults[.enableNotificationWhenCompleted])
-        notificationWhenError.state = checkButtonState(by: defaults[.enableNotificationWhenError])
-        notificationWhenConnected.state = checkButtonState(by: defaults[.enableNotificationWhenConnected])
-        notificationWhenDisconnected.state = checkButtonState(by: defaults[.enableNotificationWhenDisconnected])
+        notificationWhenStarted.state = defaults[.enableNotificationWhenStarted] ? .on : .off
+        notificationWhenPaused.state = defaults[.enableNotificationWhenPaused] ? .on : .off
+        notificationWhenStopped.state = defaults[.enableNotificationWhenStopped] ? .on : .off
+        notificationWhenCompleted.state = defaults[.enableNotificationWhenCompleted] ? .on : .off
+        notificationWhenError.state = defaults[.enableNotificationWhenError] ? .on : .off
+        notificationWhenConnected.state = defaults[.enableNotificationWhenConnected] ? .on : .off
+        notificationWhenDisconnected.state = defaults[.enableNotificationWhenDisconnected] ? .on : .off
     }
 }
