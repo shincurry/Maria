@@ -357,34 +357,6 @@ std::vector<A2Gid> getActiveDownload(Session* session);
 /**
  * @function
  *
- * Returns the array of waiting download GID.
- */
-std::vector<A2Gid> getWaitingDownload(Session* session);
-
-/**
- * @function
- *
- * Returns the array of stopped download GID.
- */
-std::vector<A2Gid> getStoppedDownload(Session* session);
-
-/**
- * @function
- *
- * Returns the array of error download GID.
- */
-std::vector<A2Gid> getErrorDownload(Session* session);
-
-/**
- * @function
- *
- * Returns the array of completed download GID.
- */
-std::vector<A2Gid> getCompletedDownload(Session* session);
-
-/**
- * @function
- *
  * Removes the download denoted by the |gid|. If the specified
  * download is in progress, it is stopped at first. The status of
  * removed download becomes :c:macro:`DOWNLOAD_REMOVED`. If the

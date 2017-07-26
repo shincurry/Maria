@@ -17,10 +17,10 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTA
 
 ## Test Environment
 
-* Xcode 8.2.1 (8C1002)
-* Swift 3
-* macOS Sierra 10.12.2 (16C67)
-* CocoaPods 1.1.1
+* Xcode 9.0 beta 4 (9M189t)
+* Swift 4
+* macOS Sierra 10.13 Beta (17A315i)
+* CocoaPods 1.3.0.beta.2
 
 ## Thanks
 

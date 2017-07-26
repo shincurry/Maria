@@ -511,7 +511,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Maria/Pods-Maria-frameworks.sh",
-				"${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.28.0-maria.dylib",
+				"${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.32.0-maria.dylib",
 				"${BUILT_PRODUCTS_DIR}/Aria2Core/Aria2Core.framework",
 				"${BUILT_PRODUCTS_DIR}/Aria2RPC/Aria2RPC.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
@@ -522,7 +522,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaria2-1.28.0-maria.dylib",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaria2-1.32.0-maria.dylib",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aria2Core.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aria2RPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",

@@ -64,13 +64,13 @@ typedef enum {
 
 - (ACGids *)getActiveDownload;
 
-- (ACGids *)getWaitingDownload;
-
-- (ACGids *)getStoppedDownload;
-
-- (ACGids *)getErrorDownload;
-
-- (ACGids *)getCompletedDownload;
+//- (ACGids *)getWaitingDownload;
+//
+//- (ACGids *)getStoppedDownload;
+//
+//- (ACGids *)getErrorDownload;
+//
+//- (ACGids *)getCompletedDownload;
 
 - (int)removeTasksByGid: (ACGid *)gid
                 byForce: (bool)force;

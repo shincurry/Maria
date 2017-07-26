@@ -98,7 +98,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.28.0-maria.dylib"
+  install_framework "${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.32.0-maria.dylib"
   install_framework "${BUILT_PRODUCTS_DIR}/Aria2Core/Aria2Core.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Aria2RPC/Aria2RPC.framework"
   install_framework "${PODS_ROOT}/Sparkle/Sparkle.framework"
@@ -108,7 +108,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.28.0-maria.dylib"
+  install_framework "${PODS_ROOT}/Aria2Core/Aria2Core/Frameworks/libaria2-1.32.0-maria.dylib"
   install_framework "${BUILT_PRODUCTS_DIR}/Aria2Core/Aria2Core.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Aria2RPC/Aria2RPC.framework"
   install_framework "${PODS_ROOT}/Sparkle/Sparkle.framework"

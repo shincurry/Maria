@@ -1,5 +1,5 @@
 PODS:
-  - Aria2Core (1.0.0)
+  - Aria2Core (1.0.1)
   - Aria2RPC (1.0.1):
     - Starscream (~> 2.1.0)
     - SwiftyJSON (~> 3.1.4)
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Aria2Core:
-    :commit: ab609f74c930df116a02ee0b09cecde2183f7e0d
+    :commit: c84b77776a2ecbd3ae92a5d7f4f67cba9c32070c
     :git: https://github.com/ShinCurry/Aria2Core.git
   Aria2RPC:
     :commit: 536695466ba0ea0d82c044831c9ee4fa2337bf85
@@ -46,7 +46,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
-  Aria2Core: 0ac94e793852d0e6338aaaeca8a1ef1b3d12a644
+  Aria2Core: 8e139f76da8f6509a6a14cc3e5cf27c379be2046
   Aria2RPC: adaeaec16acf7ba830a5b9962064f7b13bc1c9b3
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   Starscream: 7c901b0fdb10244077b1da380744a14824924718
