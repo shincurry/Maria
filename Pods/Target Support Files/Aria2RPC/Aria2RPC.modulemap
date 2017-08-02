@@ -1,6 +1,0 @@
-framework module Aria2RPC {
-  umbrella header "Aria2RPC-umbrella.h"
-
-  export *
-  module * { export * }
-}
