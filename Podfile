@@ -8,11 +8,11 @@ project 'Maria.xcodeproj'
 project 'YouGet.xcodeproj'
 
 def starscream
-    pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream.git'
+    pod 'Starscream', '~> 3.0'
 end
 
 def swifty_json
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'SwiftyJSON', '~> 4.0'
 end
 
 def swifty_userdefaults

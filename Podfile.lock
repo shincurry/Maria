@@ -1,30 +1,32 @@
 PODS:
   - Aria2Core (1.0.1)
   - Aria2RPC (1.0.1):
-    - Starscream (~> 2.1.0)
-    - SwiftyJSON (~> 3.1.4)
-  - Sparkle (1.17.0)
-  - Starscream (2.1.0)
-  - SwiftyJSON (3.1.4)
+    - Starscream (~> 3.0)
+    - SwiftyJSON (~> 4.0)
+  - Sparkle (1.19.0)
+  - Starscream (3.0.5)
+  - SwiftyJSON (4.1.0)
   - SwiftyUserDefaults (3.0.1)
 
 DEPENDENCIES:
   - Aria2Core (from `https://github.com/ShinCurry/Aria2Core.git`)
   - Aria2RPC (from `https://github.com/ShinCurry/Aria2RPC.git`)
   - Sparkle
-  - Starscream (from `https://github.com/daltoniam/Starscream.git`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - Starscream (~> 3.0)
+  - SwiftyJSON (~> 4.0)
   - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults.git`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Sparkle
+    - Starscream
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   Aria2Core:
     :git: https://github.com/ShinCurry/Aria2Core.git
   Aria2RPC:
     :git: https://github.com/ShinCurry/Aria2RPC.git
-  Starscream:
-    :git: https://github.com/daltoniam/Starscream.git
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   SwiftyUserDefaults:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
@@ -33,26 +35,20 @@ CHECKOUT OPTIONS:
     :commit: c84b77776a2ecbd3ae92a5d7f4f67cba9c32070c
     :git: https://github.com/ShinCurry/Aria2Core.git
   Aria2RPC:
-    :commit: 536695466ba0ea0d82c044831c9ee4fa2337bf85
+    :commit: 0019e25056655346b0f538b7652b36d47e30d9db
     :git: https://github.com/ShinCurry/Aria2RPC.git
-  Starscream:
-    :commit: b0ed1decce701c1933e04505a9e89fa4a9f55272
-    :git: https://github.com/daltoniam/Starscream.git
-  SwiftyJSON:
-    :commit: ebc305b69ecca005b636f20e0db4d07d19d333fa
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   SwiftyUserDefaults:
-    :commit: 7ddd886fc33e9cc06d178b8fe9c0c46cfa4b9bb9
+    :commit: 14b629b035bf6355b46ece22c3851068a488a895
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
   Aria2Core: 8e139f76da8f6509a6a14cc3e5cf27c379be2046
-  Aria2RPC: adaeaec16acf7ba830a5b9962064f7b13bc1c9b3
-  Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
-  Starscream: 7c901b0fdb10244077b1da380744a14824924718
-  SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
+  Aria2RPC: e244bdf623db21b2bbf7816c899a5c9aa281f041
+  Sparkle: 8486d2493599665e466b5076e72b28849776e32f
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: ab61c62e5318c7b4e67b9bfbda409396238b9495
+PODFILE CHECKSUM: b6176bd6d67632d050eaaa906f0ff732ee1253c9
 
-COCOAPODS: 1.3.0.beta.2
+COCOAPODS: 1.5.0

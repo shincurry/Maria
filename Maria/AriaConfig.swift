@@ -125,7 +125,7 @@ extension AriaConfig {
             let regex: NSRegularExpression
             do {
                 try regex = NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-                let matches = regex.matches(in: item, options: [], range: NSMakeRange(0, item.characters.count))
+                let matches = regex.matches(in: item, options: [], range: NSMakeRange(0, item.count))
                 return matches.count == 0 ? true : false
             } catch {
                 print(error)
