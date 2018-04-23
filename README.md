@@ -1,6 +1,6 @@
 # Maria
 
-An OS X app/widget for aria2 download tool.
+A macOS GUI app/widget for aria2 download tool.
 
 You can see dev plan [here](https://github.com/ShinCurry/Maria/projects/1).
 
@@ -17,10 +17,10 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTA
 
 ## Test Environment
 
-* Xcode 9.0 beta 4 (9M189t)
-* Swift 4
-* macOS Sierra 10.13 Beta (17A315i)
-* CocoaPods 1.3.0.beta.2
+* Xcode 9.3 (9E145)
+* Swift 4.1
+* macOS Sierra 10.13.4 (17E199)
+* CocoaPods 1.5.0
 
 ## Thanks
 
