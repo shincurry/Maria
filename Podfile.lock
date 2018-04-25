@@ -32,7 +32,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Aria2Core:
-    :commit: c84b77776a2ecbd3ae92a5d7f4f67cba9c32070c
+    :commit: 4c3efb7d4510351f4ccc08bb2e286610316bfb4c
     :git: https://github.com/ShinCurry/Aria2Core.git
   Aria2RPC:
     :commit: 0019e25056655346b0f538b7652b36d47e30d9db
@@ -42,7 +42,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
-  Aria2Core: 8e139f76da8f6509a6a14cc3e5cf27c379be2046
+  Aria2Core: d0d4b0880210618a3e14b98df3561ac8a6a6a6c3
   Aria2RPC: e244bdf623db21b2bbf7816c899a5c9aa281f041
   Sparkle: 8486d2493599665e466b5076e72b28849776e32f
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
