@@ -9,8 +9,8 @@ PODS:
   - SwiftyUserDefaults (3.0.1)
 
 DEPENDENCIES:
-  - Aria2Core (from `https://github.com/ShinCurry/Aria2Core.git`)
-  - Aria2RPC (from `https://github.com/ShinCurry/Aria2RPC.git`)
+  - Aria2Core (from `https://github.com/shincurry/Aria2Core.git`)
+  - Aria2RPC (from `https://github.com/shincurry/Aria2RPC.git`)
   - Sparkle
   - Starscream (~> 3.0)
   - SwiftyJSON (~> 4.0)
@@ -24,19 +24,19 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Aria2Core:
-    :git: https://github.com/ShinCurry/Aria2Core.git
+    :git: https://github.com/shincurry/Aria2Core.git
   Aria2RPC:
-    :git: https://github.com/ShinCurry/Aria2RPC.git
+    :git: https://github.com/shincurry/Aria2RPC.git
   SwiftyUserDefaults:
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 CHECKOUT OPTIONS:
   Aria2Core:
     :commit: 4c3efb7d4510351f4ccc08bb2e286610316bfb4c
-    :git: https://github.com/ShinCurry/Aria2Core.git
+    :git: https://github.com/shincurry/Aria2Core.git
   Aria2RPC:
-    :commit: 0019e25056655346b0f538b7652b36d47e30d9db
-    :git: https://github.com/ShinCurry/Aria2RPC.git
+    :commit: 47aa827f157fda6ced27fd3c401ad2cc6caa8dec
+    :git: https://github.com/shincurry/Aria2RPC.git
   SwiftyUserDefaults:
     :commit: 14b629b035bf6355b46ece22c3851068a488a895
     :git: https://github.com/radex/SwiftyUserDefaults.git
@@ -49,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: b6176bd6d67632d050eaaa906f0ff732ee1253c9
+PODFILE CHECKSUM: f0cf73a727b363f1ba5c588c45968ecc8882e294
 
 COCOAPODS: 1.5.0
