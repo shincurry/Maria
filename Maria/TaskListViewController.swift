@@ -21,7 +21,7 @@ class TaskListViewController: NSViewController {
         taskListTableView.selectionHighlightStyle = .none
         
         aria2Config()
-        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSAttributedStringKey.foregroundColor: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSAttributedStringKey.font: NSFont.systemFont(ofSize: 14)])
+        alertConnectButton.attributedTitle = NSAttributedString(string: NSLocalizedString("aria2.status.disconnected.tryNow", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: NSColor(calibratedRed: 0.000, green: 0.502, blue: 0.753, alpha: 1.00), NSAttributedString.Key.font: NSFont.systemFont(ofSize: 14)])
     }
     
     override func viewWillAppear() {

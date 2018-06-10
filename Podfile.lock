@@ -17,7 +17,7 @@ DEPENDENCIES:
   - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults.git`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Sparkle
     - Starscream
     - SwiftyJSON
@@ -49,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
 
-PODFILE CHECKSUM: f0cf73a727b363f1ba5c588c45968ecc8882e294
+PODFILE CHECKSUM: 276511cec371d5c7cb8abef67366cd50acdcffbe
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

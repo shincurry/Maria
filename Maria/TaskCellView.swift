@@ -51,26 +51,26 @@ class TaskCellView: NSTableCellView {
                 fallthrough
             case "active":
                 actionButton.action = #selector(actionPause)
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "PauseButton"))
+                actionButton.image = NSImage(named: "PauseButton")
                 taskStatusLabel.stringValue = "Downloading"
             case "paused":
                 actionButton.action = #selector(actionUnpause)
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Paused"
             case "complete":
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "CompleteButton"))
+                actionButton.image = NSImage(named: "CompleteButton")
                 taskStatusLabel.stringValue = "Complete"
             case "stopped":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Stopped"
             case "removed":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Removed"
             case "error":
                 actionButton.action = #selector(actionRestart)
-                actionButton.image = NSImage(named: NSImage.Name(rawValue: "ResumeButton"))
+                actionButton.image = NSImage(named: "ResumeButton")
                 taskStatusLabel.stringValue = "Error"
             default:
                 break
@@ -113,7 +113,7 @@ class TaskCellView: NSTableCellView {
         status = task.status!
         isBtDownload = task.isBtTask!
         if isBtDownload {
-            taskTypeImageView.image = NSImage(named: NSImage.Name(rawValue: "TorrentIcon"))
+            taskTypeImageView.image = NSImage(named: "TorrentIcon")
         } else {
             fileName = task.fileName!
         }

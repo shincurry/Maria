@@ -9,7 +9,7 @@
 import Foundation
 
 open class MariaNotification {
-    static open func notification(title: String, details: String) {
+    static public func notification(title: String, details: String) {
         let notification = NSUserNotification()
         notification.title = title
         notification.informativeText = details

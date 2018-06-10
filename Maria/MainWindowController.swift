@@ -193,16 +193,16 @@ extension MainWindowController: NSTouchBarDelegate {
         
         switch identifier {
         case NSTouchBarItem.Identifier.resumeAll:
-            let button = NSButton(title: "", image: NSImage(named: NSImage.Name(rawValue: "Resume"))!, target: self, action: #selector(MainWindowController.resumeAllTasks(_:)))
+            let button = NSButton(title: "", image: NSImage(named: "Resume")!, target: self, action: #selector(MainWindowController.resumeAllTasks(_:)))
             touchBarItem.view = button
         case NSTouchBarItem.Identifier.pauseAll:
-            let button = NSButton(title: "", image: NSImage(named: NSImage.Name(rawValue: "Pause"))!, target: self, action: #selector(MainWindowController.pauseAllTasks(_:)))
+            let button = NSButton(title: "", image: NSImage(named: "Pause")!, target: self, action: #selector(MainWindowController.pauseAllTasks(_:)))
             touchBarItem.view = button
         case NSTouchBarItem.Identifier.lowSpeedMode:
             touchBarLowSpeedButton = NSButton(title: "", target: self, action: #selector(MainWindowController.toggleLowSpeedMode(_:)))
             touchBarLowSpeedButton!.setButtonType(NSButton.ButtonType.toggle)
-            touchBarLowSpeedButton!.image = NSImage(named: NSImage.Name(rawValue: "TortoiseGray"))
-            touchBarLowSpeedButton!.alternateImage = NSImage(named: NSImage.Name(rawValue: "TortoiseColorful"))
+            touchBarLowSpeedButton!.image = NSImage(named: "TortoiseGray")
+            touchBarLowSpeedButton!.alternateImage = NSImage(named: "TortoiseColorful")
             touchBarItem.view = touchBarLowSpeedButton!
         default:
             touchBarItem.view = NSButton(title: "", target: self, action: nil)
