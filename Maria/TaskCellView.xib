@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="TaskCellView" customModule="Maria" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="573" height="92"/>
+            <rect key="frame" x="0.0" y="0.0" width="1009" height="86"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="sLX-3q-Bm0">
-                    <rect key="frame" x="92" y="16" width="439" height="60"/>
+                    <rect key="frame" x="86" y="13" width="881" height="60"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-oa-X1N">
-                            <rect key="frame" x="0.0" y="38" width="411" height="18"/>
+                            <rect key="frame" x="0.0" y="38" width="410" height="18"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="How.To.Make.A.Maria.App.Blueray.2016.720p.BluRay.x264.mkv" id="gkd-Qt-Ce0">
                                 <font key="font" metaFont="system" size="14"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -24,13 +25,13 @@
                             </textFieldCell>
                         </textField>
                         <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="32" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="RxW-gb-MfN">
-                            <rect key="frame" x="2" y="23" width="435" height="14"/>
+                            <rect key="frame" x="2" y="23" width="877" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="JQo-kJ-NaG"/>
                             </constraints>
                         </progressIndicator>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DAo-qI-lDE">
-                            <rect key="frame" x="355" y="9" width="75" height="13"/>
+                            <rect key="frame" x="348" y="9" width="75" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Downloading" id="Ogz-sd-94N">
                                 <font key="font" metaFont="systemBold" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -38,7 +39,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0b0-NC-Md9">
-                            <rect key="frame" x="57" y="9" width="153" height="13"/>
+                            <rect key="frame" x="56" y="9" width="150" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="⬇︎ 1002.2 KB/s ⬆︎ 1001.8 KB/s" id="3GE-qO-4sT">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -46,7 +47,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2nQ-5G-7OZ">
-                            <rect key="frame" x="47" y="9" width="14" height="13"/>
+                            <rect key="frame" x="47" y="9" width="13" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="•" id="Eyt-cg-mm7">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -54,7 +55,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-7c-rnr">
-                            <rect key="frame" x="206" y="9" width="14" height="13"/>
+                            <rect key="frame" x="202" y="9" width="13" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="•" id="1le-qp-sw6">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -62,7 +63,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="81Y-XU-Ehf">
-                            <rect key="frame" x="216" y="9" width="98" height="13"/>
+                            <rect key="frame" x="211" y="9" width="98" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="01:32:11 remaining" id="VaT-d9-stG">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -70,7 +71,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-1s-xTJ">
-                            <rect key="frame" x="310" y="9" width="14" height="13"/>
+                            <rect key="frame" x="305" y="9" width="13" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="•" id="a2w-x6-dKR">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -78,7 +79,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hY4-kC-AZL">
-                            <rect key="frame" x="320" y="9" width="29" height="13"/>
+                            <rect key="frame" x="314" y="9" width="29" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="78%" id="Jd8-5o-uK5">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -86,7 +87,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wAS-vk-6QP">
-                            <rect key="frame" x="345" y="9" width="14" height="13"/>
+                            <rect key="frame" x="339" y="9" width="13" height="13"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="•" id="UVy-5p-cr4">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -102,7 +103,7 @@
                             </textFieldCell>
                         </textField>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="NsN-Ac-xWr">
-                            <rect key="frame" x="417" y="39" width="16" height="16"/>
+                            <rect key="frame" x="416" y="39" width="16" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NsN-Ac-xWr" secondAttribute="height" multiplier="1:1" id="VHR-6o-yAY"/>
                                 <constraint firstAttribute="height" constant="16" id="dpG-V8-Buh"/>
@@ -122,7 +123,6 @@
                         <constraint firstItem="RxW-gb-MfN" firstAttribute="top" secondItem="4Sa-oa-X1N" secondAttribute="bottom" constant="2" id="CM6-rn-KzO"/>
                         <constraint firstItem="wSg-7c-rnr" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="HTa-Bd-ZCN"/>
                         <constraint firstItem="DAo-qI-lDE" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="KVa-Fs-1L4"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="435" id="LmK-Hp-HrT"/>
                         <constraint firstItem="0b0-NC-Md9" firstAttribute="leading" secondItem="2nQ-5G-7OZ" secondAttribute="trailing" id="Lyf-Lz-jiM"/>
                         <constraint firstItem="81Y-XU-Ehf" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="NYQ-6z-fc1"/>
                         <constraint firstItem="2nQ-5G-7OZ" firstAttribute="centerY" secondItem="oJA-se-ad8" secondAttribute="centerY" id="O5c-kU-LUM"/>
@@ -148,7 +148,7 @@
                     </constraints>
                 </customView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="ALE-Yu-R0Q">
-                    <rect key="frame" x="543" y="37" width="18" height="18"/>
+                    <rect key="frame" x="979" y="34" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ALE-Yu-R0Q" secondAttribute="height" multiplier="1:1" id="4hm-MS-2ML"/>
                         <constraint firstAttribute="height" constant="18" id="gN4-cO-1sO"/>
@@ -159,7 +159,7 @@
                     </buttonCell>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b7M-nc-cxC">
-                    <rect key="frame" x="8" y="8" width="76" height="76"/>
+                    <rect key="frame" x="8" y="8" width="70" height="70"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="b7M-nc-cxC" secondAttribute="height" multiplier="1:1" id="Wbm-4Y-bl2"/>
                     </constraints>
@@ -189,7 +189,7 @@
                 <outlet property="taskTitleLabel" destination="4Sa-oa-X1N" id="bJQ-bw-8mc"/>
                 <outlet property="taskTypeImageView" destination="b7M-nc-cxC" id="Iqa-Ua-rOl"/>
             </connections>
-            <point key="canvasLocation" x="216.5" y="334"/>
+            <point key="canvasLocation" x="192.5" y="369"/>
         </customView>
     </objects>
     <resources>

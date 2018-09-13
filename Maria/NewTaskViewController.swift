@@ -102,7 +102,7 @@ class NewTaskViewController: NSViewController {
 }
 
 extension NewTaskViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         startButton.title = startButtonTitle
         containerSwitchButton.removeAllItems()
         containerSwitchButton.isEnabled = false

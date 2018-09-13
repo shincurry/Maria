@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5mb-Q8-ck4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -333,7 +331,7 @@
         <scene sceneID="1AV-6C-Ajp">
             <objects>
                 <windowController id="5mb-Q8-ck4" customClass="MainWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Maria" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="o4S-zO-VLD">
+                    <window key="window" title="Maria" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="o4S-zO-VLD">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="509" height="270"/>
@@ -518,7 +516,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="580" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="mjo-9s-C0c">
+                            <visualEffectView blendingMode="behindWindow" material="selection" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="mjo-9s-C0c">
                                 <rect key="frame" x="0.0" y="24" width="580" height="276"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-fb-fPN">
@@ -527,14 +525,14 @@
                                             <rect key="frame" x="1" y="1" width="578" height="274"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="wWB-pR-LyW">
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="wWB-pR-LyW">
                                                     <rect key="frame" x="0.0" y="0.0" width="578" height="274"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="" width="575" minWidth="40" maxWidth="1000" id="Vqp-RS-IRk">
+                                                        <tableColumn width="575" minWidth="40" maxWidth="1000" id="Vqp-RS-IRk">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -560,11 +558,11 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="9Ba-CQ-iol"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="580" id="FFz-cT-ECs"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="tC6-la-AdT">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tC6-la-AdT">
                                             <rect key="frame" x="-100" y="-100" width="578" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="5Vd-BJ-5xR">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="5Vd-BJ-5xR">
                                             <rect key="frame" x="563" y="1" width="16" height="274"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -677,13 +675,13 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QVB-Z2-1Af">
-                                <rect key="frame" x="183" y="44" width="50" height="22"/>
+                                <rect key="frame" x="183" y="45" width="50" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="2LQ-qU-cga"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0" drawsBackground="YES" id="O0r-Wa-6gE">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
@@ -700,13 +698,13 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myi-4J-Kbo">
-                                <rect key="frame" x="183" y="17" width="50" height="22"/>
+                                <rect key="frame" x="183" y="18" width="50" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JqV-HG-Lnz"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0" drawsBackground="YES" id="yGg-f7-ag3">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
@@ -761,7 +759,7 @@
         <scene sceneID="cqI-p5-qlw">
             <objects>
                 <windowController id="KON-1O-740" customClass="NewTaskWindowController" customModule="Maria" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="sqZ-ev-k2f">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="sqZ-ev-k2f">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="402" height="225"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
@@ -836,13 +834,13 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Lh-aY-ONW">
-                                <rect key="frame" x="20" y="197" width="392" height="22"/>
+                                <rect key="frame" x="20" y="197" width="391" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="b2h-Qj-Mo8"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="[url] [magnet] [you-get]" usesSingleLineMode="YES" bezelStyle="round" id="TEq-li-T9R" customClass="LoadingTextFieldCell" customModule="Maria" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
@@ -858,7 +856,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="At8-om-9hN">
-                                <rect key="frame" x="412" y="194" width="37" height="26"/>
+                                <rect key="frame" x="411" y="195" width="38" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AKv-Cq-qRI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -869,7 +867,7 @@ DQ
                                 </connections>
                             </popUpButton>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="kM6-KK-2eh">
-                                <rect key="frame" x="392" y="200" width="16" height="16"/>
+                                <rect key="frame" x="391" y="200" width="16" height="16"/>
                             </progressIndicator>
                             <button toolTip="Toggle you-get module." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wit-CB-UBT">
                                 <rect key="frame" x="88" y="227" width="30" height="18"/>
@@ -890,19 +888,19 @@ DQ
                                         <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="68h-Y4-ARI">
                                             <rect key="frame" x="0.0" y="0.0" width="426" height="124"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="426" height="124"/>
                                             <size key="maxSize" width="468" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="WTO-CQ-xSc">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="WTO-CQ-xSc">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3No-5R-KLi">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3No-5R-KLi">
                                     <rect key="frame" x="-100" y="-100" width="15" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -925,6 +923,7 @@ DQ
                             <constraint firstItem="3Mq-qW-PTW" firstAttribute="top" secondItem="Yqt-Qp-1qf" secondAttribute="top" constant="10" id="c9d-hJ-ILQ"/>
                             <constraint firstItem="Pxw-AI-2S1" firstAttribute="leading" secondItem="kB8-sw-fcI" secondAttribute="leading" id="cIc-2P-zH8"/>
                             <constraint firstItem="nM7-o5-2jr" firstAttribute="trailing" secondItem="kB8-sw-fcI" secondAttribute="trailing" id="dfN-Hx-1Wa"/>
+                            <constraint firstItem="qAc-gW-pQT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Pxw-AI-2S1" secondAttribute="trailing" constant="8" symbolic="YES" id="ds1-HW-duN"/>
                             <constraint firstItem="wit-CB-UBT" firstAttribute="leading" secondItem="3Mq-qW-PTW" secondAttribute="trailing" constant="2" id="hPP-x8-2Oc"/>
                             <constraint firstItem="qAc-gW-pQT" firstAttribute="centerY" secondItem="Pxw-AI-2S1" secondAttribute="centerY" id="hxU-sg-9Um"/>
                             <constraint firstItem="6Lh-aY-ONW" firstAttribute="leading" secondItem="Yqt-Qp-1qf" secondAttribute="leading" constant="20" id="lZ9-D7-dgj"/>
@@ -1131,7 +1130,7 @@ AAAAAAAAAAAAAAAAABDLA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zaZ-iz-Pj8"/>
-        <segue reference="uT7-5m-1AB"/>
+        <segue reference="Adv-h9-BMu"/>
         <segue reference="dLI-9M-ESM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -3,10 +3,10 @@ PODS:
   - Aria2RPC (1.0.1):
     - Starscream (~> 3.0)
     - SwiftyJSON (~> 4.0)
-  - Sparkle (1.19.0)
+  - Sparkle (1.20.0)
   - Starscream (3.0.5)
   - SwiftyJSON (4.1.0)
-  - SwiftyUserDefaults (3.0.1)
+  - SwiftyUserDefaults (4.0.0-alpha.1)
 
 DEPENDENCIES:
   - Aria2Core (from `https://github.com/shincurry/Aria2Core.git`)
@@ -38,17 +38,17 @@ CHECKOUT OPTIONS:
     :commit: 47aa827f157fda6ced27fd3c401ad2cc6caa8dec
     :git: https://github.com/shincurry/Aria2RPC.git
   SwiftyUserDefaults:
-    :commit: 14b629b035bf6355b46ece22c3851068a488a895
+    :commit: 4318092d12439887cd9b9b30d4d0e06b7867146b
     :git: https://github.com/radex/SwiftyUserDefaults.git
 
 SPEC CHECKSUMS:
   Aria2Core: d0d4b0880210618a3e14b98df3561ac8a6a6a6c3
   Aria2RPC: e244bdf623db21b2bbf7816c899a5c9aa281f041
-  Sparkle: 8486d2493599665e466b5076e72b28849776e32f
+  Sparkle: 48999e7ee032f05ca05e28451eadf4af8ede6b44
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  SwiftyUserDefaults: 38267a30d58b7c8570995cd5defd354e43f056c6
+  SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
 
-PODFILE CHECKSUM: 276511cec371d5c7cb8abef67366cd50acdcffbe
+PODFILE CHECKSUM: f0cf73a727b363f1ba5c588c45968ecc8882e294
 
 COCOAPODS: 1.5.3

@@ -123,7 +123,7 @@ extension SettingsRPCServerViewController {
 }
 
 extension SettingsRPCServerViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         basePath.stringValue = "http(s)://\(host.stringValue):\(port.stringValue)"
     }
 }
