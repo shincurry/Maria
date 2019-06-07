@@ -1,7 +1,7 @@
 PODS:
   - Aria2Core (1.0.2)
-  - Aria2RPC (1.0.2):
-    - Starscream (~> 3.0)
+  - Aria2RPC (1.0.3):
+    - Starscream (~> 3.1)
     - SwiftyJSON (~> 5.0)
   - Sparkle (1.21.3)
   - Starscream (3.1.0)
@@ -34,12 +34,12 @@ CHECKOUT OPTIONS:
     :commit: "6c95db2a64ec3b95b018e4dfef82dac830c916e4\n[proxychains] DLL init: proxychains-ng 4.14"
     :git: https://github.com/shincurry/Aria2Core.git
   Aria2RPC:
-    :commit: "096003e0850bb276f08cc00443ee1ab45026e034\n[proxychains] DLL init: proxychains-ng 4.14"
+    :commit: "1ae665d836b3dd75c9999f632cdf832ce02c55a0\n[proxychains] DLL init: proxychains-ng 4.14"
     :git: https://github.com/shincurry/Aria2RPC.git
 
 SPEC CHECKSUMS:
   Aria2Core: f4288f7d3454c8b157498c54a0f29f31a2778523
-  Aria2RPC: 1b3c17a78e810e0659df9b4000d9109466ba3070
+  Aria2RPC: 95b8b562a6d10292203627f931f544ac0b2eed10
   Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
