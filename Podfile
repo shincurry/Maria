@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :osx, '10.10'
+platform :osx, '10.11'
 use_frameworks!
 
 workspace 'Maria.xcworkspace'
@@ -8,15 +8,15 @@ project 'Maria.xcodeproj'
 project 'YouGet.xcodeproj'
 
 def starscream
-    pod 'Starscream', '~> 3.0'
+    pod 'Starscream', '~> 3.1'
 end
 
 def swifty_json
-    pod 'SwiftyJSON', '~> 4.0'
+    pod 'SwiftyJSON', '~> 5.0'
 end
 
 def swifty_userdefaults
-    pod 'SwiftyUserDefaults', :git => 'https://github.com/radex/SwiftyUserDefaults.git'
+    pod 'SwiftyUserDefaults', '~> 4.0'
 end
 
 def aria2rpc

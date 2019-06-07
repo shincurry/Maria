@@ -2,8 +2,6 @@
 
 A macOS GUI app/widget for aria2 download tool.
 
-You can see dev plan [here](https://github.com/ShinCurry/Maria/projects/1).
-
 More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTANT
 
 ## Features
@@ -17,10 +15,10 @@ More details in [Wiki](https://github.com/ShinCurry/Maria/wiki). <<<<<<< IMPORTA
 
 ## Test Environment
 
-* Xcode 10.0 (10A254a)
-* Swift 4.2
-* macOS Sierra 10.13.6 (17G65)
-* CocoaPods 1.5.3
+* Xcode 10.2.1 (10E1001)
+* Swift 5
+* macOS Mojave 10.14.5 (18F132)
+* CocoaPods 1.7.1
 
 ## Thanks
 
