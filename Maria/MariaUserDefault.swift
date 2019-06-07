@@ -11,48 +11,48 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     // Notification Settings
-    static let enableNotificationWhenStarted = DefaultsKey<Bool>("EnableNotificationWhenStarted")
-    static let enableNotificationWhenStopped = DefaultsKey<Bool>("EnableNotificationWhenStopped")
-    static let enableNotificationWhenPaused = DefaultsKey<Bool>("EnableNotificationWhenPaused")
-    static let enableNotificationWhenCompleted = DefaultsKey<Bool>("EnableNotificationWhenCompleted")
-    static let enableNotificationWhenError = DefaultsKey<Bool>("EnableNotificationWhenError")
-    static let enableNotificationWhenConnected = DefaultsKey<Bool>("EnableNotificationWhenConnected")
-    static let enableNotificationWhenDisconnected = DefaultsKey<Bool>("EnableNotificationWhenDisconnected")
+    static let enableNotificationWhenStarted = DefaultsKey<Bool>("EnableNotificationWhenStarted", defaultValue: false)
+    static let enableNotificationWhenStopped = DefaultsKey<Bool>("EnableNotificationWhenStopped", defaultValue: false)
+    static let enableNotificationWhenPaused = DefaultsKey<Bool>("EnableNotificationWhenPaused", defaultValue: false)
+    static let enableNotificationWhenCompleted = DefaultsKey<Bool>("EnableNotificationWhenCompleted", defaultValue: false)
+    static let enableNotificationWhenError = DefaultsKey<Bool>("EnableNotificationWhenError", defaultValue: false)
+    static let enableNotificationWhenConnected = DefaultsKey<Bool>("EnableNotificationWhenConnected", defaultValue: false)
+    static let enableNotificationWhenDisconnected = DefaultsKey<Bool>("EnableNotificationWhenDisconnected", defaultValue: false)
     
     // Bandwidth Settings
-    static let enableLowSpeedMode = DefaultsKey<Bool>("EnableLowSpeedMode")
-    static let globalDownloadRate = DefaultsKey<Int>("GlobalDownloadRate")
-    static let globalUploadRate = DefaultsKey<Int>("GlobalUploadRate")
-    static let limitModeDownloadRate = DefaultsKey<Int>("LimitModeDownloadRate")
-    static let limitModeUploadRate = DefaultsKey<Int>("LimitModeUploadRate")
+    static let enableLowSpeedMode = DefaultsKey<Bool>("EnableLowSpeedMode", defaultValue: false)
+    static let globalDownloadRate = DefaultsKey<Int>("GlobalDownloadRate", defaultValue: 0)
+    static let globalUploadRate = DefaultsKey<Int>("GlobalUploadRate", defaultValue: 0)
+    static let limitModeDownloadRate = DefaultsKey<Int>("LimitModeDownloadRate", defaultValue: 0)
+    static let limitModeUploadRate = DefaultsKey<Int>("LimitModeUploadRate", defaultValue: 0)
     
     // General Settings
-    static let launchAtStartup = DefaultsKey<Bool>("LaunchAtStartup")
+    static let launchAtStartup = DefaultsKey<Bool>("LaunchAtStartup", defaultValue: false)
     static let webAppPath = DefaultsKey<String?>("WebAppPath")
-    static let enableSpeedStatusBar = DefaultsKey<Bool>("EnableSpeedStatusBar")
-    static let enableStatusBarMode = DefaultsKey<Bool>("EnableStatusBarMode")
+    static let enableSpeedStatusBar = DefaultsKey<Bool>("EnableSpeedStatusBar", defaultValue: false)
+    static let enableStatusBarMode = DefaultsKey<Bool>("EnableStatusBarMode", defaultValue: false)
 
     // Aria2 Settings
-    static let enableAutoConnectAria2 = DefaultsKey<Bool>("EnableAutoConnectAria2")
+    static let enableAutoConnectAria2 = DefaultsKey<Bool>("EnableAutoConnectAria2", defaultValue: false)
     static let rpcServerHost = DefaultsKey<String?>("RPCServerHost")
     static let rpcServerUsername = DefaultsKey<String?>("RPCServerUsername")
     static let rpcServerPassword = DefaultsKey<String?>("RPCServerPassword")
     static let rpcServerPort = DefaultsKey<String?>("RPCServerPort")
     static let rpcServerPath = DefaultsKey<String?>("RPCServerPath")
     static let rpcServerSecret = DefaultsKey<String?>("RPCServerSecret")
-    static let rpcServerEnabledSSL = DefaultsKey<Bool>("RPCServerEnabledSSL")
-    static let enableAria2AutoLaunch = DefaultsKey<Bool>("EnableAria2AutoLaunch")
+    static let rpcServerEnabledSSL = DefaultsKey<Bool>("RPCServerEnabledSSL", defaultValue: false)
+    static let enableAria2AutoLaunch = DefaultsKey<Bool>("EnableAria2AutoLaunch", defaultValue: false)
     static let aria2ConfPath = DefaultsKey<String?>("Aria2ConfPath")
     
     // Today Settings
-    static let todayTasksNumber = DefaultsKey<Int>("TodayTasksNumber")
-    static let todayEnableTasksSortedByProgress = DefaultsKey<Bool>("TodayEnableTasksSortedByProgress")
+    static let todayTasksNumber = DefaultsKey<Int>("TodayTasksNumber", defaultValue: 0)
+    static let todayEnableTasksSortedByProgress = DefaultsKey<Bool>("TodayEnableTasksSortedByProgress", defaultValue: false)
     
     // Main settings
-    static let isNotFirstLaunch = DefaultsKey<Bool>("IsNotFirstLaunch")
-    static let useEmbeddedAria2 = DefaultsKey<Bool>("UseEmbeddedAria2")
+    static let isNotFirstLaunch = DefaultsKey<Bool>("IsNotFirstLaunch", defaultValue: false)
+    static let useEmbeddedAria2 = DefaultsKey<Bool>("UseEmbeddedAria2", defaultValue: true)
     
-    static let enableYouGet = DefaultsKey<Bool>("EnableYouGet")
+    static let enableYouGet = DefaultsKey<Bool>("EnableYouGet", defaultValue: false)
 }
 
 class MariaUserDefault {
